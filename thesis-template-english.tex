@@ -1,22 +1,23 @@
 % thesis-template-english.tex - English Academic Thesis Template for German Universities
-% 
 % This template follows German academic conventions with English content:
 % - German university title page format
 % - Front matter organization (TOC, abstracts, lists, glossary)
 % - Required German abstract (Zusammenfassung) + English abstract
-% - KOMA-Script document class for German typography standards
+% - Standard book class for maximum flexibility
 % - IEEE bibliography style for international compatibility
 % 
 % IMPORTANT: Always verify compliance with your specific institution's guidelines
 % 
 % Template structure: German academic convention with thoughtful front/back matter organization
-\documentclass[oneside,bibliography=totocnumbered,BCOR=5mm]{scrbook}
+\documentclass[oneside,12pt]{book}
+
 
 % Encoding and languages - English primary, German secondary for abstracts
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[ngerman,english]{babel} % English as main language
+\usepackage[english]{babel} % English as main language
 \usepackage[autostyle]{csquotes}
+
 
 % Basic Math
 \usepackage{amsmath, amssymb, amsthm}
@@ -63,8 +64,120 @@
 \usepackage{booktabs}
 \usepackage[small, labelfont=bf]{caption}
 
+
 % Page layout
-\usepackage[hmargin=2.5cm, top=3cm, bottom=3cm]{geometry}
+\usepackage[hmargin=3cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+% TOC and heading customization
+\usepackage{titlesec}
+
+\usepackage{tocloft}
+\renewcommand{\cftbeforechapskip}{0.5em}
+\renewcommand{\cftbeforesecskip}{0.3em}
+\renewcommand{\cftbeforesubsecskip}{0.3em}
+\renewcommand{\cftbeforesubsubsecskip}{0.3em}
+
+
+% Format all heading levels consistently - KOMA-Script style
+\titleformat{\chapter}
+  {\normalfont\huge\bfseries}
+  {\thechapter.}
+  {0.5em}
+  {}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}
+  {\thesection}
+  {0.5em}
+  {}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}
+  {\thesubsection}
+  {0.5em}
+  {}
+
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}
+  {\thesubsubsection}
+  {0.5em}
+  {}
+
+% Add spacing between sections - KOMA-Script style
+\titlespacing*{\chapter}{0pt}{0pt}{1em}
+\titlespacing*{\section}{0pt}{1em}{1em}
+\titlespacing*{\subsection}{0pt}{1em}{1em}
+\titlespacing*{\subsubsection}{0pt}{1em}{1em}
+
+
+% Save the original \tableofcontents after all packages are loaded
+\let\oldtableofcontents\tableofcontents
+
+% Redefine \tableofcontents to use smaller font and restore heading logic
+\renewcommand{\tableofcontents}{%
+  {\small
+    \oldtableofcontents
+  }%
+  \renewcommand{\contentsname}{}%
+}
+
+% KOMA-Script style page numbering
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% Front matter page style
+\fancypagestyle{frontmatter}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[C]{\roman{page}}
+}
+
+% Main matter page style
+\fancypagestyle{mainmatter}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[C]{\arabic{page}}
+}
+
+% Apply front matter style to front matter
+\let\oldfrontmatter\frontmatter
+\renewcommand{\frontmatter}{
+  \oldfrontmatter
+  \pagestyle{frontmatter}
+}
+
+% Apply main matter style to main matter
+\let\oldmainmatter\mainmatter
+\renewcommand{\mainmatter}{
+  \oldmainmatter
+  \pagestyle{mainmatter}
+}
+
+% Ensure consistent spacing and depth
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+% Consistent link colors
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,
+    urlcolor=black,
+    citecolor=black,
+    pdftitle={Your Thesis Title},
+    pdfauthor={Marlin Jai Pohl},
+    pdfsubject={Bachelor Thesis},
+    pdfkeywords={thesis, bachelor, computer science}
+}
+
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
 
 % Theorems, Definitions, etc. - English names
 
@@ -87,9 +200,21 @@
 \newtheorem{example}[theorem]{Example}
 
 % Document metadata
-\title{Your Thesis Title Here}
-\author{Your Name}
+\title{A Multi-Layered Visual Application Builder with Dynamic CSS Class Generation based on a VDOM centric meta-programming approach}
+\author{Marlin Jai Pohl}
 \date{\today}
+
+\hyphenpenalty=5000
+\exhyphenpenalty=5000
+
+% Additional package for patch command
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@makeschapterhead}
+  {\vspace*{50\p@}} % default is 50pt
+  {\vspace*{10\p@}} % try 10pt, or 0pt for no space
+  {}{}
+\makeatother
 
 % Document
 \begin{document}
@@ -97,11 +222,18 @@
 % Title page - German university format with English content
 \begin{titlepage}
 \centering
-\includegraphics[width=0.5\textwidth]{HTW_Berlin_Logo_farbig.jpg}
 \vfill
-
-{\Large \textbf{Your Thesis Title Here}}
+\includegraphics[width=0.5\textwidth]{HTW_Berlin_Logo_farbig.jpg}
 \vspace{1cm}
+
+{\Large
+  \setlength{\baselineskip}{1.5em} % or try 2em for more space
+  \textbf{
+    A Multi-Layered Visual Application Builder \\
+    with Dynamic CSS Class Generation \\
+  }
+}
+\vfill
 
 Bachelor Thesis\\
 \vspace{0.5cm}
@@ -138,6 +270,7 @@ Berlin, \today
 \frontmatter
 
 % Table of contents and lists - German convention (front matter)
+\vspace*{-1.5em} % or adjust value as needed
 \tableofcontents
 
 \chapter*{Acknowledgments}
@@ -149,11 +282,15 @@ I would like to express my sincere gratitude to my supervisors, Prof. Dr. [Name]
 % English abstract
 When faced with the challenge of creating content and interactive web experiences, less technical users have to rely on tools like \gls{CMS} like WordPress and \gls{WYSIWYG} editors.
 
+
 Although these tools partially satisfy the needs of modern web experiences, many of them have their shortcomings when it comes to the \gls{staticweb} they produce, as well as a certain level of inaccuracy between the preview layer and the final rendered content in the Web browser.
+
 
 Due to the static output of tools like Webflow, WordPress, Wix, etc., users cannot make use of the \gls{SPA} features that come with modern JavaScript frameworks like React, NextJS or VueJS.
 
+
 The following thesis answers the question of how a multilayered visual application builder allowing real-time UI editing, dynamic CSS class generation, and multi-touch interactions can be implemented using the modern JavaScript framework NextJS. Lowering the barrier of entry to build great software by applying the concepts of meta-programming.
+
 
 "Meta-programs analyze, generate, and transform object programs. In this process, object programs are structured data."\cite[p.~299]{visser2002}
 
@@ -190,7 +327,7 @@ Never forget to cite all your sources correctly\footnote{For additional informat
 
 Visualize appropriately in the main text, e.g., using figures and tables. This template contains exemplary integrated figures and a table for illustration purposes.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.5\textwidth]{HTW_Berlin_Logo_farbig.jpg}
 \caption{HTW Berlin Logo\cite{htw-berlin}}
@@ -263,9 +400,6 @@ Visualize appropriately in the main text, e.g., using figures and tables. This t
 
 \section{Data Management}
 
-% Force a new page after the chapter in table of contents
-\addtocontents{toc}{\protect\newpage}
-
 \chapter{Implementation}
 [Description of the implementation\footnote{Please observe Clean Code recommendations during implementation and its documentation (cf. e.g., \cite{martin2008}).} based on the design and methodology/planned approach to problem solving in the context of requirements. Here is space for listings, such as the following:]
 
@@ -279,7 +413,7 @@ if __name__ == "__main__":
 
 Extensive source code should be moved to the appendix.
 
-\chapter{Presentation and Evaluation of Results}
+\chapter{Presentation of Results}
 [Description of the results from all preceding chapters as well as the previously generated result artifacts with evaluation of how these are to be classified]
 
 \chapter{Summary}
