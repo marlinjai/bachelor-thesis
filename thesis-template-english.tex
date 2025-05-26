@@ -72,7 +72,7 @@
 \usepackage{titlesec}
 
 \usepackage{tocloft}
-\renewcommand{\cftbeforechapskip}{0.5em}
+\renewcommand{\cftbeforechapskip}{.8em}
 \renewcommand{\cftbeforesecskip}{0.3em}
 \renewcommand{\cftbeforesubsecskip}{0.3em}
 \renewcommand{\cftbeforesubsubsecskip}{0.3em}
@@ -80,7 +80,7 @@
 
 % Format all heading levels consistently - KOMA-Script style
 \titleformat{\chapter}
-  {\normalfont\huge\bfseries}
+  {\normalfont\LARGE\bfseries}
   {\thechapter.}
   {0.5em}
   {}
@@ -270,7 +270,7 @@ Berlin, \today
 \frontmatter
 
 % Table of contents and lists - German convention (front matter)
-\vspace*{-1.5em} % or adjust value as needed
+
 \tableofcontents
 
 \chapter*{Acknowledgments}
@@ -294,8 +294,16 @@ The following thesis answers the question of how a multilayered visual applicati
 
 "Meta-programs analyze, generate, and transform object programs. In this process, object programs are structured data."\cite[p.~299]{visser2002}
 
+\newpage
+\addcontentsline{toc}{chapter}{List of Figures}
 \listoffigures
+
+\newpage
+\addcontentsline{toc}{chapter}{List of Tables}
 \listoftables
+
+\newpage
+\addcontentsline{toc}{chapter}{List of Listings}
 \lstlistoflistings
 
 % Main content
@@ -468,7 +476,6 @@ Include questionnaires or interview guides if applicable.
 
 % Declaration of authorship - English version for international context
 \chapter*{Declaration of Authorship}
-\addcontentsline{toc}{chapter}{Declaration of Authorship}
 
 I hereby declare that this thesis has been written independently and without unauthorized assistance. All sources and aids used have been fully acknowledged. This work has not been submitted to any other examination authority in this or similar form.
 
