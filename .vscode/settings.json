@@ -54,6 +54,7 @@
                 "-file-line-error",
                 "-pdf",
                 "-outdir=./build",
+                "-shell-escape",
                 "%DOC%"
             ],
             "env": {}
@@ -85,13 +86,34 @@
                 "./build/%DOCFILE%"
             ],
             "env": {}
+        },
+        {
+            "name": "makeglossaries",
+            "command": "makeglossaries",
+            "args": [
+                "-d",
+                "./build",
+                "%DOCFILE%"
+            ],
+            "env": {}
         }
     ],
     "latex-workshop.latex.recipes": [
         {
-            "name": "latexmk 🔃",
+            "name": "latexmk 🔃 (Auto-Glossary)",
             "tools": [
                 "latexmk"
+            ]
+        },
+        {
+            "name": "Full Build (with Glossary) 📚",
+            "tools": [
+                "pdflatex",
+                "makeglossaries",
+                "pdflatex",
+                "biber",
+                "pdflatex",
+                "pdflatex"
             ]
         },
         {
@@ -119,4 +141,5 @@
             ]
         }
     ],
+    "latex-workshop.latex.recipe.default": "Full Build (with Glossary) 📚"
 }

@@ -21,9 +21,6 @@
 % Basic Math
 \usepackage{amsmath, amssymb, amsthm}
 
-% Hyperlinks
-\usepackage[hidelinks]{hyperref}
-
 % Graphics
 \usepackage{graphicx}
 
@@ -31,44 +28,24 @@
 \usepackage[backend=biber, style=ieee]{biblatex} % IEEE style for international appeal
 \addbibresource{thesis_references.bib}
 
-% Glossary and abbreviations - with language fix
-\usepackage[acronym,toc,nomain]{glossaries}
+% Load hyperref BEFORE glossaries
+\usepackage[hidelinks,hyperfootnotes=false]{hyperref}
+\hypersetup{
+    pdftitle={Your Thesis Title},
+    pdfauthor={Marlin Jai Pohl},
+    pdfsubject={Bachelor Thesis},
+    pdfkeywords={thesis, bachelor, computer science}
+}
+
+% Glossary and abbreviations - now included in TOC automatically
+\usepackage[toc,acronym,nonumberlist,nogroupskip]{glossaries}
 \makeglossaries
 
-% Example glossary entries - replace with your actual terms
-\newglossaryentry{API}{
-    name=Application Programming Interface,
-    description={Application Programming Interface - a set of protocols and tools for building software applications}
-}
+% Set glossary style to simple list format (single column, rows)
+\setglossarystyle{list}
 
-\newglossaryentry{ML}{
-    name=Machine Learning,
-    description={A subset of artificial intelligence that enables computers to learn and improve from experience without being explicitly programmed}
-}
-\newglossaryentry{SPA}{
-    name=Single Page Application,
-    description={A web application that allows users to navigate through a single page without reloading the page}
-}
-
-\newglossaryentry{WYSIWYG}{
-    name=What You See Is What You Get,
-    description={A technology that allows users to create and edit content visually, without the need for coding}
-}
-
-\newglossaryentry{CMS}{
-    name=Content Management System,
-    description={A software system that allows users to create, manage, and publish content without the need for technical knowledge}
-}
-
-\newglossaryentry{Framework}{
-    name=Framework,
-    description={A software framework that provides a foundation for developing applications by offering reusable code and standardized programming interfaces}
-}
-
-\newglossaryentry{algorithm}{
-    name=Algorithm,
-    description={A step-by-step procedure or formula for solving a problem or completing a task}
-}
+% Include glossary entries
+\input{glossary-entries}
 
 % Code Listings
 \usepackage{listings}
@@ -167,34 +144,22 @@ Berlin, \today
 \addcontentsline{toc}{chapter}{Acknowledgments}
 I would like to express my sincere gratitude to my supervisors, Prof. Dr. [Name] and Prof. Dr. [Name], for their guidance and support throughout this research. I also thank [other people/institutions] for their valuable contributions.
 
-\chapter*{Zusammenfassung}
-\addcontentsline{toc}{chapter}{Zusammenfassung}
-\selectlanguage{ngerman}
-% German abstract - required by most German universities
-Hier kommt die deutsche Zusammenfassung Ihrer Arbeit. Diese sollte etwa 200-300 Wörter umfassen und die wichtigsten Aspekte Ihrer Forschung, Methodik und Ergebnisse zusammenfassen.
-
-\selectlanguage{english}
-
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 % English abstract
-This thesis investigates [your research topic]. The main objectives are to [list main goals]. The methodology employed includes [brief description of methods]. Key findings reveal that [main results]. The implications of this research are [significance and applications]. This work contributes to [field of study] by [specific contributions].
+When faced with the challenge of creating content and interactive web experiences, less technical users have to rely on tools like \gls{CMS} like WordPress and \gls{WYSIWYG} editors.
 
-\textbf{Keywords:} keyword1, keyword2, keyword3, keyword4, keyword5
+Although these tools partially satisfy the needs of modern web experiences, many of them have their shortcomings when it comes to the \gls{staticweb} they produce, as well as a certain level of inaccuracy between the preview layer and the final rendered content in the Web browser.
 
+Due to the static output of tools like Webflow, WordPress, Wix, etc., users cannot make use of the \gls{SPA} features that come with modern JavaScript frameworks like React, NextJS or VueJS.
 
-\chapter*{List of Figures}
-\addcontentsline{toc}{chapter}{List of Figures}
+The following thesis answers the question of how a multilayered visual application builder allowing real-time UI editing, dynamic CSS class generation, and multi-touch interactions can be implemented using the modern JavaScript framework NextJS. Lowering the barrier of entry to build great software by applying the concepts of meta-programming.
+
+"Meta-programs analyze, generate, and transform object programs. In this process, object programs are structured data."\cite[p.~299]{visser2002}
+
 \listoffigures
-\chapter*{List of Tables}
-\addcontentsline{toc}{chapter}{List of Tables}
 \listoftables
-\chapter*{List of Listings}
-\addcontentsline{toc}{chapter}{List of Listings}
 \lstlistoflistings
-\chapter*{Glossary}
-\addcontentsline{toc}{chapter}{Glossary}
-\printglossary[title=Glossary]
 
 % Main content
 \mainmatter
@@ -204,8 +169,6 @@ This thesis investigates [your research topic]. The main objectives are to [list
 
 \fbox{\parbox{0.98\linewidth}{
 This template contains exemplary (and thus incomplete) structural elements, components and guidelines for a typical software development project where a prototype is created. It serves as assistance for your further use. 
-
-Of course, you must make additional supplements and adaptations yourself.
 
 \begin{center}
 \textbf{Good luck and success with your thesis!}
@@ -226,6 +189,12 @@ The content structure of a thesis in the \textit{International Media and Computi
 Never forget to cite all your sources correctly\footnote{For additional information on citation, you can refer to supplementary sources (e.g. \cite{balzert2011}).}. Sources can be manually referenced and entered in the bibliography. Additionally, many text processing systems also offer external source management files and systems through which citations can be made in the main text using appropriate commands.
 
 Visualize appropriately in the main text, e.g., using figures and tables. This template contains exemplary integrated figures and a table for illustration purposes.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{HTW_Berlin_Logo_farbig.jpg}
+\caption{HTW Berlin Logo\cite{htw-berlin}}
+\end{figure}
 
 \section{Background of the Work}
 [Description of the general context of the work; you should present this in detail in the fundamentals section]
@@ -259,7 +228,7 @@ Visualize appropriately in the main text, e.g., using figures and tables. This t
 [Description of the results/result types that you want to generate/achieve as part of the problem solution, e.g., algorithm, prototype of a software (component), ...]
 
 \section{Data Protection Aspects}
-[Description of data protection aspects in connection with your thesis]
+[Description of data protection aspects in \gls{GDPR} connection with your thesis]
 
 \section{Ethical Aspects}
 [Description of ethical aspects\footnote{For additional reference, see general codes (e.g., ACM, IEEE, or GI) as well as domain-specific norms and procedures within a critical reflection.} in connection with your thesis]
@@ -329,9 +298,12 @@ Extensive source code should be moved to the appendix.
 \chapter*{References}
 \addcontentsline{toc}{chapter}{References}
 \printbibliography[heading=none,title={}]
+\pagenumbering{Roman}
+
+% Print unified glossary before references
+\printglossaries
 
 \appendix
-\pagenumbering{Roman}
 
 \chapter{Appendix}
 
