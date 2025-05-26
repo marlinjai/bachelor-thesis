@@ -1,0 +1,407 @@
+% Diese Vorlage folgt deutschen akademischen Konventionen:
+% - Deutsche Universitäts-Titelseite
+% - Vorspann-Organisation (Inhaltsverzeichnis, Zusammenfassungen, Listen, Glossar)
+% - Deutsche und englische Zusammenfassung (oft von deutschen Unis gefordert)
+% - KOMA-Script Dokumentklasse für deutsche Typografie-Standards
+% - Numerischer Bibliografie-Stil für deutsche Arbeiten
+% 
+% WICHTIG: Immer die spezifischen Richtlinien Ihrer Institution überprüfen
+% 
+% Vorlagenstruktur: Deutsche akademische Konvention mit durchdachter Vor-/Nachspann-Organisation
+
+\documentclass[oneside,bibliography=totocnumbered,BCOR=5mm]{scrbook}
+
+% Encoding and languages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,ngerman]{babel} % Deutsch als Hauptsprache
+\usepackage[autostyle]{csquotes}
+
+% Basic Math
+\usepackage{amsmath, amssymb, amsthm}
+
+% Hyperlinks
+\usepackage[hidelinks]{hyperref}
+
+% Graphics
+\usepackage{graphicx}
+
+% Bibliography - Deutscher Stil
+\usepackage[backend=biber, style=numeric]{biblatex} % Numerischer Stil für deutsche Arbeiten
+\addbibresource{thesis_references.bib}
+
+% Glossar und Abkürzungen
+\usepackage[acronym,toc,nomain]{glossaries}
+\makeglossaries
+
+% Beispiel-Glossareinträge - durch eigene Begriffe ersetzen
+\newglossaryentry{API}{
+    name=Application Programming Interface,
+    description={Programmierschnittstelle - eine Sammlung von Protokollen und Werkzeugen für die Entwicklung von Softwareanwendungen}
+}
+
+\newglossaryentry{ML}{
+    name=Machine Learning,
+    description={Maschinelles Lernen - ein Teilbereich der künstlichen Intelligenz, der es Computern ermöglicht, aus Erfahrungen zu lernen}
+}
+
+\newglossaryentry{SPA}{
+    name=Single Page Application,
+    description={Einseitige Webanwendung - eine Webanwendung, die es Benutzern ermöglicht, durch eine einzige Seite zu navigieren, ohne die Seite neu zu laden}
+}
+
+\newglossaryentry{Framework}{
+    name=Framework,
+    description={Software-Rahmenwerk, das eine Grundlage für die Entwicklung von Anwendungen bietet}
+}
+
+\newglossaryentry{Algorithmus}{
+    name=Algorithmus,
+    description={Eine schrittweise Vorgehensweise oder Formel zur Lösung eines Problems oder zur Erfüllung einer Aufgabe}
+}
+
+% Code Listings
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 
+  backgroundcolor=\color{white},
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{mygreen},
+  escapeinside={\%*}{*)},
+  extendedchars=true,
+  firstnumber=1,
+  frame=single,
+  keepspaces=true,
+  keywordstyle=\color{blue},
+  language=Python,
+  numbers=left,
+  numbersep=5pt,
+  numberstyle=\tiny\color{mygray},
+  rulecolor=\color{black},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  stepnumber=1,
+  stringstyle=\color{mymauve},
+  tabsize=2,
+  title=\lstname
+}
+
+% Tables and Captions
+\usepackage{booktabs}
+\usepackage[small, labelfont=bf]{caption}
+
+% Page layout
+\usepackage[hmargin=2.5cm, top=3cm, bottom=3cm]{geometry}
+
+% Theorems, Definitions, etc. - Deutsche Namen
+
+% Satz - Für wichtige mathematische/wissenschaftliche Behauptungen, die einen formalen Beweis benötigen
+\newtheorem{satz}{Satz}[chapter]
+
+% Definition - Zur formalen Definition neuer Begriffe, Konzepte oder Notationen
+\newtheorem{definition}[satz]{Definition}
+
+% Lemma - Für unterstützende Sätze/Propositionen, die zum Beweis eines größeren Satzes benötigt werden
+\newtheorem{lemma}[satz]{Lemma}
+
+% Bemerkung - Für Beobachtungen, Notizen oder Kommentare zu vorherigen Aussagen
+\newtheorem{bemerkung}[satz]{Bemerkung}
+
+% Korollar - Für Ergebnisse, die direkt aus einem zuvor bewiesenen Satz folgen
+\newtheorem{korollar}[satz]{Korollar}
+
+% Beispiel - Für konkrete Instanzen oder Illustrationen von Konzepten
+\newtheorem{beispiel}[satz]{Beispiel}
+
+% Algorithmus - Für algorithmische Beschreibungen
+\newtheorem{algorithmus}{Algorithmus}
+
+% Document metadata
+\title{Titel Ihrer Abschlussarbeit}
+\author{Ihr Name}
+\date{\today}
+
+% Document
+\begin{document}
+
+% Titelseite - HTW Berlin Format
+\begin{titlepage}
+\centering
+\includegraphics[width=0.5\textwidth]{HTW_Berlin_Logo_farbig.jpg}
+\vfill
+
+{\Large \textbf{Titel Ihrer Abschlussarbeit}}
+\vspace{1cm}
+
+Abschlussarbeit\\
+\vspace{0.5cm}
+zur Erlangung des akademischen Grades\\
+\vspace{0.5cm}
+\textbf{Bachelor of Science (B.Sc.)}\\
+\vspace{0.5cm}
+an der\\
+\vspace{0.5cm}
+Hochschule für Technik und Wirtschaft Berlin\\
+Fachbereich 4: Informatik, Kommunikation und Wirtschaft\\
+Studiengang \textit{Internationale Medieninformatik}
+
+\vspace{2cm}
+
+% Zentrierte Gutachterinformationen
+\begin{center}
+  \begin{tabular}{@{}l@{\hspace{1cm}}l@{}}
+    1. Gutachter/in: & Prof. Dr. Vorname Nachname \\
+    2. Gutachter/in: & Prof. Dr. Vorname Nachname
+  \end{tabular}
+\end{center}
+
+\vspace{2cm}
+
+Eingereicht von: Ihr vollständiger Name [Matrikelnummer]\\
+Berlin, den \today
+
+\vfill
+\end{titlepage}
+
+% Vorspann - Deutsche akademische Struktur
+\frontmatter
+
+% Inhaltsverzeichnis und Listen - Deutsche Konvention (Vorspann)
+\tableofcontents
+
+\chapter*{Danksagung}
+\addcontentsline{toc}{chapter}{Danksagung}
+Ich möchte meinen aufrichtigen Dank an meine Betreuer, Prof. Dr. [Name] und Prof. Dr. [Name], für ihre Führung und Unterstützung während dieser Forschung aussprechen. Ich danke auch [anderen Personen/Institutionen] für ihre wertvollen Beiträge.
+
+\chapter*{Zusammenfassung}
+\addcontentsline{toc}{chapter}{Zusammenfassung}
+% Deutsche Zusammenfassung
+Diese Arbeit untersucht [Ihr Forschungsthema]. Die Hauptziele sind [Hauptziele auflisten]. Die angewandte Methodik umfasst [kurze Beschreibung der Methoden]. Die wichtigsten Erkenntnisse zeigen, dass [Hauptergebnisse]. Die Implikationen dieser Forschung sind [Bedeutung und Anwendungen]. Diese Arbeit trägt zu [Fachgebiet] bei durch [spezifische Beiträge].
+
+\textbf{Schlüsselwörter:} Schlüsselwort1, Schlüsselwort2, Schlüsselwort3, Schlüsselwort4, Schlüsselwort5
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\selectlanguage{english}
+% Englische Zusammenfassung - oft von deutschen Universitäten gefordert
+This thesis investigates [your research topic]. The main objectives are to [list main goals]. The methodology employed includes [brief description of methods]. Key findings reveal that [main results]. The implications of this research are [significance and applications]. This work contributes to [field of study] by [specific contributions].
+
+\textbf{Keywords:} keyword1, keyword2, keyword3, keyword4, keyword5
+
+\selectlanguage{ngerman}
+
+\chapter*{Abbildungsverzeichnis}
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\listoffigures
+
+\chapter*{Tabellenverzeichnis}
+\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+\listoftables
+
+\chapter*{Listingverzeichnis}
+\addcontentsline{toc}{chapter}{Listingverzeichnis}
+\lstlistoflistings
+
+\chapter*{Glossar}
+\addcontentsline{toc}{chapter}{Glossar}
+\printglossary[title=Glossar]
+
+% Hauptteil
+\mainmatter
+
+\chapter{Einleitung}
+\label{ch:einleitung}
+
+\fbox{\parbox{0.98\linewidth}{
+Vorliegende Vorlage enthält exemplarisch (und damit unvollständig) Gliederungspunkte, Bestandteile und Hinweise für ein typisches Softwareentwicklungsprojekt. 
+Bei diesem wird ein Prototyp erstellt.
+
+Es dient als Hilfestellung zu Ihrer weiteren Verwendung.
+
+Selbstverständlich müssen Sie selbst weitere Ergänzungen und Anpassungen vornehmen.
+
+\begin{center}
+\textbf{Viel Erfolg sowie gutes Gelingen bei Ihrer Abschlussarbeit!}
+\end{center}
+}}
+
+\vspace{1cm}
+Der Textteil beginnt hier und wird arabisch mit dieser Seite beginnend mit "1" arabisch nummeriert. \\
+Der Textteil gliedert sich in Kapitel und Unterkapitel. Soll jede Hierarchieebene benannt werden, \\
+dann ist folgende Terminologie üblich:
+
+\begin{itemize}
+\item 1. Hierarchieebene: Hauptkapitel
+\item 2. Hierarchieebene: Kapitel
+\item 3. Hierarchieebene: Unterkapitel
+\item 4. Hierarchieebene: Abschnitt
+\end{itemize}
+
+Der inhaltliche Aufbau einer Abschlussarbeit im Studiengang \textit{Internationale Medieninformatik} \\
+hängt selbstverständlich vom Thema und vom Inhalt ab. Abweichungen von der diesem Template \\
+zu Grunde liegenden Gliederungsstruktur sind immer möglich, manchmal sogar zwingend notwendig. \\
+Stimmen Sie sich diesbezüglich immer mit Ihren Gutachter(inne)n ab.
+
+Vergessen Sie niemals, all Ihre verwendeten Quellen anzugeben und korrekt zu zitieren\footnote{Ergänzende Informationen zu Zitation finden Sie in vertiefenden Quellen (z.B. \cite{balzert2011}).}. \\
+Quellen können manuell referenziert und im Quellenverzeichnis eingetragen werden. \\
+Ergänzend bieten viele Textverarbeitungssysteme auch ausgelagerte Quellenverwaltungsdateien \\
+und -systeme an, über die mittels entsprechender Befehle im Textteil zitiert werden kann.
+
+Visualisieren Sie im Textteil angemessen, z.B. mittels Abbildungen und Tabellen. \\
+Vorliegende Vorlage enthält beispielhaft eingebundene Abbildungen und eine Tabelle zur Veranschaulichung.
+
+\section{Hintergrund der Arbeit}
+[Beschreibung des groben Kontextes der Arbeit; im Detail sollten Sie dies im Grundlagenteil darstellen]
+
+\section{Problem- und Zielstellung (Scope)}
+[Beschreibung der Problemstellung sowie der sich daraus ergebenden Teilprobleme, -ziele und Forschungsfrage(n), welche Sie mit Ihrer Arbeit addressieren]
+
+\section{Aufbau der Arbeit}
+[Beschreibung des Aufbaus der Arbeit]
+
+\chapter{Grundlagen}
+[Beschreibung des Kontextes der Arbeit mit allen durch die Problemstellung tangierten Bereichen, Methoden, Theorien, Erkenntnissen, Technologien, ...]
+
+\section{Kontext}
+
+\subsection{Domäne}
+
+\subsection{Technologien}
+
+\subsection{Methoden und Konzepte}
+
+\chapter{Methodologie}
+[Beschreibung des geplanten Vorgehens(-modells) zur Lösung der Problemstellung; umfasst u.a.:
+\begin{itemize}
+\item Anforderungserhebung und -analyse
+\item Konzeption, Entwurf
+\item Umsetzung (Implementierung)
+\end{itemize}
+
+\section{Ergebnisartefakte}
+[Beschreibung der Ergebnisse/Ergebnistypen, welche Sie im Rahmen der Problemlösung generieren/erzielen wollen, z.B. Algorithmus, Prototyp einer Software(komponente), ...]
+
+\section{Datenschutzaspekte}
+[Beschreibung von Aspekten des Datenschutzes im Zusammenhang mit Ihrer Abschlussarbeit]
+
+\section{Ethische Aspekte}
+[Beschreibung von Aspekten der Ethik\footnote{Vgl. hierzu ergänzend allgemeine Codizes (z.B. ACM, IEEE oder GI) sowie auch domain-spezifische Normen und Verfahrensweisen im Rahmen einer kritischen Reflektion.} im Zusammenhang mit Ihrer Abschlussarbeit]
+
+\chapter{Anforderungserhebung und -analyse}
+[Beschreibung der Erhebung, Granularisierung und Priorisierung der zu Grunde liegenden Anforderungen]
+
+\section{Nutzer- und Systemanforderungen}
+
+\subsection{Funktionale Anforderungen}
+
+\subsubsection{Obligatorisch (MUSS)}
+
+\subsubsection{Fakultativ (KANN)}
+
+\subsection{Nicht-funktionale Anforderungen}
+
+\subsubsection{Obligatorisch (MUSS)}
+
+\subsubsection{Fakultativ (KANN)}
+
+\chapter{Konzeption \& Entwurf}
+[Beschreibung des Entwurfs auf Basis der Methodologie/der geplanten Vorgehensweise zur Problemlösung im Kontext der Anforderungen]
+
+\section{Prozess}
+
+\section{Systemarchitektur}
+
+\section{Softwarearchitektur}
+
+\section{Schnittstellen}
+
+\section{Datenmanagement}
+
+% Seitenumbruch im Inhaltsverzeichnis vor Implementierung erzwingen
+\addtocontents{toc}{\protect\newpage}
+
+\chapter{Implementierung}
+[Beschreibung der Implementierung\footnote{Beachten Sie bei der Implementierung und deren Dokumentation bitte Clean Code Empfehlungen (vgl. hierzu z.B. \cite{martin2008}).} auf Basis des Entwurfs und der Methodologie/der geplanten Vorgehensweise zur Problemlösung im Kontext der Anforderungen. Hier ist Raum für Listings, wie z.B. das nun Folgende:]
+
+\begin{lstlisting}[caption={Beispiel: Hello World (Python)}]
+def main():
+    print("Hallo, Welt!")
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+Umfangreicher Quell-Code sollte in den Anhang ausgelagert werden.
+
+\chapter{Darstellung und Bewertung der Ergebnisse}
+[Beschreibung der Ergebnisse aus allen voran gegangenen Kapiteln sowie der zuvor generierten Ergebnisartefakte mit Bewertung, wie diese einzuordnen sind]
+
+\chapter{Zusammenfassung}
+[Aggregierte retrograde Kurzbeschreibung der Arbeit]
+
+\section{Schlussfolgerungen}
+[Beschreibung der insgesamt zu konstatierenden Schlussfolgerungen im Zusammenhang mit der Arbeit]
+
+\section{Limitationen}
+[Beschreibung der Ergebnisse einer kritischen Reflektion und Begründung dessen, was die Arbeit nicht zu leisten vermag]
+
+\section{Ausblick}
+[Beschreibung und Begründung potenzieller zukünftiger Folgeaktivitäten im Zusammenhang mit Ihrer Arbeit (z.B. weitere Anforderungen, Theoriebildung, ...)]
+
+% Quellenverzeichnis direkt nach dem Hauptteil
+\chapter*{Quellenverzeichnis}
+\addcontentsline{toc}{chapter}{Quellenverzeichnis}
+\printbibliography[heading=none,title={}]
+
+\appendix
+\pagenumbering{Roman}
+
+\chapter{Anhang}
+
+\section{Quellcode}
+[Ausführliche Quellcode-Beispiele]
+
+\section{Zusätzliche Abbildungen}
+Ergänzende Abbildungen oder Tabellen einfügen.
+
+\section{Erhebungsinstrumente}
+Fragebögen oder Interviewleitfäden einfügen, falls zutreffend.
+
+\section{Tipps zum Schreiben Ihrer Abschlussarbeit}
+
+\begin{itemize}
+\item Achten Sie auf eine neutrale, fachliche Sprache. Keine "Ich"-Form.
+\item Zitieren Sie zitierfähige und -würdige Quellen (z.B. wissenschaftliche Artikel und Fachbücher; nach Möglichkeit keine Blogs und keinesfalls Wikipedia\footnote{Wikipedia selbst empfiehlt, von der Zitation von Wikipedia-Inhalten im akademischen Umfeld Abstand zu nehmen.}).
+\item Zitieren Sie korrekt und homogen.
+\item Verwenden Sie keine Fußnoten für die Literaturangaben.
+\item Recherchieren Sie ausführlich den Stand der Wissenschaft und Technik.
+\item Achten Sie auf die Qualität der Ausarbeitung (z.B. auf Rechtschreibung).
+\item Informieren Sie sich ggf. vorab darüber, wie man wissenschaftlich arbeitet bzw. schreibt.
+\item Nutzen Sie \LaTeX\footnote{Kein Support bei Installation, Nutzung und Anpassung allfälliger \LaTeX-Templates!}.
+\end{itemize}
+
+\backmatter
+
+% Eidesstattliche Versicherung - Deutsche Version
+\chapter*{Eidesstattliche Versicherung}
+\addcontentsline{toc}{chapter}{Eidesstattliche Versicherung}
+
+Hiermit versichere ich an Eides statt, dass ich die vorstehende Arbeit selbständig und ohne fremde Hilfe angefertigt und alle Stellen, die ich wörtlich oder annähernd wörtlich aus Veröffentlichungen entnommen habe, als solche kenntlich gemacht habe, mich auch keiner anderen als der angegebenen Literatur oder sonstiger Hilfsmittel bedient habe. Die Arbeit hat in dieser oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen.
+
+\vspace{2cm}
+\noindent Berlin, den \today
+
+\vspace{1.5cm}
+\noindent\rule{6cm}{0.4pt}\\
+Ihr vollständiger Name
+
+\end{document}

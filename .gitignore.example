@@ -1,0 +1,186 @@
+# .gitignore.example - Copy this to .gitignore for your LaTeX project
+# This file contains comprehensive ignore patterns for LaTeX projects
+
+# LaTeX build directory
+build/
+
+# LaTeX auxiliary files (in case they end up in root)
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# LaTeX intermediate files
+*.dvi
+*.xdv
+*-converted-to.*
+
+# Bibliography auxiliary files
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+# Build tool auxiliary files
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# Listings package
+*.lol
+
+# Algorithms package
+*.alg
+*.loa
+
+# Glossaries package
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.lzo
+*.lzs
+
+# Hyperref package
+*.brf
+
+# Knitr package
+*-concordance.tex
+
+# TikZ & PGF
+*.makefile
+*.fls
+*.figlist
+
+# Xindy
+*.xdy
+
+# Operating Systems
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# Editors and IDEs
+# VS Code
+.vscode/settings.json.bak
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/extensions.json
+.vscode/.ropeproject
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Version control
+.git/
+.svn/
+.hg/
+
+# Package managers
+node_modules/
+.npm
+.yarn/
+
+# Python (if using Python scripts for processing)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# R (if using R for data analysis)
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+
+# MATLAB (if using MATLAB)
+*.asv
+*.m~
+
+# Personal files (customize as needed)
+# Uncomment and modify these patterns for your specific needs:
+# personal_notes.txt
+# draft_*.tex
+# old_versions/
+# supervisor_feedback/
+# meeting_notes/
+
+# Compiled documents (uncomment if you don't want to track PDFs)
+# *.pdf
+
+# Large data files (uncomment if you have large datasets)
+# *.csv
+# *.xlsx
+# *.json
+# data/
+# datasets/
+
+# Configuration files with sensitive information
+# config.tex
+# credentials.tex 

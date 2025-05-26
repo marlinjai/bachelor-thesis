@@ -1,0 +1,74 @@
+# LaTeX build directory
+build/
+
+# LaTeX auxiliary files (in case they end up in root)
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# LaTeX intermediate files
+*.dvi
+*.xdv
+*-converted-to.*
+
+# Bibliography auxiliary files
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+# Build tool auxiliary files
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# Listings package
+*.lol
+
+# Algorithms package
+*.alg
+*.loa
+
+# Glossaries package
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.lzo
+*.lzs
+
+# Hyperref package
+*.brf
+
+# Knitr package
+*-concordance.tex
+
+# TikZ & PGF
+*.makefile
+*.fls
+*.figlist
+
+# Xindy
+*.xdy
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/settings.json.bak 
