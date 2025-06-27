@@ -9,7 +9,7 @@
 % IMPORTANT: Always verify compliance with your specific institution's guidelines
 % 
 % Template structure: German academic convention with thoughtful front/back matter organization
-\documentclass[oneside,12pt]{book}
+\documentclass[oneside,11pt]{book}
 
 
 % Encoding and languages - English primary, German secondary for abstracts
@@ -288,6 +288,170 @@ The concept of meta programming is defined as follows:
 "Meta-programs analyze, generate, and transform object programs. In this process, object programs are structured data."\footfullcite[p. 299]{visser2002}
 
 In the context of this thesis, meta-programming is used to implement a program that dynamically generates other programs, in specific SPAs during \gls{runtime}, by using a component based approach with drag and drop functionality and real-time \gls{UI} editing.
+
+% Main content
+\mainmatter
+
+\chapter{Introduction}
+\label{ch:introduction}
+
+% 1.1 Visual Application Builder Overview
+\section{Visual Application Builder Overview}
+\label{sec:visual-builder-overview}
+
+This thesis presents a \textbf{multi-layered visual application builder} that enables real-time \gls{UI} editing while maintaining full React functionality. The system consists of four integrated interface layers working in concert to provide comprehensive visual development capabilities:
+
+\begin{enumerate}
+    \item \textbf{Component Palette}: Drag-and-drop library of available UI components
+    \item \textbf{Canvas with Responsive Preview}: Main editing area with desktop, tablet, and mobile viewports
+    \item \textbf{Layers Panel}: Hierarchical tree view of component structure and relationships
+    \item \textbf{Properties Panel}: Dynamic style and behavior editor for selected components
+\end{enumerate}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/Framer_multi_device_interface.png}
+    \caption{Framer Interface showing multi-layered visual editing environment with layers panel (left), responsive canvas (center), properties panel (right), and component palette (top - currently not shown)\cite{framer}}
+    \label{fig:framer-interface}
+\end{figure}
+
+As demonstrated in Figure~\ref{fig:framer-interface}, existing tools like Framer already implement variations of this multi-layered approach, showing the practical viability of such interfaces for visual application development.
+
+
+% 1.2 Multi-Layered Interface Architecture
+\newpage
+\section{Multi-Layered Interface Architecture}
+\label{sec:interface-architecture}
+
+\subsection{Component Palette and Canvas Integration}
+
+The \textbf{component palette} provides a library of reusable UI elements—buttons, forms, containers, text components—that users drag onto the main \textbf{canvas}. Unlike traditional drag-and-drop builders that generate static markup, this system creates dynamic component configurations that maintain React's interactive capabilities.
+
+The \textbf{canvas} serves as the primary visual editing surface, featuring three responsive preview modes:
+
+\begin{itemize}
+    \item \textbf{Desktop View}: Full-width layout for standard web applications
+    \item \textbf{Tablet View}: Medium-width responsive breakpoint (768px-1024px)
+    \item \textbf{Mobile View}: Narrow layout for mobile-optimized interfaces (<768px)
+\end{itemize}
+
+Each viewport provides real-time preview of how the application will appear across different device types, with responsive styling automatically managed through the visual interface.
+
+\subsection{Layers Panel: Component Tree Management}
+
+The \textbf{layers panel} presents a hierarchical tree view of the component structure, enabling users to:
+
+\begin{itemize}
+    \item Navigate complex nested component relationships
+    \item Reorder components through drag-and-drop operations
+    \item Select components for editing without clicking on the canvas
+    \item Manage component visibility and locking states
+    \item Organize components into logical groupings
+\end{itemize}
+
+This panel reflects the underlying \textbf{component tree model}—a serializable data structure that maintains the complete application state including component relationships, properties, and interaction definitions.
+
+\newpage
+\subsection{Properties Panel: Dynamic Component Configuration}
+
+The \textbf{properties panel} provides context-sensitive editing interfaces that adapt based on the currently selected component type. For each component, users can configure:
+
+\begin{itemize}
+    \item \textbf{Visual Styles}: Colors, typography, spacing, layout properties through intuitive controls
+    \item \textbf{Content}: Text, images, and media through direct editing interfaces
+    \item \textbf{Component State}: Initial values for interactive elements (form inputs, counters, toggles)
+    \item \textbf{Interactions}: Click handlers, hover effects, and user-defined JavaScript actions
+    \item \textbf{Responsive Behavior}: Device-specific styling and layout adaptations
+\end{itemize}
+
+The panel dynamically generates appropriate input controls—color pickers for colors, number inputs for dimensions, dropdown menus for predefined options—based on the selected component's schema.
+
+% 1.3 The Challenge: Bridging Visual Editing and Runtime Interactivity
+\section{The Challenge: Bridging Visual Editing and\\Runtime Interactivity}
+\label{sec:bridging-challenge}
+
+The fundamental challenge addressed by this thesis lies in maintaining \textbf{two distinct reactive systems} that must work in perfect synchronization:
+
+\subsection{System 1: Editor Reactivity}
+The visual editor interface requires real-time updates when users:
+\begin{itemize}
+    \item Drag components between layers
+    \item Modify styles in the properties panel
+    \item Select different components for editing
+    \item Switch between responsive breakpoints
+\end{itemize}
+
+These operations must immediately reflect in all interface layers—the canvas preview, layers panel, and properties panel—ensuring consistent visual feedback during the editing process.
+
+\subsection{System 2: Runtime Component Interactivity}
+Simultaneously, the components being edited must maintain their intended runtime behavior:
+\begin{itemize}
+    \item Buttons must handle click events and update their state
+    \item Forms must manage input validation and submission
+    \item Interactive elements must respond to user interactions
+    \item Component state must persist and update appropriately
+\end{itemize}
+
+This runtime interactivity must function both in the live preview during editing and in the final exported application.
+
+% 1.4 Research Questions and Technical Objectives
+\section{Research Questions and Technical Objectives}
+\label{sec:research-objectives}
+
+\textbf{Primary Research Question:}
+
+How can a multi-layered visual interface enable real-time application building while maintaining full React interactivity through a meta-programming approach that transforms editor configurations into functional \gls{SPA} components?
+
+\textbf{Supporting Research Questions:}
+
+\begin{itemize}
+    \item How can the four interface layers (palette, canvas, layers, properties) synchronize in real-time during visual editing operations?
+    \item What architectural patterns enable seamless transformation from static component configurations to interactive React components?
+    \item How can visual interfaces make complex component state management and interactions accessible to non-technical users?
+\end{itemize}
+
+\textbf{Technical Objectives:}
+
+\begin{enumerate}
+    \item Design and implement a unified component tree model that supports both visual editing and React export capabilities
+    \item Develop responsive preview systems that maintain consistent behavior across desktop, tablet, and mobile viewports
+    \item Create dynamic property editing interfaces that adapt to different component types and interaction patterns
+    \item Implement real-time synchronization between all interface layers during editing operations
+\end{enumerate}
+
+% 1.5 Contribution and Innovation
+\section{Contribution and Innovation}
+\label{sec:contribution}
+
+This thesis makes several key contributions to the field of visual web application development:
+
+\begin{enumerate}
+    \item \textbf{Multi-Layered Interface Architecture}: A comprehensive visual editing environment that maintains professional development workflow patterns while remaining accessible to non-technical users
+    
+    \item \textbf{Dual Reactive Systems Integration}: Novel architecture separating editor reactivity (MobX-State-Tree) from runtime component reactivity (React state) while maintaining seamless synchronization
+    
+    \item \textbf{Meta-Programming Component Generation}: Generic transformation patterns that convert visual editor configurations into fully functional React applications with maintained interactivity
+    
+    \item \textbf{Responsive-First Visual Design}: Integrated multi-viewport editing that enables device-specific optimization during the visual design process
+\end{enumerate}
+
+The resulting system demonstrates how visual application builders can provide professional-grade development capabilities while maintaining the accessibility and immediate feedback that make visual editing powerful for rapid prototyping and non-technical content creation.
+
+% 1.6 Thesis Structure
+\section{Thesis Structure}
+\label{sec:structure}
+
+This thesis is organized into the following chapters:
+
+\textbf{Chapter 2: Foundations} establishes the theoretical and technological groundwork, including an analysis of existing visual building tools, React architecture patterns, meta-programming concepts, and related academic research.
+
+\textbf{Chapter 3: System Design and Architecture} describes the multi-layered architecture, component models, state management patterns, and technical design decisions.
+
+\textbf{Chapter 4: Implementation} provides detailed coverage of the implementation process, including core algorithms, user interface design, and integration challenges.
+
+\textbf{Chapter 5: Evaluation and Testing} presents performance analysis, usability testing results, and comparative evaluation against existing solutions.
+
+\textbf{Chapter 6: Conclusion and Future Work} summarizes the research findings, discusses limitations, and outlines opportunities for future development.
 
 % Print unified glossary before references
 \printglossaries
