@@ -207,14 +207,8 @@
 \hyphenpenalty=5000
 \exhyphenpenalty=5000
 
-% Additional package for patch command
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd{\@makeschapterhead}
-  {\vspace*{50\p@}} % default is 50pt
-  {\vspace*{10\p@}} % try 10pt, or 0pt for no space
-  {}{}
-\makeatother
+%\usepackage{mathptmx} % Times font
+\usepackage{helvet} \renewcommand{\familydefault}{\sfdefault}
 
 % Document
 \begin{document}
@@ -273,6 +267,7 @@ Berlin, \today
 
 \tableofcontents
 
+% TODO: ask about british or american spelling conventions
 \chapter*{Acknowledgments}
 \addcontentsline{toc}{chapter}{Acknowledgments}
 I would like to express my sincere gratitude to my supervisors, Prof. Dr. [Name] and Prof. Dr. [Name], for their guidance and support throughout this research. I also thank [other people/institutions] for their valuable contributions.
@@ -280,19 +275,25 @@ I would like to express my sincere gratitude to my supervisors, Prof. Dr. [Name]
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 % English abstract
-When faced with the challenge of creating content and interactive web experiences, less technical users have to rely on tools like \gls{CMS} like WordPress and \gls{WYSIWYG} editors.
+When faced with the challenge of creating content and interactive web experiences, less technical users have to rely on \gls{CMS} like WordPress and \gls{WYSIWYG} editors.
 
 
-Although these tools partially satisfy the needs of modern web experiences, many of them have their shortcomings when it comes to the \gls{staticweb} they produce, as well as a certain level of inaccuracy between the preview layer and the final rendered content in the Web browser.
+Although these tools partially satisfy the needs of modern web experiences, many of them have limitations regarding the \gls{staticweb} they produce, and an inaccuracy between the preview layer and the final rendered content in the Web browser.
 
 
-Due to the static output of tools like Webflow, WordPress, Wix, etc., users cannot make use of the \gls{SPA} features that come with modern JavaScript frameworks like React, NextJS or VueJS.
+Due to the static output of tools like Webflow, WordPress, Wix, etc., users cannot make use of the \gls{SPA} features that come with modern JavaScript frameworks like React, NextJS or VueJS, which are based on the dynamic injection of JavaScript code during \gls{runtime}.
 
 
-The following thesis answers the question of how a multilayered visual application builder allowing real-time UI editing, dynamic CSS class generation, and multi-touch interactions can be implemented using the modern JavaScript framework NextJS. Lowering the barrier of entry to build great software by applying the concepts of meta-programming.
+The following thesis answers the question of how a multilayered visual application builder allowing real-time \gls{UI} editing, dynamic CSS class generation, and multi-touch interactions can be implemented using the modern JavaScript framework NextJS. 
+
+As a result, the barrier of entry to build great software is lowered by applying the concepts of meta-programming.
+
+The concept of meta programming is defined as follows:
 
 % TODO: ask if this is correct
 "Meta-programs analyze, generate, and transform object programs. In this process, object programs are structured data."\footfullcite[p. 299]{visser2002}
+
+In the context of this thesis, meta-programming is used to implement a program that dynamically generates other programs, in specific SPAs during \gls{runtime}, by using a component based approach with drag and drop functionality and real-time \gls{UI} editing.
 
 \newpage
 \addcontentsline{toc}{chapter}{List of Figures}
@@ -337,8 +338,8 @@ Visualize appropriately in the main text, e.g., using figures and tables. This t
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{HTW_Berlin_Logo_farbig.jpg}
-\caption{HTW Berlin Logo\cite{htw-berlin}}
+\includegraphics[width=0.9\textwidth]{framer interface.jpg}
+\caption{Framer Interface\cite{framer}}
 \end{figure}
 
 \section{Background of the Work}
@@ -373,7 +374,7 @@ Visualize appropriately in the main text, e.g., using figures and tables. This t
 [Description of the results/result types that you want to generate/achieve as part of the problem solution, e.g., algorithm, prototype of a software (component), ...]
 
 \section{Data Protection Aspects}
-[Description of data protection aspects in \gls{GDPR} connection with your thesis]
+[Description of data protection aspects in connection with your thesis]
 
 \section{Ethical Aspects}
 [Description of ethical aspects\footnote{For additional reference, see general codes (e.g., ACM, IEEE, or GI) as well as domain-specific norms and procedures within a critical reflection.} in connection with your thesis]

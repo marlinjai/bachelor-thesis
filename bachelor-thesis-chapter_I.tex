@@ -1,0 +1,296 @@
+% thesis-template-english.tex - English Academic Thesis Template for German Universities
+% This template follows German academic conventions with English content:
+% - German university title page format
+% - Front matter organization (TOC, abstracts, lists, glossary)
+% - Required German abstract (Zusammenfassung) + English abstract
+% - Standard book class for maximum flexibility
+% - IEEE bibliography style for international compatibility
+% 
+% IMPORTANT: Always verify compliance with your specific institution's guidelines
+% 
+% Template structure: German academic convention with thoughtful front/back matter organization
+\documentclass[oneside,12pt]{book}
+
+
+% Encoding and languages - English primary, German secondary for abstracts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel} % English as main language
+\usepackage[autostyle]{csquotes}
+
+
+% Basic Math
+\usepackage{amsmath, amssymb, amsthm}
+
+% Graphics
+\usepackage{graphicx}
+
+% Bibliography - International style
+\usepackage[backend=biber, style=ieee]{biblatex} % IEEE style for international appeal
+\addbibresource{thesis_references.bib}
+
+% Load hyperref BEFORE glossaries
+\usepackage[hidelinks,hyperfootnotes=false]{hyperref}
+\hypersetup{
+    pdftitle={Your Thesis Title},
+    pdfauthor={Marlin Jai Pohl},
+    pdfsubject={Bachelor Thesis},
+    pdfkeywords={thesis, bachelor, computer science}
+}
+
+% Glossary and abbreviations - now included in TOC automatically
+\usepackage[toc,acronym,nonumberlist,nogroupskip]{glossaries}
+\makeglossaries
+
+% Set glossary style to simple list format (single column, rows)
+\setglossarystyle{list}
+
+% Include glossary entries
+\input{glossary-entries}
+
+% Code Listings
+\usepackage{listings}
+\lstset{
+  basicstyle=\footnotesize\ttfamily,
+  frame=single,
+  breaklines=true,
+  numbers=left,
+  numberstyle=\tiny,
+  captionpos=b,
+  language=Python % Default language, change as needed
+}
+
+% Tables and Captions
+\usepackage{booktabs}
+\usepackage[small, labelfont=bf]{caption}
+
+
+% Page layout
+\usepackage[hmargin=3cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+% TOC and heading customization
+\usepackage{titlesec}
+
+\usepackage{tocloft}
+\renewcommand{\cftbeforechapskip}{.8em}
+\renewcommand{\cftbeforesecskip}{0.3em}
+\renewcommand{\cftbeforesubsecskip}{0.3em}
+\renewcommand{\cftbeforesubsubsecskip}{0.3em}
+
+
+% Format all heading levels consistently - KOMA-Script style
+\titleformat{\chapter}
+  {\normalfont\LARGE\bfseries}
+  {\thechapter.}
+  {0.5em}
+  {}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}
+  {\thesection}
+  {0.5em}
+  {}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}
+  {\thesubsection}
+  {0.5em}
+  {}
+
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}
+  {\thesubsubsection}
+  {0.5em}
+  {}
+
+% Add spacing between sections - KOMA-Script style
+\titlespacing*{\chapter}{0pt}{0pt}{1em}
+\titlespacing*{\section}{0pt}{1em}{1em}
+\titlespacing*{\subsection}{0pt}{1em}{1em}
+\titlespacing*{\subsubsection}{0pt}{1em}{1em}
+
+
+% Save the original \tableofcontents after all packages are loaded
+\let\oldtableofcontents\tableofcontents
+
+% Redefine \tableofcontents to use smaller font and restore heading logic
+\renewcommand{\tableofcontents}{%
+  {\small
+    \oldtableofcontents
+  }%
+  \renewcommand{\contentsname}{}%
+}
+
+% KOMA-Script style page numbering
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% Front matter page style
+\fancypagestyle{frontmatter}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[C]{\roman{page}}
+}
+
+% Main matter page style
+\fancypagestyle{mainmatter}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[C]{\arabic{page}}
+}
+
+% Apply front matter style to front matter
+\let\oldfrontmatter\frontmatter
+\renewcommand{\frontmatter}{
+  \oldfrontmatter
+  \pagestyle{frontmatter}
+}
+
+% Apply main matter style to main matter
+\let\oldmainmatter\mainmatter
+\renewcommand{\mainmatter}{
+  \oldmainmatter
+  \pagestyle{mainmatter}
+}
+
+% Ensure consistent spacing and depth
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+% Consistent link colors
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,
+    urlcolor=black,
+    citecolor=black,
+    pdftitle={Your Thesis Title},
+    pdfauthor={Marlin Jai Pohl},
+    pdfsubject={Bachelor Thesis},
+    pdfkeywords={thesis, bachelor, computer science}
+}
+
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+
+% Theorems, Definitions, etc. - English names
+
+% Theorem - Used to state and prove important mathematical/scientific claims that need formal proof
+\newtheorem{theorem}{Theorem}[chapter]
+
+% Definition - Used to formally define new terms, concepts or notations
+\newtheorem{definition}[theorem]{Definition}
+
+% Lemma - Used for supporting theorems/propositions that are needed to prove a larger theorem
+\newtheorem{lemma}[theorem]{Lemma}
+
+% Remark - Used to make observations, notes or comments about previous statements
+\newtheorem{remark}[theorem]{Remark}
+
+% Corollary - Used for results that follow directly from a previously proven theorem
+\newtheorem{corollary}[theorem]{Corollary}
+
+% Example - Used to provide concrete instances or illustrations of concepts
+\newtheorem{example}[theorem]{Example}
+
+% Document metadata
+\title{A Multi-Layered Visual Application Builder with Dynamic CSS Class Generation based on a VDOM centric meta-programming approach}
+\author{Marlin Jai Pohl}
+\date{\today}
+
+\hyphenpenalty=5000
+\exhyphenpenalty=5000
+
+%\usepackage{mathptmx} % Times font
+\usepackage{helvet} \renewcommand{\familydefault}{\sfdefault}
+
+% Document
+\begin{document}
+
+% Title page - German university format with English content
+\begin{titlepage}
+\centering
+\vfill
+\includegraphics[width=0.5\textwidth]{HTW_Berlin_Logo_farbig.jpg}
+\vspace{1cm}
+
+{\Large
+  \setlength{\baselineskip}{1.5em} % or try 2em for more space
+  \textbf{
+    A Multi-Layered Visual Application Builder \\
+    with Dynamic CSS Class Generation \\
+  }
+}
+\vfill
+
+Bachelor Thesis\\
+\vspace{0.5cm}
+submitted in partial fulfillment of the requirements\\
+for the degree of\\
+\vspace{0.5cm}
+\textbf{Bachelor of Science (B.Sc.)}\\
+\vspace{0.5cm}
+at\\
+\vspace{0.5cm}
+Berlin University of Applied Sciences\\
+Faculty 4: Computer Science, Communication and Economics\\
+Study Program \textit{International Media and Computing}
+
+\vspace{2cm}
+
+% Centered supervisor information
+\begin{center}
+  \begin{tabular}{@{}l@{\hspace{0.5cm}}l@{}}
+    First Supervisor: & Academic Title First Name Last Name \\
+    Second Supervisor: & Academic Title First Name Last Name
+  \end{tabular}
+\end{center}
+
+\vspace{2cm}
+
+Submitted by: Your Full Name [Student ID]\\
+Berlin, \today
+
+\vfill
+\end{titlepage}
+
+% Front matter - German academic structure
+\frontmatter
+
+% Table of contents and lists - German convention (front matter)
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+% English abstract
+When faced with the challenge of creating content and interactive web experiences, less technical users have to rely on \gls{CMS} like WordPress and \gls{WYSIWYG} editors.
+
+
+Although these tools partially satisfy the needs of modern web experiences, many of them have limitations regarding the \gls{staticweb} they produce, and an inaccuracy between the preview layer and the final rendered content in the Web browser.
+
+
+Due to the static output of tools like Webflow, WordPress, Wix, etc., users cannot make use of the \gls{SPA} features that come with modern JavaScript frameworks like React, NextJS or VueJS, which are based on the dynamic injection of JavaScript code during \gls{runtime}.
+
+
+The following thesis answers the question of how a multilayered visual application builder allowing real-time \gls{UI} editing, dynamic CSS class generation, and multi-touch interactions can be implemented using the modern JavaScript framework NextJS. 
+
+As a result, the barrier of entry to build great software is lowered by applying the concepts of meta-programming.
+
+The concept of meta programming is defined as follows:
+
+% TODO: ask if this is correct
+"Meta-programs analyze, generate, and transform object programs. In this process, object programs are structured data."\footfullcite[p. 299]{visser2002}
+
+In the context of this thesis, meta-programming is used to implement a program that dynamically generates other programs, in specific SPAs during \gls{runtime}, by using a component based approach with drag and drop functionality and real-time \gls{UI} editing.
+
+% Print unified glossary before references
+\printglossaries
+
+
+\end{document}
