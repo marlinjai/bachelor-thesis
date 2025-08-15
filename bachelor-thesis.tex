@@ -9,7 +9,7 @@
 % IMPORTANT: Always verify compliance with your specific institution's guidelines
 % 
 % Template structure: German academic convention with thoughtful front/back matter organization
-\documentclass[oneside,12pt]{book}
+\documentclass[oneside,11pt]{book}
 
 
 % Encoding and languages - English primary, German secondary for abstracts
@@ -77,6 +77,9 @@
 \renewcommand{\cftbeforesubsecskip}{0.3em}
 \renewcommand{\cftbeforesubsubsecskip}{0.3em}
 
+\renewcommand{\cftbeforechapskip}{1.5em}
+% Enable page breaks in TOC
+\renewcommand{\cftaftertoctitle}{\thispagestyle{empty}}
 
 % Format all heading levels consistently - KOMA-Script style
 \titleformat{\chapter}
@@ -210,6 +213,13 @@
 %\usepackage{mathptmx} % Times font
 \usepackage{helvet} \renewcommand{\familydefault}{\sfdefault}
 
+% Add to your preamble - after other packages
+\usepackage{enumitem}
+
+% Reduce spacing in itemized and enumerated lists
+\setlist[itemize]{itemsep=0.2em, parsep=0.2em, topsep=0.2em}
+\setlist[enumerate]{itemsep=0.2em, parsep=0.2em, topsep=0.2em}
+
 % Document
 \begin{document}
 
@@ -313,43 +323,137 @@ In the context of this thesis, meta-programming is used to implement a program t
 \chapter{Introduction}
 \label{ch:introduction}
 
-\fbox{\parbox{0.98\linewidth}{
-This template contains exemplary (and thus incomplete) structural elements, components and guidelines for a typical software development project where a prototype is created. It serves as assistance for your further use. 
+% 1.1 Visual Application Builder Overview
+\section{Visual Application Builder Overview}
+\label{sec:visual-builder-overview}
 
-\begin{center}
-\textbf{Good luck and success with your thesis!}
-\end{center}
-}}
+This thesis presents a \textbf{multi-layered visual application builder} that enables real-time \gls{UI} editing while maintaining full React functionality. The system consists of four integrated interface layers working in concert to provide comprehensive visual development capabilities:
 
-The main text begins here and is numbered in Arabic numerals starting with "1" on this page. The main text is divided into chapters and subchapters. If each hierarchical level should be named, the following terminology is common:
+\begin{enumerate}
+    \item \textbf{Component Palette}: Drag-and-drop library of available UI components
+    \item \textbf{Canvas with Responsive Preview}: Main editing area with desktop, tablet, and mobile viewports
+    \item \textbf{Layers Panel}: Hierarchical tree view of component structure and relationships
+    \item \textbf{Properties Panel}: Dynamic style and behavior editor for selected components
+\end{enumerate}
 
-\begin{itemize}
-\item 1st hierarchical level: Main chapter
-\item 2nd hierarchical level: Chapter  
-\item 3rd hierarchical level: Subchapter
-\item 4th hierarchical level: Section
-\end{itemize}
-
-The content structure of a thesis in the \textit{International Media and Computing} program naturally depends on the topic and content. Deviations from the structural framework underlying this template are always possible, sometimes even absolutely necessary. Always coordinate with your supervisors in this regard.
-
-Never forget to cite all your sources correctly\footnote{For additional information on citation, you can refer to supplementary sources (e.g. \cite{balzert2011}).}. Sources can be manually referenced and entered in the bibliography. Additionally, many text processing systems also offer external source management files and systems through which citations can be made in the main text using appropriate commands.
-
-Visualize appropriately in the main text, e.g., using figures and tables. This template contains exemplary integrated figures and a table for illustration purposes.
-
-\begin{figure}
-\centering
-\includegraphics[width=0.9\textwidth]{framer interface.jpg}
-\caption{Framer Interface\cite{framer}}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/Framer_multi_device_interface.png}
+    \caption{Framer Interface showing multi-layered visual editing environment with layers panel (left), responsive canvas (center), properties panel (right), and component palette (top - currently not shown)\cite{framer}}
+    \label{fig:framer-interface}
 \end{figure}
 
-\section{Background of the Work}
-[Description of the general context of the work; you should present this in detail in the fundamentals section]
+As demonstrated in Figure~\ref{fig:framer-interface}, existing tools like Framer already implement variations of this multi-layered approach, showing the practical viability of such interfaces for visual application development.
 
-\section{Problem Statement and Objectives (Scope)}
-[Description of the problem statement as well as the resulting sub-problems, sub-goals and research question(s) that you address with your work]
+% 1.2 Multi-Layered Interface Architecture
+\newpage
+\section{Multi-Layered Interface Architecture}
+\label{sec:interface-architecture}
 
-\section{Structure of the Work}
-[Description of the structure of the work]
+\subsection{Component Palette and Canvas Integration}
+
+The \textbf{component palette} provides a library of reusable UI elements—buttons, forms, containers, text components—that users drag onto the main \textbf{canvas}. Unlike traditional drag-and-drop builders that generate static markup, this system creates dynamic component configurations that maintain React's interactive capabilities.
+
+The \textbf{canvas} serves as the primary visual editing surface, featuring three responsive preview modes:
+
+\begin{itemize}
+    \item \textbf{Desktop View}: Full-width layout for standard web applications
+    \item \textbf{Tablet View}: Medium-width responsive breakpoint (768px-1024px)
+    \item \textbf{Mobile View}: Narrow layout for mobile-optimized interfaces (<768px)
+\end{itemize}
+
+Each viewport provides real-time preview of how the application will appear across different device types, with responsive styling automatically managed through the visual interface.
+
+\subsection{Layers Panel: Component Tree Management}
+
+The \textbf{layers panel} presents a hierarchical tree view of the component structure, enabling users to:
+
+\begin{itemize}
+    \item Navigate complex nested component relationships
+    \item Reorder components through drag-and-drop operations
+    \item Select components for editing without clicking on the canvas
+    \item Manage component visibility and locking states
+    \item Organize components into logical groupings
+\end{itemize}
+
+This panel reflects the underlying \textbf{component tree model}—a serializable data structure that maintains the complete application state including component relationships, properties, and interaction definitions.
+
+\newpage
+\subsection{Properties Panel: Dynamic Component Configuration}
+
+The \textbf{properties panel} provides context-sensitive editing interfaces that adapt based on the currently selected component type. For each component, users can configure:
+
+\begin{itemize}
+    \item \textbf{Visual Styles}: Colors, typography, spacing, layout properties through intuitive controls
+    \item \textbf{Content}: Text, images, and media through direct editing interfaces
+    \item \textbf{Component State}: Initial values for interactive elements \\ (form inputs, counters, toggles)
+    \item \textbf{Interactions}: Click handlers, hover effects, and user-defined JavaScript actions
+    \item \textbf{Responsive Behavior}: Device-specific styling and layout adaptations
+\end{itemize}
+
+The panel dynamically generates appropriate input controls—color pickers for colors, number inputs for dimensions, dropdown menus for predefined options—based on the selected component's schema.
+
+% 1.3 The Challenge: Bridging Visual Editing and Runtime Interactivity
+\section[The Challenge: Bridging Visual Editing and Runtime Interactivity]{The Challenge: Bridging Visual Editing and\\Runtime Interactivity}
+\label{sec:bridging-challenge}
+
+The fundamental challenge addressed by this thesis lies in maintaining \textbf{two distinct reactive systems} that must work in perfect synchronization:
+
+\subsection{System 1: Editor Reactivity}
+The visual editor interface requires real-time updates when users:
+\begin{itemize}
+    \item Drag components between layers
+    \item Modify styles in the properties panel
+    \item Select different components for editing
+    \item Switch between responsive breakpoints
+\end{itemize}
+
+These operations must immediately reflect in all interface layers:
+
+\begin{itemize}
+  \nopagebreak
+  \item the canvas preview
+  \item the selection overlay
+  \item the layers panel
+  \item the properties panel
+\end{itemize}
+ensuring consistent visual feedback during the editing process.
+
+\subsection{System 2: Runtime Component Interactivity}
+Simultaneously, the components being edited must maintain their intended runtime behavior:
+\begin{itemize}
+    \item Buttons must handle click events and update their state
+    \item Forms must manage input validation and submission
+    \item Interactive elements must respond to user interactions
+    \item Component state must persist and update appropriately
+\end{itemize}
+
+This runtime interactivity must function both in the live preview during editing and in the final exported application.
+
+% 1.4 Research Questions and Technical Objectives
+\section{Research Questions and Technical Objectives}
+\label{sec:research-objectives}
+
+\textbf{Primary Research Question:}
+
+How can a multi-layered visual interface enable real-time application building while maintaining full React interactivity through a meta-programming approach that transforms editor configurations into functional \gls{SPA} components?
+
+\textbf{Supporting Research Questions:}
+
+\begin{itemize}
+    \item How can the four interface layers (palette, canvas, layers, properties) synchronize in real-time during visual editing operations?
+    \item What architectural patterns enable seamless transformation from static component configurations to interactive React components?
+    \item How can visual interfaces make complex component state management and interactions accessible to non-technical users?
+\end{itemize}
+
+\textbf{Technical Objectives:}
+
+\begin{enumerate}
+    \item Design and implement a unified component tree model that supports both visual editing and React export capabilities
+    \item Develop responsive preview systems that maintain consistent behavior across desktop, tablet, and mobile viewports
+    \item Create dynamic property editing interfaces that adapt to different component types and interaction patterns
+    \item Implement real-time synchronization between all interface layers during editing operations
+\end{enumerate}
 
 \chapter{Fundamentals}
 [Description of the context of the work with all areas, methods, theories, findings, technologies affected by the problem statement, ...]
@@ -379,6 +483,7 @@ Visualize appropriately in the main text, e.g., using figures and tables. This t
 \section{Ethical Aspects}
 [Description of ethical aspects\footnote{For additional reference, see general codes (e.g., ACM, IEEE, or GI) as well as domain-specific norms and procedures within a critical reflection.} in connection with your thesis]
 
+\addtocontents{toc}{\protect\clearpage}
 \chapter{Requirements Elicitation and Analysis}
 [Description of the elicitation, granularization and prioritization of the underlying requirements]
 
