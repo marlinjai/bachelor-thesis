@@ -79,7 +79,7 @@
 
 \renewcommand{\cftbeforechapskip}{1.5em}
 % Enable page breaks in TOC
-\renewcommand{\cftaftertoctitle}{\thispagestyle{empty}}
+\renewcommand{\cftaftertoctitle}{\thispagestyle{frontmatter}}
 
 % Format all heading levels consistently - KOMA-Script style
 \titleformat{\chapter}
@@ -113,16 +113,6 @@
 \titlespacing*{\subsubsection}{0pt}{1em}{1em}
 
 
-% Save the original \tableofcontents after all packages are loaded
-\let\oldtableofcontents\tableofcontents
-
-% Redefine \tableofcontents to use smaller font and restore heading logic
-\renewcommand{\tableofcontents}{%
-  {\small
-    \oldtableofcontents
-  }%
-  \renewcommand{\contentsname}{}%
-}
 
 % KOMA-Script style page numbering
 \usepackage{fancyhdr}
@@ -131,6 +121,13 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \fancyfoot[C]{\thepage}
+
+% No page numbers style for acknowledgments and abstract
+\fancypagestyle{nopages}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
 
 % Front matter page style
 \fancypagestyle{frontmatter}{
@@ -148,11 +145,11 @@
   \fancyfoot[C]{\arabic{page}}
 }
 
-% Apply front matter style to front matter
+% Apply front matter style to front matter - but don't auto-apply page style
 \let\oldfrontmatter\frontmatter
 \renewcommand{\frontmatter}{
   \oldfrontmatter
-  \pagestyle{frontmatter}
+  % Don't automatically set page style - we'll do it manually
 }
 
 % Apply main matter style to main matter
@@ -273,26 +270,22 @@ Berlin, \today
 % Front matter - German academic structure
 \frontmatter
 
-% Table of contents and lists - German convention (front matter)
-
-\tableofcontents
-
-% TODO: ask about british or american spelling conventions
-\chapter*{Acknowledgments}
-\addcontentsline{toc}{chapter}{Acknowledgments}
+% Acknowledgments - first, no page numbers, not in TOC
+\pagestyle{nopages}
+\chapter*{Acknowledgments}\thispagestyle{empty}
 I would like to express my sincere gratitude to my supervisors, Prof. Dr. [Name] and Prof. Dr. [Name], for their guidance and support throughout this research. I also thank [other people/institutions] for their valuable contributions.
 
-\chapter*{Abstract}
-\addcontentsline{toc}{chapter}{Abstract}
+\newpage
+
+% Abstract - second, no page numbers, not in TOC
+% Keep nopages style active
+\chapter*{Abstract}\thispagestyle{empty}
 % English abstract
 When faced with the challenge of creating content and interactive web experiences, less technical users have to rely on \gls{CMS} like WordPress and \gls{WYSIWYG} editors.
 
-
 Although these tools partially satisfy the needs of modern web experiences, many of them have limitations regarding the \gls{staticweb} they produce, and an inaccuracy between the preview layer and the final rendered content in the Web browser.
 
-
 Due to the static output of tools like Webflow, WordPress, Wix, etc., users cannot make use of the \gls{SPA} features that come with modern JavaScript frameworks like React, NextJS or VueJS, which are based on the dynamic injection of JavaScript code during \gls{runtime}.
-
 
 The following thesis answers the question of how a multilayered visual application builder allowing real-time \gls{UI} editing, dynamic CSS class generation, and multi-touch interactions can be implemented using the modern JavaScript framework NextJS. 
 
@@ -306,15 +299,24 @@ The concept of meta programming is defined as follows:
 In the context of this thesis, meta-programming is used to implement a program that dynamically generates other programs, in specific SPAs during \gls{runtime}, by using a component based approach with drag and drop functionality and real-time \gls{UI} editing.
 
 \newpage
-\addcontentsline{toc}{chapter}{List of Figures}
+
+% Now switch to frontmatter style with Roman numerals and reset counter
+\pagestyle{frontmatter}
+\setcounter{page}{1}
+
+% Table of contents - with Roman numerals, appears in TOC
+\tableofcontents
+
+\newpage
+% List of Figures - Roman numerals, not in TOC
 \listoffigures
 
 \newpage
-\addcontentsline{toc}{chapter}{List of Tables}
+% List of Tables - Roman numerals, not in TOC  
 \listoftables
 
 \newpage
-\addcontentsline{toc}{chapter}{List of Listings}
+% List of Listings - Roman numerals, not in TOC
 \lstlistoflistings
 
 % Main content
@@ -455,16 +457,304 @@ How can a multi-layered visual interface enable real-time application building w
     \item Implement real-time synchronization between all interface layers during editing operations
 \end{enumerate}
 
-\chapter{Fundamentals}
-[Description of the context of the work with all areas, methods, theories, findings, technologies affected by the problem statement, ...]
+\chapter{Foundations}
+\label{ch:foundations}
 
-\section{Context}
+% 2.1 Domain Knowledge and Context
+\section{Domain Knowledge and Context}
+\label{sec:domain-context}
 
-\subsection{Domain}
+\subsection{Visual Application Development Landscape}
 
-\subsection{Technologies}
+The landscape of visual application development has evolved significantly with the emergence of no-code and low-code platforms. As documented by Sahay et al. \cite{sahay2020supporting}, these platforms aim to democratize software development by reducing technical barriers. Traditional web development requires extensive technical knowledge of \gls{HTML}, \gls{CSS}, JavaScript, and modern frameworks like React or Vue.js. This technical barrier limits content creators, designers, and non-technical users from building interactive web applications.
 
-\subsection{Methods and Concepts}
+Visual application builders address this gap by providing \gls{WYSIWYG} interfaces that enable users to create applications through direct manipulation rather than code writing. However, existing solutions fall into distinct categories with inherent limitations:
+
+\begin{itemize}
+    \item \textbf{Static Site Builders} (WordPress, Wix, Squarespace): Generate static \gls{HTML}/\gls{CSS} output with limited interactivity
+    \item \textbf{Design-to-Code Tools} (Webflow, Adobe XD): Focus on visual design but lack true \gls{SPA} capabilities
+    \item \textbf{Component-Based Builders} (Framer, Bubble): Offer dynamic functionality but with proprietary runtime systems
+\end{itemize}
+
+The fundamental challenge lies in bridging the gap between visual design tools and modern JavaScript framework capabilities, particularly React's component-based architecture and dynamic state management.
+
+\subsection{Target User Groups and Stakeholders}
+
+Visual application builders serve multiple stakeholder groups with varying technical backgrounds and requirements:
+
+\begin{itemize}
+    \item \textbf{Content Creators and Marketers}: Need rapid prototyping and landing page creation without technical dependencies
+    \item \textbf{Designers}: Require pixel-perfect visual control with responsive design capabilities
+    \item \textbf{Frontend Developers}: Seek faster iteration cycles and visual debugging tools
+    \item \textbf{Product Teams}: Need collaborative tools that bridge design and development workflows
+    \item \textbf{Agencies and Freelancers}: Require scalable solutions for client work with quick turnaround times
+\end{itemize}
+
+Each group brings distinct requirements for interactivity levels, customization depth, and technical control, necessitating a flexible architecture that accommodates various use cases.
+
+% 2.2 Related Work and Existing Solutions
+\section{Related Work and Existing Solutions}
+\label{sec:related-work}
+
+\subsection{Analysis of Current Visual Building Platforms}
+
+\subsubsection{Framer: Component-Based Visual Development}
+
+Framer represents the current state-of-the-art in visual application builders, combining design tools with React-based component rendering. Key architectural insights from Framer include:
+
+\begin{itemize}
+    \item \textbf{Runtime Component System}: Rather than generating static code, Framer maintains a centralized data model that drives dynamic React component rendering
+    \item \textbf{Live Preview Architecture}: Changes to the visual interface immediately reflect in a live preview through reactive state management
+    \item \textbf{Component Tree Model}: Applications are represented as hierarchical component trees with serializable state
+    \item \textbf{Override System}: Developers can inject custom logic through JavaScript "overrides" that modify component behavior
+\end{itemize}
+
+However, Framer's proprietary nature limits extensibility and creates vendor lock-in for users seeking to migrate to standard React applications.
+
+\subsubsection{Webflow: Design-Centric Approach}
+
+Webflow focuses primarily on visual design with limited dynamic functionality:
+
+\begin{itemize}
+    \item \textbf{Static Output}: Generates traditional \gls{HTML}/\gls{CSS} with minimal JavaScript interactivity
+    \item \textbf{Visual-First Design}: Excellent visual design tools but limited component reusability
+    \item \textbf{Animation System}: Built-in animation tools but no true state management
+    \item \textbf{CMS Integration}: Content management capabilities but no dynamic application logic
+\end{itemize}
+
+While Webflow excels in design fidelity, it cannot produce modern \gls{SPA} applications with complex state management and component interactions.
+
+\subsubsection{Comparative Analysis}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Feature} & \textbf{React} & \textbf{Framer} & \textbf{Webflow} \\
+\midrule
+State Management & \texttt{useState}/Fiber & External JSON + runtime & No real state \\
+Rendering & JSX/VDOM & \texttt{React.createElement} & Static DOM \\
+Interactions & JS functions & Visual + code optional & Visual only \\
+Serialization & Custom & Built-in & HTML/CSS export \\
+Dynamic Logic & Full JS support & Controlled JS sandbox & Limited animations \\
+\bottomrule
+\end{tabular}
+\caption{Comparison of State Management and Rendering Approaches}
+\label{tab:platform-comparison}
+\end{table}
+
+\subsection{Academic Research in Visual Programming}
+
+Visual programming environments have been extensively studied in academic literature, providing theoretical foundations for this work:
+
+\begin{itemize}
+    \item \textbf{Direct Manipulation Interfaces}: Shneiderman's seminal work on direct manipulation provides the theoretical foundation for visual editing interfaces, establishing principles that enable users to manipulate objects directly rather than through command languages  \cite[p.~64]{shneiderman1983direct}
+    \item \textbf{Visual Programming Languages}: Research on block-based programming languages like Scratch demonstrates effective approaches to making programming accessible to non-technical users through visual metaphors \cite{resnick2009scratch}
+    \item \textbf{Model-Driven Development}: Academic work on model-driven engineering provides established patterns for transforming abstract models into executable code, forming the conceptual basis for visual-to-code generation \cite{schmidt2006model}
+\end{itemize}
+
+% 2.3 Core Technologies and Frameworks
+\section{Core Technologies and Frameworks}
+\label{sec:core-technologies}
+
+\subsection{React Ecosystem and Virtual DOM Architecture}
+
+React provides the foundational technology stack for dynamic component rendering and state management in visual application builders.
+
+\subsubsection{JSX Compilation and createElement}
+
+JSX syntax provides a declarative way to describe component structures:
+
+\begin{lstlisting}[language=Java, caption={JSX to createElement Transformation}]
+// JSX syntax
+<button onClick={() => setCount(count + 1)}>
+  {count}
+</button>
+
+// Compiled to React.createElement
+React.createElement("button", 
+  { onClick: () => setCount(count + 1) }, 
+  count
+);
+\end{lstlisting}
+
+This transformation enables dynamic component generation at runtime, where component configurations can be stored as data structures and rendered programmatically without requiring build-time compilation.
+
+\subsubsection{Virtual DOM and Reconciliation}
+
+React's Virtual DOM provides efficient updates through a diffing algorithm that minimizes actual DOM manipulations:
+
+\begin{enumerate}
+    \item Component state changes trigger re-rendering
+    \item New Virtual DOM tree is generated via \texttt{createElement}
+    \item React compares (diffs) previous and current Virtual DOM trees
+    \item Minimal set of DOM mutations is computed and applied
+\end{enumerate}
+
+This architecture enables real-time preview updates in visual editors without performance degradation, as only changed components require DOM updates.
+
+\subsubsection{React Fiber and Concurrent Features}
+
+React Fiber architecture provides additional capabilities crucial for visual editors:
+
+\begin{itemize}
+    \item \textbf{Interruptible Rendering}: Large component trees can be rendered incrementally
+    \item \textbf{Priority-Based Updates}: User interactions can be prioritized over background updates
+    \item \textbf{Time Slicing}: Prevents UI blocking during complex re-renders
+\end{itemize}
+
+\subsection{Reactive State Management with MobX-State-Tree}
+
+Traditional React state management through \texttt{useState} hooks presents limitations for dynamic, runtime-generated component structures. Reactive programming paradigms, as surveyed by Bainomugisha et al. \cite{bainomugisha2013survey}, provide alternative approaches for managing complex state dependencies. MobX-State-Tree (MST) implements these reactive principles and is better suited for visual editors requiring dynamic component generation.
+
+\subsubsection{Observable State and Automatic Reactivity}
+
+MST enables automatic reactivity without explicit hook dependencies:
+
+\begin{lstlisting}[language=Java, caption={MST Observable State Example}]
+const ComponentNode = types.model({
+  id: types.string,
+  type: types.string,
+  props: types.map(types.frozen()),
+  state: types.map(types.frozen()),
+  children: types.array(types.late(() => ComponentNode))
+}).actions(self => ({
+  setState(key, value) {
+    self.state.set(key, value);
+  }
+}));
+
+// Automatic re-rendering when state changes
+const node = ComponentNode.create({...});
+node.setState("count", node.state.get("count") + 1);
+\end{lstlisting}
+
+\subsubsection{Serialization and Persistence}
+
+MST provides built-in serialization capabilities essential for visual editors:
+
+\begin{itemize}
+    \item \textbf{Snapshots}: Complete application state can be serialized to JSON
+    \item \textbf{Patches}: Incremental changes can be captured and applied
+    \item \textbf{Undo/Redo}: State history can be managed through snapshot comparison
+    \item \textbf{Collaboration}: Changes can be synchronized across multiple users
+\end{itemize}
+
+\subsection{Next.js and Server-Side Rendering}
+
+Next.js provides the deployment platform for applications created with the visual builder, offering several key capabilities:
+
+\subsubsection{Dynamic Routing and Static Generation}
+
+Visual applications can be deployed using Next.js dynamic routes:
+
+\begin{lstlisting}[language=Java, caption={Dynamic Page Generation}]
+// pages/[username]/[slug].tsx
+export default function DynamicPage({ projectData }) {
+  return (
+    <PageRenderer 
+      project={projectData} 
+      isPreview={false}
+    />
+  );
+}
+
+export async function getStaticProps({ params }) {
+  const projectData = await fetchProjectData(
+    params.username, 
+    params.slug
+  );
+  return { props: { projectData } };
+}
+\end{lstlisting}
+
+\subsubsection{Incremental Static Regeneration}
+
+ISR enables published applications to be updated without full rebuilds, supporting live editing workflows where changes can be deployed immediately.
+
+% 2.4 Meta-Programming Concepts and Patterns
+\section{Meta-Programming Concepts and Patterns}
+\label{sec:meta-programming}
+
+\subsection{Theoretical Foundation}
+
+Meta-programming, as defined by Visser (2002), involves programs that "analyze, generate, and transform object programs. In this process, object programs are structured data" \cite{visser2002}. This approach has been further developed in generative programming methodologies by Czarnecki and Eisenecker \cite{czarnecki2000generative}, who demonstrate how meta-programming enables the systematic generation of software families. In the context of visual application builders, this translates to systems that manipulate component configurations as data structures and transform them into executable React applications.
+
+\subsection{Component Configuration as Data}
+
+The meta-programming approach treats component definitions as serializable data structures rather than static code:
+
+\begin{lstlisting}[language=Java, caption={Component Configuration Data Structure}]
+const buttonConfig = {
+  id: "button-1",
+  type: "button",
+  props: {
+    className: "primary-button",
+    children: "Click Me"
+  },
+  state: {
+    count: 0,
+    isActive: false
+  },
+  interactions: [
+    {
+      trigger: "onClick",
+      action: "() => setState('count', state.count + 1)"
+    }
+  ]
+};
+\end{lstlisting}
+
+\subsection{Runtime Component Generation}
+
+These configurations are transformed into functional React components at runtime:
+
+\begin{lstlisting}[language=Java, caption={Meta-Programming Component Transformation}]
+function createRuntimeComponent(config) {
+  return function RuntimeComponent() {
+    const [state, setState] = useState(config.state);
+    
+    const handlers = config.interactions.reduce((acc, interaction) => {
+      acc[interaction.trigger] = new Function(
+        'state', 'setState', 
+        `return (${interaction.action})`
+      )(state, setState);
+      return acc;
+    }, {});
+    
+    return React.createElement(
+      config.type,
+      { ...config.props, ...handlers },
+      config.props.children
+    );
+  };
+}
+\end{lstlisting}
+
+This approach enables visual editors to generate fully functional components without requiring traditional compilation steps, supporting real-time editing and preview capabilities.
+
+% 2.5 Drag-and-Drop Interface Patterns
+\section{Drag-and-Drop Interface Patterns}
+\label{sec:drag-drop-patterns}
+
+\subsection{HTML5 Drag and Drop API Limitations}
+
+The native HTML5 Drag and Drop API provides basic functionality but has several limitations for complex visual editors:
+
+\begin{itemize}
+    \item Limited customization of drag feedback
+    \item Inconsistent behavior across browsers
+    \item No support for touch devices
+    \item Difficulty integrating with React's event system
+\end{itemize}
+
+\subsection{React Drag-and-Drop Libraries}
+
+Modern React applications typically use specialized libraries that provide better integration and functionality than native HTML5 drag-and-drop APIs. The foundational work on snap-dragging by Bier and Stone \cite{bier1986snap} established key principles for direct manipulation interfaces that continue to influence modern drag-and-drop implementations.
+
+The \textbf{dnd-kit} library provides a modern, accessible approach to drag-and-drop with sensor-based architecture, separate sensors for mouse, touch, and keyboard input, built-in accessibility support, and extensive customization options for drag feedback and animations.
+
+Drag-and-drop operations in visual editors must maintain component tree integrity through careful handling of tree structure updates and MST reactivity triggers, following established patterns in component-based software engineering \cite{szyperski1996component}.
 
 \chapter{Methodology}
 [Description of the planned approach (model) for solving the problem statement; includes among others:

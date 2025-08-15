@@ -1,3 +1,40 @@
+% groundwork_intro.tex - Standalone Introduction Chapter
+% This document can be compiled independently as a PDF
+
+\documentclass[oneside,11pt]{book}
+
+% Basic packages for standalone compilation
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+% Page layout
+\usepackage[hmargin=3cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+% Load glossaries for standalone use
+\usepackage[toc,acronym,nonumberlist,nogroupskip]{glossaries}
+\makeglossaries
+
+% Include glossary entries
+\input{glossary-entries}
+
+% Bibliography
+\usepackage[backend=biber, style=ieee]{biblatex}
+\addbibresource{thesis_references.bib}
+
+% Font settings
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+
+% Spacing
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
 \chapter{Introduction}
 \label{ch:introduction}
 
@@ -108,22 +145,22 @@ In this context, the visual editor analyzes user interactions with the interface
 \begin{figure}[h]
 \centering
 \begin{verbatim}
-┌─────────────────┐    createRuntimeComponent()    ┌──────────────────┐
-│   ComponentNode │ ──────────────────────────────► │ Living Component │
-│                 │                                │                  │
-│ state: {        │                                │ const [state,    │
-│   count: 0      │ ──────────────────────────────► │   setState] =    │
-│ }               │                                │   useState({     │
-│                 │                                │     count: 0     │
-│ interactions: [ │                                │   });            │
-│   {             │                                │                  │
-│     trigger:    │ ──────────────────────────────► │ const onClick =  │
-│     "onClick",  │                                │   () => {        │
-│     action:     │                                │     // Execute   │
-│     "increment" │                                │     // action    │
-│   }             │                                │   };             │
-│ ]               │                                │                  │
-└─────────────────┘                                └──────────────────┘
++------------------+    createRuntimeComponent()    +-------------------+
+|   ComponentNode  | -----------------------------> | Living Component  |
+|                  |                                |                   |
+| state: {         |                                | const [state,     |
+|   count: 0       | -----------------------------> |   setState] =     |
+| }                |                                |   useState({      |
+|                  |                                |     count: 0      |
+| interactions: [  |                                |   });             |
+|   {              |                                |                   |
+|     trigger:     | -----------------------------> | const onClick =   |
+|     "onClick",   |                                |   () => {         |
+|     action:      |                                |     // Execute    |
+|     "increment"  |                                |     // action     |
+|   }              |                                |   };              |
+| ]                |                                |                   |
++------------------+                                +-------------------+
    Editor Configuration                             Interactive React Component
 \end{verbatim}
 \caption{Meta-Programming Transformation: Configuration to Interactive Component}
@@ -174,3 +211,11 @@ This thesis makes several key contributions to the field of visual web applicati
 \end{enumerate}
 
 The resulting system demonstrates how visual application builders can provide professional-grade development capabilities while maintaining the accessibility and immediate feedback that make visual editing powerful for rapid prototyping and non-technical content creation.
+
+% Print bibliography if needed
+\printbibliography
+
+% Print glossaries
+\printglossaries
+
+\end{document}
