@@ -24,6 +24,8 @@
 
 % Graphics
 \usepackage{graphicx}
+% Keep figures near their discussion
+\usepackage{placeins}
 
 % Bibliography - International style
 \usepackage[backend=biber, style=ieee]{biblatex} % IEEE style for international appeal
@@ -60,13 +62,25 @@
   language=Python % Default language, change as needed
 }
 
+% Prevent listings from being split awkwardly across pages by ensuring
+% there is sufficient space before starting any lstlisting environment.
+% If not enough space remains, LaTeX will start a new page so the
+% heading + listing stay together.
+\usepackage{needspace}
+\usepackage{etoolbox}
+\AtBeginEnvironment{lstlisting}{\Needspace{20\baselineskip}}
+% Ensure headings have room for their immediate content
+\usepackage{etoolbox}
+\pretocmd{\subsection}{\Needspace{10\baselineskip}}{}{}
+\pretocmd{\subsubsection}{\Needspace{10\baselineskip}}{}{}
+
 % Tables and Captions
 \usepackage{booktabs}
 \usepackage[small, labelfont=bf]{caption}
 
 
-% Page layout
-\usepackage[hmargin=3cm, top=2.5cm, bottom=2.5cm]{geometry}
+% Page layout - optimized for digital reading with wider type area
+\usepackage[hmargin=2cm, top=2.5cm, bottom=2.5cm]{geometry}
 
 % TOC and heading customization
 \usepackage{titlesec}
@@ -78,6 +92,10 @@
 \renewcommand{\cftbeforesubsubsecskip}{0.3em}
 
 \renewcommand{\cftbeforechapskip}{1.5em}
+
+% Increase spacing between figure entries in List of Figures
+\renewcommand{\cftbeforefigskip}{0.8em}
+
 % Enable page breaks in TOC
 \renewcommand{\cftaftertoctitle}{\thispagestyle{frontmatter}}
 
@@ -106,8 +124,8 @@
   {0.5em}
   {}
 
-% Add spacing between sections - KOMA-Script style
-\titlespacing*{\chapter}{0pt}{0pt}{1em}
+% Add spacing between sections - KOMA-Script style with reduced chapter top spacing
+\titlespacing*{\chapter}{0pt}{-1em}{1em}
 \titlespacing*{\section}{0pt}{1em}{1em}
 \titlespacing*{\subsection}{0pt}{1em}{1em}
 \titlespacing*{\subsubsection}{0pt}{1em}{1em}
@@ -204,8 +222,8 @@
 \author{Marlin Jai Pohl}
 \date{\today}
 
-\hyphenpenalty=5000
-\exhyphenpenalty=5000
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
 
 %\usepackage{mathptmx} % Times font
 \usepackage{helvet} \renewcommand{\familydefault}{\sfdefault}
@@ -283,20 +301,22 @@ I would like to express my sincere gratitude to my supervisors, Prof. Dr. [Name]
 % English abstract
 When faced with the challenge of creating content and interactive web experiences, less technical users have to rely on \gls{CMS} like WordPress and \gls{WYSIWYG} editors.
 
-Although these tools partially satisfy the needs of modern web experiences, many of them have limitations regarding the \gls{staticweb} they produce, and an inaccuracy between the preview layer and the final rendered content in the Web browser.
+Although these tools partially satisfy the needs of modern web experiences, many have limitations regarding the \gls{staticweb} they produce, and an inaccuracy between the preview layer and the final rendered content in the Web browser.
 
 Due to the static output of tools like Webflow, WordPress, Wix, etc., users cannot make use of the \gls{SPA} features that come with modern JavaScript frameworks like React, NextJS or VueJS, which are based on the dynamic injection of JavaScript code during \gls{runtime}.
 
 The following thesis answers the question of how a multilayered visual application builder allowing real-time \gls{UI} editing, dynamic CSS class generation, and multi-touch interactions can be implemented using the modern JavaScript framework NextJS. 
 
-As a result, the barrier of entry to build great software is lowered by applying the concepts of meta-programming.
+As a result, the barrier to build great software is lowered by applying meta-programming concepts.
 
-The concept of meta programming is defined as follows:
+Meta Programming is defined as follows:
 
 % TODO: ask if this is correct
 "Meta-programs analyze, generate, and transform object programs. In this process, object programs are structured data."\footfullcite[p. 299]{visser2002}
 
-In the context of this thesis, meta-programming is used to implement a program that dynamically generates other programs, in specific SPAs during \gls{runtime}, by using a component based approach with drag and drop functionality and real-time \gls{UI} editing.
+In the context of this thesis, it is used to implement a program that dynamically generates other programs.
+
+In specific SPAs during \gls{runtime}, by using a component based approach with drag and drop functionality and real-time \gls{UI} editing.
 
 \newpage
 
@@ -466,17 +486,23 @@ How can a multi-layered visual interface enable real-time application building w
 
 \subsection{Visual Application Development Landscape}
 
-The landscape of visual application development has evolved significantly with the emergence of no-code and low-code platforms. As documented by Sahay et al. \cite{sahay2020supporting}, these platforms aim to democratize software development by reducing technical barriers. Traditional web development requires extensive technical knowledge of \gls{HTML}, \gls{CSS}, JavaScript, and modern frameworks like React or Vue.js. This technical barrier limits content creators, designers, and non-technical users from building interactive web applications.
+The landscape of visual application development has been fundamentally transformed by the emergence of \gls{LCDP}s. As comprehensively analyzed by Sahay et al. \cite{sahay2020supporting}, LCDPs represent a paradigm shift toward democratizing software development by reducing technical barriers through visual interfaces and model-driven approaches.
 
-Visual application builders address this gap by providing \gls{WYSIWYG} interfaces that enable users to create applications through direct manipulation rather than code writing. However, existing solutions fall into distinct categories with inherent limitations:
+Traditional web development requires extensive technical knowledge of \gls{HTML}, \gls{CSS}, JavaScript, and modern frameworks like React or Vue.js. This technical barrier has historically limited content creators, designers, and non-technical users from building interactive web applications independently. 
+
+LCDPs address this challenge by providing \gls{WYSIWYG} interfaces that enable application creation through direct manipulation rather than code writing.
+
+However, the current LCDP ecosystem reveals distinct categories with inherent architectural limitations:
 
 \begin{itemize}
-    \item \textbf{Static Site Builders} (WordPress, Wix, Squarespace): Generate static \gls{HTML}/\gls{CSS} output with limited interactivity
-    \item \textbf{Design-to-Code Tools} (Webflow, Adobe XD): Focus on visual design but lack true \gls{SPA} capabilities
-    \item \textbf{Component-Based Builders} (Framer, Bubble): Offer dynamic functionality but with proprietary runtime systems
+    \item \textbf{Static Site Builders} (WordPress, Godaddy, Squarespace): Generate static \gls{HTML}/\gls{CSS} output with limited interactivity and no true \gls{SPA} capabilities
+    \item \textbf{Design-to-Code Tools} (Webflow, Adobe XD): Excel in visual design fidelity but lack dynamic application logic and state management
+    \item \textbf{Component-Based Builders} (Framer, Bubble): Offer dynamic functionality through proprietary runtime systems, creating vendor lock-in challenges
 \end{itemize}
 
-The fundamental challenge lies in bridging the gap between visual design tools and modern JavaScript framework capabilities, particularly React's component-based architecture and dynamic state management.
+The fundamental challenge identified by Sahay et al. lies in bridging the gap between visual design tools and modern JavaScript framework capabilities, particularly React's component-based architecture and dynamic state management. 
+
+This thesis addresses this gap by proposing a meta-programming approach that maintains full React interactivity while providing visual editing capabilities.
 
 \subsection{Target User Groups and Stakeholders}
 
@@ -517,41 +543,75 @@ Webflow focuses primarily on visual design with limited dynamic functionality:
 
 \begin{itemize}
     \item \textbf{Static Output}: Generates traditional \gls{HTML}/\gls{CSS} with minimal JavaScript interactivity
-    \item \textbf{Visual-First Design}: Excellent visual design tools but limited component reusability
     \item \textbf{Animation System}: Built-in animation tools but no true state management
     \item \textbf{CMS Integration}: Content management capabilities but no dynamic application logic
 \end{itemize}
 
-While Webflow excels in design fidelity, it cannot produce modern \gls{SPA} applications with complex state management and component interactions.
+While Webflow excels in design fidelity, it cannot produce modern \gls{SPA} applications with complex state management and component interactions. It is rather focused on design and content management for static websites, and not on the development of interactive web applications.
+
+\subsubsection{Codux: Code-First Visual Editing}
+
+Codux is a visual IDE that works directly against a React codebase rather than a proprietary runtime. Key characteristics:
+
+\begin{itemize}
+    \item \textbf{Code generation/sync}: Visual edits generate React components and styles in the repo (no separate model runtime)
+    \item \textbf{Lower lock-in}: Output is plain code, maintainable outside the tool
+    \item \textbf{Developer-centric}: Fits Git workflows and code review practices
+\end{itemize}
+
+This contrasts with model-at-runtime platforms such as Framer, and provides useful context for the trade-offs summarized by Sahay et al. \cite{sahay2020supporting}.
 
 \subsubsection{Comparative Analysis}
 
 \begin{table}[h]
 \centering
-\begin{tabular}{@{}llll@{}}
+\small % Reduce font size for better fit
+\begin{tabular}{@{}lllll@{}}
 \toprule
-\textbf{Feature} & \textbf{React} & \textbf{Framer} & \textbf{Webflow} \\
+\textbf{Feature} & \textbf{React} & \textbf{Codux} & \textbf{Framer} & \textbf{Webflow} \\
 \midrule
-State Management & \texttt{useState}/Fiber & External JSON + runtime & No real state \\
-Rendering & JSX/VDOM & \texttt{React.createElement} & Static DOM \\
-Interactions & JS functions & Visual + code optional & Visual only \\
-Serialization & Custom & Built-in & HTML/CSS export \\
-Dynamic Logic & Full JS support & Controlled JS sandbox & Limited animations \\
+State Management & \texttt{useState}/Fiber & \texttt{useState}/Fiber (code) & External JSON + runtime & No real state \\
+Rendering & JSX/VDOM & JSX/VDOM (generates code) & \texttt{React.createElement} & Static DOM \\
+Interactions & JS functions & JS functions (code-first) & Visual + code optional & Visual only \\
+Serialization & Custom & Source code in repo & Built-in model store & HTML/CSS export \\
+Dynamic Logic & Full JS support & Full JS support & Controlled JS sandbox & Limited animations \\
 \bottomrule
 \end{tabular}
-\caption{Comparison of State Management and Rendering Approaches}
+\caption{Comparison of state and rendering approaches across tools, including a code-first option (Codux).}
 \label{tab:platform-comparison}
 \end{table}
 
-\subsection{Academic Research in Visual Programming}
+\subsection{Low-Code Platform Reference Architecture}
+Low-code platforms share a recurring architecture that aligns closely with this thesis's system design. \\ 
+The study by Sahay et al. \cite{sahay2020supporting} synthesizes common capabilities across platforms and proposes a conceptual architecture. Below, we briefly discuss two complementary views and relate them to our system.
 
-Visual programming environments have been extensively studied in academic literature, providing theoretical foundations for this work:
+\paragraph{Evaluation dimensions (abridged).} Following Sahay et al., platforms can be compared along concise dimensions: user-interface tooling, interoperability/connectors, security, collaboration, reusability, scalability, business-logic tooling, \textbf{build approach (code generation vs. model-at-runtime)}, deployment options, and target solution type. 
 
-\begin{itemize}
-    \item \textbf{Direct Manipulation Interfaces}: Shneiderman's seminal work on direct manipulation provides the theoretical foundation for visual editing interfaces, establishing principles that enable users to manipulate objects directly rather than through command languages  \cite[p.~64]{shneiderman1983direct}
-    \item \textbf{Visual Programming Languages}: Research on block-based programming languages like Scratch demonstrates effective approaches to making programming accessible to non-technical users through visual metaphors \cite{resnick2009scratch}
-    \item \textbf{Model-Driven Development}: Academic work on model-driven engineering provides established patterns for transforming abstract models into executable code, forming the conceptual basis for visual-to-code generation \cite{schmidt2006model}
-\end{itemize}
+We reference these where relevant below.
+
+Figure~\ref{fig:lcdp-layers} illustrates the layered architecture used to categorize concerns: application composition, service/data integration, and deployment. This structure clarifies where our visual editor (application layer) ends and where runtime concerns begin.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/Layered_architecture_of_low-code_development_platforms.png}
+    \caption{Layered architecture of low-code development platforms (adapted from Sahay et al. \cite{sahay2020supporting}).}
+    \label{fig:lcdp-layers}
+\end{figure}
+\FloatBarrier
+
+Figure~\ref{fig:lcdp-components} details platform components and reveals how our system differs from traditional LCDPs in its deployment approach. Unlike conventional platforms with explicit compilation phases, our architecture operates on two deployment levels: \textbf{(1) Platform deployment}—deploying the visual builder environment itself, and \textbf{(2) Runtime application deployment}—serving user-created applications as interpreted component tree models rather than standalone builds.
+
+In this context, Next.js serves dual roles: at the application modeling layer, it provides the framework for implementing the visual editor interface (drag-and-drop, properties panels, canvas); at runtime, React's \texttt{createElement} function acts as both compiler and code generator, interpreting stored component trees into rendered UI components. 
+
+NestJS underpins multiple architectural components simultaneously—the platform server (core services, API handling), service layer (logging, deployment orchestration), and integration layer (external service connections)—rather than mapping to a single architectural box.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.54\textwidth]{images/Main_components_of_low-code_development_platforms.png}
+    \caption{Main components and services of low-code development platforms (adapted from Sahay et al. \cite{sahay2020supporting}).}
+    \label{fig:lcdp-components}
+\end{figure}
+\FloatBarrier
 
 % 2.3 Core Technologies and Frameworks
 \section{Core Technologies and Frameworks}
@@ -595,17 +655,43 @@ This architecture enables real-time preview updates in visual editors without pe
 
 \subsubsection{React Fiber and Concurrent Features}
 
-React Fiber architecture provides additional capabilities crucial for visual editors:
+React Fiber represents a fundamental architectural redesign of React's reconciliation engine, introduced as the default reconciler since React 16 \cite{geeksforgeeks2025fiber}. Unlike the previous synchronous "Stack" reconciler, Fiber introduces asynchronous rendering capabilities essential for complex visual editors.
+
+\paragraph{Fiber Architecture Overview}
+A fiber is a plain JavaScript object representing a unit of work in React's rendering process. The architecture operates through two distinct phases:
+
+\begin{enumerate}
+    \item \textbf{Render Phase (Asynchronous)}: Processes fiber nodes through \texttt{beginWork()} and \texttt{completeWork()} functions. This phase can be interrupted, paused, or discarded.
+    \item \textbf{Commit Phase (Synchronous)}: Executes \texttt{commitWork()} to apply DOM changes. This phase cannot be interrupted to maintain UI consistency.
+\end{enumerate}
+
+\paragraph{Concurrent Features for Visual Editors}
+React Fiber provides capabilities crucial for visual editors \cite{geeksforgeeks2025fiber}:
 
 \begin{itemize}
-    \item \textbf{Interruptible Rendering}: Large component trees can be rendered incrementally
-    \item \textbf{Priority-Based Updates}: User interactions can be prioritized over background updates
-    \item \textbf{Time Slicing}: Prevents UI blocking during complex re-renders
+    \item \textbf{Interruptible Rendering}: Large component trees can be rendered incrementally without blocking user interactions
+    \item \textbf{Priority-Based Updates}: User interactions (high priority) are processed before background operations (low priority)
+    \item \textbf{Time Slicing}: Work is split into chunks using \texttt{requestAnimationFrame()} and \texttt{requestIdleCallback()}, preventing UI blocking during complex re-renders
+    \item \textbf{Work Scheduling}: Tasks can be paused, resumed, or discarded based on priority and available time
 \end{itemize}
+
+\paragraph{Dual Tree Structure}
+Fiber maintains two tree structures to enable non-blocking updates:
+
+\begin{itemize}
+    \item \textbf{Current Tree}: Represents the currently rendered UI state
+    \item \textbf{Work-in-Progress Tree}: Contains pending changes and updates
+\end{itemize}
+
+React performs all modifications on the work-in-progress tree, then atomically swaps pointers to make it the current tree, ensuring UI consistency throughout the update process.
+
+This architecture enables real-time preview updates in visual editors without performance degradation, as component updates can be prioritized and scheduled efficiently based on user interaction patterns.
 
 \subsection{Reactive State Management with MobX-State-Tree}
 
-Traditional React state management through \texttt{useState} hooks presents limitations for dynamic, runtime-generated component structures. Reactive programming paradigms, as surveyed by Bainomugisha et al. \cite{bainomugisha2013survey}, provide alternative approaches for managing complex state dependencies. MobX-State-Tree (MST) implements these reactive principles and is better suited for visual editors requiring dynamic component generation.
+Traditional React state management through \texttt{useState} hooks presents limitations for dynamic, runtime-generated component structures. Reactive programming paradigms, as surveyed by Bainomugisha et al. \cite{bainomugisha2013survey}, provide alternative approaches for managing complex state dependencies. 
+
+MobX-State-Tree (MST) implements these reactive principles and is better suited for visual editors requiring dynamic component generation.
 
 \subsubsection{Observable State and Automatic Reactivity}
 
@@ -678,7 +764,9 @@ ISR enables published applications to be updated without full rebuilds, supporti
 
 \subsection{Theoretical Foundation}
 
-Meta-programming, as defined by Visser (2002), involves programs that "analyze, generate, and transform object programs. In this process, object programs are structured data" \cite{visser2002}. This approach has been further developed in generative programming methodologies by Czarnecki and Eisenecker \cite{czarnecki2000generative}, who demonstrate how meta-programming enables the systematic generation of software families. In the context of visual application builders, this translates to systems that manipulate component configurations as data structures and transform them into executable React applications.
+Meta-programming, as defined by Visser (2002), involves programs that "analyze, generate, and transform object programs. In this process, object programs are structured data" \cite{visser2002}. This approach has been further developed in generative programming methodologies by Czarnecki and Eisenecker \cite{czarnecki2000generative}, who demonstrate how meta-programming enables the systematic generation of software families. 
+
+In the context of visual application builders, this translates to systems that manipulate component configurations as data structures and transform them into executable React applications.
 
 \subsection{Component Configuration as Data}
 
@@ -870,10 +958,15 @@ Include questionnaires or interview guides if applicable.
 
 \backmatter
 
-% Declaration of authorship - English version for international context
-\chapter*{Declaration of Authorship}
+% Academic integrity declaration - English version for international context
+\chapter*{Academic integrity declaration}
 
-I hereby declare that this thesis has been written independently and without unauthorized assistance. All sources and aids used have been fully acknowledged. This work has not been submitted to any other examination authority in this or similar form.
+I hereby declare that I have written all parts of this thesis independently and that I have not used any sources other than those indicated in the thesis and that I have not submitted the thesis in the same or a similar form for any other examination. All verbatim or analogous copies and quotations have been identified and verified.
+
+\section*{Information on the use of AI-based tools}
+
+I affirm that I have not used any AI-based tools whose use has been explicitly excluded in writing by the examiner. I am aware that the use of texts or other content and products generated by AI-based tools does not guarantee their quality. I am fully responsible for the adoption of any machine-generated passages used by me and bear the responsibility for any erroneous or distorted content, faulty references, violations of data protection and copyright law or plagiarism generated by the AI. I also affirm that my creative influence predominates in the present work.
+
 
 \vspace{2cm}
 \noindent Berlin, \today
