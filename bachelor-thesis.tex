@@ -9,7 +9,7 @@
 % IMPORTANT: Always verify compliance with your specific institution's guidelines
 % 
 % Template structure: German academic convention with thoughtful front/back matter organization
-\documentclass[oneside,11pt]{book}
+\documentclass[oneside,12pt]{book}
 
 
 % Encoding and languages - English primary, German secondary for abstracts
@@ -27,9 +27,35 @@
 % Keep figures near their discussion
 \usepackage{placeins}
 
-% Bibliography - International style
-\usepackage[backend=biber, style=ieee]{biblatex} % IEEE style for international appeal
+% Bibliography - International style with custom URL formatting
+\usepackage[backend=biber, style=ieee, url=true, doi=false]{biblatex} % IEEE style for international appeal
 \addbibresource{thesis_references.bib}
+
+% Custom bibliography formatting to match Leif's style with URLs on new lines
+\DeclareFieldFormat{url}{\newline{URL:} \url{#1}}
+\DeclareFieldFormat{urldate}{}
+
+% Remove "Available" text and customize URL macro
+\renewbibmacro*{url+urldate}{%
+  \usebibmacro{url}%
+  \iffieldundef{urlyear}
+    {}
+    {\setunit*{\addspace}%
+     \usebibmacro{urldate}}}
+
+% Ensure URLs appear on new lines for all entry types
+\renewbibmacro*{doi+eprint+url}{%
+  \iftoggle{bbx:doi}
+    {\printfield{doi}}
+    {}%
+  \newunit\newblock
+  \iftoggle{bbx:eprint}
+    {\usebibmacro{eprint}}
+    {}%
+  \newunit\newblock
+  \iftoggle{bbx:url}
+    {\usebibmacro{url+urldate}}
+    {}}
 
 % Load hyperref BEFORE glossaries
 \usepackage[hidelinks,hyperfootnotes=false]{hyperref}
@@ -80,7 +106,7 @@
 
 
 % Page layout - optimized for digital reading with wider type area
-\usepackage[hmargin=2cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage[hmargin=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
 
 % TOC and heading customization
 \usepackage{titlesec}
@@ -124,8 +150,8 @@
   {0.5em}
   {}
 
-% Add spacing between sections - KOMA-Script style with reduced chapter top spacing
-\titlespacing*{\chapter}{0pt}{-1em}{1em}
+% Add spacing between sections - reduced chapter top spacing (tighten top gap on new pages)
+\titlespacing*{\chapter}{0pt}{-2.5em}{0.8em}
 \titlespacing*{\section}{0pt}{1em}{1em}
 \titlespacing*{\subsection}{0pt}{1em}{1em}
 \titlespacing*{\subsubsection}{0pt}{1em}{1em}
@@ -194,6 +220,41 @@
     pdfkeywords={thesis, bachelor, computer science}
 }
 
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  sensitive=true
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
 
@@ -222,11 +283,11 @@
 \author{Marlin Jai Pohl}
 \date{\today}
 
-\hyphenpenalty=10000
-\exhyphenpenalty=10000
+\hyphenpenalty=8000
+\exhyphenpenalty=8000
 
-%\usepackage{mathptmx} % Times font
-\usepackage{helvet} \renewcommand{\familydefault}{\sfdefault}
+\usepackage{mathptmx} % Times-like font for pdfLaTeX (closest to Times New Roman)
+% \usepackage{helvet} \renewcommand{\familydefault}{\sfdefault} % Disabled: switched to Times
 
 % Add to your preamble - after other packages
 \usepackage{enumitem}
@@ -345,36 +406,591 @@ In specific SPAs during \gls{runtime}, by using a component based approach with 
 \chapter{Introduction}
 \label{ch:introduction}
 
+The development of content and interactive web experiences is a difficult task, especially for less technical users. In the early days of Web 1.0, developers worked with little more than HTML and CSS. Over time, however, the landscape grew increasingly complex. The proliferation of mobile computing devices—including smartphones, tablets, and wearables such as smartwatches—has significantly expanded the possibilities for digital interaction. However, it has also introduced intricate design challenges, notably the imperative for responsive design to accommodate diverse screen sizes and resolutions, as well as the complexities of multi-touch interactions.\cite{kim2021designpatternstradeoffsresponsive}
+
+To address the mounting complexity inherent in modern web development, \gls{LCDP} such as Webflow, WordPress, and Wix have emerged. These platforms empower users to craft responsive and interactive web experiences without writing code. Leveraging visual interface builders with drag-and-drop component functionality, they abstract away the technical intricacies of responsive layout design and cross-device compatibility.
+
+"An increasing number of software applications are being written by end users without formal 
+software development training."\cite{kuhail2021characterizing} 
+This inspired large technology companies [...] to invest in low-code development environments 
+empowering end users to create web and mobile applications"\cite{kuhail2021characterizing}
+
+With an annual growth rate of more than 20\% \gls{LCDP}s are expected to continue to grow up to a total market valuation of 50 billion USD by 2028.\cite{bratincevic2024lowcode}
+
+This clearly shows the need for tools that allow users to create web applications without having to write code.
+
+
 % 1.1 Visual Application Builder Overview
-\section{Visual Application Builder Overview}
+\section{Problem Statement}
 \label{sec:visual-builder-overview}
 
-This thesis presents a \textbf{multi-layered visual application builder} that enables real-time \gls{UI} editing while maintaining full React functionality. The system consists of four integrated interface layers working in concert to provide comprehensive visual development capabilities:
+The central problem addressed in this thesis lies in reconciling two fundamentally different requirements in the design of visual application builders:
+
+\begin{enumerate}
+  \item \textbf{Editor Reactivity}: Visual editors must provide immediate, synchronized feedback across multiple interface layers (e.g., component palette, canvas, layers panel, properties panel). User actions such as dragging components, modifying styles, or switching responsive breakpoints must instantly propagate to all relevant parts of the editor interface.
+  \item \textbf{Runtime Interactivity}: At the same time, components within the application must preserve their intended runtime behavior. Buttons must remain clickable, forms must handle input and validation, and interactive elements must reflect accurate state management. This behavior must remain coherent both in the editor preview and in the exported application.
+\end{enumerate}
+
+Bridging these two reactive systems creates complex architectural constraints. 
+
+Existing tools such as Framer and Webflow demonstrate the viability of multi-layered visual builders but typically achieve this by limiting developer control over the underlying framework. As a result, the expressive capabilities of React, particularly its component model, state management, and runtime flexibility, are only partially preserved.
+
+This thesis does not seek to fully replicate the entirety of React's capabilities within a visual builder. Its goal is to investigate to what extent real-time UI editing can coexist with React's runtime architecture, and to identify the architectural patterns and meta-programming strategies that make this possible. By doing so, it addresses the gap between highly abstract visual editors and the framework-level fidelity required for professional application development.
+
+\section{System Overview}
+\label{sec:system-overview}
+
+In the following a very high level overview of the system is provided. A more detailed discussion of the individual layers and their interaction patterns is provided in the following chapters.
 
 \begin{enumerate}
     \item \textbf{Component Palette}: Drag-and-drop library of available UI components
-    \item \textbf{Canvas with Responsive Preview}: Main editing area with desktop, tablet, and mobile viewports
+    \item \textbf{Preview Canvas}: Main editing area with desktop, tablet, and mobile viewports
     \item \textbf{Layers Panel}: Hierarchical tree view of component structure and relationships
     \item \textbf{Properties Panel}: Dynamic style and behavior editor for selected components
 \end{enumerate}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.95\textwidth]{images/Framer_multi_device_interface.png}
-    \caption{Framer Interface showing multi-layered visual editing environment with layers panel (left), responsive canvas (center), properties panel (right), and component palette (top - currently not shown)\cite{framer}}
-    \label{fig:framer-interface}
+As demonstrated in Figure~\ref{fig:framer-interface}, Framer already implements variations of this multi-layered approach, showing the practical viability of such interfaces for visual application development.
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=1\textwidth]{images/framer interface.png}
+  \caption{Framer Interface showing multi-layered visual editing environment with layers panel (left), responsive canvas (center), properties panel (right), and component palette (top - currently not shown)\cite{framer}}
+  \label{fig:framer-interface}
 \end{figure}
 
-As demonstrated in Figure~\ref{fig:framer-interface}, existing tools like Framer already implement variations of this multi-layered approach, showing the practical viability of such interfaces for visual application development.
+% 1.3 Research Questions, Scope, and Contributions
+\section{Research Questions, Scope, and Contributions}
+\label{sec:research-objectives}
 
-% 1.2 Multi-Layered Interface Architecture
+This thesis is guided by one overarching research question:
+
+How can a multi-layered visual interface enable real-time application building while maintaining React interactivity through a meta-programming approach that transforms editor configurations into functional \gls{SPA} components?
+
+Two supporting questions refine this investigation: (1) how can the four interface layers—the component palette, canvas, layers panel, and properties panel—remain synchronized in real time during visual editing operations, ensuring consistent editor reactivity? and (2) which architectural patterns enable the transformation of structured, serializable data into interactive React components?
+
+The scope of the thesis is confined to the conceptual and technical exploration of architectural patterns and meta-programming approaches for a multi-layered visual application builder integrated with React. The goal is not to deliver a production-ready platform but to examine the feasibility of combining real-time editing with runtime interactivity, focusing on the tensions between editor reactivity and component behavior at runtime.
+
+To pursue these questions, four technical objectives are defined:
+\begin{enumerate}
+  \item design of a unified component tree model that supports visual editing and React export
+  \item development of a responsive preview system for desktop, tablet, and mobile viewports
+  \item creation of a dynamic property editing interface adaptable to different component types
+  \item implementation of a mechanism to extend the component palette with custom components
+\end{enumerate}
+
+The contributions of this research are both analytical and architectural. Analytically, it provides a structured problem analysis of the dual-reactivity challenge in visual application builders and offers a conceptual framework for organizing multi-layered interfaces around a unified component tree model. Architecturally, it identifies design patterns for transforming serialized editor configurations into interactive React components and examines the trade-offs between abstraction for accessibility and fidelity to the expressive power of React. Together, these contributions aim to advance the understanding of how real-time visual editing environments can be meaningfully combined with modern JavaScript frameworks, while also laying the foundation for future research and development in this domain.
+
 \newpage
+
+\chapter{Foundations}
+\label{ch:foundations}
+
+This chapter establishes the theoretical foundation necessary for understanding the multi-layered visual application builder. It encompasses domain knowledge about visual application development platforms, analysis of existing solutions and their architectural patterns, and the core technological concepts that enable runtime component generation and reactive state management.
+
+The chapter begins with an examination of the visual application development landscape and the stakeholder groups served by these tools, providing essential context for understanding user requirements and system constraints. 
+
+This is followed by a comprehensive analysis of related work and existing solutions, identifying both successful patterns and limitations in current approaches. The chapter concludes with an exploration of relevant technological concepts, focusing on JavaScript \gls{DOM} manipulation, React's architecture, reactive programming paradigms, and meta-programming techniques that form the technical foundation for the proposed system.
+
+
+% 2.1 Domain Knowledge and Context
+\section{Domain Knowledge and Context}
+\label{sec:domain-context}
+
+Understanding the domain context is essential for positioning the multi-layered visual application builder within the broader ecosystem of development tools and user needs. This section reviews the current landscape of visual development platforms, outlining key solution categories and their limitations with respect to modern JavaScript frameworks. The analysis considers the rise of low-code platforms, the technical barriers faced by less-technical users, and the diverse stakeholder groups such builders must serve. These insights shape the architectural decisions and design priorities of the proposed system.
+
+\subsection{Visual Application Development Landscape}
+
+The landscape of visual application development has been fundamentally transformed by the emergence of \gls{LCDP}. As comprehensively analyzed by Sahay et al. \cite{sahay2020supporting}, these platforms represent a paradigm shift toward democratizing software development by reducing technical barriers through visual interfaces and model-driven approaches.
+
+Traditional web development requires extensive technical knowledge of \gls{HTML}, \gls{CSS}, JavaScript, and modern frameworks like React or Vue.js. This technical barrier has historically limited content creators, designers, and non-technical users from building interactive web applications independently. 
+
+\newpage
+LCDPs address this challenge by providing \gls{WYSIWYG} interfaces that enable application creation through direct manipulation rather than code writing.
+
+However, the current LCDP ecosystem reveals distinct categories with inherent architectural limitations:
+
+
+\textbf{Static Site Builders} (WordPress, Godaddy, Squarespace): Generate static \gls{HTML} and \gls{CSS} output with limited interactivity and no true \gls{SPA} capabilities
+
+\textbf{Design-to-Code Tools} (Webflow, Adobe XD): Excel in visual design fidelity but lack dynamic application logic and state management
+
+\textbf{Component-Based Builders} (Framer, Bubble): Offer dynamic functionality through proprietary runtime systems, creating vendor lock-in challenges
+
+
+The fundamental challenge identified by Sahay et al. lies in bridging the gap between visual design tools and modern JavaScript framework capabilities, particularly React's component-based architecture and dynamic state management. 
+
+
+\subsection{Target User Groups and Stakeholders}
+
+Visual application builders serve multiple stakeholder groups with varying technical backgrounds and requirements:
+
+\begin{itemize}
+    \item \textbf{Content Creators}: Need rapid and intuitive visual prototyping and landing page creation
+    \item \textbf{Designers}: Require pixel-perfect visual control with responsive design capabilities
+    \item \textbf{Developers}: Seek faster iteration cycles and visual debugging tools
+    \item \textbf{Product Teams}: Need collaborative tools that bridge design and development workflows
+    \item \textbf{Agencies}: Require scalable solutions for client work with quick turnaround times
+\end{itemize}
+
+Each group brings distinct requirements for interactivity levels, customization depth, and technical control, necessitating a flexible architecture that accommodates various use cases.
+
+% 2.2 Related Work and Existing Solutions
+\section{Related Work and Existing Solutions}
+\label{sec:related-work}
+
+This section examines existing visual application building platforms to understand current approaches, architectural patterns, and limitations. The analysis provides context for the proposed multi-layered approach and identifies gaps that this thesis addresses.
+
+\subsection{Analysis of Current Visual Building Platforms}
+
+The examination covers three categories of platforms: component-based visual development tools (Framer), design-centric approaches (Webflow), and code-first visual editing environments (Codux). Each platform represents different trade-offs between visual design capabilities, runtime interactivity, and technical flexibility.
+
+\subsubsection{Framer: Component-Based Visual Development}
+
+Framer represents the current state-of-the-art in visual application builders, combining design tools with React-based component rendering. Key architectural insights from Framer include:
+
+\begin{itemize}
+    \item \textbf{Runtime Component System}: Rather than generating static code, Framer maintains a centralized data model that drives dynamic React component rendering
+    \item \textbf{Live Preview Architecture}: Changes to the visual interface immediately reflect in a live preview through reactive state management
+    \item \textbf{Component Tree Model}: Applications are represented as hierarchical component trees with serializable state
+    \item \textbf{Override System}: Developers can inject custom logic through JavaScript "overrides" that modify component behavior
+\end{itemize}
+
+However, Framer's proprietary nature limits extensibility and creates vendor lock-in for users seeking to migrate to standard React applications.
+
+\subsubsection{Webflow: Design-Centric Approach}
+
+Webflow focuses primarily on visual design with limited dynamic functionality:
+
+\begin{itemize}
+    \item \textbf{Static Output}: Generates traditional \gls{HTML} and \gls{CSS} with minimal JavaScript interactivity
+    \item \textbf{Animation System}: Built-in animation tools but no true state management
+    \item \textbf{CMS Integration}: Content management capabilities but no dynamic application logic
+\end{itemize}
+
+While Webflow excels in design fidelity, it cannot produce modern \gls{SPA} applications with complex state management and component interactions. It is rather focused on design and content management for static websites, and not on the development of interactive web applications.
+
+\subsubsection{Codux: Code-First Visual Editing}
+
+Codux is a visual IDE that works directly against a React codebase rather than a proprietary runtime. Key characteristics:
+
+\begin{itemize}
+    \item \textbf{Code generation/sync}: Visual edits generate React components and styles in the repo (no separate model runtime)
+    \item \textbf{Lower lock-in}: Output is plain code, maintainable outside the tool
+    \item \textbf{Developer-centric}: Fits Git workflows and code review practices
+\end{itemize}
+
+This contrasts with model-at-runtime platforms such as Framer, and provides useful context for the trade-offs summarized by Sahay et al. \cite{sahay2020supporting}.
+
+\subsubsection{Comparative Analysis}
+
+\begin{table}[ht]
+\centering
+\small % Reduce font size for better fit
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\textbf{Feature} & \textbf{React} & \textbf{Codux} & \textbf{Framer} & \textbf{Webflow} \\
+\midrule
+State Management & \texttt{useState}/Fiber & \texttt{useState}/Fiber (code) & External JSON + runtime & No real state \\
+Rendering & JSX/VDOM & JSX/VDOM (generates code) & \texttt{React.createElement} & Static DOM \\
+Interactions & JS functions & JS functions (code-first) & Visual + code optional & Visual only \\
+Serialization & Custom & Source code in repo & Built-in model store & HTML/CSS export \\
+Dynamic Logic & Full JS support & Full JS support & Controlled JS sandbox & Limited animations \\
+\bottomrule
+\end{tabular}
+\caption{Comparison of state and rendering approaches across tools, including a code-first option (Codux).}
+\label{tab:platform-comparison}
+\end{table}
+
+\subsection{Low-Code Platform Reference Architecture}
+
+Low-code platforms share a recurring architecture that aligns closely with this thesis's system design. The study by Sahay et al. \cite{sahay2020supporting} synthesizes common capabilities across platforms and proposes a conceptual architecture that provides useful context for understanding where visual builders fit within the broader ecosystem of development tools.
+
+This subsection examines two complementary perspectives: 
+
+\begin{itemize}
+\item a layered architecture that separates concerns across application composition, service and data integration, and deployment  
+\item a component-based architecture that details the specific services and modules enabling low-code functionality. Taken together, these reference models position the proposed multi-layered visual builder within established patterns while highlighting its unique contributions.
+\end{itemize}
+
+\newpage
+
+Sahay et al. also propose a set of evaluation dimensions—such as user-interface tooling, interoperability, security, collaboration, reusability, scalability, business-logic tooling, build approach (code generation vs. model-at-runtime), deployment options, and target solution type—which expose trade-offs between accessibility and framework fidelity. These categories provide a backdrop for situating our system, particularly with respect to its treatment of the build process.
+
+Figure~\ref{fig:lcdp-layers} illustrates the layered architecture: application composition at the top, service and data integration in the middle, and deployment at the base. Within this framework, our visual editor is situated primarily in the application layer (toolbox, canvas, properties panel, layers view), while integration and deployment remain outside its scope. One clarification is worth noting: in the context of a visual builder, deployment involves two distinct concerns—the deployment of the platform itself and the runtime deployment of user-generated applications (for example, publishing projects to custom domains). Although this thesis does not address deployment in detail, making this distinction highlights that platform hosting and application publishing represent separate architectural challenges, each warranting dedicated research and analysis. The focus here remains on the architectural problem of achieving real-time editor reactivity and runtime component generation within the application layer.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/Layered_architecture_of_low-code_development_platforms.png}
+    \caption{Layered architecture of low-code development platforms (adapted from Sahay et al. \cite{sahay2020supporting}).}
+    \label{fig:lcdp-layers}
+\end{figure}
+\FloatBarrier
+
+\newpage
+
+The component-based reference architecture in Figure~\ref{fig:lcdp-components} illustrates the sequential pipeline characteristic of most LCDPs. In this model, a graphical environment produces an abstract representation (often in XML), which is passed through a code generator to produce source code, then compiled before it can be deployed. While this clear separation of modeling, generation, and execution supports abstraction and portability, it sacrifices immediacy: modifications in the visual editor only become visible after the full translation and compilation process is complete.
+
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/Component_architecture_of_low-code_development_platforms.png}
+    \caption{Component-based architecture of \gls{LCDP} (adapted from Sahay et al. \cite{sahay2020supporting}).}
+    \label{fig:lcdp-components}
+\end{figure}
+\FloatBarrier
+
+By contrast, the React-based visual builder developed in this thesis collapses this pipeline into a continuous reactive loop. Instead of XML, it employs a unified, serializable MobX State Tree component model. React itself functions as a real-time compiler: each mutation to the component tree is recursively translated through createElement into a virtual DOM, reconciled against the previous tree, and rendered in place. Visual edits made on the canvas, in the properties panel, or in the layers panel are instantly reflected as live, interactive previews. In this way, modeling and execution are unified within the same loop, combining the immediacy of a design tool with the full expressiveness of the underlying framework.
+
+\section{Relevant Technological Concepts}
+\label{sec:technological-concepts}
+
+This section establishes the technological foundations necessary for understanding the multi-layered visual application builder. Rather than providing exhaustive technical documentation, the focus is on core concepts that enable runtime component generation, reactive state management, and efficient visual editing interactions.
+
+The technological landscape for visual builders spans several domains: React's component model and rendering architecture provide the foundation for dynamic UI generation; reactive programming paradigms enable efficient state synchronization across editor layers; and modern JavaScript meta-programming techniques allow treating component configurations as manipulable data structures. Understanding these concepts is essential for grasping how the proposed system bridges visual editing interfaces with functional React applications.
+
+The following subsections introduce these concepts at a level accessible to readers with basic React and JavaScript knowledge, emphasizing their relevance to visual editor architecture rather than implementation specifics, which are detailed in Chapters 5 and 6.
+
+\subsection{JavaScript DOM Manipulation}
+
+The Document Object Model (DOM) emerged as a critical bridge between static HTML content and dynamic, interactive capabilities in web browsers. In the early web, pages were static renderings with no mechanism for post-load manipulation. With the advent of JavaScript in 1995, browser vendors introduced ad-hoc, proprietary APIs, such as document.layers in Netscape Navigator and document.all in Internet Explorer, to allow scripts to access and alter page content \cite{holzner2002insidejavascript}. These inconsistencies led to fragmentation and significant cross-browser compatibility issues. To resolve this, the W3C published the DOM Level 1 Recommendation in 1998, establishing a standardized interface for navigating and manipulating document structure and content \cite{w3c1998dom}. Subsequent iterations DOM Level 2 (2000) and DOM Level 3 (2004) expanded the model with event handling, CSS integration, and XML support, paving the way for richer web interactions \cite{w3c2000dom2, w3c2004dom3}.
+
+The establishment of the DOM enabled a new paradigm of interactive web development. It allowed JavaScript to programmatically modify content, respond to user events, and adjust presentation dynamically, all without requiring a full page reload. This capability, in conjunction with the introduction of the XMLHttpRequest API in the early 2000s, made the Ajax model possible, which in turn fueled the rise of so-called "Web 2.0" applications with real-time, asynchronous updates \cite{garrett2005ajax}. The DOM's live, mutable tree structure thus became the foundation for modern reactive frameworks such as React, Angular, and Vue. In particular, React builds upon the DOM by introducing the virtual DOM, an in-memory representation of the UI that is efficiently reconciled with the real DOM, ensuring that only the necessary changes are applied to the interface. Without the DOM as both a programmable abstraction and rendering target, neither Ajax-driven interactivity nor the component-based architectures of today's frameworks would be feasible.
+
+\subsection{React and its rendering pipeline}
+
+React is a JavaScript library for building user interfaces that introduced a declarative programming model, where interfaces are described as trees of components rather than through imperative DOM manipulation. Components can either be primitive host elements such as a \texttt{div}, or user-defined functions and classes that themselves compose other components. At the heart of React’s architecture lies the idea of maintaining a virtual representation of this component tree and synchronizing it efficiently with the Document Object Model (DOM) whenever the underlying state or props change \cite{chavan2021jsx, reactdocs_virtualdom}. This abstraction makes React a compelling foundation for visual application builders, since it allows changes in configuration to be reflected as live, interactive updates without the need for manual DOM handling.
+
+\subsubsection{JSX Compilation Pipeline}
+
+One of React’s central innovations is JSX (JavaScript XML), a syntax extension that allows developers to write component structures in a markup-like form directly within JavaScript. Although JSX resembles HTML, it is not understood by browsers. Instead, it must be compiled, commonly via \gls{Babel}, into plain JavaScript. In earlier React versions, each JSX element was transformed into a call to \texttt{React.createElement}, returning an immutable \emph{ReactElement} object. These ReactElements encode the type, properties, and children of a node, forming the blueprint for React’s rendering process. \cite{reactdocs_jsx, react17_jsx_runtime}  
+
+\begin{lstlisting}[language=JavaScript, caption={Legacy JSX to createElement Transformation}]
+// JSX syntax
+<button onClick={() => setCount(count + 1)}>
+  {count}
+</button>
+
+// Compiled form (React <17)
+React.createElement("button", 
+  { onClick: () => setCount(count + 1) }, 
+  count
+);
+\end{lstlisting}
+
+With the introduction of React 17, a new \emph{JSX Transform} was released. Instead of compiling JSX into \texttt{React.createElement}, the compiler now emits calls to lightweight helper functions \texttt{jsx} and \texttt{jsxs} provided by the \texttt{react/jsx-runtime} entry point \cite{react17_jsx_runtime}. This removes the requirement to import React explicitly in every file and enables further optimizations in bundle size and tooling support.  
+
+\begin{lstlisting}[language=Java, caption={New JSX Runtime Transformation (React 17+)}]
+// JSX syntax
+<button onClick={() => setCount(count + 1)}>
+  {count}
+</button>
+
+// Compiled form (React 17+)
+import { jsx as _jsx } from "react/jsx-runtime";
+
+_jsx("button", { onClick: () => setCount(count + 1), children: count });
+\end{lstlisting}
+
+By treating JSX as declarative sugar for producing ReactElements, React decouples user interface specification from low-level DOM operations. The shift from \texttt{createElement} to the new runtime-based transform reflects React’s long-term strategy of simplifying developer experience and enabling runtime systems, such as visual builders, to generate components as structured data rather than through direct DOM manipulation.
+
+\subsubsection{Virtual DOM and Reconciliation}
+
+The React runtime operates by maintaining a Virtual DOM: an in-memory tree of ReactElements that mirrors the intended structure of the interface. When state or props change, React regenerates the relevant parts of this virtual tree and compares it against the previous version. Through its reconciliation process, React applies only the minimal set of mutations needed to update the real DOM, using heuristics that optimize for performance in common scenarios such as list reordering \cite{reactdocs_virtualdom, geeksforgeeks_reconciliation, guha2010programming}.  
+
+For visual editors, this model is especially advantageous: interactions like moving a component, toggling a property, or reorganizing a hierarchy can be reflected immediately without re-rendering the entire interface. This efficiency is critical for delivering a responsive editing experience.
+
+\subsubsection{React Fiber and Concurrent Rendering}
+
+With React 16, the reconciliation engine was fundamentally redesigned under the name Fiber, introducing an asynchronous model of rendering. A fiber is a lightweight object representing a unit of work in the rendering pipeline. The system organizes these fibers into a “work-in-progress” tree that React processes incrementally before committing the final result to the DOM.  
+
+Rendering is divided into two phases: an interruptible render phase (building the work-in-progress tree using \texttt{beginWork()} and \texttt{completeWork()}), and a synchronous commit phase (\texttt{commitWork()}), which applies mutations to the DOM. This split ensures that while updates can be scheduled flexibly, DOM consistency is always preserved \cite{react_fiber_explained, react_fiber_architecture}.  
+
+Concurrent features enabled by Fiber, such as interruptible rendering, priority-based scheduling, and time-slicing, allow React to keep applications interactive even during large updates. For visual application builders, these capabilities are essential: dragging a component across a canvas or typing into a property panel can be prioritized over background re-renders, ensuring fluid responsiveness \cite{react_fiber_concurrent, cooper2021fiber}.  
+
+Taken together, JSX, the Virtual DOM, and Fiber’s concurrent reconciliation establish React as a runtime that behaves like a real-time compiler of user interfaces. Each change to a component’s configuration is translated into a ReactElement tree, reconciled against the prior version, and rendered to the DOM with minimal overhead—providing live previews that feel immediate while retaining the power of a full programming model.
+
+
+\subsection{Next.js Framework}
+
+While React is a front-end library focused purely on rendering user interfaces in the browser, it does not provide features for routing, data fetching, or server-side logic. 
+By contrast, Next.js is a full-stack framework built on top of React that combines a powerful front-end component model with a server runtime for handling backend concerns \cite{vercel_nextjs}. 
+
+This distinction is essential: Next.js applications can define \emph{API routes} and server-side logic that run securely on the server, never exposed to the client. 
+This includes tasks such as database queries, authentication flows, or calls to external APIs. 
+The separation of concerns ensures that sensitive operations remain on the server, while the client receives only the data needed for rendering. 
+
+For the purposes of this project, Next.js was chosen over plain React for several reasons:
+
+\begin{itemize}
+  \item \textbf{Full-stack capabilities}: API routes and server functions enable integrating databases and external services without exposing business logic to the client.
+  \item \textbf{Hybrid rendering}: Components can be rendered server-side, statically, or client-side depending on context, improving performance and SEO. 
+  \item \textbf{File-based routing}: Automatic routing simplifies the creation of multi-page editor interfaces.
+  \item \textbf{Production-ready defaults}: Features such as code splitting, image optimization, and deployment pipelines reduce boilerplate and accelerate development.
+\end{itemize}
+
+In the context of a visual application builder, Next.js ensures that the editor can operate as a cohesive full-stack system: the user interface is rendered with React, while server-side logic (such as project persistence, authentication, and external API calls) is securely handled on the backend. 
+This combination of declarative UI and server-side infrastructure makes Next.js the pragmatic choice for this thesis over a plain React setup.
+
+\subsection{MobX and MobX State Tree Foundations}
+\label{sec:mobx-mst}
+
+To understand the state management backbone of our visual builder prototype, it is essential to
+explore how MobX and MobX State Tree (MST) enable reactive, structured, and serializable state
+handling.
+
+\subsubsection{Reactive State with MobX}
+
+MobX is a reactive state management library that implements the paradigm of \emph{Transparent Functional Reactive Programming (TFRP)} \cite{mobx_docs}. 
+In this paradigm:
+\begin{itemize}
+    \item \textbf{Functional} – Derived values (e.g., computed properties or React component renders) are expressed as pure functions of observable state: given the same state, they always yield the same result.
+    \item \textbf{Reactive} – When observables change, all dependent values and observers automatically update.
+    \item \textbf{Transparent} – Dependency tracking is inferred automatically at runtime without the need for manual subscription logic.
+\end{itemize}
+
+\paragraph{Comparison with React’s Pull-Based Model.}
+React employs a \emph{pull-based} model: when state changes, components re-render, pulling in fresh values and recomputing derived results. 
+MobX, by contrast, implements a \emph{push-based} model: observables notify only the computations and components that actually depend on them. 
+
+\begin{lstlisting}[language=JavaScript, caption={React Pull-Based State Derivation}]
+function Cart() {
+  const [items, setItems] = useState([]);
+
+  // Derived value recalculated on every render
+  const totalPrice = items.reduce((sum, item) => sum + item.price, 0);
+
+  return (
+    <div>
+      <h3>Total: {totalPrice}</h3>
+      <ul>{items.map(item => <li key={item.id}>{item.name}</li>)}</ul>
+    </div>
+  );
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=JavaScript, caption={MobX Push-Based Transparent Reactivity}]
+class Cart {
+  items = [];
+  constructor() { makeAutoObservable(this); }
+
+  get totalPrice() {
+    return this.items.reduce((sum, item) => sum + item.price, 0);
+  }
+}
+
+const CartView = observer(({ cart }) => (
+  <div>
+    <h3>Total: {cart.totalPrice}</h3>
+    <ul>{cart.items.map(item => <li key={item.id}>{item.name}</li>)}</ul>
+  </div>
+));
+\end{lstlisting}
+
+In React, \texttt{totalPrice} is recalculated on every render (pull). In MobX, it is cached and only recomputed when its dependencies change, and any observing component is automatically updated (push).
+
+\subsubsection{What MST Adds to MobX}
+
+MobX State Tree (MST) builds on MobX by introducing structured, typed state trees with built-in serialization capabilities. Key architectural features include:
+
+\begin{itemize}
+  \item \textbf{Living state trees}: MST represents application state as a live, mutable tree, enriched by runtime type information and strict update constraints \cite{mobx_docs}.
+  \item \textbf{Snapshots and patching}: The tree can be serialized into immutable snapshots, enabling history tracking, time travel, and easy persistence \cite{mobx_docs}.
+  \item \textbf{Typed models and actions}: Each node in the tree is defined via a model with its own actions—explicit methods to mutate state—ensuring traceability and type safety.
+  \item \textbf{Reconciliation}: Applying a snapshot to an existing tree reuses existing nodes where possible, mimicking React’s diffing philosophy at the data layer.
+\end{itemize}
+
+\subsubsection{Decoupling Domain and UI}
+
+One of MST’s main advantages is the decoupling of state and business logic from the user interface. 
+Rather than co-locating state within React components (via hooks), MST encourages modeling the domain problem first: users, projects, or UI elements become structured models within the state tree. 
+The UI layer then acts as a projection of this domain model. 
+As Weststrate, the creator of MobX, argues, this makes it possible to treat the \emph{UI as an afterthought}, allowing applications to evolve around a well-modeled domain state \cite{weststrate_ui}.
+
+\textbf{Illustrative Tabular Comparison}
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    & \textbf{React (JSX UI)} & \textbf{MobX State Tree (MST)} \\
+    \midrule
+    State & immutably updated (via hooks) & mutable but type-checked \\
+    Reactivity Model & pull (component-triggered re-render) & push (observable-triggered) \\
+    Data Structure & UI tree built on render & Living state tree models \\
+    Serialization & manual (custom logic) & automatic snapshots / patches \\
+    Updates & declarative UI changes & in-place actions with history support \\
+    \bottomrule
+  \end{tabular}
+  \caption{React vs. MST: contrasting reactivity and data handling models}
+  \label{tab:react_vs_mst}
+\end{table}
+
+\subsubsection{Relevance of MST in the context of Visual Application Builders }
+
+MobX State Tree provides an elegant and performant state management foundation for the visual builder prototype. 
+Its structured, observable state tree aligns perfectly with the editor’s requirements: serializable component models, responsive updates, history tracking, and seamless integration with React’s JSX runtime make it a compelling choice for building interactive, domain-driven user interfaces.
+
+\chapter{Methodology}
+
+The methodology of this thesis reflects the path from an exploratory investigation to a structured validation of a prototype for a multi-layered application builder. Rather than following a strictly linear plan from the beginning, the project evolved through distinct stages: an initial phase of open experimentation, an analytical phase of reverse-engineering existing solutions, and a subsequent shift into a more systematic, iterative prototyping approach. This chapter outlines that process and explains how each phase contributed to the outcome of the project.
+
+\section{Research Approach}
+
+The overall research approach can be described as iterative prototyping supported by exploratory research methods. The project began without a rigid development model, instead relying on rapid experimentation, trial-and-error coding, and the use of AI tools for technology scouting and feasibility assessments. Over time, this exploratory process gave way to a more structured methodology, in which requirements were formalized, architectural decisions were documented, and systematic validation techniques were applied. This combination of unstructured exploration and structured iteration made it possible both to survey a broad solution space and to deliver a coherent, validated prototype.
+
+\section{Exploratory Prototyping and AI-Assisted Research}
+
+In the earliest stage, the development was highly experimental. Over a period of several months, a prototype was created through what could be described as "\gls{Vibe Coding}", an exploratory style of programming where ideas were tested directly in code without prior formalization. This was supported by extensive use of AI systems to research frameworks, libraries, and design patterns that might be suitable for building an application builder. While unstructured, this phase proved essential for quickly identifying technological opportunities and constraints. It allowed the project to answer early feasibility questions, such as whether Next.js could serve as the backbone of a multi-layered system, and which supporting tools might be required for database management, state handling, and deployment.
+
+\section{Reverse Engineering of Existing Solutions}
+
+Following the exploratory phase, attention turned to existing application builders and low-code platforms. These systems were analyzed and, where possible, partially reverse-engineered in order to uncover how they structured their architectures, implemented modularity, and balanced functional against non-functional requirements. This comparative analysis served two purposes: first, it contextualized the prototype within a wider ecosystem of solutions, and second, it provided concrete reference points against which design decisions could be validated. The insights gained here fed directly into the later architectural modeling of the prototype.
+
+\section{Transition to Structured Iterative Development}
+
+Once the technological landscape had been explored and comparative insights established, the project shifted into a more systematic methodology. Requirements identified in Chapter~4 were translated into concrete architectural and implementation decisions. The prototype was developed in iterative cycles, where each iteration extended functionality, addressed non-functional requirements such as modularity and performance, and incorporated feedback from prior evaluations. Tools such as version control and containerization were used to ensure reproducibility and maintainability. Coding conventions and automated checks supported consistency and quality during development.
+
+\section{Validation Strategy}
+
+Validation was conducted continuously throughout the iterative cycles. Functional validation involved both manual and automated testing, ensuring that each requirement defined in Chapter~4 was correctly implemented. Non-functional validation focused on measuring performance, maintainability, and scalability, which are particularly important for a multi-layered builder architecture. In addition, the prototype was compared against the features and limitations of existing solutions, which highlighted both its strengths and areas where further work would be needed. Documenting limitations and unresolved challenges was treated as an integral part of the validation process, laying the groundwork for the evaluation in Chapter~6.
+
+
+
+
+\addtocontents{toc}{\protect\clearpage}
+% Chapter 4: Requirements Elicitation and Analysis (Rewritten and Structured)
+\chapter{Requirements Analysis}
+This chapter establishes the functional and non-functional requirements for the research prototype, including scope, modularization, integration, result artifacts, and data protection.
+The requirements for the visual application builder are derived from the core user needs and system constraints identified in previous chapters.
+
+\section{Functional Requirements}
+
+The functional requirements are defined in table \ref{tab:functional-requirements}. They are organized here as mandatory and optional, and presented in a structured table for clarity and traceability. The classification of requirements as MUST reflects their necessity in a system that serves as a proof of concept. For the research prototype, selected MUST requirements were only partially implemented to validate feasibility under time constraints.
+The exact scope of the requirements is defined in section \ref{sec:scope}.
+
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{ID} & \textbf{Requirement} & \textbf{Type/Priority} \\
+\midrule
+FR-1 & \begin{tabular}[t]{@{}p{8cm}@{}}Immediate updates across canvas, layers panel, and properties panel\end{tabular} & Core Editing / MUST \\
+FR-2 & \begin{tabular}[t]{@{}p{8cm}@{}}Real-time rendering of recursive MST component tree with responsive breakpoints\end{tabular} & Rendering / MUST \\
+FR-3 & \begin{tabular}[t]{@{}p{8cm}@{}}Visual selection of components on the canvas by clicking on them\end{tabular} & Selection / MUST \\
+FR-4 & \begin{tabular}[t]{@{}p{8cm}@{}}Hierarchical navigation and drag-and-drop reordering in a tree view\end{tabular} & Structure Management / MUST \\
+FR-5 & \begin{tabular}[t]{@{}p{8cm}@{}}Context-sensitive editing for props (style, content, attributes)\end{tabular} & Properties Editing / MUST \\
+FR-6 & \begin{tabular}[t]{@{}p{8cm}@{}}Serializable component model (id, type, responsive props, children)\end{tabular} & Data Model / MUST \\
+FR-7 & \begin{tabular}[t]{@{}p{8cm}@{}}Breakpoint-aware prop resolution (inheritance from primary, overrides per breakpoint)\end{tabular} & Responsiveness / MUST \\
+FR-8 & \begin{tabular}[t]{@{}p{8cm}@{}}Project persistence: create, read, update, delete; multiple projects per user\end{tabular} & Persistence / CAN \\
+FR-9 & \begin{tabular}[t]{@{}p{8cm}@{}}Execution of interactions (e.g., onClick) in preview mode\end{tabular} & Interactivity / CAN \\
+FR-10 & \begin{tabular}[t]{@{}p{8cm}@{}}Undo/Redo via snapshot-based history navigation\end{tabular} & Usability / CAN \\
+\bottomrule
+\end{tabular}
+\caption{Functional Requirements for the Visual Application Builder}
+\label{tab:functional-requirements}
+\end{table}
+
+\newpage
+
+\section{Non-functional Requirements}
+
+Non-functional requirements (NFRs) specify the quality attributes and constraints of a system, rather than its functional behavior. 
+As Sommerville notes, “non-functional requirements are requirements that are not directly concerned with the specific services 
+delivered by the system to its users. They instead define constraints on the services or functions offered by the system such as 
+timing constraints, constraints on the development process, standards, etc.” \cite{sommerville2016}. \\
+
+\begin{table}[ht]
+  \centering
+  \small
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{@{}lll@{}}
+  \toprule
+  \textbf{ID} & \textbf{Requirement} & \textbf{Type/Priority} \\
+  \midrule
+  NFR-1 & \begin{tabular}[t]{@{}p{8cm}@{}}Low-latency user interactions ($<$100ms perceived delay for pan, zoom, selection)\end{tabular} & Usability / MUST \\
+  NFR-2 & \begin{tabular}[t]{@{}p{8cm}@{}}GPU-accelerated rendering of canvas transforms (pan/zoom via CSS transforms)\end{tabular} & Performance / MUST \\
+  NFR-3 & \begin{tabular}[t]{@{}p{8cm}@{}}Efficient handling of medium-sized component trees (hundreds of nodes) without frame drops\end{tabular} & Performance / MUST \\
+  NFR-4 & \begin{tabular}[t]{@{}p{8cm}@{}}Shared transform state (pan, zoom) accessible across canvas and overlays without triggering React re-renders\end{tabular} & Architecture / MUST \\
+  NFR-5 & \begin{tabular}[t]{@{}p{8cm}@{}}Codebase structured for incremental extension (tools, overlays, collaboration) without core rewrite\end{tabular} & Maintainability / MUST \\
+  NFR-6 & \begin{tabular}[t]{@{}p{8cm}@{}}Error-tolerant persistence: data must remain consistent and recoverable after system failure\end{tabular} & Reliability / MUST \\
+  \bottomrule
+  \end{tabular}
+  \caption{Non-Functional Requirements for the Visual Application Builder}
+  \end{table}
+  
+
+  \section{Research Design and Scope}
+  \label{sec:scope}
+  
+  The research design of this thesis emphasizes feasibility validation over completeness. 
+  The prototype is intentionally restricted to a minimal set of core mechanisms that collectively 
+  demonstrate the viability of a multi-layered visual application builder. Rather than attempting to 
+  deliver a production-ready system, the implementation focuses on proving three central aspects: 
+  state synchronization across interface layers, runtime updates on an infinite canvas, and the modular 
+  interoperability of component-based structures. 
+  
+  Within this scope, the prototype integrates an infinite canvas with optimized pan and zoom, a 
+  MobX-State-Tree (MST) component tree with responsive properties, and a selection system that 
+  synchronizes the canvas with the layers panel. A lightweight styling system supports inline styles, 
+  attributes, and responsive overrides. These elements form the foundation for a responsive and 
+  interactive editing environment, sufficient to validate the central research questions.
+  
+  \section{Result Artifacts}
+  
+  The outcomes of the prototype are twofold. First, as \textbf{primary artifacts}, the system delivers 
+  functional modules: the infinite canvas, recursive renderer, selection overlay, layers panel, and 
+  properties panel. Together, these modules demonstrate real-time reactivity across interface layers 
+  and the ability to render from a serializable MST component tree at runtime. 
+  
+  Second, as \textbf{conceptual contributions}, the research provides architectural patterns for 
+  modular visual builders, validates breakpoint inheritance and responsive resolution within MST, 
+  and offers recommendations for extensibility, such as pluggable components and future 
+  collaboration hooks. These artifacts are less about software maturity than about informing 
+  future iterations of visual builder architectures.
+  
+  \section{Data Protection Aspects}
+
+The research prototype processes only configuration data and does not involve personal information, thereby presenting minimal data protection risks under GDPR. Nevertheless, for future production-grade deployment, it is crucial to adopt established privacy frameworks such as \emph{Privacy by Design} and \emph{Data Minimization}. The principle of Data Minimization—collecting, retaining, and processing only the data strictly necessary for a specific purpose—is a cornerstone of effective data protection \cite{ganesh2024dataMinimization}. This aligns with broader Privacy by Design approaches, which emphasize embedding privacy considerations throughout the system lifecycle \cite{jezova2020privacyByDesign, danezis2015privacyByDesign}.
+
+In the context of a multi-user or multi-project architecture, ensuring tenant isolation is essential to maintain data confidentiality and separation. Numerous studies recommend robust multi-tenancy isolation via architectural segregation—ranging from isolated schemas or databases to access control mechanisms grounded in RBAC or ABAC models \cite{chippagiri2025multiTenantSecurity, das2019multiTenantIsolation}. Additionally, prudent secret management and authentication mechanisms—such as rotating environment-level credentials and applying fine-grained access control—are foundational to system resilience.
+
+While these privacy safeguards are outside the immediate scope of the feasibility prototype, they remain vital for future development cycles. Acknowledging and planning for these measures, proactively positions the architecture to meet regulatory expectations and build user trust in subsequent, production-focused iterations.
+
+\chapter{Conception \& Design}
+[Description of the design based on the methodology/planned approach to problem solving in the context of requirements]
+
+\section{Process}
+
+\section{System Architecture}
+
+\subsection{Module Overview}
+
+\begin{description}
+    \item[Module A: Infinite Canvas] \hfill \\
+    Provides a spatial editing area with seamless pan and zoom. Canvas transformations (translation, scaling) are applied efficiently to maintain responsiveness even as the component tree grows.
+    \item[Module B: MST Component Tree] \hfill \\
+    Represents the application as a serializable, hierarchical tree, where each node encapsulates type, props, and children. Supports responsive maps with inheritance from a primary breakpoint, enabling compact but flexible representation.
+    \item[Module C: Styling and Property System] \hfill \\
+    Supports inline styling, responsive per-property maps, and attribute classification. Breakpoint-aware resolution ensures predictable overrides in the properties panel and runtime rendering.
+\end{description}
+
+\subsection{Integration Strategy}
+
+The integration approach emphasizes explicit data flow and minimal coupling between modules. MST acts as a single source of truth: changes in the model propagate reactively to the canvas, layers panel, and properties editor. This design aligns with SOLID principles and ensures maintainability and extensibility.
+
+
+
+% 5.2 Multi-Layered Interface Architecture
 \section{Multi-Layered Interface Architecture}
 \label{sec:interface-architecture}
 
-\subsection{Component Palette and Canvas Integration}
+The multi-layered interface architecture forms the structural foundation of the visual application builder, organizing functionality across four interconnected layers that work together to provide seamless visual editing capabilities. Each layer serves a distinct purpose while maintaining synchronized state through reactive data flow patterns. The following subsections provide a detailed overview of each layer and their interaction patterns.
 
-The \textbf{component palette} provides a library of reusable UI elements—buttons, forms, containers, text components—that users drag onto the main \textbf{canvas}. Unlike traditional drag-and-drop builders that generate static markup, this system creates dynamic component configurations that maintain React's interactive capabilities.
+\subsection{Canvas with Responsive Preview}
 
 The \textbf{canvas} serves as the primary visual editing surface, featuring three responsive preview modes:
 
@@ -385,6 +1001,14 @@ The \textbf{canvas} serves as the primary visual editing surface, featuring thre
 \end{itemize}
 
 Each viewport provides real-time preview of how the application will appear across different device types, with responsive styling automatically managed through the visual interface.
+The canvas supports multi-touch interactions, allowing users to interact with the application in a more natural way. 
+
+\subsection{Component Palette}
+
+The \textbf{component palette} provides a library of reusable UI elements—buttons, forms, containers, text components—that users drag onto the main \textbf{canvas}.
+The components are generated at runtime and are being rendered dynamically.
+
+Ideally there should be a way to add new custom components to the palette. Through custom code or through a combination of basic components.
 
 \subsection{Layers Panel: Component Tree Management}
 
@@ -395,10 +1019,9 @@ The \textbf{layers panel} presents a hierarchical tree view of the component str
     \item Reorder components through drag-and-drop operations
     \item Select components for editing without clicking on the canvas
     \item Manage component visibility and locking states
-    \item Organize components into logical groupings
 \end{itemize}
 
-This panel reflects the underlying \textbf{component tree model}—a serializable data structure that maintains the complete application state including component relationships, properties, and interaction definitions.
+This panel reflects the underlying \textbf{component tree model}—a serializable data structure that maintains the complete state of the application being built, including component relationships, properties, and interaction definitions. A complete design of the component tree model and the conceptual implementation is provided in the following chapters.
 
 \newpage
 \subsection{Properties Panel: Dynamic Component Configuration}
@@ -416,10 +1039,14 @@ The \textbf{properties panel} provides context-sensitive editing interfaces that
 The panel dynamically generates appropriate input controls—color pickers for colors, number inputs for dimensions, dropdown menus for predefined options—based on the selected component's schema.
 
 % 1.3 The Challenge: Bridging Visual Editing and Runtime Interactivity
-\section[The Challenge: Bridging Visual Editing and Runtime Interactivity]{The Challenge: Bridging Visual Editing and\\Runtime Interactivity}
+\section{Bridging Visual Editing and Runtime Interactivity}
 \label{sec:bridging-challenge}
 
-The fundamental challenge addressed by this thesis lies in maintaining \textbf{two distinct reactive systems} that must work in perfect synchronization:
+One of the challenges addressed by this thesis lies in conceptually exploring how \textbf{two distinct reactive systems} can be implemented.
+Visual editors require immediate updates to their interface layers when users perform editing operations, while the components being edited must preserve their intended runtime behavior for both preview and final deployment.
+This dual-reactivity requirement creates complex architectural constraints that will be explored in the following chapters.
+
+The following subsections introduce these two reactive systems and their interaction patterns.
 
 \subsection{System 1: Editor Reactivity}
 The visual editor interface requires real-time updates when users:
@@ -441,6 +1068,8 @@ These operations must immediately reflect in all interface layers:
 \end{itemize}
 ensuring consistent visual feedback during the editing process.
 
+\newpage
+
 \subsection{System 2: Runtime Component Interactivity}
 Simultaneously, the components being edited must maintain their intended runtime behavior:
 \begin{itemize}
@@ -450,251 +1079,37 @@ Simultaneously, the components being edited must maintain their intended runtime
     \item Component state must persist and update appropriately
 \end{itemize}
 
-This runtime interactivity must function both in the live preview during editing and in the final exported application.
+This runtime interactivity must function both in the live preview during editing and in the final exported application. While not the primary focus of this thesis, a baseline of runtime interactivity is assumed to validate coherence between the editor state and the rendered behavior.
 
-% 1.4 Research Questions and Technical Objectives
-\section{Research Questions and Technical Objectives}
-\label{sec:research-objectives}
-
-\textbf{Primary Research Question:}
-
-How can a multi-layered visual interface enable real-time application building while maintaining full React interactivity through a meta-programming approach that transforms editor configurations into functional \gls{SPA} components?
-
-\textbf{Supporting Research Questions:}
-
-\begin{itemize}
-    \item How can the four interface layers (palette, canvas, layers, properties) synchronize in real-time during visual editing operations?
-    \item What architectural patterns enable seamless transformation from static component configurations to interactive React components?
-    \item How can visual interfaces make complex component state management and interactions accessible to non-technical users?
-\end{itemize}
-
-\textbf{Technical Objectives:}
-
-\begin{enumerate}
-    \item Design and implement a unified component tree model that supports both visual editing and React export capabilities
-    \item Develop responsive preview systems that maintain consistent behavior across desktop, tablet, and mobile viewports
-    \item Create dynamic property editing interfaces that adapt to different component types and interaction patterns
-    \item Implement real-time synchronization between all interface layers during editing operations
-\end{enumerate}
-
-\chapter{Foundations}
-\label{ch:foundations}
-
-% 2.1 Domain Knowledge and Context
-\section{Domain Knowledge and Context}
-\label{sec:domain-context}
-
-\subsection{Visual Application Development Landscape}
-
-The landscape of visual application development has been fundamentally transformed by the emergence of \gls{LCDP}s. As comprehensively analyzed by Sahay et al. \cite{sahay2020supporting}, LCDPs represent a paradigm shift toward democratizing software development by reducing technical barriers through visual interfaces and model-driven approaches.
-
-Traditional web development requires extensive technical knowledge of \gls{HTML}, \gls{CSS}, JavaScript, and modern frameworks like React or Vue.js. This technical barrier has historically limited content creators, designers, and non-technical users from building interactive web applications independently. 
-
-LCDPs address this challenge by providing \gls{WYSIWYG} interfaces that enable application creation through direct manipulation rather than code writing.
-
-However, the current LCDP ecosystem reveals distinct categories with inherent architectural limitations:
-
-\begin{itemize}
-    \item \textbf{Static Site Builders} (WordPress, Godaddy, Squarespace): Generate static \gls{HTML}/\gls{CSS} output with limited interactivity and no true \gls{SPA} capabilities
-    \item \textbf{Design-to-Code Tools} (Webflow, Adobe XD): Excel in visual design fidelity but lack dynamic application logic and state management
-    \item \textbf{Component-Based Builders} (Framer, Bubble): Offer dynamic functionality through proprietary runtime systems, creating vendor lock-in challenges
-\end{itemize}
-
-The fundamental challenge identified by Sahay et al. lies in bridging the gap between visual design tools and modern JavaScript framework capabilities, particularly React's component-based architecture and dynamic state management. 
-
-This thesis addresses this gap by proposing a meta-programming approach that maintains full React interactivity while providing visual editing capabilities.
-
-\subsection{Target User Groups and Stakeholders}
-
-Visual application builders serve multiple stakeholder groups with varying technical backgrounds and requirements:
-
-\begin{itemize}
-    \item \textbf{Content Creators and Marketers}: Need rapid prototyping and landing page creation without technical dependencies
-    \item \textbf{Designers}: Require pixel-perfect visual control with responsive design capabilities
-    \item \textbf{Frontend Developers}: Seek faster iteration cycles and visual debugging tools
-    \item \textbf{Product Teams}: Need collaborative tools that bridge design and development workflows
-    \item \textbf{Agencies and Freelancers}: Require scalable solutions for client work with quick turnaround times
-\end{itemize}
-
-Each group brings distinct requirements for interactivity levels, customization depth, and technical control, necessitating a flexible architecture that accommodates various use cases.
-
-% 2.2 Related Work and Existing Solutions
-\section{Related Work and Existing Solutions}
-\label{sec:related-work}
-
-\subsection{Analysis of Current Visual Building Platforms}
-
-\subsubsection{Framer: Component-Based Visual Development}
-
-Framer represents the current state-of-the-art in visual application builders, combining design tools with React-based component rendering. Key architectural insights from Framer include:
-
-\begin{itemize}
-    \item \textbf{Runtime Component System}: Rather than generating static code, Framer maintains a centralized data model that drives dynamic React component rendering
-    \item \textbf{Live Preview Architecture}: Changes to the visual interface immediately reflect in a live preview through reactive state management
-    \item \textbf{Component Tree Model}: Applications are represented as hierarchical component trees with serializable state
-    \item \textbf{Override System}: Developers can inject custom logic through JavaScript "overrides" that modify component behavior
-\end{itemize}
-
-However, Framer's proprietary nature limits extensibility and creates vendor lock-in for users seeking to migrate to standard React applications.
-
-\subsubsection{Webflow: Design-Centric Approach}
-
-Webflow focuses primarily on visual design with limited dynamic functionality:
-
-\begin{itemize}
-    \item \textbf{Static Output}: Generates traditional \gls{HTML}/\gls{CSS} with minimal JavaScript interactivity
-    \item \textbf{Animation System}: Built-in animation tools but no true state management
-    \item \textbf{CMS Integration}: Content management capabilities but no dynamic application logic
-\end{itemize}
-
-While Webflow excels in design fidelity, it cannot produce modern \gls{SPA} applications with complex state management and component interactions. It is rather focused on design and content management for static websites, and not on the development of interactive web applications.
-
-\subsubsection{Codux: Code-First Visual Editing}
-
-Codux is a visual IDE that works directly against a React codebase rather than a proprietary runtime. Key characteristics:
-
-\begin{itemize}
-    \item \textbf{Code generation/sync}: Visual edits generate React components and styles in the repo (no separate model runtime)
-    \item \textbf{Lower lock-in}: Output is plain code, maintainable outside the tool
-    \item \textbf{Developer-centric}: Fits Git workflows and code review practices
-\end{itemize}
-
-This contrasts with model-at-runtime platforms such as Framer, and provides useful context for the trade-offs summarized by Sahay et al. \cite{sahay2020supporting}.
-
-\subsubsection{Comparative Analysis}
-
-\begin{table}[h]
-\centering
-\small % Reduce font size for better fit
-\begin{tabular}{@{}lllll@{}}
-\toprule
-\textbf{Feature} & \textbf{React} & \textbf{Codux} & \textbf{Framer} & \textbf{Webflow} \\
-\midrule
-State Management & \texttt{useState}/Fiber & \texttt{useState}/Fiber (code) & External JSON + runtime & No real state \\
-Rendering & JSX/VDOM & JSX/VDOM (generates code) & \texttt{React.createElement} & Static DOM \\
-Interactions & JS functions & JS functions (code-first) & Visual + code optional & Visual only \\
-Serialization & Custom & Source code in repo & Built-in model store & HTML/CSS export \\
-Dynamic Logic & Full JS support & Full JS support & Controlled JS sandbox & Limited animations \\
-\bottomrule
-\end{tabular}
-\caption{Comparison of state and rendering approaches across tools, including a code-first option (Codux).}
-\label{tab:platform-comparison}
-\end{table}
-
-\subsection{Low-Code Platform Reference Architecture}
-Low-code platforms share a recurring architecture that aligns closely with this thesis's system design. \\ 
-The study by Sahay et al. \cite{sahay2020supporting} synthesizes common capabilities across platforms and proposes a conceptual architecture. Below, we briefly discuss two complementary views and relate them to our system.
-
-\paragraph{Evaluation dimensions (abridged).} Following Sahay et al., platforms can be compared along concise dimensions: user-interface tooling, interoperability/connectors, security, collaboration, reusability, scalability, business-logic tooling, \textbf{build approach (code generation vs. model-at-runtime)}, deployment options, and target solution type. 
-
-We reference these where relevant below.
-
-Figure~\ref{fig:lcdp-layers} illustrates the layered architecture used to categorize concerns: application composition, service/data integration, and deployment. This structure clarifies where our visual editor (application layer) ends and where runtime concerns begin.
-
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.45\textwidth]{images/Layered_architecture_of_low-code_development_platforms.png}
-    \caption{Layered architecture of low-code development platforms (adapted from Sahay et al. \cite{sahay2020supporting}).}
-    \label{fig:lcdp-layers}
-\end{figure}
-\FloatBarrier
-
-Figure~\ref{fig:lcdp-components} details platform components and reveals how our system differs from traditional LCDPs in its deployment approach. Unlike conventional platforms with explicit compilation phases, our architecture operates on two deployment levels: \textbf{(1) Platform deployment}—deploying the visual builder environment itself, and \textbf{(2) Runtime application deployment}—serving user-created applications as interpreted component tree models rather than standalone builds.
-
-In this context, Next.js serves dual roles: at the application modeling layer, it provides the framework for implementing the visual editor interface (drag-and-drop, properties panels, canvas); at runtime, React's \texttt{createElement} function acts as both compiler and code generator, interpreting stored component trees into rendered UI components. 
-
-NestJS underpins multiple architectural components simultaneously—the platform server (core services, API handling), service layer (logging, deployment orchestration), and integration layer (external service connections)—rather than mapping to a single architectural box.
-
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.54\textwidth]{images/Main_components_of_low-code_development_platforms.png}
-    \caption{Main components and services of low-code development platforms (adapted from Sahay et al. \cite{sahay2020supporting}).}
-    \label{fig:lcdp-components}
-\end{figure}
-\FloatBarrier
-
-% 2.3 Core Technologies and Frameworks
 \section{Core Technologies and Frameworks}
 \label{sec:core-technologies}
 
-\subsection{React Ecosystem and Virtual DOM Architecture}
+The following sections consolidate the technical pillars that enable a visual, runtime-driven application builder to behave predictably and performant. Rather than listing technologies in isolation, we articulate why each choice fits the problem context and how the pieces interlock: the canvas establishes constant-time spatial interactions, React supplies a declarative rendering model, MobX-State-Tree (MST) provides fine-grained, serializable reactivity for a runtime-generated component graph, and drag-and-drop tooling bridges direct manipulation with a consistent underlying model.
 
-React provides the foundational technology stack for dynamic component rendering and state management in visual application builders.
+\subsection{Canvas Architecture for Visual Editors}
+The canvas is the spatial backbone of a visual editor. Conceptually, user intent (pan and zoom) should scale with the viewport, not the scene size. A naive approach that updates each element's screen position for every pan event yields \(O(n)\) DOM mutations per frame and quickly collapses under load. Instead, we maintain a single transform state \(\{\,\text{scale},\, \text{translateX},\, \text{translateY}\,\}\) and apply it to a container element. This shift converts pan/zoom into constant-time operations: the browser's compositor applies one matrix transform, and all child elements inherit the result.
 
-\subsubsection{JSX Compilation and createElement}
-
-JSX syntax provides a declarative way to describe component structures:
-
-\begin{lstlisting}[language=Java, caption={JSX to createElement Transformation}]
-// JSX syntax
-<button onClick={() => setCount(count + 1)}>
-  {count}
-</button>
-
-// Compiled to React.createElement
-React.createElement("button", 
-  { onClick: () => setCount(count + 1) }, 
-  count
-);
-\end{lstlisting}
-
-This transformation enables dynamic component generation at runtime, where component configurations can be stored as data structures and rendered programmatically without requiring build-time compilation.
-
-\subsubsection{Virtual DOM and Reconciliation}
-
-React's Virtual DOM provides efficient updates through a diffing algorithm that minimizes actual DOM manipulations:
-
-\begin{enumerate}
-    \item Component state changes trigger re-rendering
-    \item New Virtual DOM tree is generated via \texttt{createElement}
-    \item React compares (diffs) previous and current Virtual DOM trees
-    \item Minimal set of DOM mutations is computed and applied
-\end{enumerate}
-
-This architecture enables real-time preview updates in visual editors without performance degradation, as only changed components require DOM updates.
-
-\subsubsection{React Fiber and Concurrent Features}
-
-React Fiber represents a fundamental architectural redesign of React's reconciliation engine, introduced as the default reconciler since React 16 \cite{geeksforgeeks2025fiber}. Unlike the previous synchronous "Stack" reconciler, Fiber introduces asynchronous rendering capabilities essential for complex visual editors.
-
-\paragraph{Fiber Architecture Overview}
-A fiber is a plain JavaScript object representing a unit of work in React's rendering process. The architecture operates through two distinct phases:
-
-\begin{enumerate}
-    \item \textbf{Render Phase (Asynchronous)}: Processes fiber nodes through \texttt{beginWork()} and \texttt{completeWork()} functions. This phase can be interrupted, paused, or discarded.
-    \item \textbf{Commit Phase (Synchronous)}: Executes \texttt{commitWork()} to apply DOM changes. This phase cannot be interrupted to maintain UI consistency.
-\end{enumerate}
-
-\paragraph{Concurrent Features for Visual Editors}
-React Fiber provides capabilities crucial for visual editors \cite{geeksforgeeks2025fiber}:
-
-\begin{itemize}
-    \item \textbf{Interruptible Rendering}: Large component trees can be rendered incrementally without blocking user interactions
-    \item \textbf{Priority-Based Updates}: User interactions (high priority) are processed before background operations (low priority)
-    \item \textbf{Time Slicing}: Work is split into chunks using \texttt{requestAnimationFrame()} and \texttt{requestIdleCallback()}, preventing UI blocking during complex re-renders
-    \item \textbf{Work Scheduling}: Tasks can be paused, resumed, or discarded based on priority and available time
-\end{itemize}
-
-\paragraph{Dual Tree Structure}
-Fiber maintains two tree structures to enable non-blocking updates:
-
-\begin{itemize}
-    \item \textbf{Current Tree}: Represents the currently rendered UI state
-    \item \textbf{Work-in-Progress Tree}: Contains pending changes and updates
-\end{itemize}
-
-React performs all modifications on the work-in-progress tree, then atomically swaps pointers to make it the current tree, ensuring UI consistency throughout the update process.
-
-This architecture enables real-time preview updates in visual editors without performance degradation, as component updates can be prioritized and scheduled efficiently based on user interaction patterns.
+To make this reliable and smooth, two implementation details matter. First, anchoring the transform with \texttt{transform-origin: top left} keeps the math stable and avoids counter-intuitive pivot drift during zoom---the coordinates remain linear and predictable relative to the canvas origin. Second, hinting the browser with \texttt{will-change: transform} ensures early GPU layer promotion so that the first interaction is as fluid as subsequent ones. In practice, the transform state is updated in a high-frequency path (using refs to avoid React re-renders), while UI feedback such as zoom readouts is throttled via \texttt{requestAnimationFrame}. This separation preserves 60fps interactions even as the component tree grows and the editor performs additional work (selection overlays, hit-testing, or guide rendering) in parallel.
 
 \subsection{Reactive State Management with MobX-State-Tree}
 
-Traditional React state management through \texttt{useState} hooks presents limitations for dynamic, runtime-generated component structures. Reactive programming paradigms, as surveyed by Bainomugisha et al. \cite{bainomugisha2013survey}, provide alternative approaches for managing complex state dependencies. 
+Visual editors maintain a living component graph that changes at runtime: users create, reorder, and configure nodes while the preview renders those changes immediately. Managing this with local \texttt{useState} scatters state across many function components and ties reactivity to render order. It also becomes cumbersome to address cross-cutting concerns (undo/redo, snapshots, persistence) and to serialize the full application state for storage or sharing. Redux centralizes state but shifts complexity into boilerplate (actions, reducers, normalization) and still renders at component-granularity unless additional memoization and selectors are carefully introduced.
 
-MobX-State-Tree (MST) implements these reactive principles and is better suited for visual editors requiring dynamic component generation.
+MST adopts reactive programming principles \cite{bainomugisha2013survey} in a way that aligns with a runtime-generated tree. State is modeled as observable objects with explicit actions; the tree is inherently serializable; and views subscribe to only the data they read. This yields two practical benefits for a visual editor. First, when a node deep in the tree updates, only the components that observed that part of the state re-render. Second, the entire editor state can be snapshotted, diffed (patches), and restored, enabling persistence, time-travel, and collaboration workflows without bespoke plumbing.
+
+\subsubsection{Limitations of \texttt{useState} for Runtime Trees}
+Local hooks excel for leaf-level UI but struggle when the structure itself is data. With \texttt{useState}, component boundaries define state ownership; adding or moving nodes often means hoisting state or threading props. Moreover, dynamic trees created from data (e.g., via \texttt{React.createElement}) cannot rely on compile-time hook ordering for stability. These constraints make it harder to treat the application as a single, serializable model.
+
+\subsubsection{Redux vs MST: Architectural Trade-offs}
+Redux offers deterministic state transitions but requires action types, reducers, and often normalized schemas to scale. Deriving fine-grained subscriptions typically needs memoized selectors; without them, changes high in the store can cause broad re-renders. MST embeds structure and actions together: the model is the schema, the instance is the store, and actions mutate state under strict rules. Observers subscribe at the field usage site, providing fine-grained invalidation with minimal boilerplate. The cost is adopting MST's modeling patterns, but the payoff is simpler serialization (snapshots), incremental updates (patches), and ergonomic undo/redo.
+
+\subsubsection{Observer-Driven Granularity}
+With MST and \texttt{observer}-wrapped React components, reactivity is demand-driven. During render, MobX tracks which observables are read; when any of those change, only the affected components re-render. In a visual editor, this means a property tweak in a single node updates its render and any dependent overlays, while unrelated parts of the tree remain untouched. Compared to a naive global re-render, this preserves responsiveness as projects scale.
+
+\subsubsection{Serialization: Snapshots, Patches, and History}
+MST exposes snapshot APIs to serialize the entire tree to JSON, and patch streams to represent incremental edits. This is a natural fit for editor features: autosave persists snapshots, collaboration can exchange patches, and undo/redo walks a bounded history stack. Because the renderer consumes the same model the editor manipulates, preview and persistence share a single source of truth.
 
 \subsubsection{Observable State and Automatic Reactivity}
-
 MST enables automatic reactivity without explicit hook dependencies:
 
 \begin{lstlisting}[language=Java, caption={MST Observable State Example}]
@@ -726,39 +1141,24 @@ MST provides built-in serialization capabilities essential for visual editors:
     \item \textbf{Collaboration}: Changes can be synchronized across multiple users
 \end{itemize}
 
-\subsection{Next.js and Server-Side Rendering}
+\subsection{Drag-and-Drop API and Libraries}
+\label{sec:drag-drop-patterns}
 
-Next.js provides the deployment platform for applications created with the visual builder, offering several key capabilities:
+Direct manipulation is central to usability in visual editors, but the native HTML5 API alone is insufficient: drag previews are hard to customize, behavior varies across browsers, touch input is not first-class, and event semantics do not align neatly with React. Modern libraries abstract these pitfalls and provide consistent UX primitives while keeping the model authoritative.
 
-\subsubsection{Dynamic Routing and Static Generation}
+Among common choices, React DnD affords maximal flexibility and integrates well with complex nested targets, at the cost of ceremony. react-beautiful-dnd, while offering polished list interactions, is deprecated and narrow in scope. In contrast, dnd-kit adopts a sensor-based architecture (mouse, touch, keyboard) with strong accessibility defaults and composable building blocks, making it a pragmatic fit for an editor that spans tree reordering, palette-to-canvas drops, and in-canvas rearrangements. The foundational ideas of snap-dragging remain relevant \cite{bier1986snap}: constraints and alignment hints improve precision and efficiency during manipulation.
 
-Visual applications can be deployed using Next.js dynamic routes:
+Preserving model integrity is non-negotiable. All drag-and-drop operations must be expressed as MST actions (insert, reorder, remove), so that the component tree remains the single source of truth. The selection overlay and properties panel subscribe to the same model, ensuring that a drop immediately reflects in hierarchy, selection, and preview without bespoke synchronization. For external files, native \texttt{onDrop} and \texttt{onDragOver} handlers on dedicated zones complement UI drag-and-drop libraries, retaining OS integration while the application model mediates how assets enter the project \cite{szyperski1996component}.
 
-\begin{lstlisting}[language=Java, caption={Dynamic Page Generation}]
-// pages/[username]/[slug].tsx
-export default function DynamicPage({ projectData }) {
-  return (
-    <PageRenderer 
-      project={projectData} 
-      isPreview={false}
-    />
-  );
-}
+\section{Software Architecture}
 
-export async function getStaticProps({ params }) {
-  const projectData = await fetchProjectData(
-    params.username, 
-    params.slug
-  );
-  return { props: { projectData } };
-}
-\end{lstlisting}
+\section{Interfaces}
 
-\subsubsection{Incremental Static Regeneration}
+\section{Data Management}
 
-ISR enables published applications to be updated without full rebuilds, supporting live editing workflows where changes can be deployed immediately.
+\chapter{Implementation}
+[Description of the implementation\footnote{Please observe Clean Code recommendations during implementation and its documentation (cf. e.g., \cite{martin2008}).} based on the design and methodology/planned approach to problem solving in the context of requirements. Here is space for listings, such as the following:]
 
-% 2.4 Meta-Programming Concepts and Patterns
 \section{Meta-Programming Concepts and Patterns}
 \label{sec:meta-programming}
 
@@ -821,80 +1221,6 @@ function createRuntimeComponent(config) {
 
 This approach enables visual editors to generate fully functional components without requiring traditional compilation steps, supporting real-time editing and preview capabilities.
 
-% 2.5 Drag-and-Drop Interface Patterns
-\section{Drag-and-Drop Interface Patterns}
-\label{sec:drag-drop-patterns}
-
-\subsection{HTML5 Drag and Drop API Limitations}
-
-The native HTML5 Drag and Drop API provides basic functionality but has several limitations for complex visual editors:
-
-\begin{itemize}
-    \item Limited customization of drag feedback
-    \item Inconsistent behavior across browsers
-    \item No support for touch devices
-    \item Difficulty integrating with React's event system
-\end{itemize}
-
-\subsection{React Drag-and-Drop Libraries}
-
-Modern React applications typically use specialized libraries that provide better integration and functionality than native HTML5 drag-and-drop APIs. The foundational work on snap-dragging by Bier and Stone \cite{bier1986snap} established key principles for direct manipulation interfaces that continue to influence modern drag-and-drop implementations.
-
-The \textbf{dnd-kit} library provides a modern, accessible approach to drag-and-drop with sensor-based architecture, separate sensors for mouse, touch, and keyboard input, built-in accessibility support, and extensive customization options for drag feedback and animations.
-
-Drag-and-drop operations in visual editors must maintain component tree integrity through careful handling of tree structure updates and MST reactivity triggers, following established patterns in component-based software engineering \cite{szyperski1996component}.
-
-\chapter{Methodology}
-[Description of the planned approach (model) for solving the problem statement; includes among others:
-\begin{itemize}
-\item Requirements elicitation and analysis
-\item Conception, design
-\item Implementation
-\end{itemize}
-
-\section{Result Artifacts}
-[Description of the results/result types that you want to generate/achieve as part of the problem solution, e.g., algorithm, prototype of a software (component), ...]
-
-\section{Data Protection Aspects}
-[Description of data protection aspects in connection with your thesis]
-
-\section{Ethical Aspects}
-[Description of ethical aspects\footnote{For additional reference, see general codes (e.g., ACM, IEEE, or GI) as well as domain-specific norms and procedures within a critical reflection.} in connection with your thesis]
-
-\addtocontents{toc}{\protect\clearpage}
-\chapter{Requirements Elicitation and Analysis}
-[Description of the elicitation, granularization and prioritization of the underlying requirements]
-
-\section{User and System Requirements}
-
-\subsection{Functional Requirements}
-
-\subsubsection{Mandatory (MUST)}
-
-\subsubsection{Optional (CAN)}
-
-\subsection{Non-functional Requirements}
-
-\subsubsection{Mandatory (MUST)}
-
-\subsubsection{Optional (CAN)}
-
-\chapter{Conception \& Design}
-[Description of the design based on the methodology/planned approach to problem solving in the context of requirements]
-
-\section{Process}
-
-\section{System Architecture}
-
-\section{Software Architecture}
-
-\section{Interfaces}
-
-\section{Data Management}
-
-\chapter{Implementation}
-[Description of the implementation\footnote{Please observe Clean Code recommendations during implementation and its documentation (cf. e.g., \cite{martin2008}).} based on the design and methodology/planned approach to problem solving in the context of requirements. Here is space for listings, such as the following:]
-
 \begin{lstlisting}[caption={Example: Hello World (Python)}]
 def main():
     print("Hello, world!")
@@ -902,6 +1228,39 @@ def main():
 if __name__ == "__main__":
     main()
 \end{lstlisting}
+
+\section{Deployment Platform}
+
+Next.js provides the deployment platform for applications created with the visual builder, offering several key capabilities:
+
+\subsection{Dynamic Routing and Static Generation}
+
+Visual applications can be deployed using Next.js dynamic routes:
+
+\begin{lstlisting}[language=Java, caption={Dynamic Page Generation}]
+// pages/[username]/[slug].tsx
+export default function DynamicPage({ projectData }) {
+  return (
+    <PageRenderer 
+      project={projectData} 
+      isPreview={false}
+    />
+  );
+}
+
+export async function getStaticProps({ params }) {
+  const projectData = await fetchProjectData(
+    params.username, 
+    params.slug
+  );
+  return { props: { projectData } };
+}
+\end{lstlisting}
+
+\subsubsection{Incremental Static Regeneration}
+
+ISR enables published applications to be updated without full rebuilds, supporting live editing workflows where changes can be deployed immediately.
+
 
 Extensive source code should be moved to the appendix.
 
@@ -976,3 +1335,57 @@ I affirm that I have not used any AI-based tools whose use has been explicitly e
 Your Full Name
 
 \end{document}
+
+
+\clearpage
+% Appendix A: Detailed Requirement Tables
+\chapter*{Appendix A: Detailed Requirement Tables}
+\addcontentsline{toc}{chapter}{Appendix A: Detailed Requirement Tables}
+
+\section*{Functional Requirements (Expanded)}
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\textbf{ID} & \textbf{Requirement} & \textbf{Category} & \textbf{Priority} & \textbf{Rationale} \\
+\midrule
+FR-1 & \begin{tabular}[t]{@{}p{7cm}@{}}Immediate updates across all editor layers\end{tabular} & Core Editing & MUST & Ensures real-time feedback and user engagement \\
+FR-2 & \begin{tabular}[t]{@{}p{7cm}@{}}Real-time rendering of component tree with responsive viewports\end{tabular} & Preview/Rendering & MUST & Allows users to see changes instantly across device sizes \\
+FR-3 & \begin{tabular}[t]{@{}p{7cm}@{}}Visual selection and bounding feedback via keyboard/mouse\end{tabular} & Selection & MUST & Improves navigation and editing precision \\
+FR-4 & \begin{tabular}[t]{@{}p{7cm}@{}}Hierarchical tree view with navigation, selection, and drag-and-drop reordering\end{tabular} & Structure Management & MUST & Supports complex layouts and component hierarchies \\
+FR-5 & \begin{tabular}[t]{@{}p{7cm}@{}}Context-sensitive editing for styles, content, and interactions\end{tabular} & Properties Editing & MUST & Enables flexible customization of components \\
+FR-6 & \begin{tabular}[t]{@{}p{7cm}@{}}Serializable component tree model (components, props, state, children)\end{tabular} & Data Model & MUST & Provides a foundation for persistence and runtime rendering \\
+FR-7 & \begin{tabular}[t]{@{}p{7cm}@{}}Create, read, update, delete projects; multiple projects per user\end{tabular} & Persistence & MUST & Supports iterative work and multi-project workflows \\
+FR-8 & \begin{tabular}[t]{@{}p{7cm}@{}}Execution of interactions (e.g., onClick) in preview mode\end{tabular} & Interactivity & CAN & Demonstrates runtime behavior for validation \\
+FR-9 & \begin{tabular}[t]{@{}p{7cm}@{}}Per-breakpoint styles and layout behavior\end{tabular} & Responsiveness & CAN & Enhances cross-device design fidelity \\
+FR-10 & \begin{tabular}[t]{@{}p{7cm}@{}}Undo/Redo via snapshot-based history navigation\end{tabular} & Usability & CAN & Facilitates error recovery and experimentation \\
+\bottomrule
+\end{tabular}
+\caption{Expanded Functional Requirements with Rationales}
+\end{table}
+
+\vspace{1em}
+
+\section*{Non-Functional Requirements (Expanded)}
+\begin{table}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+\textbf{ID} & \textbf{Requirement} & \textbf{Category} & \textbf{Priority} & \textbf{Rationale} \\
+\midrule
+NFR-1 & \begin{tabular}[t]{@{}p{7cm}@{}}Intuitive, low-latency interactions ($<$100ms perceived delay)\end{tabular} & Usability & MUST & Ensures smooth user experience and adoption \\
+NFR-2 & \begin{tabular}[t]{@{}p{7cm}@{}}Efficient rendering for medium-sized trees (hundreds of nodes)\end{tabular} & Performance & MUST & Prevents UI lag and supports realistic scenarios \\
+NFR-3 & \begin{tabular}[t]{@{}p{7cm}@{}}Data schema and API prepared for multi-project storage and future multi-tenancy\end{tabular} & Scalability & MUST & Enables growth and organizational use \\
+NFR-4 & \begin{tabular}[t]{@{}p{7cm}@{}}Persisted data remains consistent and recoverable from errors\end{tabular} & Reliability & MUST & Safeguards user work against loss or corruption \\
+NFR-5 & \begin{tabular}[t]{@{}p{7cm}@{}}Hooks for future real-time multi-user editing\end{tabular} & Collaboration & CAN & Lays groundwork for collaborative features \\
+NFR-6 & \begin{tabular}[t]{@{}p{7cm}@{}}Pluggable component library and property schemas\end{tabular} & Extensibility & CAN & Facilitates customization and future expansion \\
+\bottomrule
+\end{tabular}
+\caption{Expanded Non-Functional Requirements with Rationales}
+\end{table}
+
+\vspace{1em}

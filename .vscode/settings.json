@@ -141,5 +141,27 @@
             ]
         }
     ],
-    "latex-workshop.latex.recipe.default": "Full Build (with Glossary) 📚"
+    "latex-workshop.latex.recipe.default": "Full Build (with Glossary) 📚",
+    
+    // LaTeX formatting configuration
+    "latex-workshop.format.latex.algorithm": "latexindent",
+    "formatting.latex": "latexindent",
+    
+    // LaTeX file settings - 150 character line width
+    "[latex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop",
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 150,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [150]
+    },
+    "[tex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop",
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 150,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [150]
+    }
 }
