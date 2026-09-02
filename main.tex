@@ -35,9 +35,10 @@
 \listoffigures
 \listoftables
 
+% No code listings in this thesis; re-enable if you add any.
 % Under KOMA + listof=totoc, listings registers itself; the heading text is
 % renamed to "List of Listings" in preamble.tex.
-\lstlistoflistings
+%\lstlistoflistings
 
 % The `toc' option of glossaries already adds both of these to the ToC.
 \printglossary[title=Glossary]
@@ -47,18 +48,18 @@
 \mainmatter
 
 \input{chapters/01-introduction}
-\input{chapters/02-fundamentals}
-\input{chapters/03-methodology}
-\input{chapters/04-requirements}
-\input{chapters/05-design}
-\input{chapters/06-implementation}
-\input{chapters/07-results}
-\input{chapters/08-summary}
+\input{chapters/02-background}
+\input{chapters/03-literature}
+\input{chapters/04-data}
+\input{chapters/05-empirical-strategy}
+\input{chapters/06-results}
+\input{chapters/07-discussion}
+\input{chapters/08-conclusion}
 
-% References directly after the main content (German convention)
-\chapter*{References}
-\addcontentsline{toc}{chapter}{References}
-\printbibliography[heading=none,title={}]
+% References directly after the main content (German convention).
+% heading=bibintoc lets biblatex own the heading, the ToC entry and the
+% running head - doing it by hand left a stale header on continuation pages.
+\printbibliography[heading=bibintoc, title={References}]
 
 % ---------- Appendix ----------
 % \clearpage first: without it, \pagenumbering{Roman} takes effect while the

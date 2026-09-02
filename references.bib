@@ -1,40 +1,217 @@
-% template.bib - Bibliography file for LaTeX template
-% Add your bibliography entries here
+% ============================================================
+%  references.bib
+%  Style: biblatex, author-year (see preamble.tex).
+%  Grouped by theme for editing convenience; biblatex ignores order.
+% ============================================================
 
-@book{balzert2011,
-  author    = {Balzert, Helmut},
-  title     = {Wissenschaftliches Arbeiten: Ethik, Inhalt \& Form wiss. Arbeiten, Handwerkszeug, Quellen, Projektmanagement, Präsentation},
-  publisher = {W3L-Verlag},
-  year      = {2011},
-  edition   = {2},
-  isbn      = {978-3-86834-093-7}
+% ---------- Legal sources / primary documents ----------
+
+@misc{eu2023cbam,
+  title        = {Regulation (EU) 2023/956 of the European Parliament and of the
+                  Council of 10 May 2023 establishing a carbon border adjustment
+                  mechanism},
+  author       = {{European Parliament and Council of the European Union}},
+  year         = {2023},
+  howpublished = {Official Journal of the European Union, L 130, pp.~52--104},
+  type         = {Regulation},
+  url          = {https://eur-lex.europa.eu/eli/reg/2023/956/oj},
 }
 
-% Example entries - replace with your actual sources
-@article{example2023,
-  author  = {Example, Author},
-  title   = {Example Article Title},
-  journal = {Example Journal},
+@misc{eu2003ets,
+  title        = {Directive 2003/87/EC establishing a scheme for greenhouse gas
+                  emission allowance trading within the Community},
+  author       = {{European Parliament and Council of the European Union}},
+  year         = {2003},
+  howpublished = {Official Journal of the European Union, L 275, pp.~32--46},
+  type         = {Directive},
+  url          = {https://eur-lex.europa.eu/eli/dir/2003/87/oj},
+}
+
+@report{eurostat_comext,
+  title        = {Comext: Statistical Database on Trade of Goods},
+  author       = {{Eurostat}},
+  institution  = {European Commission},
+  year         = {2026},
+  url          = {https://ec.europa.eu/eurostat/web/international-trade-in-goods/database},
+}
+
+% ---------- Carbon leakage and border adjustment ----------
+
+@article{branger2014,
+  author  = {Branger, Fr{\'e}d{\'e}ric and Quirion, Philippe},
+  title   = {Would border carbon adjustments prevent carbon leakage and heavy
+             industry competitiveness losses? Insights from a meta-analysis of
+             recent economic studies},
+  journal = {Ecological Economics},
+  year    = {2014},
+  volume  = {99},
+  pages   = {29--39},
+}
+
+@article{fischer2012,
+  author  = {Fischer, Carolyn and Fox, Alan K.},
+  title   = {Comparing policies to combat emissions leakage: Border carbon
+             adjustments versus rebates},
+  journal = {Journal of Environmental Economics and Management},
+  year    = {2012},
+  volume  = {64},
+  number  = {2},
+  pages   = {199--216},
+}
+
+@article{bohringer2012,
+  author  = {B{\"o}hringer, Christoph and Balistreri, Edward J. and
+             Rutherford, Thomas F.},
+  title   = {The role of border carbon adjustment in unilateral climate policy:
+             Overview of an Energy Modeling Forum study (EMF 29)},
+  journal = {Energy Economics},
+  year    = {2012},
+  volume  = {34},
+  pages   = {S97--S110},
+}
+
+@article{fowlie2018,
+  author  = {Fowlie, Meredith and Reguant, Mar},
+  title   = {Challenges in the Measurement of Leakage Risk},
+  journal = {AEA Papers and Proceedings},
+  year    = {2018},
+  volume  = {108},
+  pages   = {124--129},
+}
+
+@article{aichele2015,
+  author  = {Aichele, Rahel and Felbermayr, Gabriel},
+  title   = {Kyoto and Carbon Leakage: An Empirical Analysis of the Carbon
+             Content of Bilateral Trade},
+  journal = {The Review of Economics and Statistics},
+  year    = {2015},
+  volume  = {97},
+  number  = {1},
+  pages   = {104--115},
+}
+
+% ---------- EU ETS: empirical evidence ----------
+
+@article{martin2016,
+  author  = {Martin, Ralf and Mu{\^u}ls, Mirabelle and Wagner, Ulrich J.},
+  title   = {The Impact of the European Union Emissions Trading Scheme on
+             Regulated Firms: What Is the Evidence after Ten Years?},
+  journal = {Review of Environmental Economics and Policy},
+  year    = {2016},
+  volume  = {10},
+  number  = {1},
+  pages   = {129--148},
+}
+
+@article{naegele2019,
+  author  = {Naegele, Helene and Zaklan, Aleksandar},
+  title   = {Does the {EU} {ETS} cause carbon leakage in European manufacturing?},
+  journal = {Journal of Environmental Economics and Management},
+  year    = {2019},
+  volume  = {93},
+  pages   = {125--147},
+}
+
+@article{dechezlepretre2017,
+  author  = {Dechezlepr{\^e}tre, Antoine and Sato, Misato},
+  title   = {The Impacts of Environmental Regulations on Competitiveness},
+  journal = {Review of Environmental Economics and Policy},
+  year    = {2017},
+  volume  = {11},
+  number  = {2},
+  pages   = {183--206},
+}
+
+% ---------- Trade estimation ----------
+
+@article{silva2006,
+  author  = {Santos Silva, J. M. C. and Tenreyro, Silvana},
+  title   = {The Log of Gravity},
+  journal = {The Review of Economics and Statistics},
+  year    = {2006},
+  volume  = {88},
+  number  = {4},
+  pages   = {641--658},
+}
+
+@incollection{head2014,
+  author    = {Head, Keith and Mayer, Thierry},
+  title     = {Gravity Equations: Workhorse, Toolkit, and Cookbook},
+  booktitle = {Handbook of International Economics},
+  volume    = {4},
+  publisher = {Elsevier},
+  year      = {2014},
+  pages     = {131--195},
+}
+
+@article{correia2020,
+  author  = {Correia, Sergio and Guimar{\~a}es, Paulo and Zylkin, Tom},
+  title   = {Fast Poisson estimation with high-dimensional fixed effects},
+  journal = {The Stata Journal},
+  year    = {2020},
+  volume  = {20},
+  number  = {1},
+  pages   = {95--115},
+}
+
+% ---------- Difference-in-differences econometrics ----------
+
+@article{goodmanbacon2021,
+  author  = {Goodman-Bacon, Andrew},
+  title   = {Difference-in-differences with variation in treatment timing},
+  journal = {Journal of Econometrics},
+  year    = {2021},
+  volume  = {225},
+  number  = {2},
+  pages   = {254--277},
+}
+
+@article{callaway2021,
+  author  = {Callaway, Brantly and Sant'Anna, Pedro H. C.},
+  title   = {Difference-in-Differences with multiple time periods},
+  journal = {Journal of Econometrics},
+  year    = {2021},
+  volume  = {225},
+  number  = {2},
+  pages   = {200--230},
+}
+
+@article{dechaisemartin2020,
+  author  = {de Chaisemartin, Cl{\'e}ment and D'Haultf{\oe}uille, Xavier},
+  title   = {Two-Way Fixed Effects Estimators with Heterogeneous Treatment
+             Effects},
+  journal = {American Economic Review},
+  year    = {2020},
+  volume  = {110},
+  number  = {9},
+  pages   = {2964--2996},
+}
+
+@article{borusyak2024,
+  author  = {Borusyak, Kirill and Jaravel, Xavier and Spiess, Jann},
+  title   = {Revisiting Event-Study Designs: Robust and Efficient Estimation},
+  journal = {The Review of Economic Studies},
+  year    = {2024},
+  volume  = {91},
+  number  = {6},
+}
+
+@article{rambachan2023,
+  author  = {Rambachan, Ashesh and Roth, Jonathan},
+  title   = {A More Credible Approach to Parallel Trends},
+  journal = {The Review of Economic Studies},
   year    = {2023},
-  volume  = {1},
-  pages   = {1--10}
+  volume  = {90},
+  number  = {5},
+  pages   = {2555--2591},
 }
 
-@inproceedings{conference2023,
-  author    = {Conference, Author},
-  title     = {Example Conference Paper},
-  booktitle = {Proceedings of Example Conference},
-  year      = {2023},
-  pages     = {100--110}
-} 
-
-@book{martin2008,
-author = {Martin, Robert C.},
-title = {Clean Code: A Handbook of Agile Software Craftsmanship},
-year = {2008},
-isbn = {0132350882},
-publisher = {Prentice Hall PTR},
-address = {USA},
-edition = {1},
-abstract = {Even bad code can function. But if code isnt clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesnt have to be that way.Noted software expert Robert C. Martin, presents a revolutionary paradigm with Clean Code: A Handbook of Agile Software Craftsmanship. Martin, who has helped bring agile principles from a practitioners point of view to tens of thousands of programmers, has teamed up with his colleagues from Object Mentor to distill their best agile practice of cleaning code on the fly into a book that will instill within you the values of software craftsman, and make you a better programmerbut only if you work at it.What kind of work will you be doing? Youll be reading codelots of code. And you will be challenged to think about whats right about that code, and whats wrong with it. More importantly you will be challenged to reassess your professional values and your commitment to your craft. Clean Code is divided into three parts. The first describes the principles, patterns, and practices of writing clean code. The second part consists of several case studies of increasing complexity. Each case study is an exercise in cleaning up codeof transforming a code base that has some problems into one that is sound and efficient. The third part is the payoff: a single chapter containing a list of heuristics and smells gathered while creating the case studies. The result is a knowledge base that describes the way we think when we write, read, and clean code.Readers will come away from this book understandingHow to tell the difference between good and bad codeHow to write good code and how to transform bad code into good codeHow to create good names, good functions, good objects, and good classesHow to format code for maximum readability How to implement complete error handling without obscuring code logicHow to unit test and practice test-driven developmentWhat smells and heuristics can help you identify bad codeThis book is a must for any developer, software engineer, project manager, team lead, or systems analyst with an interest in producing better code.}
+@article{cameron2008,
+  author  = {Cameron, A. Colin and Gelbach, Jonah B. and Miller, Douglas L.},
+  title   = {Bootstrap-Based Improvements for Inference with Clustered Errors},
+  journal = {The Review of Economics and Statistics},
+  year    = {2008},
+  volume  = {90},
+  number  = {3},
+  pages   = {414--427},
 }

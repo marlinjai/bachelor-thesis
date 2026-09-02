@@ -35,3 +35,6 @@ setspace
 csvsimple
 glossaries-english
 glossaries-german
+threeparttable
+multirow
+eurosym

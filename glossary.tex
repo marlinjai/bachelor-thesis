@@ -1,37 +1,55 @@
 % ============================================================
 %  glossary.tex — glossary entries and acronyms.
-%  Reference them in the text with \gls{API}, \glspl{API},
-%  \Gls{API} (capitalised) or \acrshort{LLM} / \acrfull{LLM}.
+%  Reference them with \gls{...}, \glspl{...}, \Gls{...},
+%  or \acrshort{...} / \acrlong{...} / \acrfull{...}.
+%  Only entries actually referenced are printed.
 % ============================================================
 
-\newglossaryentry{API}{
-  name=Application Programming Interface,
-  description={A set of protocols and tools for building software applications}
+\newglossaryentry{carbonleakage}{
+  name=carbon leakage,
+  description={The relocation of emissions-intensive production, or of demand
+               for its output, from a jurisdiction with a carbon price to one
+               without, such that global emissions fall by less than the
+               domestic reduction suggests}
 }
 
-\newglossaryentry{ML}{
-  name=Machine Learning,
-  description={A subset of artificial intelligence that enables computers to learn
-               and improve from experience without being explicitly programmed}
+\newglossaryentry{embeddedemissions}{
+  name=embedded emissions,
+  description={The greenhouse gases released during the production of a good,
+               attributed to that good when it crosses a border, irrespective
+               of where the emissions physically occurred}
 }
 
-\newglossaryentry{SPA}{
-  name=Single Page Application,
-  description={A web application that renders within a single page without full reloads}
+\newglossaryentry{freeallocation}{
+  name=free allocation,
+  description={Emission allowances issued at no charge to installations judged
+               to be at risk of carbon leakage; under the CBAM regulation these
+               are phased out for covered sectors as the levy phases in}
 }
 
-\newglossaryentry{CMS}{
-  name=Content Management System,
-  description={A software system for creating, managing and publishing content
-               without requiring technical knowledge}
+\newglossaryentry{resourceshuffling}{
+  name=resource shuffling,
+  description={Redirecting the cleanest units of an otherwise unchanged
+               production portfolio towards the regulated market, so that
+               measured import carbon intensity falls without any change in
+               actual production emissions}
 }
 
-\newglossaryentry{algorithm}{
-  name=Algorithm,
-  description={A step-by-step procedure or formula for solving a problem}
+\newglossaryentry{unitvalue}{
+  name=unit value,
+  description={Trade value divided by trade quantity, used as a proxy for
+               price when transaction prices are unobserved}
 }
 
-% --- Acronyms (use \acrshort / \acrlong / \acrfull)
-\newacronym{llm}{LLM}{Large Language Model}
-\newacronym{rag}{RAG}{Retrieval-Augmented Generation}
-\newacronym{http}{HTTP}{Hypertext Transfer Protocol}
+% --- Acronyms
+\newacronym{cbam}{CBAM}{Carbon Border Adjustment Mechanism}
+\newacronym{ets}{ETS}{Emissions Trading System}
+\newacronym{cn}{CN}{Combined Nomenclature}
+\newacronym{did}{DiD}{difference-in-differences}
+\newacronym{twfe}{TWFE}{two-way fixed effects}
+\newacronym{ppml}{PPML}{Poisson pseudo-maximum likelihood}
+\newacronym{eua}{EUA}{EU Allowance}
+\newacronym{bca}{BCA}{border carbon adjustment}
+\newacronym{csrd}{CSRD}{Corporate Sustainability Reporting Directive}
+\newacronym{hs}{HS}{Harmonised System}
+\newacronym{ols}{OLS}{ordinary least squares}

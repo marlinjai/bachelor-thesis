@@ -23,13 +23,28 @@
 % --- Tables and captions
 \usepackage{booktabs}
 \usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{threeparttable}   % table notes under regression tables
+\usepackage{multirow}
 \usepackage[small, labelfont=bf]{caption}
+\usepackage{subcaption}
+
+\usepackage{eurosym}
+
+% --- Numbers and units
+\usepackage{siunitx}
+\sisetup{group-separator={,}, group-minimum-digits=4, detect-weight=true}
 
 % --- Page layout
 \usepackage[hmargin=2.5cm, top=3cm, bottom=3cm]{geometry}
 
-% --- Bibliography (IEEE style via biblatex + biber)
-\usepackage[backend=biber, style=ieee, sorting=none]{biblatex}
+% --- Bibliography (author-year via biblatex + biber)
+% Economics convention. For a CS/engineering thesis swap in:
+%   \usepackage[backend=biber, style=ieee, sorting=none]{biblatex}
+% and use \cite{} instead of \textcite{}/\parencite{}.
+\usepackage[backend=biber, style=authoryear, maxcitenames=2, maxbibnames=99,
+            uniquename=false, uniquelist=false, natbib=true, dashed=false,
+            giveninits=true]{biblatex}
 \addbibresource{references.bib}
 
 % --- Glossary and acronyms

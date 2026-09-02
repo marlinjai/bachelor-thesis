@@ -26,12 +26,27 @@ make
 |---|---|
 | `make` / `make pdf` | Full build (pdflatex → biber → makeglossaries → pdflatex ×2) |
 | `make watch` | Rebuild + live-reload the viewer on every save |
-| `make open` | Build and open the PDF |
+| `make open` | Build and open the PDF (system handler — Evince here) |
+| `make chrome` | Build and open the PDF in Chrome's viewer |
 | `make wordcount` | Word count across all included files |
 | `make clean` | Remove aux files, keep the PDF |
 | `make distclean` | Remove everything under `build/` |
 
 Output lands in `build/main.pdf`.
+
+## Current draft
+
+The working draft is the CBAM topic from `thesis-topics-2026.html` —
+*Does a Carbon Border Levy Redirect Trade?* — a difference-in-differences study
+of the EU carbon border adjustment's definitive regime (January 2026), using
+CBAM's CN-code scope boundary as the treatment/control split.
+
+Chapters 1–5 are drafted. Chapter 6 (Results) holds the table and figure
+layouts with placeholder cells; chapters 7–8 are outlined against those.
+Nothing has been estimated yet.
+
+The generic software-project chapters that shipped with the original template
+are preserved in `template-original/chapters-software-project/`.
 
 ## Layout
 
@@ -42,7 +57,7 @@ preamble.tex              packages and global config
 glossary.tex              glossary entries and acronyms
 references.bib            bibliography (biblatex, IEEE style)
 frontmatter/              title page, acknowledgments, abstracts (DE + EN)
-chapters/01..08-*.tex     the actual content
+chapters/01..08-*.tex     the actual content (CBAM draft)
 backmatter/               appendix, declaration of authorship
 figures/                  images (\graphicspath is set here)
 build/                    generated output — gitignored

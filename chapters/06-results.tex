@@ -1,0 +1,125 @@
+\chapter{Results}
+\label{ch:results}
+
+\begin{center}
+\fbox{\parbox{0.95\linewidth}{\small
+\textbf{Status: not yet estimated.} This chapter fixes the layout and the
+reporting standard before any number exists, so that the specifications below
+are the ones that get reported --- not the ones that happened to work. Every
+cell is a placeholder. Fill them from the estimation output; do not add
+specifications here that are not pre-registered in \Cref{ch:strategy}.}}
+\end{center}
+
+\section{Descriptive Evidence}
+\label{sec:descriptives}
+
+\begin{table}[H]
+\centering
+\begin{threeparttable}
+\caption{Sample composition.}
+\label{tab:sample}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+& \textbf{Treated} & \textbf{Control} & \textbf{Total} \\
+\midrule
+\acrshort{cn}-8 codes        & -- & -- & -- \\
+Origin countries             & -- & -- & -- \\
+Product--origin--month cells & -- & -- & -- \\
+Import value, 2025 (\euro bn)& -- & -- & -- \\
+Suppressed cells (\%)        & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\small
+\item \textit{Notes.} Sample runs January 2021 to the latest available month.
+  Suppression follows Eurostat confidentiality rules
+  (\Cref{sec:data-problems}).
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\section{RQ1: Import Volumes}
+\label{sec:results-volume}
+
+\begin{table}[H]
+\centering
+\begin{threeparttable}
+\caption{Effect of the definitive CBAM regime on import volumes.}
+\label{tab:main}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+& (1) & (2) & (3) & (4) \\
+& Baseline & + sector--month & Intensity & Placebo \\
+\midrule
+$D_i \times \mathrm{Post}_t$ & -- & -- & & -- \\
+                             & (--) & (--) & & (--) \\
+$\tau_{iot}$                 & & & -- & \\
+                             & & & (--) & \\
+\midrule
+Product--origin FE & Yes & Yes & Yes & Yes \\
+Origin--month FE   & Yes & Yes & Yes & Yes \\
+Sector--month FE   & No  & Yes & Yes & Yes \\
+Observations       & --  & --  & --  & -- \\
+Pseudo $R^2$       & --  & --  & --  & -- \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\small
+\item \textit{Notes.} \acrshort{ppml} estimates of \Cref{eq:baseline}.
+  Standard errors clustered on \acrshort{cn}-8 code in parentheses;
+  wild-bootstrap $p$-values reported in the appendix. Column~(4) assigns a
+  placebo treatment date of January 2024. Significance is not starred: report
+  the coefficient and its standard error and let the reader judge.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\subsection{Event-study estimates}
+
+\begin{figure}[H]
+\centering
+\fbox{\begin{minipage}[c][5cm][c]{0.78\textwidth}
+  \centering\itshape
+  Event-study plot to be inserted:\\
+  $\beta_k$ from \Cref{eq:eventstudy} with 95\,\% confidence intervals.
+\end{minipage}}
+\caption{Dynamic effects around the January 2026 threshold. The shaded band
+         marks the transitional phase, during which reporting was required but
+         no certificate was owed.}
+\label{fig:eventstudy}
+\end{figure}
+
+\Cref{fig:eventstudy} carries most of the argument. Coefficients before
+October 2023 speak to parallel trends; those between October 2023 and December
+2025 to anticipation; those after January 2026 to the response itself.
+
+\section{RQ2: Reallocation Across Origins}
+\label{sec:results-reallocation}
+
+To be completed. The prediction from \Cref{sec:dose} is a negative coefficient
+for high-intensity origins, attenuated for origins operating their own carbon
+price through the deduction $c_{ot}$.
+
+\section{RQ3: Unit Values and Pass-through}
+\label{sec:results-passthrough}
+
+To be completed. The reported quantity is the pass-through ratio, the estimated
+unit-value response divided by $\tau_{iot}$, with a bootstrapped confidence
+interval for the ratio rather than a delta-method approximation.
+
+\section{Robustness}
+\label{sec:robustness}
+
+\begin{enumerate}
+  \item \textbf{Honest parallel trends.} \textcite{rambachan2023} breakdown
+    value $\bar{M}$ for each headline result.
+  \item \textbf{Control validity.} Level shift in control-only imports at
+    $t^{*}$; re-estimation on the non-substitutable subsample
+    (\Cref{sec:substitution}).
+  \item \textbf{Placebo dates.} January 2024 and January 2025.
+  \item \textbf{Winsorisation.} Unit-value trimming at the 1st/99th and
+    5th/95th percentiles.
+  \item \textbf{Estimator.} \acrshort{ols} on logs of positive flows, to show
+    what the \acrshort{ppml} choice is worth.
+  \item \textbf{Leave-one-sector-out.} Re-estimation dropping each of the six
+    covered sectors in turn, since steel is large enough to drive the pooled
+    result on its own.
+\end{enumerate}

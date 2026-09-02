@@ -1,0 +1,111 @@
+\chapter{Institutional Background}
+\label{ch:background}
+
+This chapter establishes three things the empirical design depends on: what
+exactly \acrshort{cbam} obliges importers to do, when each obligation took
+effect, and why the boundary of its product scope can be treated as
+econometrically useful rather than merely administrative.
+
+\section{The EU ETS and the Leakage Problem}
+\label{sec:ets}
+
+The \acrfull{ets}, established by Directive 2003/87/EC
+\parencite{eu2003ets}, caps emissions from power generation and
+energy-intensive industry and lets installations trade allowances. Because the
+cap binds only inside the Union, it raises the marginal cost of European
+production relative to imports. The standard response has been
+\gls{freeallocation}: sectors deemed at risk of \gls{carbonleakage} receive
+allowances without charge, benchmarked on output rather than emissions.
+
+Free allocation blunts the relocation incentive, but it also blunts the price
+signal that the cap is supposed to send, and it transfers rents to incumbent
+installations. \acrshort{cbam} is the Union's attempt to remove the subsidy
+without reintroducing the leakage risk: the border levy substitutes for free
+allocation rather than adding to it.
+
+\section{How CBAM Works}
+\label{sec:cbam-mechanics}
+
+Under Regulation (EU) 2023/956 \parencite{eu2023cbam}, an importer of a covered
+good must
+
+\begin{enumerate}
+  \item register as an authorised declarant;
+  \item report the \gls{embeddedemissions} of the goods imported, using either
+    verified actual emissions or prescribed default values;
+  \item surrender \acrshort{cbam} certificates covering those emissions, priced
+    on the \acrfull{eua} market; and
+  \item deduct any carbon price already paid in the country of origin.
+\end{enumerate}
+
+Two design features matter for identification. The deduction in step~4 means
+the levy is a \emph{differential} on the carbon-price gap, not on emissions as
+such --- so origins with their own carbon price should respond less. And the
+certificate price is tied to the \acrshort{eua} market, which means the size of
+the treatment varies over time with a price the importer does not control. Both
+features are exploited in \Cref{ch:strategy}.
+
+\section{Timeline}
+\label{sec:timeline}
+
+\begin{table}[H]
+\centering
+\caption{CBAM implementation timeline. The definitive regime is the treatment
+         event used throughout.}
+\label{tab:timeline}
+\begin{tabularx}{\textwidth}{@{}llX@{}}
+\toprule
+\textbf{Date} & \textbf{Phase} & \textbf{Obligation on importers} \\
+\midrule
+Oct 2023 & Transitional & Quarterly reporting of embedded emissions; no
+                          financial obligation. \\
+2024--2025 & Transitional & Reporting continues; default values permitted;
+                          penalties for non-reporting only. \\
+\textbf{Jan 2026} & \textbf{Definitive} & \textbf{Certificate surrender
+                          begins; free allocation to covered sectors starts to
+                          phase out.} \\
+2026--2034 & Definitive & Free allocation withdrawn on a published schedule;
+                          the effective levy rises as it does. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The gradual withdrawal of free allocation in the final row is the reason the
+treatment intensity is not constant after January 2026. A naive
+\acrshort{did} that treats post-2026 as a single homogeneous state will
+average over a rising dose; \Cref{sec:dose} addresses this explicitly.
+
+\section{Product Scope as an Identification Boundary}
+\label{sec:scope-boundary}
+
+Coverage is enumerated by \acrshort{cn} code across six sectors: cement, iron
+and steel, aluminium, fertilisers, electricity and hydrogen. The relevant
+property is not the list itself but its edges. Consider two eight-digit codes
+that differ by a processing step, an alloy content, or a form factor, where
+only one falls inside the annex. Such pairs share buyers, freight routes,
+input costs and business-cycle exposure, and they differ in exactly one
+respect: whether a certificate must be surrendered.
+
+This is the source of the control group. \Cref{ch:data} sets out how candidate
+pairs are selected and, importantly, how pairs are \emph{rejected} when the
+uncovered code is a plausible substitute for the covered one --- because a
+substitute is not a control. If importers switch from a covered code to its
+uncovered neighbour, the neighbour is treated by spillover and the
+\acrshort{did} estimate is inflated on both sides.
+
+\section{What CBAM Cannot Do}
+\label{sec:cbam-limits}
+
+Three limits bound what any estimate can mean. The mechanism covers direct
+embedded emissions and, for some sectors, a defined set of indirect emissions,
+but it does not cover the emissions of downstream goods: a steel beam is
+covered, a washing machine containing steel is not. This creates an incentive
+to import further down the value chain, which the product-scope design will
+register as a \emph{null} on covered codes rather than as leakage. Second,
+default values are generous relative to best-available-technology benchmarks,
+so exporters with clean production have an incentive to verify and dirty ones
+do not --- a selection problem in the reported-emissions data, though not in
+the trade data used here. Third, \gls{resourceshuffling} is not detectable
+from customs records at all; it requires origin-level production data, and
+\Cref{sec:mechanisms} explains how far the reallocation results can be pushed
+before that constraint binds.

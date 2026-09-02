@@ -1,33 +1,100 @@
 \chapter{Introduction}
 \label{ch:introduction}
 
-This chapter opens the thesis. The main text is numbered in Arabic numerals
-starting with ``1'' on this page.
+\section{Motivation}
+\label{sec:motivation}
 
-Never forget to cite all your sources correctly\footnote{For additional
-information on citation, refer to supplementary sources such as
-\cite{balzert2011}.}. Citations are placed inline with \verb|\cite{key}| and
-resolved from \texttt{references.bib} through biber.
+A carbon price applied to domestic producers but not to their foreign
+competitors creates an obvious incentive: buy the emissions-intensive input
+abroad. Whether that incentive is large enough to matter has been contested for
+two decades. Ex-ante simulation models place the leakage rate for unilateral
+climate policy somewhere between five and thirty percent
+\parencite{branger2014}, while the ex-post evidence on the \acrfull{ets} has
+generally failed to find the relocation that the models predict
+\parencite{martin2016,naegele2019}. The gap between the two literatures is
+usually attributed to \gls{freeallocation}: European installations in exposed
+sectors have received most of their allowances at no charge, so the marginal
+incentive to relocate has been muted by design.
 
-\section{Background of the Work}
-\label{sec:background}
+That arrangement is now being dismantled. Regulation (EU) 2023/956
+\parencite{eu2023cbam} establishes the \acrfull{cbam}, under which importers of
+covered goods must surrender certificates priced against the \gls{ets}, while
+free allocation to the corresponding domestic sectors is withdrawn on a
+matching schedule. The mechanism ran in a reporting-only transitional phase
+from October 2023, and the definitive regime --- with an actual financial
+obligation attached --- began on 1 January 2026.
 
-Description of the general context of the work. The detailed treatment belongs
-in \Cref{ch:fundamentals}.
+This is an unusually clean setting. The date was not chosen by any importer.
+Coverage is defined not by a discretionary judgement about which firms are
+exposed, but by an explicit list of \acrfull{cn} codes in the regulation's
+annex. Immediately adjacent to that list sit products that are physically and
+commercially similar but fall outside scope. The treated set, in other words,
+writes itself, and a plausible control group is available at the same level of
+aggregation.
 
-\section{Problem Statement and Objectives}
-\label{sec:problem}
+\section{Research Question}
+\label{sec:research-question}
 
-Description of the problem statement as well as the resulting sub-problems,
-sub-goals and research question(s) addressed by this work.
+The thesis asks one question and decomposes it into three:
 
-\section{Structure of the Work}
+\begin{quote}
+\textit{Did the start of the definitive \acrshort{cbam} regime change what
+Europe imports, from whom, and at what price?}
+\end{quote}
+
+\begin{description}
+  \item[RQ1 (Volume)] Did import volumes of covered \acrshort{cn} codes fall
+    relative to uncovered near-neighbour codes after January 2026?
+  \item[RQ2 (Reallocation)] Did import shares shift from
+    high-carbon-intensity origins towards low-carbon-intensity origins, and is
+    any such shift consistent with real reallocation rather than
+    \gls{resourceshuffling}?
+  \item[RQ3 (Incidence)] Did \glspl{unitvalue} of covered goods rise, and does
+    the increase approximate the certificate cost --- indicating pass-through
+    onto European buyers --- or fall short of it, indicating absorption by
+    non-EU exporters?
+\end{description}
+
+RQ3 is where the policy interest concentrates. A border adjustment that is
+fully absorbed abroad protects domestic industry at foreign expense; one that
+is fully passed through is a consumption tax on European manufacturers. The
+distinction is not visible in aggregate trade statistics without the kind of
+control group this design supplies.
+
+\section{Contribution}
+\label{sec:contribution}
+
+Three contributions are intended. First, the thesis provides quasi-experimental
+estimates of the definitive \acrshort{cbam} regime rather than simulations of
+it; to the author's knowledge no such estimates yet exist, for the simple
+reason that the regime is less than a year old. Second, it separates the levy
+from the simultaneous free-allocation phase-out. Policy commentary routinely
+treats these as one intervention, but they act on opposite sides of the border
+and their effects on import volumes have opposite signs. Third, it documents a
+scope-boundary identification strategy that remains valid as later phases
+extend coverage to further \acrshort{cn} codes, so the design can be re-run
+rather than rebuilt.
+
+\section{Scope and Limitations}
+\label{sec:scope}
+
+Two limitations are structural and are stated here rather than buried in
+\Cref{ch:discussion}. The post-treatment window is short: Comext publishes with
+a lag of roughly two months, so at the time of writing the analysis observes
+the first two to three quarters of 2026. Estimates should therefore be read as
+short-run responses, and long-run supply-chain reorganisation is out of reach.
+Second, the design identifies the effect of \acrshort{cbam} \emph{relative to
+near-neighbour products}. If the mechanism moved economy-wide expectations ---
+plausible, given how much anticipatory commentary preceded it --- the control
+group is contaminated and the estimates are a lower bound.
+\Cref{sec:threats} takes this seriously rather than noting it in passing.
+
+\section{Structure}
 \label{sec:structure}
 
-\Cref{ch:fundamentals} establishes the theoretical background.
-\Cref{ch:methodology} describes the methodology.
-\Cref{ch:requirements} elicits and analyses the requirements.
-\Cref{ch:design} presents the conception and design,
-\Cref{ch:implementation} the implementation, and
-\Cref{ch:results} the evaluation.
-\Cref{ch:summary} concludes.
+\Cref{ch:background} sets out how \acrshort{cbam} works and why its design
+generates usable variation. \Cref{ch:literature} positions the question against
+the leakage and border-adjustment literatures. \Cref{ch:data} describes the
+data and sample construction, and \Cref{ch:strategy} the estimator and the
+threats to identification. \Cref{ch:results} reports results,
+\Cref{ch:discussion} interprets them, and \Cref{ch:conclusion} concludes.

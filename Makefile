@@ -4,7 +4,7 @@
 MAIN := main
 OUT  := build
 
-.PHONY: all pdf watch clean distclean open wordcount
+.PHONY: all pdf watch clean distclean open chrome wordcount
 
 all: pdf
 
@@ -16,6 +16,10 @@ watch:
 
 open: pdf
 	xdg-open $(OUT)/$(MAIN).pdf
+
+# The system PDF handler is Evince; this forces Chrome's viewer instead.
+chrome: pdf
+	google-chrome-stable "file://$(CURDIR)/$(OUT)/$(MAIN).pdf" >/dev/null 2>&1 &
 
 clean:
 	latexmk -c $(MAIN).tex

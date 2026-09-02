@@ -1,0 +1,113 @@
+\chapter{Data and Sample Construction}
+\label{ch:data}
+
+Every source used here is public and downloadable without an application or a
+subscription. That was a selection criterion, not a coincidence: it keeps the
+project inside a Master's timeline and makes the results reproducible by a
+reader.
+
+\section{Sources}
+\label{sec:sources}
+
+\begin{table}[H]
+\centering
+\caption{Data sources. All are public.}
+\label{tab:sources}
+\begin{tabularx}{\textwidth}{@{}llX@{}}
+\toprule
+\textbf{Source} & \textbf{Level} & \textbf{Use} \\
+\midrule
+Eurostat Comext \parencite{eurostat_comext}
+  & \acrshort{cn}-8 $\times$ partner $\times$ month
+  & Import value, net mass, supplementary units; the dependent variables. \\
+Regulation (EU) 2023/956, Annex~I
+  & \acrshort{cn}-8
+  & Definition of the treated set. \\
+EU \acrshort{eua} spot and futures series
+  & Daily
+  & Certificate price; converts the levy into a per-tonne cost. \\
+Sectoral emissions-intensity benchmarks
+  & Sector $\times$ country
+  & Assigns an expected treatment dose per origin. \\
+World Bank Carbon Pricing Dashboard
+  & Country $\times$ year
+  & Identifies origins whose own carbon price is deductible. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Constructing Treatment and Control}
+\label{sec:treatment-control}
+
+The treated set is every \acrshort{cn}-8 code listed in Annex~I of the
+regulation. Control codes are selected by a rule fixed before any outcome is
+inspected, so that the comparison set is not chosen to produce a result:
+
+\begin{enumerate}
+  \item \textbf{Proximity.} The candidate shares the first six \acrshort{hs}
+    digits with a treated code, or sits in the same four-digit heading where no
+    six-digit neighbour exists.
+  \item \textbf{Exclusion.} The candidate does not itself appear in Annex~I,
+    and is not scheduled for inclusion in a published later phase.
+  \item \textbf{Non-substitutability.} The candidate is not a plausible
+    demand-side substitute for its treated neighbour. This is the binding
+    criterion and the one requiring judgement; \Cref{sec:substitution} sets
+    out how it is applied and how the resulting classification is stress-tested.
+  \item \textbf{Support.} Both codes record non-trivial import flows in every
+    month of the pre-period, so that the pair contributes to identification
+    rather than to noise.
+\end{enumerate}
+
+Criterion~3 deserves emphasis. A control that importers can switch to is
+contaminated by the treatment, and the resulting estimate overstates the effect
+by counting the substitution twice --- once as a fall in the treated code and
+once as a rise in the control. Where substitutability is genuinely ambiguous,
+the pair is dropped from the main sample and reintroduced in a robustness
+specification, so the cost of the judgement is visible.
+
+\section{Sample Period}
+\label{sec:sample-period}
+
+The estimation window runs from January 2021 to the most recent month available
+at the time of writing. Three sub-periods are distinguished, and conflating
+them would be a mistake:
+
+\begin{description}
+  \item[Pre-period (2021--Sep 2023)] No \acrshort{cbam} obligation of any kind.
+    Supplies the pre-trends.
+  \item[Transitional (Oct 2023--Dec 2025)] Reporting only. Anticipatory
+    adjustment is possible here, which is why this window is estimated as its
+    own event-time coefficient rather than pooled into the pre-period.
+  \item[Definitive (Jan 2026--)] Certificate obligation in force. The
+    treatment window.
+\end{description}
+
+Treating the transitional phase as untreated would attribute any anticipation
+to the pre-trend and bias the estimate towards zero. Treating it as treated
+would confuse a paperwork requirement with a price. It is therefore estimated
+separately, and the difference between the two coefficients is itself
+informative about whether firms respond to announced or to realised costs.
+
+\section{Known Data Problems}
+\label{sec:data-problems}
+
+\textbf{Confidentiality suppression.} Eurostat suppresses cells that would
+disclose an individual trader. Suppression is non-random --- it correlates with
+concentrated origins, which are exactly the ones of interest --- so suppressed
+cells are tracked and reported rather than dropped silently.
+
+\textbf{Unit-value noise.} \Glspl{unitvalue} are value over quantity and
+therefore inherit every quantity-reporting error. Extreme values are winsorised
+at the first and ninety-ninth percentile within \acrshort{cn} code, and the
+threshold is varied in robustness checks.
+
+\textbf{Short post-period.} With roughly two to three quarters observed, the
+dynamic specification has few post-treatment event-time coefficients. This
+limits what can be said about persistence, and \Cref{ch:discussion} does not
+say more than the data supports.
+
+\textbf{The 2022 energy shock.} Energy prices moved European industrial input
+costs violently in the pre-period, and did so differentially across
+energy-intensive sectors --- which is to say, differentially between treated
+and control. This is the most serious threat to parallel trends in the sample
+and is addressed directly in \Cref{sec:threats}.

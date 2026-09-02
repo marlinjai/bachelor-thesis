@@ -1,0 +1,150 @@
+\chapter{Empirical Strategy}
+\label{ch:strategy}
+
+\section{Baseline Specification}
+\label{sec:baseline}
+
+Let $i$ index \acrshort{cn}-8 product codes, $o$ origin countries and $t$
+months. The baseline estimating equation is
+
+\begin{equation}
+\label{eq:baseline}
+Y_{iot} = \exp\!\big(
+    \beta \, D_i \cdot \mathrm{Post}_t
+    + \alpha_{io} + \gamma_{ot} + \delta_{st}
+  \big) \cdot \varepsilon_{iot},
+\end{equation}
+
+where $D_i = 1$ for products covered by Annex~I, $\mathrm{Post}_t = 1$ from
+January 2026, $\alpha_{io}$ is a product--origin fixed effect, $\gamma_{ot}$ an
+origin--month fixed effect and $\delta_{st}$ a sector--month fixed effect. The
+coefficient of interest is $\beta$.
+
+The fixed-effect structure is doing specific work. The product--origin term
+absorbs every time-invariant feature of a trade relationship, including the
+distance, tariff and relationship-specific costs that a gravity model would
+otherwise need to parameterise \parencite{head2014}. The origin--month term
+absorbs shocks common to everything a country exports --- an exchange-rate
+move, a domestic energy crisis, a port closure. What remains is variation
+within an origin, across products, over time, which is exactly the variation
+the scope boundary provides.
+
+\Cref{eq:baseline} is estimated by \acrfull{ppml} rather than by \acrshort{ols}
+on logs. \textcite{silva2006} show that log-linearising a multiplicative model
+with heteroskedastic errors yields inconsistent estimates, and the problem is
+acute in trade data; \acrshort{ppml} also accommodates the genuine zeros that
+appear when a relationship goes dormant. Estimation follows the
+high-dimensional fixed-effects implementation of \textcite{correia2020}.
+Standard errors are clustered on \acrshort{cn}-8 code, with wild-bootstrap
+$p$-values \parencite{cameron2008} reported alongside.
+
+\section{Dynamics and Anticipation}
+\label{sec:dynamics}
+
+The static specification is uninformative about timing, which is where the
+interesting question sits: did importers respond when the obligation was
+announced, or when it began to cost money? The event-study form is
+
+\begin{equation}
+\label{eq:eventstudy}
+Y_{iot} = \exp\!\Big(
+    \sum_{\substack{k=-K \\ k \neq -1}}^{K} \beta_k \, D_i \cdot \mathbf{1}[t - t^{*} = k]
+    + \alpha_{io} + \gamma_{ot} + \delta_{st}
+  \Big) \cdot \varepsilon_{iot},
+\end{equation}
+
+with $t^{*}$ the January 2026 threshold and $k = -1$ omitted as the reference.
+Coefficients spanning the transitional phase ($k$ corresponding to
+Oct 2023--Dec 2025) test for anticipation; coefficients after $t^{*}$ trace the
+response. Estimation uses the efficient estimator of \textcite{borusyak2024},
+which imposes the no-anticipation restriction only where it is asserted rather
+than everywhere by construction.
+
+\section{Treatment Intensity}
+\label{sec:dose}
+
+Binary treatment wastes information. The certificate cost per tonne of imported
+product is approximately
+
+\begin{equation}
+\label{eq:dose}
+\tau_{iot} = e_{io} \cdot P^{\mathrm{EUA}}_{t} \cdot \big(1 - \phi_{t}\big)
+             - c_{ot},
+\end{equation}
+
+where $e_{io}$ is embedded emissions per tonne, $P^{\mathrm{EUA}}_{t}$ the
+allowance price, $\phi_{t}$ the share of free allocation still granted to the
+corresponding domestic sector, and $c_{ot}$ the carbon price already paid in
+the origin and therefore deductible.
+
+\Cref{eq:dose} has three implications the binary design would miss. The dose
+rises mechanically as $\phi_t$ falls, so a constant $\beta$ is the wrong object
+to look for. It varies across origins through $e_{io}$ and $c_{ot}$, giving a
+second source of identification: origins with their own carbon price should
+respond less, and that prediction is testable. And it varies with the
+\acrshort{eua} price, which the importer does not control --- a continuous,
+plausibly exogenous shifter. The intensity specification replaces
+$D_i \cdot \mathrm{Post}_t$ in \Cref{eq:baseline} with $\tau_{iot}$.
+
+\section{Outcomes}
+\label{sec:outcomes}
+
+\begin{description}
+  \item[RQ1] $Y_{iot}$ is net mass imported. Levels, by \acrshort{ppml}.
+  \item[RQ2] $Y_{iot}$ is the share of product $i$'s imports sourced from
+    origin $o$, with origins split at the median emissions intensity of their
+    sectoral production. The object of interest is the differential response of
+    high- versus low-intensity origins.
+  \item[RQ3] $Y_{iot}$ is the log \gls{unitvalue}. Pass-through is the ratio of
+    the estimated unit-value increase to $\tau_{iot}$; a ratio near one implies
+    European buyers pay, near zero that non-EU exporters absorb.
+\end{description}
+
+\section{Threats to Identification}
+\label{sec:threats}
+
+\subsection{Parallel trends and the 2022 energy shock}
+
+The identifying assumption is that covered and near-neighbour codes would have
+followed parallel paths absent \acrshort{cbam}. The 2022 energy shock is the
+obvious problem: it raised European production costs most in exactly the
+energy-intensive sectors that \acrshort{cbam} covers, so treated and control
+products were differentially exposed well before the treatment date.
+
+Three responses. The specification includes sector--month fixed effects, which
+absorb shocks common to a sector. The event-study coefficients over 2021--2023
+show whether divergence was already underway. And rather than resting on a
+pre-trends test --- which has low power precisely when it matters ---
+the analysis reports the \textcite{rambachan2023} sensitivity bounds: the
+largest post-treatment violation of parallel trends, expressed relative to the
+worst pre-period violation, under which the conclusion still holds. That number
+is more informative than a flat pre-trend plot and is reported for every
+headline result.
+
+\subsection{Substitution into control products}
+\label{sec:substitution}
+
+If importers respond by switching to an uncovered neighbour, the control is
+treated and $\beta$ is biased away from zero. Criterion~3 of
+\Cref{sec:treatment-control} screens for this ex ante. Ex post, two checks
+follow: control-only imports are examined for a level shift at $t^{*}$, which
+substitution would produce and a valid control would not; and the sample is
+re-estimated using only pairs where substitution is technically implausible
+because the goods enter different production processes.
+
+\subsection{Downstream shifting}
+
+\acrshort{cbam} covers the input, not the finished product. Importers can
+therefore avoid it by buying further downstream --- importing the component
+rather than the steel. This does not bias $\beta$ for covered codes, but it
+does mean a negative $\beta$ overstates the emissions saving. Imports of
+downstream codes are examined descriptively as a bound on this channel; the
+data cannot do better than that.
+
+\subsection{Anticipation}
+
+Firms knew the date years in advance. Contracts signed in 2025 for 2026
+delivery would place the response before $t^{*}$, biasing the post-treatment
+estimate towards zero. The transitional-phase coefficients in
+\Cref{eq:eventstudy} measure this directly, and the sum of transitional and
+definitive coefficients is reported as the cumulative response.

@@ -1,0 +1,84 @@
+\chapter{Related Literature}
+\label{ch:literature}
+
+Three strands bear on the question: the theory of \gls{carbonleakage} and its
+correction, the ex-post evidence on the \acrshort{ets}, and the econometrics of
+\acrshort{did} with staggered or dose-varying treatment. The first two set the
+prior; the third determines what can credibly be estimated.
+
+\section{Leakage and Border Adjustment in Theory}
+\label{sec:lit-theory}
+
+Simulation studies of unilateral carbon pricing consistently predict leakage,
+though they disagree about how much. The Energy Modeling Forum's coordinated
+comparison across twelve models \parencite{bohringer2012} finds leakage rates
+clustering between five and twenty percent, and border adjustment cutting them
+by roughly half. \textcite{branger2014} meta-analyse a wider set of studies and
+report that border adjustment restores most of the competitiveness loss in
+covered sectors while doing considerably less for aggregate emissions --- a
+distinction that matters for how the results of this thesis should be read.
+\textcite{fischer2012} compare border adjustment against output-based rebates
+and show the two are close substitutes in welfare terms but differ sharply in
+who bears the cost, which is the theoretical counterpart of RQ3.
+
+\textcite{fowlie2018} is the necessary corrective to all of this. They argue
+that leakage risk as operationalised in policy --- typically trade intensity
+multiplied by emissions intensity --- is a poor proxy for the elasticity that
+actually matters, and that the sectors flagged as at-risk are not reliably the
+ones that would relocate. Since \acrshort{cbam}'s scope was drawn using
+essentially that operationalisation, their critique implies the covered set may
+not be where the largest effects are.
+
+\section{Ex-post Evidence on the EU ETS}
+\label{sec:lit-ets}
+
+The empirical record is notably quieter than the models. \textcite{martin2016}
+survey a decade of \acrshort{ets} evaluations and conclude that the scheme
+reduced emissions without detectable harm to employment, output or
+competitiveness. \textcite{naegele2019} test for leakage directly in European
+manufacturing and find no robust evidence of it, though they are careful to
+note that free allocation makes this a test of the policy as implemented rather
+than of carbon pricing as such. \textcite{dechezlepretre2017} reach a similar
+verdict across environmental regulation more broadly.
+
+\textcite{aichele2015} provide the closest methodological precedent for the
+present design. Studying Kyoto commitments, they find that ratifying countries
+increased the carbon content of their imports by roughly five percent and
+reduced the carbon intensity of domestic production --- evidence of
+composition-shifting rather than wholesale relocation. That is precisely the
+pattern RQ2 is constructed to detect, and it motivates treating
+\gls{resourceshuffling} as the leading alternative explanation rather than an
+afterthought.
+
+The synthesis is a prior worth stating plainly: theory expects a measurable
+effect, and the ex-post literature has repeatedly failed to find one. The
+definitive \acrshort{cbam} regime is the first setting in which the free-
+allocation confound is being deliberately removed, which is what makes a null
+result here informative rather than merely another quiet finding.
+
+\section{Estimation}
+\label{sec:lit-econometrics}
+
+The design is a two-group, single-date \acrshort{did}, which avoids the worst
+of the staggered-adoption problems catalogued by \textcite{goodmanbacon2021}
+and \textcite{dechaisemartin2020}: with one treatment date there are no
+already-treated units serving as controls, so the \acrshort{twfe} estimator
+does not decompose into badly-weighted comparisons. Treatment intensity does
+vary over time through the free-allocation phase-out
+(\Cref{sec:dose}), and \textcite{callaway2021} supply the appropriate
+group-time estimator should the dose structure be modelled explicitly.
+
+For inference and pre-trends, \textcite{borusyak2024} give the efficient
+event-study estimator used for the dynamic specification, and
+\textcite{rambachan2023} the sensitivity analysis that replaces the usual
+pre-trends test. This matters more than it may appear: a flat pre-trend plot is
+weak evidence, and reporting the largest post-treatment violation of parallel
+trends under which the result survives is substantially more honest.
+
+Because trade flows are non-negative, heavily skewed and contain genuine
+zeros, the level specification is estimated by \acrfull{ppml} following
+\textcite{silva2006}, with the high-dimensional fixed effects handled as in
+\textcite{correia2020}. \textcite{head2014} is the reference for the gravity
+scaffolding. Standard errors are clustered at the \acrshort{cn}-code level;
+with a moderate number of clusters the wild bootstrap of
+\textcite{cameron2008} is reported alongside.
