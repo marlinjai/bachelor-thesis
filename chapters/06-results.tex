@@ -1,125 +1,130 @@
-\chapter{Results}
+\chapter{Risultati}
 \label{ch:results}
 
 \begin{center}
 \fbox{\parbox{0.95\linewidth}{\small
-\textbf{Status: not yet estimated.} This chapter fixes the layout and the
-reporting standard before any number exists, so that the specifications below
-are the ones that get reported --- not the ones that happened to work. Every
-cell is a placeholder. Fill them from the estimation output; do not add
-specifications here that are not pre-registered in \Cref{ch:strategy}.}}
+\textbf{Stato: stima non ancora eseguita.} Questo capitolo fissa
+l'impaginazione e lo standard di presentazione prima che esista alcun numero,
+affinché le specifiche qui sotto siano quelle effettivamente riportate --- e
+non quelle che si sono rivelate convenienti. Ogni cella è un segnaposto.
+Compilarle a partire dagli output di stima; non aggiungere qui specifiche che
+non siano già registrate nel \Cref{ch:strategy}.}}
 \end{center}
 
-\section{Descriptive Evidence}
+\section{Evidenza descrittiva}
 \label{sec:descriptives}
 
 \begin{table}[H]
 \centering
 \begin{threeparttable}
-\caption{Sample composition.}
+\caption{Composizione del campione.}
 \label{tab:sample}
 \begin{tabular}{@{}lrrr@{}}
 \toprule
-& \textbf{Treated} & \textbf{Control} & \textbf{Total} \\
+& \textbf{Trattati} & \textbf{Controlli} & \textbf{Totale} \\
 \midrule
-\acrshort{cn}-8 codes        & -- & -- & -- \\
-Origin countries             & -- & -- & -- \\
-Product--origin--month cells & -- & -- & -- \\
-Import value, 2025 (\euro bn)& -- & -- & -- \\
-Suppressed cells (\%)        & -- & -- & -- \\
+Codici \acrshort{cn}-8               & -- & -- & -- \\
+Paesi di origine                     & -- & -- & -- \\
+Celle prodotto--origine--mese        & -- & -- & -- \\
+Valore importato, 2025 (mld \euro)   & -- & -- & -- \\
+Celle soppresse (\%)                 & -- & -- & -- \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]\small
-\item \textit{Notes.} Sample runs January 2021 to the latest available month.
-  Suppression follows Eurostat confidentiality rules
+\item \textit{Note.} Il campione va dal gennaio 2021 all'ultimo mese
+  disponibile. La soppressione segue le regole di riservatezza di Eurostat
   (\Cref{sec:data-problems}).
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
 
-\section{RQ1: Import Volumes}
+\section{DR1: volumi importati}
 \label{sec:results-volume}
 
 \begin{table}[H]
 \centering
 \begin{threeparttable}
-\caption{Effect of the definitive CBAM regime on import volumes.}
+\caption{Effetto del regime definitivo del CBAM sui volumi importati.}
 \label{tab:main}
 \begin{tabular}{@{}lcccc@{}}
 \toprule
 & (1) & (2) & (3) & (4) \\
-& Baseline & + sector--month & Intensity & Placebo \\
+& Base & + settore--mese & Intensità & Placebo \\
 \midrule
 $D_i \times \mathrm{Post}_t$ & -- & -- & & -- \\
                              & (--) & (--) & & (--) \\
 $\tau_{iot}$                 & & & -- & \\
                              & & & (--) & \\
 \midrule
-Product--origin FE & Yes & Yes & Yes & Yes \\
-Origin--month FE   & Yes & Yes & Yes & Yes \\
-Sector--month FE   & No  & Yes & Yes & Yes \\
-Observations       & --  & --  & --  & -- \\
-Pseudo $R^2$       & --  & --  & --  & -- \\
+EF prodotto--origine & Sì & Sì & Sì & Sì \\
+EF origine--mese     & Sì & Sì & Sì & Sì \\
+EF settore--mese     & No & Sì & Sì & Sì \\
+Osservazioni         & -- & -- & -- & -- \\
+Pseudo $R^2$         & -- & -- & -- & -- \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]\small
-\item \textit{Notes.} \acrshort{ppml} estimates of \Cref{eq:baseline}.
-  Standard errors clustered on \acrshort{cn}-8 code in parentheses;
-  wild-bootstrap $p$-values reported in the appendix. Column~(4) assigns a
-  placebo treatment date of January 2024. Significance is not starred: report
-  the coefficient and its standard error and let the reader judge.
+\item \textit{Note.} Stime \acrshort{ppml} dell'\Cref{eq:baseline}. Errori
+  standard raggruppati per codice \acrshort{cn}-8 fra parentesi; i valori $p$
+  da wild bootstrap sono riportati in appendice. La colonna~(4) assegna una
+  data di trattamento placebo al gennaio 2024. Non si impiegano asterischi di
+  significatività: si riportano il coefficiente e il suo errore standard,
+  lasciando al lettore il giudizio.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
 
-\subsection{Event-study estimates}
+\subsection{Stime event study}
 
 \begin{figure}[H]
 \centering
 \fbox{\begin{minipage}[c][5cm][c]{0.78\textwidth}
   \centering\itshape
-  Event-study plot to be inserted:\\
-  $\beta_k$ from \Cref{eq:eventstudy} with 95\,\% confidence intervals.
+  Grafico \emph{event study} da inserire:\\
+  $\beta_k$ dall'\Cref{eq:eventstudy} con intervalli di confidenza al
+  95\,\%.
 \end{minipage}}
-\caption{Dynamic effects around the January 2026 threshold. The shaded band
-         marks the transitional phase, during which reporting was required but
-         no certificate was owed.}
+\caption{Effetti dinamici attorno alla soglia del gennaio 2026. La banda
+         ombreggiata individua la fase transitoria, durante la quale era
+         richiesta la rendicontazione ma non era dovuto alcun certificato.}
 \label{fig:eventstudy}
 \end{figure}
 
-\Cref{fig:eventstudy} carries most of the argument. Coefficients before
-October 2023 speak to parallel trends; those between October 2023 and December
-2025 to anticipation; those after January 2026 to the response itself.
+La \Cref{fig:eventstudy} regge gran parte dell'argomentazione. I coefficienti
+anteriori all'ottobre 2023 parlano dei trend paralleli; quelli compresi fra
+l'ottobre 2023 e il dicembre 2025 dell'anticipazione; quelli successivi al
+gennaio 2026 della risposta vera e propria.
 
-\section{RQ2: Reallocation Across Origins}
+\section{DR2: riallocazione fra origini}
 \label{sec:results-reallocation}
 
-To be completed. The prediction from \Cref{sec:dose} is a negative coefficient
-for high-intensity origins, attenuated for origins operating their own carbon
-price through the deduction $c_{ot}$.
+Da completare. La previsione derivante dalla \Cref{sec:dose} è un coefficiente
+negativo per le origini ad alta intensità, attenuato per quelle che applicano
+un proprio prezzo del carbonio attraverso la detrazione $c_{ot}$.
 
-\section{RQ3: Unit Values and Pass-through}
+\section{DR3: valori unitari e traslazione}
 \label{sec:results-passthrough}
 
-To be completed. The reported quantity is the pass-through ratio, the estimated
-unit-value response divided by $\tau_{iot}$, with a bootstrapped confidence
-interval for the ratio rather than a delta-method approximation.
+Da completare. La quantità riportata è il rapporto di traslazione, ossia la
+risposta stimata del valore unitario divisa per $\tau_{iot}$, con un intervallo
+di confidenza ottenuto per bootstrap sul rapporto anziché per approssimazione
+con il metodo delta.
 
-\section{Robustness}
+\section{Robustezza}
 \label{sec:robustness}
 
 \begin{enumerate}
-  \item \textbf{Honest parallel trends.} \textcite{rambachan2023} breakdown
-    value $\bar{M}$ for each headline result.
-  \item \textbf{Control validity.} Level shift in control-only imports at
-    $t^{*}$; re-estimation on the non-substitutable subsample
+  \item \textbf{Trend paralleli onesti.} Valore di rottura $\bar{M}$ di
+    \textcite{rambachan2023} per ciascun risultato principale.
+  \item \textbf{Validità dei controlli.} Salto di livello nelle importazioni
+    dei soli controlli in $t^{*}$; ristima sul sottocampione non sostituibile
     (\Cref{sec:substitution}).
-  \item \textbf{Placebo dates.} January 2024 and January 2025.
-  \item \textbf{Winsorisation.} Unit-value trimming at the 1st/99th and
-    5th/95th percentiles.
-  \item \textbf{Estimator.} \acrshort{ols} on logs of positive flows, to show
-    what the \acrshort{ppml} choice is worth.
-  \item \textbf{Leave-one-sector-out.} Re-estimation dropping each of the six
-    covered sectors in turn, since steel is large enough to drive the pooled
-    result on its own.
+  \item \textbf{Date placebo.} Gennaio 2024 e gennaio 2025.
+  \item \textbf{Winsorizzazione.} Troncamento dei valori unitari al
+    1°/99° e al 5°/95° percentile.
+  \item \textbf{Stimatore.} \acrshort{ols} sui logaritmi dei flussi positivi,
+    per mostrare quanto valga la scelta della \acrshort{ppml}.
+  \item \textbf{Esclusione di un settore alla volta.} Ristima escludendo a
+    turno ciascuno dei sei settori coperti, poiché l'acciaio è abbastanza
+    grande da determinare da solo il risultato aggregato.
 \end{enumerate}

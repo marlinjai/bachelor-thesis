@@ -4,11 +4,13 @@
 %  a Master's thesis and split into modular files.
 % ============================================================
 
-% --- Encoding and languages (English primary, German for the Zusammenfassung)
+% --- Codifica e lingue (italiano principale; inglese e tedesco disponibili
+%     per citazioni e per un eventuale abstract in seconda lingua).
+%     In babel l'ultima lingua elencata e' quella principale.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[ngerman,english]{babel}
-\usepackage[autostyle]{csquotes}
+\usepackage[english,ngerman,italian]{babel}
+\usepackage[autostyle,italian=guillemets]{csquotes}
 \usepackage{lmodern}
 \usepackage{microtype}
 
@@ -38,11 +40,12 @@
 % --- Page layout
 \usepackage[hmargin=2.5cm, top=3cm, bottom=3cm]{geometry}
 
-% --- Bibliography (author-year via biblatex + biber)
-% Economics convention. For a CS/engineering thesis swap in:
+% --- Bibliografia (autore-anno, biblatex + biber)
+% Convenzione economica. Per una tesi di area informatica sostituire con:
 %   \usepackage[backend=biber, style=ieee, sorting=none]{biblatex}
-% and use \cite{} instead of \textcite{}/\parencite{}.
-\usepackage[backend=biber, style=authoryear, maxcitenames=2, maxbibnames=99,
+% e usare \cite{} al posto di \textcite{}/\parencite{}.
+\usepackage[backend=biber, style=authoryear, language=autobib,
+            maxcitenames=2, maxbibnames=99,
             uniquename=false, uniquelist=false, natbib=true, dashed=false,
             giveninits=true]{biblatex}
 \addbibresource{references.bib}
@@ -76,20 +79,36 @@
   language=Python % default; override per listing with [language=...]
 }
 
-% Match the naming of the other lists (default is just "Listings").
-\renewcommand{\lstlistlistingname}{List of Listings}
-\renewcommand{\lstlistingname}{Listing}
+% Denominazioni italiane per i listati di codice.
+\renewcommand{\lstlistlistingname}{Elenco dei listati}
+\renewcommand{\lstlistingname}{Listato}
 
 % --- Hyperlinks (load late, as hyperref likes to be near-last)
 % hypertexnames=false: the appendix restarts page numbering, which otherwise
 % produces "duplicate destination" warnings on every build.
 \usepackage[hidelinks,plainpages=false,pdfpagelabels,hypertexnames=false]{hyperref}
 \usepackage{cleveref}
+% Denominazioni italiane esplicite: non dipendono dal rilevamento automatico
+% della lingua da parte di cleveref.
+\crefname{chapter}{capitolo}{capitoli}
+\Crefname{chapter}{Capitolo}{Capitoli}
+\crefname{section}{sezione}{sezioni}
+\Crefname{section}{Sezione}{Sezioni}
+\crefname{subsection}{sezione}{sezioni}
+\Crefname{subsection}{Sezione}{Sezioni}
+\crefname{equation}{equazione}{equazioni}
+\Crefname{equation}{Equazione}{Equazioni}
+\crefname{figure}{figura}{figure}
+\Crefname{figure}{Figura}{Figure}
+\crefname{table}{tabella}{tabelle}
+\Crefname{table}{Tabella}{Tabelle}
+\crefname{listing}{listato}{listati}
+\Crefname{listing}{Listato}{Listati}
 
-% --- Theorem-like environments
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{definition}[theorem]{Definition}
+% --- Ambienti di tipo teorema (denominazioni italiane)
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{definition}[theorem]{Definizione}
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Osservazione}
+\newtheorem{corollary}[theorem]{Corollario}
+\newtheorem{example}[theorem]{Esempio}

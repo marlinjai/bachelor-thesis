@@ -1,0 +1,958 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thesis Topics for 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+  :root{
+    --langbar-h:44px;
+    --paper:#F2F5F5;
+    --surface:#FFFFFF;
+    --surface-2:#E8EEED;
+    --ink:#12201F;
+    --ink-2:#44534F;
+    --ink-3:#76837F;
+    --rule:#D4DEDC;
+    --rule-strong:#B6C4C1;
+    --accent:#0C6156;
+    --accent-2:#084A41;
+    --accent-soft:#DBEAE6;
+    --invert-bg:#12201F;
+    --invert-ink:#E9EFEE;
+    --invert-ink-2:#9FB2AE;
+    --invert-accent:#6FC9B8;
+    --invert-rule:rgba(255,255,255,.14);
+    --shadow:0 1px 2px rgba(18,32,31,.05), 0 8px 24px -18px rgba(18,32,31,.35);
+
+    --f-display:"Spectral", "Iowan Old Style", Georgia, serif;
+    --f-body:"IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+    --f-mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#101617;
+      --surface:#171F20;
+      --surface-2:#1E2829;
+      --ink:#E6ECEB;
+      --ink-2:#A4B1AF;
+      --ink-3:#7A8886;
+      --rule:#293434;
+      --rule-strong:#3A4747;
+      --accent:#4FBEAC;
+      --accent-2:#7FD4C5;
+      --accent-soft:#172E2B;
+      --invert-bg:#0B1112;
+      --invert-ink:#E9EFEE;
+      --invert-ink-2:#93A5A2;
+      --invert-accent:#57C2B0;
+      --invert-rule:rgba(255,255,255,.10);
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -20px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#101617;
+    --surface:#171F20;
+    --surface-2:#1E2829;
+    --ink:#E6ECEB;
+    --ink-2:#A4B1AF;
+    --ink-3:#7A8886;
+    --rule:#293434;
+    --rule-strong:#3A4747;
+    --accent:#4FBEAC;
+    --accent-2:#7FD4C5;
+    --accent-soft:#172E2B;
+    --invert-bg:#0B1112;
+    --invert-ink:#E9EFEE;
+    --invert-ink-2:#93A5A2;
+    --invert-accent:#57C2B0;
+    --invert-rule:rgba(255,255,255,.10);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -20px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--f-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+  a:hover{color:var(--accent-2)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+  /* ---------- masthead ---------- */
+  .masthead{border-bottom:1px solid var(--rule);background:var(--surface)}
+  .masthead .wrap{padding-top:52px;padding-bottom:36px}
+  .eyebrow{
+    font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 18px
+  }
+  h1{
+    font-family:var(--f-display);font-weight:600;
+    font-size:clamp(34px,5.2vw,54px);line-height:1.08;letter-spacing:-.015em;
+    margin:0;text-wrap:balance;max-width:16ch
+  }
+  .standfirst{
+    font-family:var(--f-display);font-size:19px;line-height:1.55;
+    color:var(--ink-2);max-width:60ch;margin:20px 0 0
+  }
+  .facts{
+    display:flex;flex-wrap:wrap;gap:0 40px;margin-top:32px;
+    padding-top:24px;border-top:1px solid var(--rule)
+  }
+  .fact{display:flex;flex-direction:column;gap:2px}
+  .fact b{
+    font-family:var(--f-mono);font-size:26px;font-weight:500;
+    letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1
+  }
+  .fact span{
+    font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-3)
+  }
+
+  /* ---------- shell ---------- */
+  .shell{display:block}
+  .shell .wrap{display:grid;grid-template-columns:1fr;gap:0;padding-top:44px;padding-bottom:80px}
+  @media (min-width:1000px){
+    .shell .wrap{grid-template-columns:212px minmax(0,1fr);gap:56px}
+  }
+
+  /* ---------- rail ---------- */
+  .rail{display:none}
+  @media (min-width:1000px){
+    .rail{display:block;position:sticky;top:calc(var(--langbar-h) + 28px);align-self:start;max-height:calc(100vh - var(--langbar-h) - 56px);overflow-y:auto}
+  }
+  .rail h2, .legend h2{
+    font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-3);margin:0 0 12px;font-weight:500
+  }
+  .rail ol{list-style:none;margin:0 0 32px;padding:0;display:flex;flex-direction:column;gap:1px}
+  .rail a{
+    display:block;padding:6px 0 6px 12px;font-size:13.5px;line-height:1.35;
+    color:var(--ink-2);text-decoration:none;border-left:2px solid var(--rule);
+    transition:color .15s, border-color .15s
+  }
+  .rail a:hover{color:var(--ink);border-left-color:var(--rule-strong)}
+  .rail a.active{color:var(--accent);border-left-color:var(--accent);font-weight:500}
+  .legend{border-top:1px solid var(--rule);padding-top:20px}
+  .legend dl{margin:0;display:flex;flex-direction:column;gap:10px}
+  .legend div{display:flex;flex-direction:column;gap:3px}
+  .legend dd{margin:0;font-size:12px;line-height:1.4;color:var(--ink-3)}
+
+  /* ---------- shortlist ---------- */
+  .shortlist{
+    background:var(--invert-bg);color:var(--invert-ink);
+    border-radius:3px;padding:32px 34px;margin:0 0 48px
+  }
+  .shortlist .eyebrow{color:var(--invert-accent);margin-bottom:10px}
+  .shortlist p.lede{
+    font-family:var(--f-display);font-size:17px;line-height:1.55;
+    color:var(--invert-ink-2);margin:0 0 26px;max-width:62ch
+  }
+  .shortlist ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+  .shortlist li{
+    display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;
+    padding:15px 0;border-top:1px solid var(--invert-rule);align-items:baseline
+  }
+  .shortlist li:first-child{border-top:0;padding-top:0}
+  .shortlist li:last-child{padding-bottom:0}
+  .rank{
+    font-family:var(--f-mono);font-size:22px;font-weight:500;
+    color:var(--invert-accent);font-variant-numeric:tabular-nums;letter-spacing:-.03em
+  }
+  .shortlist h3{
+    font-family:var(--f-body);font-size:15.5px;font-weight:600;margin:0 0 3px;line-height:1.35
+  }
+  .shortlist h3 a{color:var(--invert-ink);text-decoration:none;border-bottom:1px solid transparent}
+  .shortlist h3 a:hover{border-bottom-color:var(--invert-accent);color:var(--invert-ink)}
+  .shortlist .why{font-size:13.5px;line-height:1.5;color:var(--invert-ink-2);margin:0}
+
+  /* ---------- filter ---------- */
+  .filter{
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+    margin:0 0 34px;padding-bottom:20px;border-bottom:1px solid var(--rule)
+  }
+  .filter .lbl{
+    font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-3);margin-right:6px
+  }
+  .filter button{
+    font-family:var(--f-body);font-size:13px;color:var(--ink-2);
+    background:transparent;border:1px solid var(--rule-strong);border-radius:100px;
+    padding:5px 14px;cursor:pointer;transition:background .15s,color .15s,border-color .15s
+  }
+  .filter button:hover{color:var(--ink);border-color:var(--ink-3)}
+  .filter button[aria-pressed="true"]{
+    background:var(--accent);border-color:var(--accent);color:var(--surface);font-weight:500
+  }
+  :root[data-theme="dark"] .filter button[aria-pressed="true"],
+  .filter button[aria-pressed="true"]{color:#FFFFFF}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .filter button[aria-pressed="true"]{color:#0B1112}
+  }
+  :root[data-theme="dark"] .filter button[aria-pressed="true"]{color:#0B1112}
+  .count{font-family:var(--f-mono);font-size:12px;color:var(--ink-3);margin-left:auto;font-variant-numeric:tabular-nums}
+
+  /* ---------- fields ---------- */
+  [id]{scroll-margin-top:calc(var(--langbar-h) + 20px)}
+  .field{margin:0 0 52px}
+  .field-head{margin:0 0 20px}
+  .field-head .eyebrow{margin-bottom:8px;color:var(--ink-3)}
+  .field-head h2{
+    font-family:var(--f-display);font-weight:600;font-size:27px;line-height:1.2;
+    letter-spacing:-.01em;margin:0;text-wrap:balance
+  }
+  .field-head p{margin:8px 0 0;color:var(--ink-2);font-size:14.5px;max-width:64ch}
+
+  .entries{display:flex;flex-direction:column;gap:14px}
+  .idea{
+    background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+    padding:22px 24px;display:grid;grid-template-columns:1fr;gap:18px;
+    box-shadow:var(--shadow)
+  }
+  @media (min-width:760px){
+    .idea{grid-template-columns:minmax(0,1fr) 186px;gap:32px}
+  }
+  .idea.hidden{display:none}
+  .idea h3{
+    font-family:var(--f-body);font-size:16.5px;font-weight:600;line-height:1.35;
+    margin:0 0 8px;letter-spacing:-.005em;text-wrap:balance
+  }
+  .idea p{margin:0;font-size:14.5px;line-height:1.62;color:var(--ink-2);max-width:66ch}
+  .idea p + p{margin-top:8px}
+  .idea .src{color:var(--ink-3);font-size:13.5px}
+  .idea .src b{font-family:var(--f-mono);font-weight:400;font-size:12.5px;color:var(--ink-2)}
+
+  .meta{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+  @media (min-width:760px){.meta{border-left:1px solid var(--rule);padding-left:24px}}
+  .chip{
+    font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    padding:4px 9px;border-radius:2px;line-height:1.3
+  }
+  .chip[data-access="public"]{background:var(--accent-soft);color:var(--accent-2);border:1px solid transparent}
+  .chip[data-access="licensed"]{background:transparent;color:var(--ink-2);border:1px solid var(--rule-strong)}
+  .chip[data-access="restricted"]{background:transparent;color:var(--ink-3);border:1px dashed var(--rule-strong)}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .chip[data-access="public"]{color:var(--accent-2)}
+  }
+  :root[data-theme="dark"] .chip[data-access="public"]{color:var(--accent-2)}
+
+  .method{font-size:13px;color:var(--ink-2);line-height:1.4}
+  .method em{
+    display:block;font-family:var(--f-mono);font-style:normal;font-size:10.5px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:3px
+  }
+  .gauge{display:flex;flex-direction:column;gap:6px}
+  .gauge em{
+    font-family:var(--f-mono);font-style:normal;font-size:10.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-3)
+  }
+  .bars{display:flex;gap:3px}
+  .bars i{display:block;width:20px;height:5px;border-radius:1px;background:var(--surface-2)}
+  .bars i.on{background:var(--accent)}
+
+  /* ---------- closing ---------- */
+  .closing{
+    border-top:2px solid var(--ink);padding-top:28px;margin-top:16px
+  }
+  .closing h2{font-family:var(--f-display);font-size:26px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em}
+  .closing > p{color:var(--ink-2);font-size:15px;max-width:64ch;margin:0 0 26px}
+  .tests{display:grid;grid-template-columns:1fr;gap:20px;margin-bottom:34px}
+  @media (min-width:720px){.tests{grid-template-columns:repeat(3,1fr)}}
+  .test{border-top:1px solid var(--rule);padding-top:14px}
+  .test h3{
+    font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 8px;font-weight:500
+  }
+  .test p{margin:0;font-size:14px;line-height:1.6;color:var(--ink-2)}
+  .ask{background:var(--surface-2);border-radius:3px;padding:24px 26px}
+  .ask h3{font-family:var(--f-body);font-size:15px;font-weight:600;margin:0 0 12px}
+  .ask ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:7px}
+  .ask li{font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+  footer{border-top:1px solid var(--rule);margin-top:48px;padding-top:20px}
+  footer p{
+    font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;
+    color:var(--ink-3);margin:0
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;scroll-behavior:auto !important}
+  }
+  html{scroll-behavior:smooth}
+
+  /* ---------- language bar ---------- */
+  .langbar{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--rule)}
+  .langbar-inner{display:flex;align-items:center;gap:14px;height:var(--langbar-h);flex-wrap:wrap}
+  .langbar-label{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+  .langtabs{display:flex;gap:14px;margin-left:auto}
+  .langtab{
+    font-family:var(--f-mono);font-size:12.5px;letter-spacing:.04em;
+    background:transparent;border:0;border-bottom:2px solid transparent;
+    color:var(--ink-3);padding:0 2px;height:var(--langbar-h);cursor:pointer;
+    transition:color .15s,border-color .15s
+  }
+  .langtab:hover{color:var(--ink)}
+  .langtab[aria-pressed="true"]{color:var(--accent);border-bottom-color:var(--accent);font-weight:500}
+</style>
+
+<div class="langbar">
+  <div class="wrap langbar-inner">
+    <span class="langbar-label" data-i18n="ui.language">Language</span>
+    <div class="langtabs" data-i18n="ui.language" data-i18n-attr="aria-label">
+      <button type="button" class="langtab" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" class="langtab" data-lang="de" aria-pressed="false">DE</button>
+      <button type="button" class="langtab" data-lang="it" aria-pressed="false">IT</button>
+    </div>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="masthead.eyebrow">Master's thesis · candidate topics · 2026</p>
+    <h1 data-i18n="masthead.h1">Thesis Topics for 2026</h1>
+    <p class="standfirst" data-i18n="masthead.standfirst">Twenty-four researchable questions in business and economics, each with the data it needs and the identification strategy that would make it defensible. Picking well matters more than picking an interesting topic — so every entry is rated on whether you could actually finish it.</p>
+    <div class="facts">
+      <div class="fact"><b>24</b><span data-i18n="fact.questions">Questions</span></div>
+      <div class="fact"><b>8</b><span data-i18n="fact.fields">Fields</span></div>
+      <div class="fact"><b>15</b><span data-i18n="fact.public">On public data</span></div>
+      <div class="fact"><b>5</b><span data-i18n="fact.shortlisted">Shortlisted</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+<div class="wrap">
+
+  <aside class="rail">
+    <nav data-i18n="nav.heading" data-i18n-attr="aria-label">
+      <h2 data-i18n="nav.heading">Fields</h2>
+      <ol>
+        <li><a href="#ai-labor" data-i18n="nav.ai-labor">AI & labour markets</a></li>
+        <li><a href="#trade" data-i18n="nav.trade">Trade fragmentation</a></li>
+        <li><a href="#carbon" data-i18n="nav.carbon">Carbon policy</a></li>
+        <li><a href="#energy" data-i18n="nav.energy">Energy & data centres</a></li>
+        <li><a href="#finance" data-i18n="nav.finance">Finance</a></li>
+        <li><a href="#io" data-i18n="nav.io">Competition & pricing</a></li>
+        <li><a href="#consumer" data-i18n="nav.consumer">Consumer & industry</a></li>
+        <li><a href="#macro" data-i18n="nav.macro">Macro & public finance</a></li>
+      </ol>
+    </nav>
+    <div class="legend">
+      <h2 data-i18n="legend.heading">Reading the entries</h2>
+      <dl>
+        <div>
+          <dt><span class="chip" data-access="public" data-i18n="chip.public">Public data</span></dt>
+          <dd data-i18n="legend.public.desc">Downloadable today, no gatekeeper.</dd>
+        </div>
+        <div>
+          <dt><span class="chip" data-access="licensed" data-i18n="chip.licensed">Licensed</span></dt>
+          <dd data-i18n="legend.licensed.desc">Needs a university subscription such as WRDS or NielsenIQ.</dd>
+        </div>
+        <div>
+          <dt><span class="chip" data-access="restricted" data-i18n="chip.restricted">Application</span></dt>
+          <dd data-i18n="legend.restricted.desc">Research-data-centre access; months of lead time.</dd>
+        </div>
+        <div>
+          <dt><span class="gauge" style="margin-top:4px"><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></dt>
+          <dd data-i18n="legend.feasibility.desc">Feasibility: how likely this is to be a finished thesis rather than an abandoned one.</dd>
+        </div>
+      </dl>
+    </div>
+  </aside>
+
+  <main>
+
+    <section class="shortlist" aria-labelledby="shortlist-h">
+      <p class="eyebrow" data-i18n="shortlist.eyebrow">Where I would start</p>
+      <h2 id="shortlist-h" data-i18n="shortlist.h2" style="font-family:var(--f-display);font-weight:600;font-size:26px;margin:0 0 12px;letter-spacing:-.01em">The five strongest bets</h2>
+      <p class="lede" data-i18n="shortlist.lede">Ranked on the three things that decide whether a thesis finishes: data you can download today, a treatment with a date attached, and a control group you can define in one sentence.</p>
+      <ol>
+        <li>
+          <span class="rank">1</span>
+          <div>
+            <h3><a href="#cbam" data-i18n="shortlist.1.title">CBAM's definitive regime as a natural experiment</a></h3>
+            <p class="why" data-i18n="shortlist.1.why">The cleanest exogenous timing available to you right now. Treatment is defined by CN code, so the treated set writes itself.</p>
+          </div>
+        </li>
+        <li>
+          <span class="rank">2</span>
+          <div>
+            <h3><a href="#datacentres" data-i18n="shortlist.2.title">Do data centres raise local electricity prices?</a></h3>
+            <p class="why" data-i18n="shortlist.2.why">Politically live, genuinely under-researched, and every input is public. Siting announcements give you the event dates.</p>
+          </div>
+        </li>
+        <li>
+          <span class="rank">3</span>
+          <div>
+            <h3><a href="#fuel" data-i18n="shortlist.3.title">Algorithmic pricing and tacit collusion in fuel retail</a></h3>
+            <p class="why" data-i18n="shortlist.3.why">Germany's MTS-K gives you minute-level prices for every filling station in the country. Almost nobody outside IO knows it exists.</p>
+          </div>
+        </li>
+        <li>
+          <span class="rank">4</span>
+          <div>
+            <h3><a href="#prediction" data-i18n="shortlist.4.title">Prediction markets as forecasts</a></h3>
+            <p class="why" data-i18n="shortlist.4.why">Free API data, a novel question, and a scope you can shrink or grow. The safest way to guarantee a finished empirical thesis.</p>
+          </div>
+        </li>
+        <li>
+          <span class="rank">5</span>
+          <div>
+            <h3><a href="#glp1" data-i18n="shortlist.5.title">GLP-1 drugs and grocery spending</a></h3>
+            <p class="why" data-i18n="shortlist.5.why">A textbook treatment-intensity design with a real economic story — if your school has NielsenIQ or Circana access. Check that first.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <div class="filter">
+      <span class="lbl" data-i18n="filter.show">Show</span>
+      <button type="button" data-filter="all" aria-pressed="true" data-i18n="filter.all">Everything</button>
+      <button type="button" data-filter="public" aria-pressed="false" data-i18n="filter.public">Public data only</button>
+      <button type="button" data-filter="fast" aria-pressed="false" data-i18n="filter.fast">Fastest to finish</button>
+      <span class="count" id="count">24 of 24 shown</span>
+    </div>
+
+    <!-- 1 -->
+    <section class="field" id="ai-labor">
+      <div class="field-head">
+        <p class="eyebrow" data-i18n="field.ai-labor.eyebrow">Labour economics · applied micro</p>
+        <h2 data-i18n="field.ai-labor.h2">AI and labour markets</h2>
+        <p data-i18n="field.ai-labor.p">The most crowded area on this list, and still the richest. The trick is to find an outcome nobody has measured yet rather than re-running an exposure regression.</p>
+      </div>
+      <div class="entries">
+
+        <article class="idea" data-access="licensed" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.1.title">Is AI hollowing out the bottom rung of the career ladder?</h3>
+            <p data-i18n="idea.1.body">Test whether AI-exposed occupations cut junior postings faster than senior ones — the mechanism everyone asserts and few have measured. Map job postings to O*NET task-exposure scores in the Felten and Eloundou tradition, then run a difference-in-differences across occupations around late 2022.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.1.src">Lightcast or Indeed Hiring Lab posting microdata, O*NET, BLS OES.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="licensed" data-i18n="chip.licensed">Licensed</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.1.method">Difference-in-differences</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="licensed" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.2.title">Does AI talk on earnings calls predict anything real?</h3>
+            <p data-i18n="idea.2.body">Count AI mentions in transcripts, then look two to three years forward at revenue per employee, margins or measured TFP. A null result is publishable here: it would say the disclosure is cheap talk, which is itself the finding.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.2.src">Refinitiv or Seeking Alpha transcripts, Compustat, Capital IQ.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="licensed" data-i18n="chip.licensed">Licensed</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.2.method">Text analysis & firm panel</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="restricted" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.3.title">Does AI compress wages inside the firm?</h3>
+            <p data-i18n="idea.3.body">The experimental literature finds the largest gains at the bottom of the skill distribution. If that holds at scale, within-firm wage dispersion should be falling in adopting firms. This is the highest-value question here and the hardest to execute.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.3.src">IAB LIAB or the Danish employer–employee registers — apply early, lead times run to months.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="restricted" data-i18n="chip.restricted">Application</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.3.method">Linked employer–employee</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i></i><i></i></span></span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="field" id="trade">
+      <div class="field-head">
+        <p class="eyebrow" data-i18n="field.trade.eyebrow">International trade · policy evaluation</p>
+        <h2 data-i18n="field.trade.h2">Trade fragmentation and tariffs</h2>
+        <p data-i18n="field.trade.p">Tariff regimes create sharp, dated, well-documented shocks. The data is free, the institutions are legible, and supervisors know how to grade this work.</p>
+      </div>
+      <div class="entries">
+
+        <article class="idea" data-access="public" data-fast="yes">
+          <div>
+            <h3 data-i18n="idea.4.title">How much tariff evasion runs through third countries?</h3>
+            <p data-i18n="idea.4.body">Compare what the United States records importing from a country against what that country records exporting to the United States. The gap, cross-checked against surging re-exports from Vietnam and Mexico, measures transshipment. A classic mirror-statistics design, and unusually current.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.4.src">UN Comtrade mirror statistics, US Census trade data, national customs releases.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.4.method">Mirror-gap analysis</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="public" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.5.title">Who actually pays the tariff?</h3>
+            <p data-i18n="idea.5.body">Trace pass-through from border prices into shelf prices by product category, and ask where along the chain the incidence lands. The interesting variation is cross-category: brands with pricing power absorb, commodities pass through.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.5.src">BLS import/export price indices, CPI microdata, Census import values by HS code.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.5.method">Pass-through regression</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="licensed" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.6.title">Reshoring announcements versus reshoring capex</h3>
+            <p data-i18n="idea.6.body">Announcements are free; factories are not. Match reshoring press releases to subsequent property, plant and equipment in filings, and measure the conversion rate. The gap between the two is the paper.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.6.src">Reshoring Initiative announcements, company press releases, Compustat PP&E.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="licensed" data-i18n="chip.licensed">Licensed</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.6.method">Announcement–outcome matching</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="field" id="carbon">
+      <div class="field-head">
+        <p class="eyebrow" data-i18n="field.carbon.eyebrow">Environmental economics · natural experiment</p>
+        <h2 data-i18n="field.carbon.h2">Carbon policy as a natural experiment</h2>
+        <p data-i18n="field.carbon.p">Two live European policy changes with dates you did not choose — which is exactly what makes them worth using.</p>
+      </div>
+      <div class="entries">
+
+        <article class="idea" data-access="public" data-fast="yes" id="cbam">
+          <div>
+            <h3 data-i18n="idea.7.title">What did CBAM's definitive regime do to European sourcing?</h3>
+            <p data-i18n="idea.7.body">The carbon border adjustment moved from reporting-only to actual certificate obligations at the start of 2026, covering steel, cement, aluminium, fertiliser, hydrogen and electricity. Compare covered CN codes against near-neighbour codes that fall just outside scope, and measure import reallocation, price effects, or the pass-through onto non-EU exporters.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.7.src">Eurostat Comext at CN-8 level, EU ETS price series, national CBAM registry disclosures.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.7.method">DiD on CN-code scope</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="public" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.8.title">Greenhushing after the sustainability-reporting rollback</h3>
+            <p data-i18n="idea.8.body">The Omnibus simplification package cut the set of firms inside CSRD scope. Firms that fell out are a natural control-versus-treated split: did their disclosure volume drop, did the tone change, and did anything happen to their cost of capital? Tests whether the reporting was ever informative.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.8.src">Sustainability reports (scraped), ESG rating providers, bond spreads or Refinitiv equity data.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.8.method">Text analysis & DiD</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="field" id="energy">
+      <div class="field-head">
+        <p class="eyebrow" data-i18n="field.energy.eyebrow">Energy economics · spatial</p>
+        <h2 data-i18n="field.energy.h2">Energy, data centres and the grid</h2>
+        <p data-i18n="field.energy.p">The fastest-moving cost shock in the developed world right now, and the academic literature has barely started. Everything here runs on free grid and county data.</p>
+      </div>
+      <div class="entries">
+
+        <article class="idea" data-access="public" data-fast="yes" id="datacentres">
+          <div>
+            <h3 data-i18n="idea.9.title">Do data centres raise local electricity prices?</h3>
+            <p data-i18n="idea.9.body">Match hyperscaler siting announcements to wholesale price zones and run an event study on locational marginal prices, then check whether the effect reaches retail tariffs. The question is politically charged and empirically open — a good combination for a thesis with an audience beyond your committee.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.9.src">PJM Data Miner, ERCOT, or ENTSO-E Transparency; utility interconnection queues; company siting announcements.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.9.method">Event study on price zones</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="public" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.10.title">What does a data centre actually do for the local economy?</h3>
+            <p data-i18n="idea.10.body">Large construction bump, small permanent payroll, generous tax abatement. Use synthetic control on treated counties to price out whether the subsidies clear, and look at house prices and rents alongside employment.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.10.src">BLS QCEW county employment, county assessor records or Zillow ZHVI, state abatement filings.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.10.method">Synthetic control</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="public" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.11.title">Electricity prices and industrial location in Europe</h3>
+            <p data-i18n="idea.11.body">Do energy-intensive plants follow electricity prices across European borders after 2022? Be explicit about the confounders — the German fiscal expansion and defence procurement move the same regions at the same time, and handling that honestly is half the thesis.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.11.src">Eurostat industrial electricity prices, PRODCOM output, Orbis or national plant registers.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.11.method">Panel with regional exposure</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="field" id="finance">
+      <div class="field-head">
+        <p class="eyebrow" data-i18n="field.finance.eyebrow">Empirical finance</p>
+        <h2 data-i18n="field.finance.h2">Finance</h2>
+        <p data-i18n="field.finance.p">Two frontier topics, one safe replication. If you need certainty that you will have results by the deadline, the last entry is the insurance policy.</p>
+      </div>
+      <div class="entries">
+
+        <article class="idea" data-access="public" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.12.title">Does private credit remove bank risk or just relocate it?</h3>
+            <p data-i18n="idea.12.body">Banks have replaced direct corporate lending with lending to the funds doing the direct corporate lending. Trace the exposure end to end and ask whether the consolidated risk actually left the banking system, or simply acquired an extra layer.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.12.src">Fed H.8 releases, FR Y-9C call reports, BDC filings, LSTA/DealScan for the syndicated comparison.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.12.method">Exposure mapping & panel</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="public" data-fast="yes" id="prediction">
+          <div>
+            <h3 data-i18n="idea.13.title">Are prediction markets better forecasts than the experts?</h3>
+            <p data-i18n="idea.13.body">Score Kalshi and Polymarket prices against polls and analyst consensus on the same resolved events. Calibration curves, the favourite–longshot bias, and cross-venue arbitrage on identical contracts each make a chapter. Free API data and a scope you can dial up or down at will.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.13.src">Kalshi and Polymarket public APIs, FiveThirtyEight-style poll archives, IBES consensus for the financial contracts.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.13.method">Forecast evaluation</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="public" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.14.title">Stablecoin reserves and the front end of the curve</h3>
+            <p data-i18n="idea.14.body">Reserve requirements under the new US regime push issuers into Treasury bills. Size the demand, then test whether issuance growth moves bill yields or the bill–OIS spread. A clean bridge between crypto and money markets that avoids the usual crypto-thesis pitfalls.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.14.src">Issuer reserve attestations, TreasuryDirect auction results, FRED bill yields, on-chain supply series.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.14.method">Time series & demand estimation</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="licensed" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.15.title">Passive ownership and price informativeness in Europe</h3>
+            <p data-i18n="idea.15.body">Well-trodden ground in the US, thinner in Europe. Not the most original thesis on this list, and it is the one least likely to fail: the method is settled, the data is standard, and a competent replication with European institutional detail is a defensible contribution.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.15.src">WRDS, FactSet ownership, Compustat Global.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="licensed" data-i18n="chip.licensed">Licensed</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.15.method">Asset-pricing panel</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="field" id="io">
+      <div class="field-head">
+        <p class="eyebrow" data-i18n="field.io.eyebrow">Industrial organisation</p>
+        <h2 data-i18n="field.io.h2">Competition and pricing</h2>
+        <p data-i18n="field.io.p">Where the regulators are actively looking for evidence, which means a good thesis here has readers outside the university.</p>
+      </div>
+      <div class="entries">
+
+        <article class="idea" data-access="public" data-fast="yes" id="fuel">
+          <div>
+            <h3 data-i18n="idea.16.title">Do pricing algorithms collude without being told to?</h3>
+            <p data-i18n="idea.16.body">Germany's Markttransparenzstelle für Kraftstoffe publishes every price change at every filling station in the country, to the minute. Date the adoption of algorithmic repricing by station or chain and test for supracompetitive coordination afterwards — margins, price-cycle synchronisation, response asymmetry.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.16.src">MTS-K price history (free, registration required), Tankerkönig archives, station ownership records.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.16.method">High-frequency price panel</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="public" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.17.title">Personalised pricing and consumer welfare</h3>
+            <p data-i18n="idea.17.body">The behavioural route: run a vignette or incentivised experiment on willingness to accept personalised prices, and whether disclosure changes it. Choose this if you would rather design your own data than fight for someone else's.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.17.src">Self-collected via Prolific or a university subject pool; pre-register the design.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.self">Self-collected</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.17.method">Online experiment</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="public" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.18.title">Did banning drip pricing lower what people pay?</h3>
+            <p data-i18n="idea.18.body">Junk-fee rules arrived at different times in different jurisdictions, which gives you staggered adoption. Scrape headline and checkout prices for hotels, tickets or deliveries across the boundary and measure whether total prices fell or only their presentation changed.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.18.src">Scraped listing and checkout prices, regulatory effective dates by jurisdiction.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.18.method">Staggered DiD</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="field" id="consumer">
+      <div class="field-head">
+        <p class="eyebrow" data-i18n="field.consumer.eyebrow">Marketing science · applied micro</p>
+        <h2 data-i18n="field.consumer.h2">Consumer behaviour and industry disruption</h2>
+        <p data-i18n="field.consumer.p">Three shocks working through consumer-facing industries right now, each with a treatment intensity you can actually measure.</p>
+      </div>
+      <div class="entries">
+
+        <article class="idea" data-access="licensed" data-fast="yes" id="glp1">
+          <div>
+            <h3 data-i18n="idea.19.title">What do weight-loss drugs do to the grocery basket?</h3>
+            <p data-i18n="idea.19.body">Regional prescription penetration gives you a continuous treatment; scanner data gives you category-level outcomes. Snacks, alcohol and confectionery against staples is the obvious cut, and the substitution pattern within categories is the more interesting one.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.19.src">NielsenIQ or Circana scanner panels, IQVIA or state-level prescription statistics.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="licensed" data-i18n="chip.licensed">Licensed</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.19.method">Treatment-intensity DiD</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="licensed" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.20.title">Zero-click search and the economics of publishing</h3>
+            <p data-i18n="idea.20.body">AI answer panels rolled out on a staggered schedule by market and query type. Match that timing to referral traffic and advertising revenue for publishers, and ask what happens to the supply of the content the answers are built on.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.20.src">Similarweb or Semrush traffic, publisher filings and press disclosures, rollout dates by market.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="licensed" data-i18n="chip.licensed">Licensed</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.20.method">Staggered rollout DiD</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="licensed" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.21.title">What return-to-office mandates cost the firms that issue them</h3>
+            <p data-i18n="idea.21.body">Mandates are dated, public and firm-specific — a ready-made event study. Look at the announcement return, then at senior attrition in the following year, and ask whether the people who leave are the ones the firm could least afford to lose.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.21.src">Announcement dates from press coverage, LinkedIn or Revelio Labs profiles, CRSP returns.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="licensed" data-i18n="chip.licensed">Licensed</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.21.method">Event study & attrition panel</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section class="field" id="macro">
+      <div class="field-head">
+        <p class="eyebrow" data-i18n="field.macro.eyebrow">Macroeconomics · public finance</p>
+        <h2 data-i18n="field.macro.h2">Fiscal policy and public economics</h2>
+        <p data-i18n="field.macro.p">Europe's fiscal stance changed more in the last two years than in the preceding fifteen. Regional exposure gives you identification that pure time-series macro cannot.</p>
+      </div>
+      <div class="entries">
+
+        <article class="idea" data-access="public" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.22.title">Multipliers from Germany's infrastructure and defence turn</h3>
+            <p data-i18n="idea.22.body">Build a Bartik instrument from pre-existing regional exposure to defence contractors and construction, then estimate employment and output responses at Kreis level. The identifying assumption is that pre-period industry shares are unrelated to the shock — defend it carefully and you have a real macro thesis.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.22.src">Destatis regional accounts, Bundesagentur für Arbeit employment, federal procurement awards.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.22.method">Bartik / shift-share</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="public" data-fast="no">
+          <div>
+            <h3 data-i18n="idea.23.title">Does defence spending crowd out civilian research?</h3>
+            <p data-i18n="idea.23.body">As NATO members raise spending toward the new targets, something in the budget gives. Use a cross-country panel to ask what: civilian R&D, public investment, or transfers. Small N is the obvious weakness, so lean on within-country reallocation rather than cross-country levels.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.23.src">SIPRI military expenditure, OECD government budget appropriations for R&D, IMF GFS.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.23.method">Cross-country panel</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+        </article>
+
+        <article class="idea" data-access="public" data-fast="yes">
+          <div>
+            <h3 data-i18n="idea.24.title">Does upzoning actually lower rents?</h3>
+            <p data-i18n="idea.24.body">Auckland, Minneapolis and the recent European reforms give you dated, discrete supply-side interventions and untreated comparison cities. Synthetic control on rents and permits. The method is settled, the data is free, and the policy question is genuinely contested.</p>
+            <p class="src"><b data-i18n="lbl.data">Data:</b> <span data-i18n="idea.24.src">Municipal permit records, Zillow or national rent indices, OECD housing prices.</span></p>
+          </div>
+          <div class="meta">
+            <span class="chip" data-access="public" data-i18n="chip.public">Public data</span>
+            <span class="method"><em data-i18n="lbl.design">Design</em><span data-i18n="idea.24.method">Synthetic control</span></span>
+            <span class="gauge"><em data-i18n="lbl.feasibility">Feasibility</em><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="closing">
+      <h2 data-i18n="closing.h2">How to choose</h2>
+      <p data-i18n="closing.p">Theses fail on logistics far more often than on ideas. Before you commit to anything above, run it through these three tests — a topic that fails any one of them will cost you a term.</p>
+      <div class="tests">
+        <div class="test">
+          <h3 data-i18n="test.1.h3">Data today</h3>
+          <p data-i18n="test.1.p">You can download the core dataset this week, not data you hope to negotiate access to. An application in progress is not a dataset.</p>
+        </div>
+        <div class="test">
+          <h3 data-i18n="test.2.h3">A treatment with a date</h3>
+          <p data-i18n="test.2.p">Something changed, on a specific day, for reasons unrelated to your outcome. Without that you are writing correlations.</p>
+        </div>
+        <div class="test">
+          <h3 data-i18n="test.3.h3">A control group in one sentence</h3>
+          <p data-i18n="test.3.p">If you cannot name the comparison group without hedging, your identification is not ready and your defence will find the gap.</p>
+        </div>
+      </div>
+      <div class="ask">
+        <h3 data-i18n="ask.h3">To turn any of these into a full proposal, I need three things from you</h3>
+        <ul>
+          <li data-i18n="ask.1">Your programme — finance, management, or economics. It changes which of these a committee will accept.</li>
+          <li data-i18n="ask.2">Your econometrics comfort level, honestly. Staggered DiD and synthetic control are not the same lift as a pass-through regression.</li>
+          <li data-i18n="ask.3">Whether your university has WRDS, NielsenIQ or research-data-centre access. This alone eliminates about a third of the list.</li>
+        </ul>
+      </div>
+      <footer>
+        <p data-i18n="footer.p">Compiled 2 September 2026 · 24 questions · feasibility ratings are judgement, not measurement</p>
+      </footer>
+    </section>
+
+  </main>
+</div>
+</div>
+
+<script>
+(function(){
+  var STRINGS = {"ui.language":{"en":"Language","de":"Sprache","it":"Lingua"},"masthead.eyebrow":{"en":"Master's thesis · candidate topics · 2026","de":"Masterarbeit · Themenvorschläge · 2026","it":"Tesi magistrale · proposte di argomenti · 2026"},"masthead.h1":{"en":"Thesis Topics for 2026","de":"Masterarbeitsthemen 2026","it":"Argomenti di tesi per il 2026"},"masthead.standfirst":{"en":"Twenty-four researchable questions in business and economics, each with the data it needs and the identification strategy that would make it defensible. Picking well matters more than picking an interesting topic — so every entry is rated on whether you could actually finish it.","de":"Vierundzwanzig erforschbare Fragen aus Wirtschaft und Volkswirtschaftslehre, jede mit den nötigen Daten und der Identifikationsstrategie, die sie verteidigungsfähig macht. Die richtige Wahl zählt mehr als ein interessantes Thema — deshalb ist jeder Eintrag danach bewertet, ob Sie ihn tatsächlich fertigstellen könnten.","it":"Ventiquattro domande di ricerca in economia aziendale ed economia, ciascuna con i dati necessari e la strategia di identificazione che la renderebbe difendibile. Scegliere bene conta più che scegliere un argomento interessante: per questo ogni voce è valutata in base alla probabilità che tu riesca davvero a portarla a termine."},"fact.questions":{"en":"Questions","de":"Fragen","it":"Domande"},"fact.fields":{"en":"Fields","de":"Bereiche","it":"Aree"},"fact.public":{"en":"On public data","de":"Mit offenen Daten","it":"Con dati pubblici"},"fact.shortlisted":{"en":"Shortlisted","de":"In der Auswahl","it":"Selezionate"},"nav.heading":{"en":"Fields","de":"Bereiche","it":"Aree"},"nav.ai-labor":{"en":"AI & labour markets","de":"KI & Arbeitsmarkt","it":"IA e mercato del lavoro"},"nav.trade":{"en":"Trade fragmentation","de":"Handelsfragmentierung","it":"Frammentazione del commercio"},"nav.carbon":{"en":"Carbon policy","de":"Klimapolitik","it":"Politica climatica"},"nav.energy":{"en":"Energy & data centres","de":"Energie & Rechenzentren","it":"Energia e data center"},"nav.finance":{"en":"Finance","de":"Finanzen","it":"Finanza"},"nav.io":{"en":"Competition & pricing","de":"Wettbewerb & Preise","it":"Concorrenza e prezzi"},"nav.consumer":{"en":"Consumer & industry","de":"Konsum & Branchen","it":"Consumo e settori"},"nav.macro":{"en":"Macro & public finance","de":"Makro & Staatsfinanzen","it":"Macroeconomia e finanza pubblica"},"legend.heading":{"en":"Reading the entries","de":"So liest du die Einträge","it":"Come leggere le voci"},"legend.public.desc":{"en":"Downloadable today, no gatekeeper.","de":"Heute herunterladbar, kein Gatekeeper.","it":"Scaricabili oggi stesso, senza intermediari."},"legend.licensed.desc":{"en":"Needs a university subscription such as WRDS or NielsenIQ.","de":"Erfordert ein Universitätsabonnement wie WRDS oder NielsenIQ.","it":"Richiede un abbonamento universitario come WRDS o NielsenIQ."},"legend.restricted.desc":{"en":"Research-data-centre access; months of lead time.","de":"Zugang über ein Forschungsdatenzentrum; Vorlaufzeit von mehreren Monaten.","it":"Accesso tramite un centro dati di ricerca; tempi di attesa di alcuni mesi."},"legend.feasibility.desc":{"en":"Feasibility: how likely this is to be a finished thesis rather than an abandoned one.","de":"Machbarkeit: wie wahrscheinlich es ist, dass daraus eine fertige statt einer abgebrochenen Arbeit wird.","it":"Fattibilità: quanto è probabile che diventi una tesi conclusa e non una abbandonata."},"chip.public":{"en":"Public data","de":"Offene Daten","it":"Dati pubblici"},"chip.licensed":{"en":"Licensed","de":"Lizenzpflichtig","it":"Su licenza"},"chip.restricted":{"en":"Application","de":"Auf Antrag","it":"Su domanda"},"chip.self":{"en":"Self-collected","de":"Selbst erhoben","it":"Raccolti in proprio"},"lbl.data":{"en":"Data:","de":"Daten:","it":"Dati:"},"lbl.design":{"en":"Design","de":"Ansatz","it":"Metodo"},"lbl.feasibility":{"en":"Feasibility","de":"Machbarkeit","it":"Fattibilità"},"shortlist.eyebrow":{"en":"Where I would start","de":"Wo ich anfangen würde","it":"Da dove comincerei"},"shortlist.h2":{"en":"The five strongest bets","de":"Die fünf stärksten Optionen","it":"Le cinque scommesse migliori"},"shortlist.lede":{"en":"Ranked on the three things that decide whether a thesis finishes: data you can download today, a treatment with a date attached, and a control group you can define in one sentence.","de":"Bewertet nach den drei Dingen, die darüber entscheiden, ob eine Arbeit fertig wird: Daten, die man heute herunterladen kann, eine Intervention mit einem Datum, und eine Kontrollgruppe, die sich in einem Satz definieren lässt.","it":"Classificate in base alle tre cose che decidono se una tesi arriva alla fine: dati scaricabili oggi, un trattamento con una data precisa e un gruppo di controllo definibile in una frase."},"shortlist.1.title":{"en":"CBAM's definitive regime as a natural experiment","de":"CBAMs endgültige Phase als natürliches Experiment","it":"Il regime definitivo del CBAM come esperimento naturale"},"shortlist.1.why":{"en":"The cleanest exogenous timing available to you right now. Treatment is defined by CN code, so the treated set writes itself.","de":"Das sauberste exogene Timing, das derzeit verfügbar ist. Die Behandlung ist über den KN-Code definiert, die Treatment-Gruppe ergibt sich von selbst.","it":"La tempistica esogena più pulita disponibile in questo momento. Il trattamento è definito dal codice NC, quindi il gruppo trattato si definisce da sé."},"shortlist.2.title":{"en":"Do data centres raise local electricity prices?","de":"Lassen Rechenzentren die lokalen Strompreise steigen?","it":"I data center fanno salire i prezzi locali dell'elettricità?"},"shortlist.2.why":{"en":"Politically live, genuinely under-researched, and every input is public. Siting announcements give you the event dates.","de":"Politisch hochaktuell, wissenschaftlich kaum erschlossen, und jede Datenquelle ist öffentlich. Standortankündigungen liefern die Ereignisdaten.","it":"Un tema politicamente scottante, davvero poco studiato, e ogni input è pubblico. Gli annunci di localizzazione forniscono le date degli eventi."},"shortlist.3.title":{"en":"Algorithmic pricing and tacit collusion in fuel retail","de":"Algorithmische Preissetzung und stillschweigende Absprachen im Kraftstoffhandel","it":"Prezzi algoritmici e collusione tacita nella vendita di carburante"},"shortlist.3.why":{"en":"Germany's MTS-K gives you minute-level prices for every filling station in the country. Almost nobody outside IO knows it exists.","de":"Die deutsche MTS-K liefert minutengenaue Preise für jede Tankstelle im Land. Außerhalb der Industrieökonomik weiß kaum jemand, dass es sie gibt.","it":"La banca dati tedesca MTS-K fornisce prezzi al minuto per ogni stazione di servizio del paese. Quasi nessuno al di fuori dell'organizzazione industriale sa che esiste."},"shortlist.4.title":{"en":"Prediction markets as forecasts","de":"Prognosemärkte als Vorhersageinstrument","it":"I mercati predittivi come strumento di previsione"},"shortlist.4.why":{"en":"Free API data, a novel question, and a scope you can shrink or grow. The safest way to guarantee a finished empirical thesis.","de":"Kostenlose API-Daten, eine neuartige Fragestellung und ein Umfang, den man beliebig anpassen kann. Der sicherste Weg zu einer garantiert fertigen empirischen Arbeit.","it":"Dati API gratuiti, una domanda originale e un perimetro che puoi restringere o ampliare a piacere. Il modo più sicuro per garantirti una tesi empirica conclusa."},"shortlist.5.title":{"en":"GLP-1 drugs and grocery spending","de":"GLP-1-Medikamente und Lebensmittelausgaben","it":"Farmaci GLP-1 e spesa alimentare"},"shortlist.5.why":{"en":"A textbook treatment-intensity design with a real economic story — if your school has NielsenIQ or Circana access. Check that first.","de":"Ein lehrbuchreifes Treatment-Intensity-Design mit einer echten ökonomischen Geschichte dahinter — vorausgesetzt, Ihre Hochschule hat Zugang zu NielsenIQ oder Circana. Das zuerst klären.","it":"Un disegno da manuale basato sull'intensità del trattamento, con una storia economica autentica alle spalle — a patto che il tuo ateneo abbia accesso a NielsenIQ o Circana. Verificalo per primo."},"filter.show":{"en":"Show","de":"Anzeigen","it":"Mostra"},"filter.all":{"en":"Everything","de":"Alles","it":"Tutto"},"filter.public":{"en":"Public data only","de":"Nur offene Daten","it":"Solo dati pubblici"},"filter.fast":{"en":"Fastest to finish","de":"Am schnellsten machbar","it":"Le più rapide da completare"},"field.ai-labor.eyebrow":{"en":"Labour economics · applied micro","de":"Arbeitsökonomik · angewandte Mikroökonomie","it":"Economia del lavoro · microeconomia applicata"},"field.ai-labor.h2":{"en":"AI and labour markets","de":"KI und Arbeitsmärkte","it":"IA e mercati del lavoro"},"field.ai-labor.p":{"en":"The most crowded area on this list, and still the richest. The trick is to find an outcome nobody has measured yet rather than re-running an exposure regression.","de":"Der am dichtesten beforschte Bereich dieser Liste — und immer noch der ergiebigste. Der Trick besteht darin, ein Ergebnis zu finden, das noch niemand gemessen hat, statt eine weitere Expositionsregression laufen zu lassen.","it":"L'area più affollata di questo elenco, e ancora la più ricca. Il trucco è trovare un esito che nessuno ha ancora misurato, invece di rifare l'ennesima regressione sull'esposizione."},"field.trade.eyebrow":{"en":"International trade · policy evaluation","de":"Außenhandel · Politikevaluation","it":"Commercio internazionale · valutazione delle politiche"},"field.trade.h2":{"en":"Trade fragmentation and tariffs","de":"Handelsfragmentierung und Zölle","it":"Frammentazione commerciale e dazi"},"field.trade.p":{"en":"Tariff regimes create sharp, dated, well-documented shocks. The data is free, the institutions are legible, and supervisors know how to grade this work.","de":"Zollregime erzeugen scharfe, datierte, gut dokumentierte Schocks. Die Daten sind kostenlos, die Institutionen sind nachvollziehbar, und Betreuer wissen, wie man solche Arbeiten bewertet.","it":"I regimi tariffari generano shock netti, datati e ben documentati. I dati sono gratuiti, le istituzioni sono trasparenti, e i relatori sanno come valutare questo tipo di lavoro."},"field.carbon.eyebrow":{"en":"Environmental economics · natural experiment","de":"Umweltökonomik · natürliches Experiment","it":"Economia ambientale · esperimento naturale"},"field.carbon.h2":{"en":"Carbon policy as a natural experiment","de":"Klimapolitik als natürliches Experiment","it":"La politica climatica come esperimento naturale"},"field.carbon.p":{"en":"Two live European policy changes with dates you did not choose — which is exactly what makes them worth using.","de":"Zwei laufende europäische Politikänderungen mit Stichtagen, die Sie sich nicht ausgesucht haben — genau das macht sie so wertvoll.","it":"Due cambiamenti normativi europei in corso, con date che non hai scelto tu — ed è esattamente questo a renderli utilizzabili."},"field.energy.eyebrow":{"en":"Energy economics · spatial","de":"Energieökonomik · räumlich","it":"Economia dell'energia · analisi spaziale"},"field.energy.h2":{"en":"Energy, data centres and the grid","de":"Energie, Rechenzentren und das Stromnetz","it":"Energia, data center e rete elettrica"},"field.energy.p":{"en":"The fastest-moving cost shock in the developed world right now, and the academic literature has barely started. Everything here runs on free grid and county data.","de":"Der derzeit am schnellsten fortschreitende Kostenschock in der entwickelten Welt, und die Forschung dazu steht noch ganz am Anfang. Alles hier stützt sich auf frei verfügbare Netz- und Kreisdaten.","it":"Lo shock di costo che si muove più rapidamente nel mondo sviluppato in questo momento, e la letteratura accademica è appena agli inizi. Tutto qui si basa su dati di rete e distrettuali gratuiti."},"field.finance.eyebrow":{"en":"Empirical finance","de":"Empirische Finanzwirtschaft","it":"Finanza empirica"},"field.finance.h2":{"en":"Finance","de":"Finanzen","it":"Finanza"},"field.finance.p":{"en":"Two frontier topics, one safe replication. If you need certainty that you will have results by the deadline, the last entry is the insurance policy.","de":"Zwei Grenzthemen, eine sichere Replikation. Wer Gewissheit braucht, bis zur Abgabefrist Ergebnisse zu haben, greift zum letzten Eintrag als Versicherung.","it":"Due temi di frontiera, una replica sicura. Se ti serve la certezza di avere risultati entro la scadenza, l'ultima voce è la polizza assicurativa."},"field.io.eyebrow":{"en":"Industrial organisation","de":"Industrieökonomik","it":"Organizzazione industriale"},"field.io.h2":{"en":"Competition and pricing","de":"Wettbewerb und Preissetzung","it":"Concorrenza e formazione dei prezzi"},"field.io.p":{"en":"Where the regulators are actively looking for evidence, which means a good thesis here has readers outside the university.","de":"Ein Bereich, in dem Regulierungsbehörden aktiv nach Evidenz suchen — eine gute Arbeit findet hier also Leser außerhalb der Universität.","it":"Un ambito in cui i regolatori cercano attivamente prove concrete: una buona tesi qui trova lettori anche fuori dall'università."},"field.consumer.eyebrow":{"en":"Marketing science · applied micro","de":"Marketingwissenschaft · angewandte Mikroökonomie","it":"Scienza del marketing · microeconomia applicata"},"field.consumer.h2":{"en":"Consumer behaviour and industry disruption","de":"Verbraucherverhalten und Branchenumbrüche","it":"Comportamento dei consumatori e sconvolgimenti settoriali"},"field.consumer.p":{"en":"Three shocks working through consumer-facing industries right now, each with a treatment intensity you can actually measure.","de":"Drei Schocks, die derzeit konsumnahe Branchen durchlaufen, jeder mit einer Treatment-Intensität, die sich tatsächlich messen lässt.","it":"Tre shock che stanno attraversando i settori a contatto con il consumatore in questo momento, ciascuno con un'intensità di trattamento realmente misurabile."},"field.macro.eyebrow":{"en":"Macroeconomics · public finance","de":"Makroökonomik · Staatsfinanzen","it":"Macroeconomia · finanza pubblica"},"field.macro.h2":{"en":"Fiscal policy and public economics","de":"Fiskalpolitik und öffentliche Wirtschaft","it":"Politica fiscale ed economia pubblica"},"field.macro.p":{"en":"Europe's fiscal stance changed more in the last two years than in the preceding fifteen. Regional exposure gives you identification that pure time-series macro cannot.","de":"Europas fiskalische Ausrichtung hat sich in den letzten zwei Jahren stärker verändert als in den fünfzehn Jahren zuvor. Regionale Exposition liefert eine Identifikationsstrategie, die reine Zeitreihenmakroökonomik nicht bieten kann.","it":"L'orientamento fiscale dell'Europa è cambiato più negli ultimi due anni che nei quindici precedenti. L'esposizione regionale offre una strategia di identificazione che la macroeconomia delle sole serie storiche non può dare."},"idea.1.title":{"en":"Is AI hollowing out the bottom rung of the career ladder?","de":"Höhlt KI die unterste Sprosse der Karriereleiter aus?","it":"L'IA sta svuotando il gradino più basso della scala di carriera?"},"idea.1.body":{"en":"Test whether AI-exposed occupations cut junior postings faster than senior ones — the mechanism everyone asserts and few have measured. Map job postings to O*NET task-exposure scores in the Felten and Eloundou tradition, then run a difference-in-differences across occupations around late 2022.","de":"Prüft, ob KI-exponierte Berufe ihre Einstiegsstellen schneller abbauen als Senior-Positionen — der Mechanismus, den alle behaupten und kaum jemand gemessen hat. Stellenanzeigen werden dazu, in der Tradition von Felten und Eloundou, auf O*NET-Expositionswerte gemappt, anschließend folgt eine Differenz-von-Differenzen-Schätzung über Berufe hinweg um Ende 2022.","it":"Verifica se le occupazioni esposte all'IA riducono le posizioni junior più rapidamente di quelle senior — il meccanismo che tutti danno per scontato e quasi nessuno ha misurato. Gli annunci di lavoro vengono associati ai punteggi di esposizione O*NET nella tradizione di Felten ed Eloundou, poi si stima un modello differenze-in-differenze tra occupazioni attorno alla fine del 2022."},"idea.1.src":{"en":"Lightcast or Indeed Hiring Lab posting microdata, O*NET, BLS OES.","de":"Stellenanzeigen-Mikrodaten von Lightcast oder Indeed Hiring Lab, O*NET, BLS OES.","it":"Microdati sugli annunci di lavoro di Lightcast o Indeed Hiring Lab, O*NET, BLS OES."},"idea.1.method":{"en":"Difference-in-differences","de":"Differenz-von-Differenzen","it":"Differenze-in-differenze"},"idea.2.title":{"en":"Does AI talk on earnings calls predict anything real?","de":"Sagt KI-Gerede in Earnings Calls irgendetwas Reales voraus?","it":"I riferimenti all'IA nelle earnings call predicono qualcosa di reale?"},"idea.2.body":{"en":"Count AI mentions in transcripts, then look two to three years forward at revenue per employee, margins or measured TFP. A null result is publishable here: it would say the disclosure is cheap talk, which is itself the finding.","de":"Zählt KI-Erwähnungen in Transkripten und blickt anschließend zwei bis drei Jahre voraus auf Umsatz pro Mitarbeiter, Margen oder gemessene TFP. Ein Nullresultat wäre hier publizierbar: Es würde bedeuten, dass die Ankündigungen bloßes Gerede sind — und genau das wäre der Befund.","it":"Conta le menzioni dell'IA nelle trascrizioni, poi osserva due o tre anni dopo ricavi per dipendente, margini o la produttività totale dei fattori misurata. Un risultato nullo sarebbe qui pubblicabile: significherebbe che le dichiarazioni sono solo chiacchiere — ed è proprio questo il risultato."},"idea.2.src":{"en":"Refinitiv or Seeking Alpha transcripts, Compustat, Capital IQ.","de":"Transkripte von Refinitiv oder Seeking Alpha, Compustat, Capital IQ.","it":"Trascrizioni di Refinitiv o Seeking Alpha, Compustat, Capital IQ."},"idea.2.method":{"en":"Text analysis & firm panel","de":"Textanalyse & Firmenpanel","it":"Analisi testuale e panel d'impresa"},"idea.3.title":{"en":"Does AI compress wages inside the firm?","de":"Staucht KI die Löhne innerhalb der Firma?","it":"L'IA comprime i salari all'interno dell'impresa?"},"idea.3.body":{"en":"The experimental literature finds the largest gains at the bottom of the skill distribution. If that holds at scale, within-firm wage dispersion should be falling in adopting firms. This is the highest-value question here and the hardest to execute.","de":"Die experimentelle Literatur findet die größten Zugewinne am unteren Ende der Qualifikationsverteilung. Falls das im großen Maßstab gilt, müsste die firmeninterne Lohnstreuung in Unternehmen, die KI einführen, sinken. Dies ist die wertvollste Frage auf dieser Liste — und die am schwersten umzusetzende.","it":"La letteratura sperimentale trova i guadagni maggiori nella parte bassa della distribuzione delle competenze. Se questo vale su larga scala, la dispersione salariale interna alle imprese dovrebbe ridursi in quelle che adottano l'IA. È la domanda di maggior valore di questo elenco, e la più difficile da realizzare."},"idea.3.src":{"en":"IAB LIAB or the Danish employer–employee registers — apply early, lead times run to months.","de":"IAB-LIAB oder die dänischen Arbeitgeber-Arbeitnehmer-Register — früh beantragen, Vorlaufzeiten liegen bei mehreren Monaten.","it":"Registri IAB-LIAB o i registri abbinati datore di lavoro-lavoratore danesi — richiedi l'accesso per tempo, i tempi di attesa arrivano a diversi mesi."},"idea.3.method":{"en":"Linked employer–employee","de":"Verknüpfte Arbeitgeber-Arbeitnehmer-Daten","it":"Dati abbinati datore di lavoro-lavoratore"},"idea.4.title":{"en":"How much tariff evasion runs through third countries?","de":"Wie viel Zollumgehung läuft über Drittländer?","it":"Quanta elusione tariffaria passa attraverso paesi terzi?"},"idea.4.body":{"en":"Compare what the United States records importing from a country against what that country records exporting to the United States. The gap, cross-checked against surging re-exports from Vietnam and Mexico, measures transshipment. A classic mirror-statistics design, and unusually current.","de":"Vergleicht, was die USA als Importe aus einem Land erfassen, mit dem, was jenes Land als Exporte in die USA meldet. Die Lücke, abgeglichen mit den stark steigenden Reexporten aus Vietnam und Mexiko, misst den Umladungshandel. Ein klassisches Spiegelstatistik-Design — und ungewöhnlich aktuell.","it":"Confronta ciò che gli Stati Uniti registrano come importazioni da un paese con ciò che quel paese registra come esportazioni verso gli Stati Uniti. Il divario, verificato incrociando l'impennata delle riesportazioni da Vietnam e Messico, misura il transhipment. Un classico disegno a statistiche speculari, e insolitamente attuale."},"idea.4.src":{"en":"UN Comtrade mirror statistics, US Census trade data, national customs releases.","de":"UN-Comtrade-Spiegelstatistiken, US-Census-Handelsdaten, nationale Zollveröffentlichungen.","it":"Statistiche speculari UN Comtrade, dati commerciali US Census, pubblicazioni doganali nazionali."},"idea.4.method":{"en":"Mirror-gap analysis","de":"Spiegelstatistik-Differenzanalyse","it":"Analisi del divario tra statistiche speculari"},"idea.5.title":{"en":"Who actually pays the tariff?","de":"Wer zahlt den Zoll eigentlich?","it":"Chi paga davvero il dazio?"},"idea.5.body":{"en":"Trace pass-through from border prices into shelf prices by product category, and ask where along the chain the incidence lands. The interesting variation is cross-category: brands with pricing power absorb, commodities pass through.","de":"Verfolgt die Überwälzung von Grenzpreisen auf Regalpreise nach Produktkategorie und fragt, wo entlang der Kette die Last tatsächlich landet. Die interessante Variation liegt zwischen den Kategorien: Marken mit Preissetzungsmacht absorbieren, bei Commodities wird durchgereicht.","it":"Segue la traslazione dai prezzi di frontiera ai prezzi di scaffale per categoria di prodotto, chiedendosi dove lungo la catena si scarichi effettivamente l'onere. La variazione interessante è tra categorie: i marchi con potere di prezzo assorbono, le commodity trasferiscono il costo a valle."},"idea.5.src":{"en":"BLS import/export price indices, CPI microdata, Census import values by HS code.","de":"BLS-Import-/Exportpreisindizes, VPI-Mikrodaten, Census-Importwerte nach HS-Code.","it":"Indici dei prezzi all'importazione ed esportazione BLS, microdati CPI, valori delle importazioni Census per codice HS."},"idea.5.method":{"en":"Pass-through regression","de":"Überwälzungs-Regression","it":"Regressione di traslazione"},"idea.6.title":{"en":"Reshoring announcements versus reshoring capex","de":"Reshoring-Ankündigungen versus tatsächliche Reshoring-Investitionen","it":"Annunci di reshoring contro investimenti effettivi di reshoring"},"idea.6.body":{"en":"Announcements are free; factories are not. Match reshoring press releases to subsequent property, plant and equipment in filings, and measure the conversion rate. The gap between the two is the paper.","de":"Ankündigungen sind kostenlos, Fabriken nicht. Reshoring-Pressemitteilungen werden mit den nachfolgenden Sachanlagen in den Geschäftsberichten abgeglichen, um die Umsetzungsquote zu messen. Die Lücke zwischen beidem ist die Arbeit.","it":"Gli annunci sono gratuiti, le fabbriche no. I comunicati stampa sul reshoring vengono confrontati con gli immobili, impianti e macchinari registrati successivamente nei bilanci, per misurare il tasso di conversione. Il divario tra i due è la tesi."},"idea.6.src":{"en":"Reshoring Initiative announcements, company press releases, Compustat PP&E.","de":"Ankündigungen der Reshoring Initiative, Unternehmenspressemitteilungen, Compustat-Sachanlagen (PP&E).","it":"Annunci della Reshoring Initiative, comunicati stampa aziendali, immobilizzazioni materiali (PP&E) Compustat."},"idea.6.method":{"en":"Announcement–outcome matching","de":"Ankündigungs-Ergebnis-Abgleich","it":"Confronto annuncio-risultato"},"idea.7.title":{"en":"What did CBAM's definitive regime do to European sourcing?","de":"Was hat die endgültige CBAM-Phase mit dem europäischen Bezug gemacht?","it":"Cosa ha prodotto il regime definitivo del CBAM sugli approvvigionamenti europei?"},"idea.7.body":{"en":"The carbon border adjustment moved from reporting-only to actual certificate obligations at the start of 2026, covering steel, cement, aluminium, fertiliser, hydrogen and electricity. Compare covered CN codes against near-neighbour codes that fall just outside scope, and measure import reallocation, price effects, or the pass-through onto non-EU exporters.","de":"Der CO2-Grenzausgleich ist Anfang 2026 von der reinen Berichtspflicht zu tatsächlichen Zertifikatspflichten übergegangen und erfasst nun Stahl, Zement, Aluminium, Düngemittel, Wasserstoff und Strom. Erfasste KN-Codes werden mit knapp außerhalb des Geltungsbereichs liegenden Nachbarcodes verglichen, um Importverlagerung, Preiseffekte oder die Überwälzung auf Nicht-EU-Exporteure zu messen.","it":"Il meccanismo di adeguamento del carbonio alla frontiera è passato, all'inizio del 2026, dal semplice obbligo di rendicontazione a veri e propri obblighi di certificato, coprendo acciaio, cemento, alluminio, fertilizzanti, idrogeno ed elettricità. I codici NC coperti vengono confrontati con codici affini appena fuori dall'ambito di applicazione, per misurare la riallocazione delle importazioni, gli effetti sui prezzi o la traslazione sugli esportatori extra-UE."},"idea.7.src":{"en":"Eurostat Comext at CN-8 level, EU ETS price series, national CBAM registry disclosures.","de":"Eurostat Comext auf KN-8-Ebene, EU-ETS-Preisreihen, nationale CBAM-Registerveröffentlichungen.","it":"Eurostat Comext a livello NC-8, serie storiche dei prezzi EU ETS, comunicazioni dei registri CBAM nazionali."},"idea.7.method":{"en":"DiD on CN-code scope","de":"DiD nach KN-Code-Geltungsbereich","it":"DiD sull'ambito dei codici NC"},"idea.8.title":{"en":"Greenhushing after the sustainability-reporting rollback","de":"Greenhushing nach der Rücknahme der Nachhaltigkeitsberichtspflicht","it":"Il greenhushing dopo il ridimensionamento degli obblighi di rendicontazione"},"idea.8.body":{"en":"The Omnibus simplification package cut the set of firms inside CSRD scope. Firms that fell out are a natural control-versus-treated split: did their disclosure volume drop, did the tone change, and did anything happen to their cost of capital? Tests whether the reporting was ever informative.","de":"Das Omnibus-Vereinfachungspaket hat den Kreis der unter die CSRD fallenden Unternehmen verkleinert. Unternehmen, die herausgefallen sind, ergeben eine natürliche Aufteilung in Kontroll- und Treatment-Gruppe: Ist ihr Berichtsvolumen gesunken, hat sich der Ton verändert, und hat sich etwas bei ihren Kapitalkosten getan? Testet, ob die Berichterstattung überhaupt je informativ war.","it":"Il pacchetto di semplificazione Omnibus ha ridotto l'insieme di imprese soggette alla CSRD. Le imprese uscite dall'ambito di applicazione offrono una naturale suddivisione tra gruppo di controllo e gruppo trattato: il volume delle loro comunicazioni è calato, il tono è cambiato, e il costo del capitale ne ha risentito? Verifica se quella rendicontazione fosse mai stata davvero informativa."},"idea.8.src":{"en":"Sustainability reports (scraped), ESG rating providers, bond spreads or Refinitiv equity data.","de":"Nachhaltigkeitsberichte (gescrapt), ESG-Ratinganbieter, Anleihespreads oder Refinitiv-Aktiendaten.","it":"Report di sostenibilità (raccolti tramite scraping), fornitori di rating ESG, spread obbligazionari o dati azionari Refinitiv."},"idea.8.method":{"en":"Text analysis & DiD","de":"Textanalyse & DiD","it":"Analisi testuale e DiD"},"idea.9.title":{"en":"Do data centres raise local electricity prices?","de":"Lassen Rechenzentren die lokalen Strompreise steigen?","it":"I data center fanno salire i prezzi locali dell'elettricità?"},"idea.9.body":{"en":"Match hyperscaler siting announcements to wholesale price zones and run an event study on locational marginal prices, then check whether the effect reaches retail tariffs. The question is politically charged and empirically open — a good combination for a thesis with an audience beyond your committee.","de":"Standortankündigungen von Hyperscalern werden mit Großhandelspreiszonen abgeglichen, gefolgt von einer Ereignisstudie zu lokal differenzierten Grenzpreisen; anschließend wird geprüft, ob der Effekt bis zu den Endkundentarifen durchschlägt. Die Frage ist politisch aufgeladen und empirisch offen — eine gute Kombination für eine Arbeit, die auch außerhalb des Prüfungsausschusses Leser findet.","it":"Gli annunci di localizzazione degli hyperscaler vengono abbinati alle zone di prezzo all'ingrosso, con un event study sui prezzi marginali locazionali; si verifica poi se l'effetto arrivi fino alle tariffe al dettaglio. La domanda è politicamente delicata ed empiricamente aperta — una buona combinazione per una tesi che trova lettori anche fuori dalla commissione."},"idea.9.src":{"en":"PJM Data Miner, ERCOT, or ENTSO-E Transparency; utility interconnection queues; company siting announcements.","de":"PJM Data Miner, ERCOT oder ENTSO-E Transparency; Netzanschluss-Warteschlangen der Versorger; Standortankündigungen der Unternehmen.","it":"PJM Data Miner, ERCOT o ENTSO-E Transparency; code di allacciamento delle utility; annunci di localizzazione delle aziende."},"idea.9.method":{"en":"Event study on price zones","de":"Ereignisstudie zu Preiszonen","it":"Event study sulle zone di prezzo"},"idea.10.title":{"en":"What does a data centre actually do for the local economy?","de":"Was bringt ein Rechenzentrum der lokalen Wirtschaft wirklich?","it":"Cosa porta davvero un data center all'economia locale?"},"idea.10.body":{"en":"Large construction bump, small permanent payroll, generous tax abatement. Use synthetic control on treated counties to price out whether the subsidies clear, and look at house prices and rents alongside employment.","de":"Ein großer Bauschub, wenige dauerhafte Arbeitsplätze, großzügige Steuererleichterungen. Mit einer synthetischen Kontrollgruppe für betroffene Landkreise lässt sich prüfen, ob sich die Subventionen rechnen, und Haus- und Mietpreise werden neben der Beschäftigung betrachtet.","it":"Un grande impulso edilizio, pochissima occupazione permanente, generose agevolazioni fiscali. Un controllo sintetico sulle contee trattate permette di valutare se le agevolazioni si ripaghino, osservando prezzi delle case e affitti insieme all'occupazione."},"idea.10.src":{"en":"BLS QCEW county employment, county assessor records or Zillow ZHVI, state abatement filings.","de":"BLS-QCEW-Beschäftigungsdaten auf Kreisebene, Gutachterunterlagen der Landkreise oder Zillow ZHVI, bundesstaatliche Steuererleichterungs-Unterlagen.","it":"Occupazione contale BLS QCEW, registri catastali delle contee o Zillow ZHVI, pratiche statali di agevolazione fiscale."},"idea.10.method":{"en":"Synthetic control","de":"Synthetische Kontrollgruppe","it":"Controllo sintetico"},"idea.11.title":{"en":"Electricity prices and industrial location in Europe","de":"Strompreise und Industriestandorte in Europa","it":"Prezzi dell'elettricità e localizzazione industriale in Europa"},"idea.11.body":{"en":"Do energy-intensive plants follow electricity prices across European borders after 2022? Be explicit about the confounders — the German fiscal expansion and defence procurement move the same regions at the same time, and handling that honestly is half the thesis.","de":"Folgen energieintensive Betriebe nach 2022 den Strompreisen über europäische Grenzen hinweg? Die Störfaktoren müssen offen benannt werden — die deutsche Fiskalexpansion und Verteidigungsbeschaffung bewegen dieselben Regionen zur gleichen Zeit, und ein ehrlicher Umgang damit macht die halbe Arbeit aus.","it":"Gli impianti ad alta intensità energetica seguono i prezzi dell'elettricità attraverso i confini europei dopo il 2022? I fattori di confondimento vanno resi espliciti — l'espansione fiscale tedesca e gli appalti per la difesa muovono le stesse regioni nello stesso periodo, e gestire onestamente questo aspetto rappresenta metà del lavoro."},"idea.11.src":{"en":"Eurostat industrial electricity prices, PRODCOM output, Orbis or national plant registers.","de":"Eurostat-Industriestrompreise, PRODCOM-Produktionsdaten, Orbis oder nationale Betriebsregister.","it":"Prezzi industriali dell'elettricità Eurostat, produzione PRODCOM, Orbis o registri nazionali degli impianti."},"idea.11.method":{"en":"Panel with regional exposure","de":"Panel mit regionaler Exposition","it":"Panel con esposizione regionale"},"idea.12.title":{"en":"Does private credit remove bank risk or just relocate it?","de":"Beseitigt privates Kreditgeschäft das Bankenrisiko oder verlagert es nur?","it":"Il credito privato elimina il rischio bancario o lo sposta soltanto?"},"idea.12.body":{"en":"Banks have replaced direct corporate lending with lending to the funds doing the direct corporate lending. Trace the exposure end to end and ask whether the consolidated risk actually left the banking system, or simply acquired an extra layer.","de":"Banken haben die direkte Unternehmensfinanzierung durch Kredite an die Fonds ersetzt, die diese direkte Unternehmensfinanzierung betreiben. Die Exposition wird end-to-end nachverfolgt, um zu klären, ob das konsolidierte Risiko das Bankensystem tatsächlich verlassen hat oder lediglich eine zusätzliche Schicht erhalten hat.","it":"Le banche hanno sostituito il prestito diretto alle imprese con prestiti ai fondi che a loro volta effettuano quel prestito diretto. L'esposizione viene tracciata end-to-end per capire se il rischio consolidato abbia davvero lasciato il sistema bancario o abbia semplicemente acquisito uno strato in più."},"idea.12.src":{"en":"Fed H.8 releases, FR Y-9C call reports, BDC filings, LSTA/DealScan for the syndicated comparison.","de":"Fed-H.8-Veröffentlichungen, FR-Y-9C-Meldungen, BDC-Unterlagen, LSTA/DealScan für den Vergleich mit syndizierten Krediten.","it":"Comunicati Fed H.8, segnalazioni FR Y-9C, documentazione BDC, LSTA/DealScan per il confronto con i prestiti sindacati."},"idea.12.method":{"en":"Exposure mapping & panel","de":"Expositions-Mapping & Panel","it":"Mappatura dell'esposizione e panel"},"idea.13.title":{"en":"Are prediction markets better forecasts than the experts?","de":"Sind Prognosemärkte bessere Vorhersagen als Experten?","it":"I mercati predittivi prevedono meglio degli esperti?"},"idea.13.body":{"en":"Score Kalshi and Polymarket prices against polls and analyst consensus on the same resolved events. Calibration curves, the favourite–longshot bias, and cross-venue arbitrage on identical contracts each make a chapter. Free API data and a scope you can dial up or down at will.","de":"Kalshi- und Polymarket-Preise werden gegen Umfragen und Analystenkonsens für dieselben abgeschlossenen Ereignisse bewertet. Kalibrierungskurven, der Favoriten-Außenseiter-Bias und Cross-Venue-Arbitrage auf identische Kontrakte liefern jeweils ein eigenes Kapitel. Kostenlose API-Daten und ein Umfang, der sich beliebig größer oder kleiner ziehen lässt.","it":"I prezzi di Kalshi e Polymarket vengono confrontati con sondaggi e consenso degli analisti sugli stessi eventi risolti. Curve di calibrazione, il bias favorito-outsider e l'arbitraggio tra piattaforme su contratti identici forniscono ciascuno un capitolo. Dati API gratuiti e un perimetro che puoi ampliare o restringere a piacere."},"idea.13.src":{"en":"Kalshi and Polymarket public APIs, FiveThirtyEight-style poll archives, IBES consensus for the financial contracts.","de":"Öffentliche APIs von Kalshi und Polymarket, Umfragearchive im Stil von FiveThirtyEight, IBES-Konsens für die Finanzkontrakte.","it":"API pubbliche di Kalshi e Polymarket, archivi di sondaggi in stile FiveThirtyEight, consenso IBES per i contratti finanziari."},"idea.13.method":{"en":"Forecast evaluation","de":"Prognosebewertung","it":"Valutazione previsionale"},"idea.14.title":{"en":"Stablecoin reserves and the front end of the curve","de":"Stablecoin-Reserven und das kurze Ende der Zinskurve","it":"Le riserve delle stablecoin e la parte a breve della curva"},"idea.14.body":{"en":"Reserve requirements under the new US regime push issuers into Treasury bills. Size the demand, then test whether issuance growth moves bill yields or the bill–OIS spread. A clean bridge between crypto and money markets that avoids the usual crypto-thesis pitfalls.","de":"Die Reservevorgaben des neuen US-Regimes drängen Emittenten in Treasury Bills. Die Nachfrage wird beziffert, anschließend wird getestet, ob das Emissionswachstum die Bill-Renditen oder den Bill-OIS-Spread bewegt. Eine saubere Brücke zwischen Krypto- und Geldmärkten, die die üblichen Fallstricke von Krypto-Arbeiten vermeidet.","it":"I requisiti di riserva del nuovo regime statunitense spingono gli emittenti verso i Treasury bill. Si quantifica la domanda, poi si verifica se la crescita dell'emissione muova i rendimenti dei bill o lo spread bill-OIS. Un ponte pulito tra cripto e mercati monetari che evita le trappole tipiche delle tesi sulle cripto."},"idea.14.src":{"en":"Issuer reserve attestations, TreasuryDirect auction results, FRED bill yields, on-chain supply series.","de":"Reserve-Bestätigungen der Emittenten, TreasuryDirect-Auktionsergebnisse, FRED-Bill-Renditen, On-Chain-Angebotsreihen.","it":"Attestazioni di riserva degli emittenti, risultati delle aste TreasuryDirect, rendimenti dei bill FRED, serie di offerta on-chain."},"idea.14.method":{"en":"Time series & demand estimation","de":"Zeitreihen- & Nachfrageschätzung","it":"Serie storiche e stima della domanda"},"idea.15.title":{"en":"Passive ownership and price informativeness in Europe","de":"Passive Eigentümerstrukturen und Preisinformativität in Europa","it":"Proprietà passiva e informatività dei prezzi in Europa"},"idea.15.body":{"en":"Well-trodden ground in the US, thinner in Europe. Not the most original thesis on this list, and it is the one least likely to fail: the method is settled, the data is standard, and a competent replication with European institutional detail is a defensible contribution.","de":"In den USA gut erforschter Boden, in Europa noch dünn. Nicht die originellste Arbeit auf dieser Liste, aber diejenige mit dem geringsten Scheiterrisiko: Die Methode ist etabliert, die Daten sind Standard, und eine kompetente Replikation mit europäischem institutionellem Detail ist ein verteidigungsfähiger Beitrag.","it":"Terreno ben battuto negli Stati Uniti, ancora poco esplorato in Europa. Non è la tesi più originale di questo elenco, ma è quella con il minor rischio di fallimento: il metodo è consolidato, i dati sono standard, e una replica competente con dettaglio istituzionale europeo è un contributo difendibile."},"idea.15.src":{"en":"WRDS, FactSet ownership, Compustat Global.","de":"WRDS, FactSet-Eigentümerdaten, Compustat Global.","it":"WRDS, dati di proprietà FactSet, Compustat Global."},"idea.15.method":{"en":"Asset-pricing panel","de":"Asset-Pricing-Panel","it":"Panel di asset pricing"},"idea.16.title":{"en":"Do pricing algorithms collude without being told to?","de":"Kollaborieren Preisalgorithmen, ohne dass es ihnen gesagt wird?","it":"Gli algoritmi di prezzo collaborano senza che nessuno lo dica loro?"},"idea.16.body":{"en":"Germany's Markttransparenzstelle für Kraftstoffe publishes every price change at every filling station in the country, to the minute. Date the adoption of algorithmic repricing by station or chain and test for supracompetitive coordination afterwards — margins, price-cycle synchronisation, response asymmetry.","de":"Die deutsche Markttransparenzstelle für Kraftstoffe veröffentlicht jede Preisänderung an jeder Tankstelle im Land, minutengenau. Die Einführung algorithmischer Preisanpassung wird je Station oder Kette datiert, anschließend wird auf überwettbewerbliche Koordination geprüft — Margen, Synchronisierung der Preiszyklen, Reaktionsasymmetrie.","it":"L'ente tedesco Markttransparenzstelle für Kraftstoffe pubblica ogni variazione di prezzo di ogni stazione di servizio del paese, al minuto. Si data l'adozione della fissazione algoritmica dei prezzi per stazione o catena, poi si verifica la presenza di coordinamento sovracompetitivo — margini, sincronizzazione dei cicli di prezzo, asimmetria nelle risposte."},"idea.16.src":{"en":"MTS-K price history (free, registration required), Tankerkönig archives, station ownership records.","de":"MTS-K-Preishistorie (kostenlos, Registrierung erforderlich), Tankerkönig-Archive, Angaben zu Tankstellenbetreibern.","it":"Storico prezzi MTS-K (gratuito, richiede registrazione), archivi Tankerkönig, dati sulla proprietà delle stazioni."},"idea.16.method":{"en":"High-frequency price panel","de":"Hochfrequenz-Preispanel","it":"Panel di prezzi ad alta frequenza"},"idea.17.title":{"en":"Personalised pricing and consumer welfare","de":"Personalisierte Preise und Verbraucherwohlfahrt","it":"Prezzi personalizzati e benessere del consumatore"},"idea.17.body":{"en":"The behavioural route: run a vignette or incentivised experiment on willingness to accept personalised prices, and whether disclosure changes it. Choose this if you would rather design your own data than fight for someone else's.","de":"Der verhaltensökonomische Weg: ein Vignetten- oder Anreizexperiment zur Akzeptanz personalisierter Preise, und dazu, ob Offenlegung diese Akzeptanz verändert. Die richtige Wahl, wenn man lieber eigene Daten erhebt, als um fremde zu kämpfen.","it":"La via comportamentale: un esperimento a vignette o incentivato sulla disponibilità ad accettare prezzi personalizzati, e su come cambia con la trasparenza. Da scegliere se preferisci raccogliere dati tuoi piuttosto che lottare per quelli di qualcun altro."},"idea.17.src":{"en":"Self-collected via Prolific or a university subject pool; pre-register the design.","de":"Selbst erhoben über Prolific oder einen universitären Probandenpool; das Design vorab registrieren.","it":"Raccolti in proprio tramite Prolific o un panel di soggetti universitario; disegno pre-registrato."},"idea.17.method":{"en":"Online experiment","de":"Online-Experiment","it":"Esperimento online"},"idea.18.title":{"en":"Did banning drip pricing lower what people pay?","de":"Hat das Verbot von Drip Pricing die gezahlten Preise gesenkt?","it":"Il divieto del drip pricing ha abbassato quanto pagano le persone?"},"idea.18.body":{"en":"Junk-fee rules arrived at different times in different jurisdictions, which gives you staggered adoption. Scrape headline and checkout prices for hotels, tickets or deliveries across the boundary and measure whether total prices fell or only their presentation changed.","de":"Regeln gegen versteckte Gebühren traten in verschiedenen Jurisdiktionen zu unterschiedlichen Zeitpunkten in Kraft, was eine gestaffelte Einführung ergibt. Angezeigte Preise und Preise an der Kasse für Hotels, Tickets oder Lieferungen werden über die Grenze hinweg gescrapt, um zu messen, ob die Gesamtpreise gesunken sind oder sich nur deren Darstellung geändert hat.","it":"Le norme contro le commissioni nascoste sono entrate in vigore in momenti diversi in giurisdizioni diverse, offrendo un'adozione scaglionata. Prezzi in vetrina e al checkout per hotel, biglietti o consegne vengono raccolti tramite scraping ai due lati del confine, per misurare se i prezzi totali siano scesi o sia cambiata solo la loro presentazione."},"idea.18.src":{"en":"Scraped listing and checkout prices, regulatory effective dates by jurisdiction.","de":"Gescrapte Angebots- und Kassenpreise, Stichtage der Regulierung nach Jurisdiktion.","it":"Prezzi di inserzione e checkout raccolti tramite scraping, date di entrata in vigore della normativa per giurisdizione."},"idea.18.method":{"en":"Staggered DiD","de":"Gestaffeltes DiD","it":"DiD scaglionato"},"idea.19.title":{"en":"What do weight-loss drugs do to the grocery basket?","de":"Was machen Abnehmspritzen mit dem Einkaufskorb?","it":"Cosa fanno i farmaci dimagranti al carrello della spesa?"},"idea.19.body":{"en":"Regional prescription penetration gives you a continuous treatment; scanner data gives you category-level outcomes. Snacks, alcohol and confectionery against staples is the obvious cut, and the substitution pattern within categories is the more interesting one.","de":"Die regionale Durchdringung mit Verschreibungen liefert ein kontinuierliches Treatment; Scannerdaten liefern Ergebnisse auf Kategorieebene. Snacks, Alkohol und Süßwaren gegen Grundnahrungsmittel ist der naheliegende Schnitt, das Substitutionsmuster innerhalb der Kategorien ist der interessantere.","it":"La penetrazione regionale delle prescrizioni offre un trattamento continuo; i dati scanner offrono esiti a livello di categoria. Snack, alcolici e dolciumi contro i beni di prima necessità è il taglio più ovvio, ma il pattern di sostituzione all'interno delle categorie è quello più interessante."},"idea.19.src":{"en":"NielsenIQ or Circana scanner panels, IQVIA or state-level prescription statistics.","de":"NielsenIQ- oder Circana-Scannerpanels, IQVIA oder Verschreibungsstatistiken auf Bundesstaatenebene.","it":"Panel scanner NielsenIQ o Circana, statistiche di prescrizione IQVIA o a livello statale."},"idea.19.method":{"en":"Treatment-intensity DiD","de":"Treatment-Intensity-DiD","it":"DiD sull'intensità del trattamento"},"idea.20.title":{"en":"Zero-click search and the economics of publishing","de":"Zero-Click-Suche und die Ökonomie des Verlagswesens","it":"Ricerca a zero clic ed economia dell'editoria"},"idea.20.body":{"en":"AI answer panels rolled out on a staggered schedule by market and query type. Match that timing to referral traffic and advertising revenue for publishers, and ask what happens to the supply of the content the answers are built on.","de":"KI-Antwortfelder wurden gestaffelt nach Markt und Anfrageart ausgerollt. Dieses Timing wird mit Verweistraffic und Werbeeinnahmen von Verlagen abgeglichen, mit der Frage, was mit dem Angebot der Inhalte geschieht, auf denen die Antworten aufbauen.","it":"I pannelli di risposta dell'IA sono stati introdotti con un calendario scaglionato per mercato e tipo di query. Questo timing viene abbinato al traffico di rimando e ai ricavi pubblicitari degli editori, chiedendosi cosa accada all'offerta dei contenuti su cui si basano le risposte."},"idea.20.src":{"en":"Similarweb or Semrush traffic, publisher filings and press disclosures, rollout dates by market.","de":"Similarweb- oder Semrush-Traffic, Verlagsunterlagen und Presseveröffentlichungen, Rollout-Daten nach Markt.","it":"Traffico Similarweb o Semrush, documenti degli editori e comunicati stampa, date di rilascio per mercato."},"idea.20.method":{"en":"Staggered rollout DiD","de":"Gestaffeltes Rollout-DiD","it":"DiD su rollout scaglionato"},"idea.21.title":{"en":"What return-to-office mandates cost the firms that issue them","de":"Was Rückkehr-ins-Büro-Vorgaben die Unternehmen kosten, die sie erlassen","it":"Quanto costano alle aziende gli obblighi di rientro in ufficio"},"idea.21.body":{"en":"Mandates are dated, public and firm-specific — a ready-made event study. Look at the announcement return, then at senior attrition in the following year, and ask whether the people who leave are the ones the firm could least afford to lose.","de":"Solche Vorgaben sind datiert, öffentlich und firmenspezifisch — eine fertige Ereignisstudie. Betrachtet wird die Kursreaktion bei Ankündigung, danach die Abwanderung von Führungskräften im Folgejahr, mit der Frage, ob gerade jene gehen, die sich das Unternehmen am wenigsten leisten kann zu verlieren.","it":"Questi obblighi sono datati, pubblici e specifici per azienda — un event study già pronto. Si osserva il rendimento all'annuncio, poi l'attrito tra i dirigenti nell'anno successivo, chiedendosi se chi se ne va sia proprio chi l'azienda può permettersi meno di perdere."},"idea.21.src":{"en":"Announcement dates from press coverage, LinkedIn or Revelio Labs profiles, CRSP returns.","de":"Ankündigungsdaten aus der Presseberichterstattung, LinkedIn- oder Revelio-Labs-Profile, CRSP-Kursrenditen.","it":"Date degli annunci dalla rassegna stampa, profili LinkedIn o Revelio Labs, rendimenti CRSP."},"idea.21.method":{"en":"Event study & attrition panel","de":"Ereignisstudie & Abgangspanel","it":"Event study e panel sull'attrito"},"idea.22.title":{"en":"Multipliers from Germany's infrastructure and defence turn","de":"Multiplikatoren aus Deutschlands Infrastruktur- und Verteidigungswende","it":"I moltiplicatori della svolta tedesca su infrastrutture e difesa"},"idea.22.body":{"en":"Build a Bartik instrument from pre-existing regional exposure to defence contractors and construction, then estimate employment and output responses at Kreis level. The identifying assumption is that pre-period industry shares are unrelated to the shock — defend it carefully and you have a real macro thesis.","de":"Ein Bartik-Instrument wird aus der vorbestehenden regionalen Exposition gegenüber Verteidigungsunternehmen und Bauwirtschaft konstruiert, anschließend werden Beschäftigungs- und Produktionsreaktionen auf Kreisebene geschätzt. Die Identifikationsannahme lautet, dass die Branchenanteile vor der Periode unabhängig vom Schock sind — wird das sorgfältig verteidigt, entsteht eine echte makroökonomische Arbeit.","it":"Uno strumento alla Bartik viene costruito a partire dall'esposizione regionale preesistente verso appaltatori della difesa ed edilizia, per poi stimare le risposte di occupazione e produzione a livello di Kreis. L'assunzione identificativa è che le quote settoriali del periodo precedente siano indipendenti dallo shock — difendi con cura questo punto e avrai una vera tesi di macroeconomia."},"idea.22.src":{"en":"Destatis regional accounts, Bundesagentur für Arbeit employment, federal procurement awards.","de":"Destatis-Regionalrechnungen, Beschäftigungsdaten der Bundesagentur für Arbeit, Bundesvergaben.","it":"Conti regionali Destatis, occupazione Bundesagentur für Arbeit, appalti pubblici federali."},"idea.22.method":{"en":"Bartik / shift-share","de":"Bartik-/Shift-Share-Ansatz","it":"Approccio Bartik / shift-share"},"idea.23.title":{"en":"Does defence spending crowd out civilian research?","de":"Verdrängen Verteidigungsausgaben die zivile Forschung?","it":"La spesa per la difesa scoraggia la ricerca civile?"},"idea.23.body":{"en":"As NATO members raise spending toward the new targets, something in the budget gives. Use a cross-country panel to ask what: civilian R&D, public investment, or transfers. Small N is the obvious weakness, so lean on within-country reallocation rather than cross-country levels.","de":"Während NATO-Mitglieder ihre Ausgaben auf die neuen Zielwerte anheben, muss im Haushalt an anderer Stelle nachgegeben werden. Ein länderübergreifendes Panel klärt, wo: zivile Forschung und Entwicklung, öffentliche Investitionen oder Transferzahlungen. Die geringe Fallzahl ist die offensichtliche Schwäche, weshalb der Schwerpunkt eher auf länderinterner Umschichtung als auf länderübergreifenden Niveaus liegen sollte.","it":"Mentre i membri della NATO alzano la spesa verso i nuovi obiettivi, qualcosa nel bilancio deve cedere. Un panel cross-country permette di chiedersi cosa: ricerca e sviluppo civile, investimenti pubblici o trasferimenti. La numerosità ridotta dei paesi è il limite evidente, per cui conviene puntare sulla riallocazione interna ai singoli paesi più che sui livelli tra paesi."},"idea.23.src":{"en":"SIPRI military expenditure, OECD government budget appropriations for R&D, IMF GFS.","de":"SIPRI-Militärausgaben, OECD-Haushaltsmittel für Forschung und Entwicklung, IMF GFS.","it":"Spesa militare SIPRI, stanziamenti di bilancio OCSE per ricerca e sviluppo, IMF GFS."},"idea.23.method":{"en":"Cross-country panel","de":"Länderübergreifendes Panel","it":"Panel cross-country"},"idea.24.title":{"en":"Does upzoning actually lower rents?","de":"Senkt eine Aufzonung die Mieten tatsächlich?","it":"L'aumento delle densità edificabili abbassa davvero gli affitti?"},"idea.24.body":{"en":"Auckland, Minneapolis and the recent European reforms give you dated, discrete supply-side interventions and untreated comparison cities. Synthetic control on rents and permits. The method is settled, the data is free, and the policy question is genuinely contested.","de":"Auckland, Minneapolis und die jüngsten europäischen Reformen liefern datierte, klar abgegrenzte angebotsseitige Eingriffe sowie unbehandelte Vergleichsstädte. Eine synthetische Kontrollgruppe für Mieten und Baugenehmigungen. Die Methode ist etabliert, die Daten sind kostenlos, und die politische Frage ist tatsächlich umstritten.","it":"Auckland, Minneapolis e le recenti riforme europee offrono interventi dal lato dell'offerta datati e ben definiti, insieme a città di confronto non trattate. Un controllo sintetico su affitti e permessi. Il metodo è consolidato, i dati sono gratuiti, e la questione di policy è davvero controversa."},"idea.24.src":{"en":"Municipal permit records, Zillow or national rent indices, OECD housing prices.","de":"Kommunale Baugenehmigungsunterlagen, Zillow oder nationale Mietindizes, OECD-Wohnimmobilienpreise.","it":"Registri comunali dei permessi edilizi, indici degli affitti Zillow o nazionali, prezzi delle abitazioni OCSE."},"idea.24.method":{"en":"Synthetic control","de":"Synthetische Kontrollgruppe","it":"Controllo sintetico"},"closing.h2":{"en":"How to choose","de":"Wie man wählt","it":"Come scegliere"},"closing.p":{"en":"Theses fail on logistics far more often than on ideas. Before you commit to anything above, run it through these three tests — a topic that fails any one of them will cost you a term.","de":"Abschlussarbeiten scheitern weit häufiger an der Logistik als an der Idee. Bevor Sie sich auf einen der obigen Vorschläge festlegen, prüfen Sie ihn anhand dieser drei Tests — ein Thema, das auch nur einen davon nicht besteht, kostet Sie ein Semester.","it":"Le tesi falliscono per motivi logistici molto più spesso che per l'idea in sé. Prima di impegnarti su una delle proposte qui sopra, sottoponila a questi tre test — un argomento che ne fallisce anche solo uno ti costerà un semestre."},"test.1.h3":{"en":"Data today","de":"Daten heute","it":"Dati oggi"},"test.1.p":{"en":"You can download the core dataset this week, not data you hope to negotiate access to. An application in progress is not a dataset.","de":"Den zentralen Datensatz können Sie diese Woche herunterladen — nicht Daten, deren Zugang Sie erst noch aushandeln müssen. Ein laufender Antrag ist kein Datensatz.","it":"Il dataset principale lo puoi scaricare questa settimana, non dati il cui accesso speri ancora di negoziare. Una domanda in corso non è un dataset."},"test.2.h3":{"en":"A treatment with a date","de":"Eine Intervention mit Datum","it":"Un trattamento con una data"},"test.2.p":{"en":"Something changed, on a specific day, for reasons unrelated to your outcome. Without that you are writing correlations.","de":"Etwas hat sich an einem bestimmten Tag verändert, aus Gründen, die nichts mit Ihrer Zielgröße zu tun haben. Ohne das schreiben Sie lediglich über Korrelationen.","it":"Qualcosa è cambiato, in un giorno preciso, per ragioni indipendenti dal tuo esito. Senza questo, stai scrivendo solo correlazioni."},"test.3.h3":{"en":"A control group in one sentence","de":"Eine Kontrollgruppe in einem Satz","it":"Un gruppo di controllo in una frase"},"test.3.p":{"en":"If you cannot name the comparison group without hedging, your identification is not ready and your defence will find the gap.","de":"Wenn Sie die Vergleichsgruppe nicht ohne Einschränkungen benennen können, ist Ihre Identifikationsstrategie noch nicht reif, und das Prüfungskomitee wird die Lücke finden.","it":"Se non riesci a nominare il gruppo di confronto senza esitazioni, la tua identificazione non è pronta, e la commissione troverà il punto debole."},"ask.h3":{"en":"To turn any of these into a full proposal, I need three things from you","de":"Um aus einem dieser Vorschläge einen vollständigen Antrag zu machen, brauche ich drei Dinge von Ihnen","it":"Per trasformare una di queste idee in una proposta completa, mi servono tre cose da te"},"ask.1":{"en":"Your programme — finance, management, or economics. It changes which of these a committee will accept.","de":"Ihr Studiengang — Finance, Management oder Volkswirtschaftslehre. Das entscheidet mit, welche dieser Vorschläge ein Ausschuss akzeptiert.","it":"Il tuo corso di laurea — finanza, management o economia. Cambia quali di queste proposte una commissione accetterebbe."},"ask.2":{"en":"Your econometrics comfort level, honestly. Staggered DiD and synthetic control are not the same lift as a pass-through regression.","de":"Ihr ökonometrisches Niveau, ganz ehrlich. Gestaffeltes DiD und synthetische Kontrollgruppen sind kein vergleichbarer Aufwand zu einer Überwälzungs-Regression.","it":"Il tuo livello di comfort in econometria, con onestà. Un DiD scaglionato e un controllo sintetico non richiedono lo stesso sforzo di una regressione di traslazione."},"ask.3":{"en":"Whether your university has WRDS, NielsenIQ or research-data-centre access. This alone eliminates about a third of the list.","de":"Ob Ihre Universität Zugang zu WRDS, NielsenIQ oder einem Forschungsdatenzentrum hat. Das allein streicht etwa ein Drittel der Liste.","it":"Se il tuo ateneo ha accesso a WRDS, NielsenIQ o a un centro dati di ricerca. Questo da solo elimina circa un terzo dell'elenco."},"footer.p":{"en":"Compiled 2 September 2026 · 24 questions · feasibility ratings are judgement, not measurement","de":"Zusammengestellt am 2. September 2026 · 24 Fragen · Machbarkeitsbewertungen sind Einschätzung, keine Messung","it":"Compilato il 2 settembre 2026 · 24 domande · le valutazioni di fattibilità sono un giudizio, non una misurazione"}};
+  var LANGS = ['en','de','it'];
+  var current = 'en';
+  try {
+    var saved = localStorage.getItem('thesis2026-lang');
+    if (saved && LANGS.indexOf(saved) !== -1) current = saved;
+  } catch(e){}
+
+  var COUNT_TPL = {
+    en: function(shown,total){ return shown + ' of ' + total + ' shown'; },
+    de: function(shown,total){ return shown + ' von ' + total + ' angezeigt'; },
+    it: function(shown,total){ return shown + ' di ' + total + ' mostrate'; }
+  };
+
+  function t(key){
+    var entry = STRINGS[key];
+    if (!entry) return '';
+    return entry[current] != null ? entry[current] : entry.en;
+  }
+
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.filter button'));
+  var ideas = Array.prototype.slice.call(document.querySelectorAll('.idea'));
+  var counter = document.getElementById('count');
+  var langtabs = Array.prototype.slice.call(document.querySelectorAll('.langtab'));
+
+  function refreshCount(){
+    var shown = document.querySelectorAll('.idea:not(.hidden)').length;
+    counter.textContent = COUNT_TPL[current](shown, ideas.length);
+  }
+
+  function applyFilter(mode){
+    ideas.forEach(function(el){
+      var ok = mode === 'all'
+        || (mode === 'public' && el.dataset.access === 'public')
+        || (mode === 'fast' && el.dataset.fast === 'yes');
+      el.classList.toggle('hidden', !ok);
+    });
+    document.querySelectorAll('.field').forEach(function(sec){
+      var any = sec.querySelectorAll('.idea:not(.hidden)').length > 0;
+      sec.style.display = any ? '' : 'none';
+    });
+    refreshCount();
+    buttons.forEach(function(b){
+      b.setAttribute('aria-pressed', String(b.dataset.filter === mode));
+    });
+  }
+
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){ applyFilter(b.dataset.filter); });
+  });
+
+  function applyLang(){
+    document.documentElement.lang = current;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      var attr = el.getAttribute('data-i18n-attr');
+      var val = t(key);
+      if (!val) return;
+      if (attr) { el.setAttribute(attr, val); }
+      else { el.textContent = val; }
+    });
+    document.title = t('masthead.h1');
+    langtabs.forEach(function(b){
+      b.setAttribute('aria-pressed', String(b.dataset.lang === current));
+    });
+    refreshCount();
+  }
+
+  langtabs.forEach(function(b){
+    b.addEventListener('click', function(){
+      current = b.dataset.lang;
+      try { localStorage.setItem('thesis2026-lang', current); } catch(e){}
+      applyLang();
+    });
+  });
+
+  applyLang();
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('.rail a'));
+  if ('IntersectionObserver' in window && links.length){
+    var byId = {};
+    links.forEach(function(a){ byId[a.getAttribute('href').slice(1)] = a; });
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          links.forEach(function(a){ a.classList.remove('active'); });
+          var a = byId[e.target.id];
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+    document.querySelectorAll('.field').forEach(function(s){ obs.observe(s); });
+  }
+})();
+</script>

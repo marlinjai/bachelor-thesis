@@ -1,113 +1,123 @@
-\chapter{Data and Sample Construction}
+\chapter{Dati e costruzione del campione}
 \label{ch:data}
 
-Every source used here is public and downloadable without an application or a
-subscription. That was a selection criterion, not a coincidence: it keeps the
-project inside a Master's timeline and makes the results reproducible by a
-reader.
+Tutte le fonti impiegate sono pubbliche e scaricabili senza domanda di accesso
+né abbonamento. Non è una coincidenza ma un criterio di selezione: mantiene il
+progetto entro i tempi di una tesi magistrale e rende i risultati riproducibili
+da parte del lettore.
 
-\section{Sources}
+\section{Fonti}
 \label{sec:sources}
 
 \begin{table}[H]
 \centering
-\caption{Data sources. All are public.}
+\caption{Fonti dei dati. Tutte pubbliche.}
 \label{tab:sources}
 \begin{tabularx}{\textwidth}{@{}llX@{}}
 \toprule
-\textbf{Source} & \textbf{Level} & \textbf{Use} \\
+\textbf{Fonte} & \textbf{Livello} & \textbf{Impiego} \\
 \midrule
 Eurostat Comext \parencite{eurostat_comext}
-  & \acrshort{cn}-8 $\times$ partner $\times$ month
-  & Import value, net mass, supplementary units; the dependent variables. \\
-Regulation (EU) 2023/956, Annex~I
+  & \acrshort{cn}-8 $\times$ partner $\times$ mese
+  & Valore, massa netta e unità supplementari delle importazioni; le variabili
+    dipendenti. \\
+Regolamento (UE) 2023/956, allegato~I
   & \acrshort{cn}-8
-  & Definition of the treated set. \\
-EU \acrshort{eua} spot and futures series
-  & Daily
-  & Certificate price; converts the levy into a per-tonne cost. \\
-Sectoral emissions-intensity benchmarks
-  & Sector $\times$ country
-  & Assigns an expected treatment dose per origin. \\
-World Bank Carbon Pricing Dashboard
-  & Country $\times$ year
-  & Identifies origins whose own carbon price is deductible. \\
+  & Definizione dell'insieme trattato. \\
+Serie spot e futures delle \acrshort{eua}
+  & Giornaliero
+  & Prezzo dei certificati; converte il prelievo in un costo per tonnellata. \\
+Parametri settoriali di intensità emissiva
+  & Settore $\times$ paese
+  & Assegna la dose attesa di trattamento a ciascuna origine. \\
+Carbon Pricing Dashboard della Banca Mondiale
+  & Paese $\times$ anno
+  & Individua le origini il cui prezzo del carbonio è detraibile. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\section{Constructing Treatment and Control}
+\section{Costruzione di trattamento e controllo}
 \label{sec:treatment-control}
 
-The treated set is every \acrshort{cn}-8 code listed in Annex~I of the
-regulation. Control codes are selected by a rule fixed before any outcome is
-inspected, so that the comparison set is not chosen to produce a result:
+L'insieme trattato comprende ogni codice \acrshort{cn}-8 elencato
+nell'allegato~I del regolamento. I codici di controllo sono selezionati secondo
+una regola fissata prima di osservare qualunque esito, affinché l'insieme di
+confronto non risulti scelto in funzione del risultato:
 
 \begin{enumerate}
-  \item \textbf{Proximity.} The candidate shares the first six \acrshort{hs}
-    digits with a treated code, or sits in the same four-digit heading where no
-    six-digit neighbour exists.
-  \item \textbf{Exclusion.} The candidate does not itself appear in Annex~I,
-    and is not scheduled for inclusion in a published later phase.
-  \item \textbf{Non-substitutability.} The candidate is not a plausible
-    demand-side substitute for its treated neighbour. This is the binding
-    criterion and the one requiring judgement; \Cref{sec:substitution} sets
-    out how it is applied and how the resulting classification is stress-tested.
-  \item \textbf{Support.} Both codes record non-trivial import flows in every
-    month of the pre-period, so that the pair contributes to identification
-    rather than to noise.
+  \item \textbf{Prossimità.} Il candidato condivide le prime sei cifre del
+    \acrshort{hs} con un codice trattato, oppure ricade nella stessa voce a
+    quattro cifre laddove non esista un vicino a sei cifre.
+  \item \textbf{Esclusione.} Il candidato non compare nell'allegato~I e non è
+    previsto in una fase successiva già pubblicata.
+  \item \textbf{Non sostituibilità.} Il candidato non è un plausibile sostituto
+    dal lato della domanda del suo vicino trattato. È il criterio vincolante e
+    quello che richiede maggiore giudizio; la \Cref{sec:substitution} espone
+    come venga applicato e come la classificazione risultante sia sottoposta a
+    verifica.
+  \item \textbf{Supporto.} Entrambi i codici registrano flussi di importazione
+    non trascurabili in ogni mese del periodo pre-trattamento, così da
+    contribuire all'identificazione e non al rumore.
 \end{enumerate}
 
-Criterion~3 deserves emphasis. A control that importers can switch to is
-contaminated by the treatment, and the resulting estimate overstates the effect
-by counting the substitution twice --- once as a fall in the treated code and
-once as a rise in the control. Where substitutability is genuinely ambiguous,
-the pair is dropped from the main sample and reintroduced in a robustness
-specification, so the cost of the judgement is visible.
+Il criterio~3 merita particolare enfasi. Un controllo verso cui gli importatori
+possano spostarsi è contaminato dal trattamento, e la stima che ne risulta
+sovrastima l'effetto contando due volte la sostituzione --- una come calo del
+codice trattato e una come aumento del controllo. Quando la sostituibilità è
+genuinamente ambigua, la coppia viene esclusa dal campione principale e
+reintrodotta in una specifica di robustezza, così che il costo del giudizio
+resti visibile.
 
-\section{Sample Period}
+\section{Periodo campionario}
 \label{sec:sample-period}
 
-The estimation window runs from January 2021 to the most recent month available
-at the time of writing. Three sub-periods are distinguished, and conflating
-them would be a mistake:
+La finestra di stima va dal gennaio 2021 all'ultimo mese disponibile al momento
+della stesura. Si distinguono tre sottoperiodi, e confonderli sarebbe un
+errore:
 
 \begin{description}
-  \item[Pre-period (2021--Sep 2023)] No \acrshort{cbam} obligation of any kind.
-    Supplies the pre-trends.
-  \item[Transitional (Oct 2023--Dec 2025)] Reporting only. Anticipatory
-    adjustment is possible here, which is why this window is estimated as its
-    own event-time coefficient rather than pooled into the pre-period.
-  \item[Definitive (Jan 2026--)] Certificate obligation in force. The
-    treatment window.
+  \item[Pre-trattamento (2021--set. 2023)] Nessun obbligo \acrshort{cbam} di
+    alcun tipo. Fornisce i trend pre-trattamento.
+  \item[Transitorio (ott. 2023--dic. 2025)] Sola rendicontazione. Qui è
+    possibile un aggiustamento anticipatorio, ed è la ragione per cui questa
+    finestra viene stimata con propri coefficienti in tempo d'evento anziché
+    accorpata al periodo pre-trattamento.
+  \item[Definitivo (gen. 2026--)] Obbligo di certificazione in vigore. È la
+    finestra di trattamento.
 \end{description}
 
-Treating the transitional phase as untreated would attribute any anticipation
-to the pre-trend and bias the estimate towards zero. Treating it as treated
-would confuse a paperwork requirement with a price. It is therefore estimated
-separately, and the difference between the two coefficients is itself
-informative about whether firms respond to announced or to realised costs.
+Trattare la fase transitoria come non trattata attribuirebbe l'eventuale
+anticipazione al trend pre-trattamento, distorcendo la stima verso lo zero.
+Trattarla come trattata confonderebbe un adempimento documentale con un prezzo.
+Viene perciò stimata separatamente, e la differenza fra i due coefficienti è
+essa stessa informativa sul fatto che le imprese reagiscano ai costi annunciati
+o a quelli effettivamente sostenuti.
 
-\section{Known Data Problems}
+\section{Problemi noti dei dati}
 \label{sec:data-problems}
 
-\textbf{Confidentiality suppression.} Eurostat suppresses cells that would
-disclose an individual trader. Suppression is non-random --- it correlates with
-concentrated origins, which are exactly the ones of interest --- so suppressed
-cells are tracked and reported rather than dropped silently.
+\textbf{Soppressione per riservatezza.} Eurostat sopprime le celle che
+rivelerebbero un singolo operatore. La soppressione non è casuale --- è
+correlata con le origini concentrate, che sono precisamente quelle di
+interesse --- sicché le celle soppresse vengono tracciate e riportate anziché
+scartate in silenzio.
 
-\textbf{Unit-value noise.} \Glspl{unitvalue} are value over quantity and
-therefore inherit every quantity-reporting error. Extreme values are winsorised
-at the first and ninety-ninth percentile within \acrshort{cn} code, and the
-threshold is varied in robustness checks.
+\textbf{Rumore nei valori unitari.} I \glspl{unitvalue} sono valore diviso
+quantità e ne ereditano perciò ogni errore di dichiarazione delle quantità. I
+valori estremi sono winsorizzati al primo e al novantanovesimo percentile
+entro ciascun codice \acrshort{cn}, e la soglia viene fatta variare nei
+controlli di robustezza.
 
-\textbf{Short post-period.} With roughly two to three quarters observed, the
-dynamic specification has few post-treatment event-time coefficients. This
-limits what can be said about persistence, and \Cref{ch:discussion} does not
-say more than the data supports.
+\textbf{Brevità del periodo post-trattamento.} Con due o tre trimestri
+osservati, la specifica dinamica dispone di pochi coefficienti in tempo
+d'evento successivi al trattamento. Ciò limita quanto si possa affermare sulla
+persistenza, e il \Cref{ch:discussion} non afferma più di quanto i dati
+sostengano.
 
-\textbf{The 2022 energy shock.} Energy prices moved European industrial input
-costs violently in the pre-period, and did so differentially across
-energy-intensive sectors --- which is to say, differentially between treated
-and control. This is the most serious threat to parallel trends in the sample
-and is addressed directly in \Cref{sec:threats}.
+\textbf{Lo shock energetico del 2022.} I prezzi dell'energia hanno mosso
+violentemente i costi degli input industriali europei nel periodo
+pre-trattamento, e lo hanno fatto in modo differenziato fra i settori
+energivori --- vale a dire, in modo differenziato fra trattati e controlli. È
+la minaccia più seria ai trend paralleli nel campione ed è affrontata
+direttamente nella \Cref{sec:threats}.

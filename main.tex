@@ -1,15 +1,18 @@
 % ============================================================
-%  main.tex — Master's thesis, HTW Berlin (English content,
-%  German academic structure).
+%  main.tex — Tesi di laurea magistrale, HTW Berlino.
+%  Testo in italiano, struttura accademica tedesca.
 %
-%  Build:  latexmk -pdf main.tex     (or: make)
-%  Engine: pdfLaTeX + biber + makeglossaries
+%  Compilazione: latexmk -pdf main.tex     (oppure: make)
+%  Motore:       pdfLaTeX + biber + makeglossaries
 %
-%  Edit metadata.tex first; add content under chapters/.
+%  Modificare per primo metadata.tex; i contenuti stanno in chapters/.
 % ============================================================
 % listof=totoc: KOMA adds the figure/table lists to the ToC itself, so we must
 % NOT add them manually as well (that produced duplicate headings).
-\documentclass[oneside,bibliography=totocnumbered,listof=totoc,BCOR=5mm,12pt]{scrbook}
+% Le lingue sono opzioni GLOBALI di classe, non opzioni di babel: cleveref
+% rileva la lingua solo da qui, altrimenti ricade sull'inglese ("Chapter 2").
+\documentclass[oneside,bibliography=totocnumbered,listof=totoc,BCOR=5mm,12pt,
+               english,ngerman,italian]{scrbook}
 
 \input{metadata}
 \input{preamble}
@@ -22,14 +25,14 @@
 
 \input{frontmatter/titlepage}
 
-% ---------- Front matter (roman numerals) ----------
+% ---------- Parte iniziale (numerazione romana) ----------
 \frontmatter
 
 \tableofcontents
 
 \input{frontmatter/acknowledgments}
-\input{frontmatter/abstract-de}
-\input{frontmatter/abstract-en}
+\input{frontmatter/abstract-it}
+\input{frontmatter/abstract-en}   % abstract in seconda lingua
 
 % listof=totoc handles the ToC entries for these two.
 \listoffigures
@@ -41,10 +44,10 @@
 %\lstlistoflistings
 
 % The `toc' option of glossaries already adds both of these to the ToC.
-\printglossary[title=Glossary]
-\printglossary[type=\acronymtype,title=List of Abbreviations]
+\printglossary[title=Glossario]
+\printglossary[type=\acronymtype,title=Elenco delle abbreviazioni]
 
-% ---------- Main matter (arabic numerals) ----------
+% ---------- Corpo del testo (numerazione araba) ----------
 \mainmatter
 
 \input{chapters/01-introduction}
@@ -56,12 +59,12 @@
 \input{chapters/07-discussion}
 \input{chapters/08-conclusion}
 
-% References directly after the main content (German convention).
-% heading=bibintoc lets biblatex own the heading, the ToC entry and the
-% running head - doing it by hand left a stale header on continuation pages.
-\printbibliography[heading=bibintoc, title={References}]
+% Bibliografia subito dopo il corpo del testo (convenzione tedesca).
+% heading=bibintoc lascia a biblatex il titolo, la voce nell'indice e la
+% testatina: farlo a mano lasciava una testatina errata nelle pagine seguenti.
+\printbibliography[heading=bibintoc, title={Bibliografia}]
 
-% ---------- Appendix ----------
+% ---------- Appendice ----------
 % \clearpage first: without it, \pagenumbering{Roman} takes effect while the
 % bibliography's last page is still open, so References would be numbered "I".
 \clearpage
@@ -69,7 +72,7 @@
 \pagenumbering{Roman}
 \input{backmatter/appendix}
 
-% ---------- Back matter ----------
+% ---------- Parte finale ----------
 \backmatter
 \input{backmatter/declaration}
 

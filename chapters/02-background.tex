@@ -1,111 +1,123 @@
-\chapter{Institutional Background}
+\chapter{Contesto istituzionale}
 \label{ch:background}
 
-This chapter establishes three things the empirical design depends on: what
-exactly \acrshort{cbam} obliges importers to do, when each obligation took
-effect, and why the boundary of its product scope can be treated as
-econometrically useful rather than merely administrative.
+Questo capitolo stabilisce tre elementi da cui dipende il disegno empirico: che
+cosa esattamente il \acrshort{cbam} imponga agli importatori, quando ciascun
+obbligo sia entrato in vigore, e perché il confine del suo ambito merceologico
+possa essere trattato come econometricamente utile anziché come una mera
+questione amministrativa.
 
-\section{The EU ETS and the Leakage Problem}
+\section{L'EU ETS e il problema della rilocalizzazione}
 \label{sec:ets}
 
-The \acrfull{ets}, established by Directive 2003/87/EC
-\parencite{eu2003ets}, caps emissions from power generation and
-energy-intensive industry and lets installations trade allowances. Because the
-cap binds only inside the Union, it raises the marginal cost of European
-production relative to imports. The standard response has been
-\gls{freeallocation}: sectors deemed at risk of \gls{carbonleakage} receive
-allowances without charge, benchmarked on output rather than emissions.
+L'\acrfull{ets}, istituito dalla direttiva 2003/87/CE \parencite{eu2003ets},
+pone un tetto alle emissioni della generazione elettrica e dell'industria
+energivora e consente agli impianti di scambiare quote. Poiché il tetto vincola
+soltanto all'interno dell'Unione, esso innalza il costo marginale della
+produzione europea rispetto alle importazioni. La risposta consueta è stata
+l'\gls{freeallocation}: i settori giudicati esposti al rischio di
+\gls{carbonleakage} ricevono quote a titolo gratuito, parametrate alla
+produzione anziché alle emissioni.
 
-Free allocation blunts the relocation incentive, but it also blunts the price
-signal that the cap is supposed to send, and it transfers rents to incumbent
-installations. \acrshort{cbam} is the Union's attempt to remove the subsidy
-without reintroducing the leakage risk: the border levy substitutes for free
-allocation rather than adding to it.
+L'assegnazione gratuita attenua l'incentivo alla delocalizzazione, ma attenua
+anche il segnale di prezzo che il tetto dovrebbe trasmettere, e trasferisce
+rendite agli impianti già operativi. Il \acrshort{cbam} è il tentativo
+dell'Unione di rimuovere il sussidio senza reintrodurre il rischio di
+rilocalizzazione: il prelievo alla frontiera si sostituisce all'assegnazione
+gratuita, non vi si aggiunge.
 
-\section{How CBAM Works}
+\section{Come funziona il CBAM}
 \label{sec:cbam-mechanics}
 
-Under Regulation (EU) 2023/956 \parencite{eu2023cbam}, an importer of a covered
-good must
+Ai sensi del regolamento (UE) 2023/956 \parencite{eu2023cbam}, l'importatore di
+un bene coperto deve
 
 \begin{enumerate}
-  \item register as an authorised declarant;
-  \item report the \gls{embeddedemissions} of the goods imported, using either
-    verified actual emissions or prescribed default values;
-  \item surrender \acrshort{cbam} certificates covering those emissions, priced
-    on the \acrfull{eua} market; and
-  \item deduct any carbon price already paid in the country of origin.
+  \item registrarsi come dichiarante autorizzato;
+  \item dichiarare le \glspl{embeddedemissions} dei beni importati, utilizzando
+    emissioni effettive verificate oppure valori predefiniti;
+  \item restituire certificati \acrshort{cbam} a copertura di tali emissioni,
+    il cui prezzo è ancorato al mercato delle \acrfull{eua}; e
+  \item detrarre l'eventuale prezzo del carbonio già corrisposto nel paese di
+    origine.
 \end{enumerate}
 
-Two design features matter for identification. The deduction in step~4 means
-the levy is a \emph{differential} on the carbon-price gap, not on emissions as
-such --- so origins with their own carbon price should respond less. And the
-certificate price is tied to the \acrshort{eua} market, which means the size of
-the treatment varies over time with a price the importer does not control. Both
-features are exploited in \Cref{ch:strategy}.
+Due caratteristiche del disegno rilevano ai fini dell'identificazione. La
+detrazione di cui al punto~4 fa sì che il prelievo sia un \emph{differenziale}
+sullo scarto fra i prezzi del carbonio, e non un'imposta sulle emissioni in
+quanto tali: le origini dotate di un proprio prezzo del carbonio dovrebbero
+dunque reagire meno. Inoltre il prezzo del certificato è agganciato al mercato
+\acrshort{eua}, cosicché l'intensità del trattamento varia nel tempo secondo un
+prezzo che l'importatore non controlla. Entrambe le caratteristiche vengono
+sfruttate nel \Cref{ch:strategy}.
 
-\section{Timeline}
+\section{Cronologia}
 \label{sec:timeline}
 
 \begin{table}[H]
 \centering
-\caption{CBAM implementation timeline. The definitive regime is the treatment
-         event used throughout.}
+\caption{Cronologia di attuazione del CBAM. Il regime definitivo è l'evento di
+         trattamento impiegato in tutto il lavoro.}
 \label{tab:timeline}
 \begin{tabularx}{\textwidth}{@{}llX@{}}
 \toprule
-\textbf{Date} & \textbf{Phase} & \textbf{Obligation on importers} \\
+\textbf{Data} & \textbf{Fase} & \textbf{Obbligo per gli importatori} \\
 \midrule
-Oct 2023 & Transitional & Quarterly reporting of embedded emissions; no
-                          financial obligation. \\
-2024--2025 & Transitional & Reporting continues; default values permitted;
-                          penalties for non-reporting only. \\
-\textbf{Jan 2026} & \textbf{Definitive} & \textbf{Certificate surrender
-                          begins; free allocation to covered sectors starts to
-                          phase out.} \\
-2026--2034 & Definitive & Free allocation withdrawn on a published schedule;
-                          the effective levy rises as it does. \\
+Ott. 2023 & Transitoria & Rendicontazione trimestrale delle emissioni
+                          incorporate; nessun obbligo finanziario. \\
+2024--2025 & Transitoria & Prosegue la rendicontazione; ammessi i valori
+                          predefiniti; sanzioni solo per omessa dichiarazione. \\
+\textbf{Gen. 2026} & \textbf{Definitiva} & \textbf{Inizia la restituzione dei
+                          certificati; comincia l'eliminazione graduale
+                          dell'assegnazione gratuita ai settori coperti.} \\
+2026--2034 & Definitiva & L'assegnazione gratuita viene ritirata secondo un
+                          calendario pubblicato; il prelievo effettivo cresce
+                          di conseguenza. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-The gradual withdrawal of free allocation in the final row is the reason the
-treatment intensity is not constant after January 2026. A naive
-\acrshort{did} that treats post-2026 as a single homogeneous state will
-average over a rising dose; \Cref{sec:dose} addresses this explicitly.
+Il ritiro graduale dell'assegnazione gratuita riportato nell'ultima riga è la
+ragione per cui l'intensità del trattamento non è costante dopo il gennaio
+2026. Una stima \acrshort{did} ingenua, che tratti il periodo successivo come
+uno stato omogeneo, finirebbe per mediare su una dose crescente; la
+\Cref{sec:dose} affronta esplicitamente il problema.
 
-\section{Product Scope as an Identification Boundary}
+\section{L'ambito merceologico come confine di identificazione}
 \label{sec:scope-boundary}
 
-Coverage is enumerated by \acrshort{cn} code across six sectors: cement, iron
-and steel, aluminium, fertilisers, electricity and hydrogen. The relevant
-property is not the list itself but its edges. Consider two eight-digit codes
-that differ by a processing step, an alloy content, or a form factor, where
-only one falls inside the annex. Such pairs share buyers, freight routes,
-input costs and business-cycle exposure, and they differ in exactly one
-respect: whether a certificate must be surrendered.
+La copertura è enumerata per codice \acrshort{cn} in sei settori: cemento,
+ferro e acciaio, alluminio, fertilizzanti, energia elettrica e idrogeno. La
+proprietà rilevante non è l'elenco in sé, bensì i suoi margini. Si considerino
+due codici a otto cifre che differiscono per una fase di lavorazione, per il
+tenore di lega o per la forma, e di cui soltanto uno ricade nell'allegato.
+Coppie simili condividono acquirenti, rotte di trasporto, costi degli input ed
+esposizione al ciclo economico, e differiscono esattamente per un aspetto: se
+occorra o meno restituire un certificato.
 
-This is the source of the control group. \Cref{ch:data} sets out how candidate
-pairs are selected and, importantly, how pairs are \emph{rejected} when the
-uncovered code is a plausible substitute for the covered one --- because a
-substitute is not a control. If importers switch from a covered code to its
-uncovered neighbour, the neighbour is treated by spillover and the
-\acrshort{did} estimate is inflated on both sides.
+È da qui che proviene il gruppo di controllo. Il \Cref{ch:data} stabilisce come
+le coppie candidate vengano selezionate e, soprattutto, come vengano
+\emph{scartate} quando il codice non coperto costituisce un plausibile
+sostituto di quello coperto --- perché un sostituto non è un controllo. Se gli
+importatori passano da un codice coperto al suo vicino non coperto, il vicino è
+trattato per ricaduta e la stima \acrshort{did} risulta gonfiata su entrambi i
+lati.
 
-\section{What CBAM Cannot Do}
+\section{Che cosa il CBAM non può fare}
 \label{sec:cbam-limits}
 
-Three limits bound what any estimate can mean. The mechanism covers direct
-embedded emissions and, for some sectors, a defined set of indirect emissions,
-but it does not cover the emissions of downstream goods: a steel beam is
-covered, a washing machine containing steel is not. This creates an incentive
-to import further down the value chain, which the product-scope design will
-register as a \emph{null} on covered codes rather than as leakage. Second,
-default values are generous relative to best-available-technology benchmarks,
-so exporters with clean production have an incentive to verify and dirty ones
-do not --- a selection problem in the reported-emissions data, though not in
-the trade data used here. Third, \gls{resourceshuffling} is not detectable
-from customs records at all; it requires origin-level production data, and
-\Cref{sec:mechanisms} explains how far the reallocation results can be pushed
-before that constraint binds.
+Tre limiti circoscrivono il significato di qualunque stima. Il meccanismo copre
+le emissioni incorporate dirette e, per alcuni settori, un insieme definito di
+emissioni indirette, ma non copre le emissioni dei beni a valle: una trave
+d'acciaio è coperta, una lavatrice che la contiene no. Ne discende un incentivo
+a importare più a valle nella catena del valore, che il disegno fondato
+sull'ambito merceologico registrerà come un \emph{risultato nullo} sui codici
+coperti anziché come rilocalizzazione. In secondo luogo, i valori predefiniti
+sono generosi rispetto ai parametri delle migliori tecnologie disponibili,
+sicché gli esportatori con produzione pulita hanno interesse a far verificare
+le proprie emissioni e quelli con produzione sporca no --- un problema di
+selezione nei dati dichiarati, benché non nei dati commerciali qui impiegati.
+In terzo luogo, la \gls{resourceshuffling} non è affatto rilevabile dai
+registri doganali: richiede dati di produzione a livello di origine, e la
+\Cref{sec:mechanisms} chiarisce fin dove i risultati sulla riallocazione
+possano essere spinti prima che tale vincolo diventi stringente.

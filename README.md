@@ -36,17 +36,34 @@ Output lands in `build/main.pdf`.
 
 ## Current draft
 
-The working draft is the CBAM topic from `thesis-topics-2026.html` —
-*Does a Carbon Border Levy Redirect Trade?* — a difference-in-differences study
-of the EU carbon border adjustment's definitive regime (January 2026), using
-CBAM's CN-code scope boundary as the treatment/control split.
+**The thesis is written in Italian.** Language handling is wired through
+`babel` (Italian primary, English and German available for a second-language
+abstract and for citations), `cleveref`, `glossaries-italian` and biblatex's
+`italian.lbx`.
 
-Chapters 1–5 are drafted. Chapter 6 (Results) holds the table and figure
+The topic is the CBAM entry from the research file — *Un prelievo sul carbonio
+alla frontiera ridirige gli scambi?* — a difference-in-differences study of the
+EU carbon border adjustment's definitive regime (January 2026), using CBAM's
+CN-code scope boundary as the treatment/control split.
+
+Chapters 1–5 are drafted. Chapter 6 (*Risultati*) holds the table and figure
 layouts with placeholder cells; chapters 7–8 are outlined against those.
 Nothing has been estimated yet.
 
-The generic software-project chapters that shipped with the original template
-are preserved in `template-original/chapters-software-project/`.
+The English draft of the same text is preserved in git history at commit
+`963ff5f`. The generic software-project chapters that shipped with the original
+template are in `template-original/chapters-software-project/`.
+
+> Note: languages must be declared as **global class options** in `main.tex`,
+> not as `babel` package options — `cleveref` only detects the document
+> language from class options and otherwise silently falls back to English
+> ("Il Chapter 2").
+
+## Research
+
+`research/thesis-topics-2026.html` is the topic shortlist this thesis was
+chosen from — 24 candidate questions with their data requirements and
+identification strategies. Open it in a browser.
 
 ## Layout
 
@@ -56,8 +73,9 @@ metadata.tex              ← EDIT FIRST: title, name, supervisors, degree
 preamble.tex              packages and global config
 glossary.tex              glossary entries and acronyms
 references.bib            bibliography (biblatex, IEEE style)
-frontmatter/              title page, acknowledgments, abstracts (DE + EN)
-chapters/01..08-*.tex     the actual content (CBAM draft)
+frontmatter/              title page, acknowledgments, abstracts (IT + EN)
+research/                 the topic shortlist this thesis came from
+chapters/01..08-*.tex     the actual content (CBAM draft, Italian)
 backmatter/               appendix, declaration of authorship
 figures/                  images (\graphicspath is set here)
 build/                    generated output — gitignored

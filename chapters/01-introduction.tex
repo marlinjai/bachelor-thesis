@@ -1,100 +1,108 @@
-\chapter{Introduction}
+\chapter{Introduzione}
 \label{ch:introduction}
 
-\section{Motivation}
+\section{Motivazione}
 \label{sec:motivation}
 
-A carbon price applied to domestic producers but not to their foreign
-competitors creates an obvious incentive: buy the emissions-intensive input
-abroad. Whether that incentive is large enough to matter has been contested for
-two decades. Ex-ante simulation models place the leakage rate for unilateral
-climate policy somewhere between five and thirty percent
-\parencite{branger2014}, while the ex-post evidence on the \acrfull{ets} has
-generally failed to find the relocation that the models predict
-\parencite{martin2016,naegele2019}. The gap between the two literatures is
-usually attributed to \gls{freeallocation}: European installations in exposed
-sectors have received most of their allowances at no charge, so the marginal
-incentive to relocate has been muted by design.
+Un prezzo del carbonio applicato ai produttori nazionali ma non ai loro
+concorrenti esteri genera un incentivo evidente: acquistare all'estero
+l'input ad alta intensità emissiva. Se tale incentivo sia abbastanza forte da
+contare è oggetto di controversia da due decenni. Le simulazioni \emph{ex ante}
+collocano il tasso di rilocalizzazione delle politiche climatiche unilaterali
+fra il cinque e il trenta per cento \parencite{branger2014}, mentre l'evidenza
+\emph{ex post} sull'\acrfull{ets} non ha in genere trovato la delocalizzazione
+prevista dai modelli \parencite{martin2016,naegele2019}. Il divario fra le due
+letterature viene di norma attribuito all'\gls{freeallocation}: gli impianti
+europei dei settori esposti hanno ricevuto gratuitamente la maggior parte
+delle quote, cosicché l'incentivo marginale a delocalizzare è stato attenuato
+per costruzione.
 
-That arrangement is now being dismantled. Regulation (EU) 2023/956
-\parencite{eu2023cbam} establishes the \acrfull{cbam}, under which importers of
-covered goods must surrender certificates priced against the \gls{ets}, while
-free allocation to the corresponding domestic sectors is withdrawn on a
-matching schedule. The mechanism ran in a reporting-only transitional phase
-from October 2023, and the definitive regime --- with an actual financial
-obligation attached --- began on 1 January 2026.
+Quell'assetto è ora in via di smantellamento. Il regolamento (UE) 2023/956
+\parencite{eu2023cbam} istituisce il \acrfull{cbam}, in forza del quale gli
+importatori dei beni coperti devono restituire certificati il cui prezzo è
+ancorato all'\gls{ets}, mentre l'assegnazione gratuita ai corrispondenti
+settori interni viene ritirata secondo un calendario speculare. Il meccanismo
+ha operato in una fase transitoria di sola rendicontazione a partire
+dall'ottobre 2023, e il regime definitivo --- con un obbligo finanziario
+effettivo --- è entrato in vigore il 1\textsuperscript{o} gennaio 2026.
 
-This is an unusually clean setting. The date was not chosen by any importer.
-Coverage is defined not by a discretionary judgement about which firms are
-exposed, but by an explicit list of \acrfull{cn} codes in the regulation's
-annex. Immediately adjacent to that list sit products that are physically and
-commercially similar but fall outside scope. The treated set, in other words,
-writes itself, and a plausible control group is available at the same level of
-aggregation.
+Si tratta di un contesto insolitamente pulito. La data non è stata scelta da
+alcun importatore. L'ambito di applicazione non è definito da una valutazione
+discrezionale su quali imprese siano esposte, bensì da un elenco esplicito di
+codici della \acrfull{cn} contenuto nell'allegato del regolamento.
+Immediatamente adiacenti a quell'elenco si trovano prodotti fisicamente e
+commercialmente simili che tuttavia ne restano fuori. L'insieme dei trattati,
+in altri termini, si definisce da sé, e un gruppo di controllo plausibile è
+disponibile al medesimo livello di aggregazione.
 
-\section{Research Question}
+\section{Domanda di ricerca}
 \label{sec:research-question}
 
-The thesis asks one question and decomposes it into three:
+La tesi pone una domanda e la scompone in tre:
 
 \begin{quote}
-\textit{Did the start of the definitive \acrshort{cbam} regime change what
-Europe imports, from whom, and at what price?}
+\textit{L'avvio del regime definitivo del \acrshort{cbam} ha modificato che
+cosa l'Europa importa, da chi e a quale prezzo?}
 \end{quote}
 
 \begin{description}
-  \item[RQ1 (Volume)] Did import volumes of covered \acrshort{cn} codes fall
-    relative to uncovered near-neighbour codes after January 2026?
-  \item[RQ2 (Reallocation)] Did import shares shift from
-    high-carbon-intensity origins towards low-carbon-intensity origins, and is
-    any such shift consistent with real reallocation rather than
-    \gls{resourceshuffling}?
-  \item[RQ3 (Incidence)] Did \glspl{unitvalue} of covered goods rise, and does
-    the increase approximate the certificate cost --- indicating pass-through
-    onto European buyers --- or fall short of it, indicating absorption by
-    non-EU exporters?
-\end{description}
+  \item[DR1 (Volumi)] I volumi importati dei codici \acrshort{cn} coperti sono
+    diminuiti rispetto ai codici contigui non coperti dopo il gennaio 2026?
+  \item[DR2 (Riallocazione)] Le quote di importazione si sono spostate dalle
+    origini ad alta intensità emissiva verso quelle a bassa intensità, e uno
+    spostamento del genere è compatibile con una riallocazione effettiva
+    piuttosto che con la \gls{resourceshuffling}?
+  \item[DR3 (Incidenza)] I \glspl{unitvalue} dei beni coperti sono aumentati, e
+    l'incremento approssima il costo del certificato --- indicando una
+    traslazione sugli acquirenti europei --- oppure resta al di sotto,
+    indicando un assorbimento da parte degli esportatori extra-UE?
+  \end{description}
 
-RQ3 is where the policy interest concentrates. A border adjustment that is
-fully absorbed abroad protects domestic industry at foreign expense; one that
-is fully passed through is a consumption tax on European manufacturers. The
-distinction is not visible in aggregate trade statistics without the kind of
-control group this design supplies.
+È su DR3 che si concentra l'interesse di policy. Un adeguamento alla frontiera
+interamente assorbito all'estero protegge l'industria interna a spese di
+quella straniera; uno interamente traslato è invece un'imposta sui consumi che
+grava sui produttori europei. La distinzione non è visibile nelle statistiche
+aggregate del commercio senza un gruppo di controllo come quello che questo
+disegno fornisce.
 
-\section{Contribution}
+\section{Contributo}
 \label{sec:contribution}
 
-Three contributions are intended. First, the thesis provides quasi-experimental
-estimates of the definitive \acrshort{cbam} regime rather than simulations of
-it; to the author's knowledge no such estimates yet exist, for the simple
-reason that the regime is less than a year old. Second, it separates the levy
-from the simultaneous free-allocation phase-out. Policy commentary routinely
-treats these as one intervention, but they act on opposite sides of the border
-and their effects on import volumes have opposite signs. Third, it documents a
-scope-boundary identification strategy that remains valid as later phases
-extend coverage to further \acrshort{cn} codes, so the design can be re-run
-rather than rebuilt.
+Si intendono offrire tre contributi. In primo luogo, la tesi fornisce stime
+quasi sperimentali del regime definitivo del \acrshort{cbam} anziché
+simulazioni: per quanto è dato sapere non ne esistono ancora, per la semplice
+ragione che il regime ha meno di un anno di vita. In secondo luogo, separa il
+prelievo dalla contestuale eliminazione dell'assegnazione gratuita. Il
+dibattito di policy tratta abitualmente i due interventi come uno solo, ma essi
+agiscono sui lati opposti della frontiera e i loro effetti sui volumi importati
+hanno segno opposto. In terzo luogo, documenta una strategia di identificazione
+fondata sul confine dell'ambito di applicazione, che resterà valida quando le
+fasi successive estenderanno la copertura ad altri codici \acrshort{cn}: il
+disegno potrà così essere rieseguito anziché ricostruito.
 
-\section{Scope and Limitations}
+\section{Ambito e limiti}
 \label{sec:scope}
 
-Two limitations are structural and are stated here rather than buried in
-\Cref{ch:discussion}. The post-treatment window is short: Comext publishes with
-a lag of roughly two months, so at the time of writing the analysis observes
-the first two to three quarters of 2026. Estimates should therefore be read as
-short-run responses, and long-run supply-chain reorganisation is out of reach.
-Second, the design identifies the effect of \acrshort{cbam} \emph{relative to
-near-neighbour products}. If the mechanism moved economy-wide expectations ---
-plausible, given how much anticipatory commentary preceded it --- the control
-group is contaminated and the estimates are a lower bound.
-\Cref{sec:threats} takes this seriously rather than noting it in passing.
+Due limiti sono strutturali e vengono dichiarati qui anziché sepolti nel
+\Cref{ch:discussion}. La finestra post-trattamento è breve: Comext pubblica con
+un ritardo di circa due mesi, sicché al momento della stesura l'analisi osserva
+i primi due o tre trimestri del 2026. Le stime vanno dunque lette come
+risposte di breve periodo, e la riorganizzazione di lungo periodo delle
+catene di fornitura resta fuori portata. In secondo luogo, il disegno
+identifica l'effetto del \acrshort{cbam} \emph{rispetto ai prodotti contigui}.
+Se il meccanismo ha spostato le aspettative dell'intero sistema economico ---
+ipotesi plausibile, vista la mole di commenti che ne hanno anticipato l'avvio
+--- il gruppo di controllo è contaminato e le stime costituiscono un limite
+inferiore. La \Cref{sec:threats} affronta la questione sul serio, anziché
+limitarsi a segnalarla.
 
-\section{Structure}
+\section{Struttura del lavoro}
 \label{sec:structure}
 
-\Cref{ch:background} sets out how \acrshort{cbam} works and why its design
-generates usable variation. \Cref{ch:literature} positions the question against
-the leakage and border-adjustment literatures. \Cref{ch:data} describes the
-data and sample construction, and \Cref{ch:strategy} the estimator and the
-threats to identification. \Cref{ch:results} reports results,
-\Cref{ch:discussion} interprets them, and \Cref{ch:conclusion} concludes.
+Il \Cref{ch:background} illustra il funzionamento del \acrshort{cbam} e le
+ragioni per cui il suo disegno genera variazione utilizzabile. Il
+\Cref{ch:literature} colloca la domanda rispetto alle letterature sulla
+rilocalizzazione e sull'adeguamento alla frontiera. Il \Cref{ch:data} descrive
+i dati e la costruzione del campione, il \Cref{ch:strategy} lo stimatore e le
+minacce all'identificazione. Il \Cref{ch:results} riporta i risultati, il
+\Cref{ch:discussion} li interpreta e il \Cref{ch:conclusion} conclude.
