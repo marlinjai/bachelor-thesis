@@ -1,0 +1,376 @@
+% thesis-template-english.tex - English Academic Thesis Template for German Universities
+% 
+% This template follows German academic conventions with English content:
+% - German university title page format
+% - Front matter organization (TOC, abstracts, lists, glossary)
+% - Required German abstract (Zusammenfassung) + English abstract
+% - KOMA-Script document class for German typography standards
+% - IEEE bibliography style for international compatibility
+% 
+% IMPORTANT: Always verify compliance with your specific institution's guidelines
+% 
+% Template structure: German academic convention with thoughtful front/back matter organization
+\documentclass[oneside,bibliography=totocnumbered,BCOR=5mm]{scrbook}
+
+% Encoding and languages - English primary, German secondary for abstracts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman,english]{babel} % English as main language
+\usepackage[autostyle]{csquotes}
+
+% Basic Math
+\usepackage{amsmath, amssymb, amsthm}
+
+% Hyperlinks
+\usepackage[hidelinks]{hyperref}
+
+% Graphics
+\usepackage{graphicx}
+
+% Bibliography - International style
+\usepackage[backend=biber, style=ieee]{biblatex} % IEEE style for international appeal
+\addbibresource{thesis_references.bib}
+
+% Glossary and abbreviations - with language fix
+\usepackage[acronym,toc,nomain]{glossaries}
+\makeglossaries
+
+% Example glossary entries - replace with your actual terms
+\newglossaryentry{API}{
+    name=Application Programming Interface,
+    description={Application Programming Interface - a set of protocols and tools for building software applications}
+}
+
+\newglossaryentry{ML}{
+    name=Machine Learning,
+    description={A subset of artificial intelligence that enables computers to learn and improve from experience without being explicitly programmed}
+}
+\newglossaryentry{SPA}{
+    name=Single Page Application,
+    description={A web application that allows users to navigate through a single page without reloading the page}
+}
+
+\newglossaryentry{WYSIWYG}{
+    name=What You See Is What You Get,
+    description={A technology that allows users to create and edit content visually, without the need for coding}
+}
+
+\newglossaryentry{CMS}{
+    name=Content Management System,
+    description={A software system that allows users to create, manage, and publish content without the need for technical knowledge}
+}
+
+\newglossaryentry{Framework}{
+    name=Framework,
+    description={A software framework that provides a foundation for developing applications by offering reusable code and standardized programming interfaces}
+}
+
+\newglossaryentry{algorithm}{
+    name=Algorithm,
+    description={A step-by-step procedure or formula for solving a problem or completing a task}
+}
+
+% Code Listings
+\usepackage{listings}
+\lstset{
+  basicstyle=\footnotesize\ttfamily,
+  frame=single,
+  breaklines=true,
+  numbers=left,
+  numberstyle=\tiny,
+  captionpos=b,
+  language=Python % Default language, change as needed
+}
+
+% Tables and Captions
+\usepackage{booktabs}
+\usepackage[small, labelfont=bf]{caption}
+
+% Page layout
+\usepackage[hmargin=2.5cm, top=3cm, bottom=3cm]{geometry}
+
+% Theorems, Definitions, etc. - English names
+
+% Theorem - Used to state and prove important mathematical/scientific claims that need formal proof
+\newtheorem{theorem}{Theorem}[chapter]
+
+% Definition - Used to formally define new terms, concepts or notations
+\newtheorem{definition}[theorem]{Definition}
+
+% Lemma - Used for supporting theorems/propositions that are needed to prove a larger theorem
+\newtheorem{lemma}[theorem]{Lemma}
+
+% Remark - Used to make observations, notes or comments about previous statements
+\newtheorem{remark}[theorem]{Remark}
+
+% Corollary - Used for results that follow directly from a previously proven theorem
+\newtheorem{corollary}[theorem]{Corollary}
+
+% Example - Used to provide concrete instances or illustrations of concepts
+\newtheorem{example}[theorem]{Example}
+
+% Document metadata
+\title{Your Thesis Title Here}
+\author{Your Name}
+\date{\today}
+
+% Document
+\begin{document}
+
+% Title page - German university format with English content
+\begin{titlepage}
+\centering
+\includegraphics[width=0.5\textwidth]{HTW_Berlin_Logo_farbig.jpg}
+\vfill
+
+{\Large \textbf{Your Thesis Title Here}}
+\vspace{1cm}
+
+Bachelor Thesis\\
+\vspace{0.5cm}
+submitted in partial fulfillment of the requirements\\
+for the degree of\\
+\vspace{0.5cm}
+\textbf{Bachelor of Science (B.Sc.)}\\
+\vspace{0.5cm}
+at\\
+\vspace{0.5cm}
+Berlin University of Applied Sciences\\
+Faculty 4: Computer Science, Communication and Economics\\
+Study Program \textit{International Media and Computing}
+
+\vspace{2cm}
+
+% Centered supervisor information
+\begin{center}
+  \begin{tabular}{@{}l@{\hspace{0.5cm}}l@{}}
+    First Supervisor: & Academic Title First Name Last Name \\
+    Second Supervisor: & Academic Title First Name Last Name
+  \end{tabular}
+\end{center}
+
+\vspace{2cm}
+
+Submitted by: Your Full Name [Student ID]\\
+Berlin, \today
+
+\vfill
+\end{titlepage}
+
+% Front matter - German academic structure
+\frontmatter
+
+% Table of contents and lists - German convention (front matter)
+\tableofcontents
+
+\chapter*{Acknowledgments}
+\addcontentsline{toc}{chapter}{Acknowledgments}
+I would like to express my sincere gratitude to my supervisors, Prof. Dr. [Name] and Prof. Dr. [Name], for their guidance and support throughout this research. I also thank [other people/institutions] for their valuable contributions.
+
+\chapter*{Zusammenfassung}
+\addcontentsline{toc}{chapter}{Zusammenfassung}
+\selectlanguage{ngerman}
+% German abstract - required by most German universities
+Hier kommt die deutsche Zusammenfassung Ihrer Arbeit. Diese sollte etwa 200-300 Wörter umfassen und die wichtigsten Aspekte Ihrer Forschung, Methodik und Ergebnisse zusammenfassen.
+
+\selectlanguage{english}
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+% English abstract
+This thesis investigates [your research topic]. The main objectives are to [list main goals]. The methodology employed includes [brief description of methods]. Key findings reveal that [main results]. The implications of this research are [significance and applications]. This work contributes to [field of study] by [specific contributions].
+
+\textbf{Keywords:} keyword1, keyword2, keyword3, keyword4, keyword5
+
+
+\chapter*{List of Figures}
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+\chapter*{List of Tables}
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+\chapter*{List of Listings}
+\addcontentsline{toc}{chapter}{List of Listings}
+\lstlistoflistings
+\chapter*{Glossary}
+\addcontentsline{toc}{chapter}{Glossary}
+\printglossary[title=Glossary]
+
+% Main content
+\mainmatter
+
+\chapter{Introduction}
+\label{ch:introduction}
+
+\fbox{\parbox{0.98\linewidth}{
+This template contains exemplary (and thus incomplete) structural elements, components and guidelines for a typical software development project where a prototype is created. It serves as assistance for your further use. 
+
+Of course, you must make additional supplements and adaptations yourself.
+
+\begin{center}
+\textbf{Good luck and success with your thesis!}
+\end{center}
+}}
+
+The main text begins here and is numbered in Arabic numerals starting with "1" on this page. The main text is divided into chapters and subchapters. If each hierarchical level should be named, the following terminology is common:
+
+\begin{itemize}
+\item 1st hierarchical level: Main chapter
+\item 2nd hierarchical level: Chapter  
+\item 3rd hierarchical level: Subchapter
+\item 4th hierarchical level: Section
+\end{itemize}
+
+The content structure of a thesis in the \textit{International Media and Computing} program naturally depends on the topic and content. Deviations from the structural framework underlying this template are always possible, sometimes even absolutely necessary. Always coordinate with your supervisors in this regard.
+
+Never forget to cite all your sources correctly\footnote{For additional information on citation, you can refer to supplementary sources (e.g. \cite{balzert2011}).}. Sources can be manually referenced and entered in the bibliography. Additionally, many text processing systems also offer external source management files and systems through which citations can be made in the main text using appropriate commands.
+
+Visualize appropriately in the main text, e.g., using figures and tables. This template contains exemplary integrated figures and a table for illustration purposes.
+
+\section{Background of the Work}
+[Description of the general context of the work; you should present this in detail in the fundamentals section]
+
+\section{Problem Statement and Objectives (Scope)}
+[Description of the problem statement as well as the resulting sub-problems, sub-goals and research question(s) that you address with your work]
+
+\section{Structure of the Work}
+[Description of the structure of the work]
+
+\chapter{Fundamentals}
+[Description of the context of the work with all areas, methods, theories, findings, technologies affected by the problem statement, ...]
+
+\section{Context}
+
+\subsection{Domain}
+
+\subsection{Technologies}
+
+\subsection{Methods and Concepts}
+
+\chapter{Methodology}
+[Description of the planned approach (model) for solving the problem statement; includes among others:
+\begin{itemize}
+\item Requirements elicitation and analysis
+\item Conception, design
+\item Implementation
+\end{itemize}
+
+\section{Result Artifacts}
+[Description of the results/result types that you want to generate/achieve as part of the problem solution, e.g., algorithm, prototype of a software (component), ...]
+
+\section{Data Protection Aspects}
+[Description of data protection aspects in connection with your thesis]
+
+\section{Ethical Aspects}
+[Description of ethical aspects\footnote{For additional reference, see general codes (e.g., ACM, IEEE, or GI) as well as domain-specific norms and procedures within a critical reflection.} in connection with your thesis]
+
+\chapter{Requirements Elicitation and Analysis}
+[Description of the elicitation, granularization and prioritization of the underlying requirements]
+
+\section{User and System Requirements}
+
+\subsection{Functional Requirements}
+
+\subsubsection{Mandatory (MUST)}
+
+\subsubsection{Optional (CAN)}
+
+\subsection{Non-functional Requirements}
+
+\subsubsection{Mandatory (MUST)}
+
+\subsubsection{Optional (CAN)}
+
+\chapter{Conception \& Design}
+[Description of the design based on the methodology/planned approach to problem solving in the context of requirements]
+
+\section{Process}
+
+\section{System Architecture}
+
+\section{Software Architecture}
+
+\section{Interfaces}
+
+\section{Data Management}
+
+% Force a new page after the chapter in table of contents
+\addtocontents{toc}{\protect\newpage}
+
+\chapter{Implementation}
+[Description of the implementation\footnote{Please observe Clean Code recommendations during implementation and its documentation (cf. e.g., \cite{martin2008}).} based on the design and methodology/planned approach to problem solving in the context of requirements. Here is space for listings, such as the following:]
+
+\begin{lstlisting}[caption={Example: Hello World (Python)}]
+def main():
+    print("Hello, world!")
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+Extensive source code should be moved to the appendix.
+
+\chapter{Presentation and Evaluation of Results}
+[Description of the results from all preceding chapters as well as the previously generated result artifacts with evaluation of how these are to be classified]
+
+\chapter{Summary}
+[Aggregated retrospective brief description of the work]
+
+\section{Conclusions}
+[Description of the overall conclusions to be noted in connection with the work]
+
+\section{Limitations}
+[Description of the results of a critical reflection and justification of what the work cannot achieve]
+
+\section{Outlook}
+[Description and justification of potential future follow-up activities in connection with your work (e.g., further requirements, theory building, ...)]
+
+% References immediately after main content
+\chapter*{References}
+\addcontentsline{toc}{chapter}{References}
+\printbibliography[heading=none,title={}]
+
+\appendix
+\pagenumbering{Roman}
+
+\chapter{Appendix}
+
+\section{Source Code}
+[Extended source code examples]
+
+\section{Additional Figures}
+Include supplementary figures or tables.
+
+\section{Survey Instruments}
+Include questionnaires or interview guides if applicable.
+
+
+\section{Tips for Writing Your Thesis}
+
+\begin{itemize}
+\item Use neutral, professional language. Avoid first person ("I").
+\item Cite credible and worthy sources (e.g., scientific articles and textbooks; avoid blogs and never cite Wikipedia\footnote{Wikipedia itself recommends avoiding citation of Wikipedia content in academic contexts.}).
+\item Cite correctly and consistently.
+\item Do not use footnotes for literature references.
+\item Research thoroughly the state of science and technology.
+\item Pay attention to the quality of the work (e.g., spelling).
+\item Inform yourself in advance about how to work and write scientifically.
+\item Use \LaTeX\footnote{No support provided for installation, use and adaptation of \LaTeX templates!}.
+\end{itemize}
+
+\backmatter
+
+% Declaration of authorship - English version for international context
+\chapter*{Declaration of Authorship}
+\addcontentsline{toc}{chapter}{Declaration of Authorship}
+
+I hereby declare that this thesis has been written independently and without unauthorized assistance. All sources and aids used have been fully acknowledged. This work has not been submitted to any other examination authority in this or similar form.
+
+\vspace{2cm}
+\noindent Berlin, \today
+
+\vspace{1.5cm}
+\noindent\rule{6cm}{0.4pt}\\
+Your Full Name
+
+\end{document}

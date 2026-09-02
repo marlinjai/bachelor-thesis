@@ -1,0 +1,80 @@
+% ============================================================
+%  preamble.tex — packages and global configuration.
+%  Derived from marlinjai/academic-thesis-template, adapted for
+%  a Master's thesis and split into modular files.
+% ============================================================
+
+% --- Encoding and languages (English primary, German for the Zusammenfassung)
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman,english]{babel}
+\usepackage[autostyle]{csquotes}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --- Math
+\usepackage{amsmath, amssymb, amsthm}
+
+% --- Graphics and figures
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{float}
+
+% --- Tables and captions
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage[small, labelfont=bf]{caption}
+
+% --- Page layout
+\usepackage[hmargin=2.5cm, top=3cm, bottom=3cm]{geometry}
+
+% --- Bibliography (IEEE style via biblatex + biber)
+\usepackage[backend=biber, style=ieee, sorting=none]{biblatex}
+\addbibresource{references.bib}
+
+% --- Glossary and acronyms
+\usepackage[acronym,toc]{glossaries}
+\makeglossaries
+\input{glossary}
+
+% --- Code listings
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{codegray}{gray}{0.95}
+\definecolor{codekeyword}{RGB}{0,0,180}
+\definecolor{codecomment}{RGB}{0,128,0}
+\definecolor{codestring}{RGB}{163,21,21}
+\lstset{
+  basicstyle=\footnotesize\ttfamily,
+  backgroundcolor=\color{codegray},
+  keywordstyle=\color{codekeyword}\bfseries,
+  commentstyle=\color{codecomment}\itshape,
+  stringstyle=\color{codestring},
+  frame=single,
+  breaklines=true,
+  breakatwhitespace=true,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  captionpos=b,
+  tabsize=2,
+  language=Python % default; override per listing with [language=...]
+}
+
+% Match the naming of the other lists (default is just "Listings").
+\renewcommand{\lstlistlistingname}{List of Listings}
+\renewcommand{\lstlistingname}{Listing}
+
+% --- Hyperlinks (load late, as hyperref likes to be near-last)
+% hypertexnames=false: the appendix restarts page numbering, which otherwise
+% produces "duplicate destination" warnings on every build.
+\usepackage[hidelinks,plainpages=false,pdfpagelabels,hypertexnames=false]{hyperref}
+\usepackage{cleveref}
+
+% --- Theorem-like environments
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}

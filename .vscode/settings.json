@@ -1,0 +1,36 @@
+{
+  "latex-workshop.latex.outDir": "%DIR%/build",
+  "latex-workshop.latex.recipe.default": "latexmk (thesis)",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (thesis)",
+      "tools": ["latexmk"]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-pdf",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ],
+      "env": {
+        "PATH": "${workspaceFolder}/bin:${workspaceFolder}/.texlive/2026/bin/x86_64-linux:${env:PATH}"
+      }
+    }
+  ],
+  "latex-workshop.latex.autoBuild.run": "onFileChange",
+  "latex-workshop.latex.autoClean.run": "onBuilt",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.message.badbox.show": false,
+  "editor.wordWrap": "on",
+  "editor.rulers": [80],
+  "[latex]": {
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  }
+}

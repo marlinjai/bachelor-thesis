@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# TeX Live ships a PAR-packed biber linked against libcrypt.so.1, which modern
+# Arch no longer provides (libxcrypt gives .so.2). We keep a copy of the compat
+# library in .texlive/lib and point biber at it here, so no system change and
+# no root are required. See install-latex.sh for how the library is fetched.
+ROOT="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
+export LD_LIBRARY_PATH="$ROOT/.texlive/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+exec "$ROOT/.texlive/2026/bin/x86_64-linux/biber" "$@"

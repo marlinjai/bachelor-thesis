@@ -1,0 +1,32 @@
+# Project-local TeX Live distribution (~1 GB, reinstall with ./install-latex.sh)
+# NOTE: bin/ is tracked on purpose - it holds small wrapper scripts.
+.texlive/
+
+
+# LaTeX build output
+build/
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.lol
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+
+# Editors / OS
+.DS_Store
+*~

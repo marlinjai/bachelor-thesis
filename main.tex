@@ -1,0 +1,75 @@
+% ============================================================
+%  main.tex — Master's thesis, HTW Berlin (English content,
+%  German academic structure).
+%
+%  Build:  latexmk -pdf main.tex     (or: make)
+%  Engine: pdfLaTeX + biber + makeglossaries
+%
+%  Edit metadata.tex first; add content under chapters/.
+% ============================================================
+% listof=totoc: KOMA adds the figure/table lists to the ToC itself, so we must
+% NOT add them manually as well (that produced duplicate headings).
+\documentclass[oneside,bibliography=totocnumbered,listof=totoc,BCOR=5mm,12pt]{scrbook}
+
+\input{metadata}
+\input{preamble}
+
+\title{\thesisTitle}
+\author{\thesisAuthor}
+\date{\thesisDate}
+
+\begin{document}
+
+\input{frontmatter/titlepage}
+
+% ---------- Front matter (roman numerals) ----------
+\frontmatter
+
+\tableofcontents
+
+\input{frontmatter/acknowledgments}
+\input{frontmatter/abstract-de}
+\input{frontmatter/abstract-en}
+
+% listof=totoc handles the ToC entries for these two.
+\listoffigures
+\listoftables
+
+% Under KOMA + listof=totoc, listings registers itself; the heading text is
+% renamed to "List of Listings" in preamble.tex.
+\lstlistoflistings
+
+% The `toc' option of glossaries already adds both of these to the ToC.
+\printglossary[title=Glossary]
+\printglossary[type=\acronymtype,title=List of Abbreviations]
+
+% ---------- Main matter (arabic numerals) ----------
+\mainmatter
+
+\input{chapters/01-introduction}
+\input{chapters/02-fundamentals}
+\input{chapters/03-methodology}
+\input{chapters/04-requirements}
+\input{chapters/05-design}
+\input{chapters/06-implementation}
+\input{chapters/07-results}
+\input{chapters/08-summary}
+
+% References directly after the main content (German convention)
+\chapter*{References}
+\addcontentsline{toc}{chapter}{References}
+\printbibliography[heading=none,title={}]
+
+% ---------- Appendix ----------
+% \clearpage first: without it, \pagenumbering{Roman} takes effect while the
+% bibliography's last page is still open, so References would be numbered "I".
+\clearpage
+\appendix
+\pagenumbering{Roman}
+\input{backmatter/appendix}
+
+% ---------- Back matter ----------
+\backmatter
+\input{backmatter/declaration}
+
+\end{document}

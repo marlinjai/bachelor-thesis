@@ -1,0 +1,6 @@
+# Puts the project-local TeX Live on PATH whenever you're inside this folder.
+# Run `mise trust` once in this directory to activate it.
+# bin/ comes first so the biber wrapper shadows the distribution's own binary.
+[env]
+_.path = ["{{config_root}}/bin", "{{config_root}}/.texlive/2026/bin/x86_64-linux"]
+TEXMFHOME = "{{config_root}}/.texlive/texmf-home"
