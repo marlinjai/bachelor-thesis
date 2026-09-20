@@ -1,121 +1,222 @@
-\chapter{Materialphysik: Lastgeschichte und Schaeadigungsmechanismen}
+\chapter{Werkstoffphysikalische Grundlagen}
 \label{ch:data}
 
-Dieses Kapitel erklaert die physikalischen Mechanismen, die zur Unterscheidung
-der Festigkeit zwischen Druck- und Zugzonen fuehren koennen.
+Die Forschungsfrage dieser Arbeit setzt voraus, dass es werkstoffphysikalisch
+ueberhaupt plausibel ist, zwischen der frueheren \gls{druckzone} und der
+frueheren \gls{zugzone} eines langjaehrig belasteten Balkens einen Unterschied
+in der \gls{restfestigkeit} zu erwarten. Dieses Kapitel legt diese Begruendung
+offen: Spannungsverteilung im biegebeanspruchten Traeger, anatomische Ursachen
+des unterschiedlichen Verhaltens von Holz unter Druck und unter Zug, die daraus
+folgenden Versagensmechanismen sowie die zeitabhaengigen Prozesse. Am Ende steht
+die Arbeitshypothese. Sie ist ausdruecklich eine Hypothese: eine aus der Literatur
+abgeleitete Erwartung, die in dieser Arbeit erst noch empirisch zu pruefen ist.
 
-\section{Viskoelastische Verformung und Kriechverhalten}
-\label{sec:creep-mechanics}
+\section{Spannungsverteilung im biegebeanspruchten Traeger}
+\label{sec:spannungsverteilung}
 
-\begin{table}[H]
-\centering
-\caption{Fonti dei dati. Tutte pubbliche.}
-\label{tab:sources}
-\begin{tabularx}{\textwidth}{@{}llX@{}}
-\toprule
-\textbf{Fonte} & \textbf{Livello} & \textbf{Impiego} \\
-\midrule
-Eurostat Comext \parencite{eurostat_comext}
-  & \acrshort{cn}-8 $\times$ partner $\times$ mese
-  & Valore, massa netta e unità supplementari delle importazioni; le variabili
-    dipendenti. \\
-Regolamento (UE) 2023/956, allegato~I
-  & \acrshort{cn}-8
-  & Definizione dell'insieme trattato. \\
-Serie spot e futures delle \acrshort{eua}
-  & Giornaliero
-  & Prezzo dei certificati; converte il prelievo in un costo per tonnellata. \\
-Parametri settoriali di intensità emissiva
-  & Settore $\times$ paese
-  & Assegna la dose attesa di trattamento a ciascuna origine. \\
-Carbon Pricing Dashboard della Banca Mondiale
-  & Paese $\times$ anno
-  & Individua le origini il cui prezzo del carbonio è detraibile. \\
-\bottomrule
-\end{tabularx}
-\end{table}
+Ein einfeldriger, an beiden Enden aufgelagerter Balken unter vertikaler
+Gebrauchslast erfaehrt ein ueber die Querschnittshoehe veraenderliches
+Spannungsfeld. Die obere Randfaser wird zusammengedrueckt, die untere Randfaser
+wird auseinandergezogen. Zwischen beiden liegt die \gls{neutralefaser}, die frei
+von Biegenormalspannungen ist. Wichtig ist die Einschraenkung: spannungsfrei ist
+diese Ebene nur bezueglich der Normalspannungen aus Biegung, waehrend die
+Schubspannungen dort ihr Maximum erreichen. Fuer die vorliegende Fragestellung
+ist allein die Normalspannungsverteilung maasgeblich, weil sie die beiden zu
+vergleichenden Zonen definiert.
 
-\section{Costruzione di trattamento e controllo}
-\label{sec:treatment-control}
+Aus dieser Verteilung folgt der Umstand, der die gesamte Untersuchung traegt:
+ein Balken ist ueber seine Nutzungsdauer nicht gleichmaessig beansprucht worden.
+Zwei anatomisch aehnliche Proben aus demselben Querschnitt haben ueber
+Jahrzehnte entgegengesetzte Spannungsvorzeichen erlebt, sodass die
+\gls{lastgeschichte} eine ortsabhaengige Groesse innerhalb eines einzelnen
+Bauteils ist. Voraussetzung jeder Zuordnung ist allerdings die Kenntnis der
+urspruenglichen Einbaulage, da sonst nicht entscheidbar ist, welche Seite einst
+oben lag. Auf diese Bedingung kommt die Versuchsplanung zurueck.
 
-L'insieme trattato comprende ogni codice \acrshort{cn}-8 elencato
-nell'allegato~I del regolamento. I codici di controllo sono selezionati secondo
-una regola fissata prima di osservare qualunque esito, affinché l'insieme di
-confronto non risulti scelto in funzione del risultato:
+\section{Holzanatomie: Druck und Zug parallel zur Faser}
+\label{sec:anatomie}
 
-\begin{enumerate}
-  \item \textbf{Prossimità.} Il candidato condivide le prime sei cifre del
-    \acrshort{hs} con un codice trattato, oppure ricade nella stessa voce a
-    quattro cifre laddove non esista un vicino a sei cifre.
-  \item \textbf{Esclusione.} Il candidato non compare nell'allegato~I e non è
-    previsto in una fase successiva già pubblicata.
-  \item \textbf{Non sostituibilità.} Il candidato non è un plausibile sostituto
-    dal lato della domanda del suo vicino trattato. È il criterio vincolante e
-    quello che richiede maggiore giudizio; la \Cref{sec:substitution} espone
-    come venga applicato e come la classificazione risultante sia sottoposta a
-    verifica.
-  \item \textbf{Supporto.} Entrambi i codici registrano flussi di importazione
-    non trascurabili in ogni mese del periodo pre-trattamento, così da
-    contribuire all'identificazione e non al rumore.
-\end{enumerate}
+Holz ist kein isotroper Werkstoff. Parallel zur Faserrichtung besitzt es eine
+hohe Zugfestigkeit, weil die Zellulose-Mikrofibrillen in der Zellwand stark in
+Faserlaengsrichtung ausgerichtet sind und die hohe Zugfestigkeit der Zellulose
+so unmittelbar ausgenutzt wird \parencite{doitpoms}. Unter Druck parallel zur
+Faser ist Holz demgegenueber schwaecher. Der Grund ist nicht die
+Materialfestigkeit der Zellwandsubstanz, sondern die Stabilitaet der
+Zellgeometrie: die duennwandigen, laengs orientierten Zellen koennen
+ausknicken und kollabieren, und dieses Ausbeulen der Zellwaende setzt bei den
+vertikal orientierten Zellen zuerst ein, insbesondere dort, wo sie durch die
+radial verlaufenden Markstrahlen abgelenkt werden \parencite{doitpoms}.
 
-Il criterio~3 merita particolare enfasi. Un controllo verso cui gli importatori
-possano spostarsi è contaminato dal trattamento, e la stima che ne risulta
-sovrastima l'effetto contando due volte la sostituzione --- una come calo del
-codice trattato e una come aumento del controllo. Quando la sostituibilità è
-genuinamente ambigua, la coppia viene esclusa dal campione principale e
-reintrodotta in una specifica di robustezza, così che il costo del giudizio
-resti visibile.
+Der Unterschied ist damit qualitativ und nicht bloss quantitativ. Unter Zug
+entscheidet die Festigkeit eines Faserverbundes, unter Druck die Stabilitaet
+einer Zellstruktur. Die uebliche Beschreibung der mechanischen Eigenschaften von
+Bauholz greift diesen Umstand auf, indem sie Zug-, Druck-, Biege- und
+Schubfestigkeit als getrennte Kenngroessen fuehrt, jeweils nach Richtung
+bezogen auf die Faser \parencite{usdaTimberBridge}.
 
-\section{Periodo campionario}
-\label{sec:sample-period}
+Abzugrenzen sind hiervon die Reaktionshoelzer (Druckholz in Nadelbaeumen,
+Zugholz in Laubbaeumen), die im lebenden Baum als Antwort auf
+Umweltbeanspruchung entstehen und sich in Faserlaenge, Ligningehalt und
+Mikrofibrillenwinkel vom Normalholz unterscheiden. Sie sind nicht Gegenstand
+dieser Arbeit: die Druck- und Zugzone eines Balkens sind durch Einbaulage und
+aufgebrachte Last definiert, nicht durch eine im Baum angelegte
+Gewebedifferenzierung. Reaktionsholz ist hier allein als moegliche Stoergroesse
+von Belang, weil es die Streuung innerhalb einer Zone erhoehen kann.
 
-La finestra di stima va dal gennaio 2021 all'ultimo mese disponibile al momento
-della stesura. Si distinguono tre sottoperiodi, e confonderli sarebbe un
-errore:
+\section{Versagensmechanismen: sproede gegen duktil}
+\label{sec:versagen}
 
-\begin{description}
-  \item[Pre-trattamento (2021--set. 2023)] Nessun obbligo \acrshort{cbam} di
-    alcun tipo. Fornisce i trend pre-trattamento.
-  \item[Transitorio (ott. 2023--dic. 2025)] Sola rendicontazione. Qui è
-    possibile un aggiustamento anticipatorio, ed è la ragione per cui questa
-    finestra viene stimata con propri coefficienti in tempo d'evento anziché
-    accorpata al periodo pre-trattamento.
-  \item[Definitivo (gen. 2026--)] Obbligo di certificazione in vigore. È la
-    finestra di trattamento.
-\end{description}
+Aus der Anatomie folgen zwei deutlich verschiedene Versagensbilder. In der
+Zugzone versagt Holz sproede. Die Fasern reissen ohne nennenswerte plastische
+Vorankuendigung, wobei Spannungskonzentrationen an natuerlichen Inhomogenitaeten
+wie Aesten, Faserabweichungen oder Grenzflaechen die Rissbildung einleiten. Ein
+entstandener Makroriss laeuft schnell weiter, sodass das Versagen ploetzlich und
+im Bauteilmaastab schlagartig eintreten kann.
 
-Trattare la fase transitoria come non trattata attribuirebbe l'eventuale
-anticipazione al trend pre-trattamento, distorcendo la stima verso lo zero.
-Trattarla come trattata confonderebbe un adempimento documentale con un prezzo.
-Viene perciò stimata separatamente, e la differenza fra i due coefficienti è
-essa stessa informativa sul fatto che le imprese reagiscano ai costi annunciati
-o a quelli effettivamente sostenuti.
+In der Druckzone verlaeuft das Versagen demgegenueber duktil und graduell. Die
+Zellwaende beulen aus, das Material verformt sich plastisch, und die Struktur
+kann auch nach Ueberschreiten der elastischen Grenze noch Last aufnehmen,
+wobei ein nichtlinear elastisch-plastisches Verhalten auftritt
+\parencite{doitpoms}. Das Schadensbild bleibt eher lokal (Quetschfalten),
+ohne dass das Bauteil zwangslaeufig unmittelbar seine Tragfaehigkeit verliert.
 
-\section{Problemi noti dei dati}
-\label{sec:data-problems}
+Diese Asymmetrie ist der Kern der Argumentation, gilt zunaechst aber nur fuer
+das Kurzzeitversagen einer unbelasteten Probe. Ob sie sich in der
+Schaedigungsentwicklung ueber Jahrzehnte fortsetzt, ist eine weitergehende
+Annahme, und hier wird die Belegbasis duenner: die Literatur legt nahe, dass in
+der Zugzone Mikrorisse entstehen und fortschreiten, waehrend in der Druckzone
+Verdichtung und Umlagerung des Materials Spannungsspitzen teilweise abpuffern.
+Diese Aussage ist nicht mit derselben Sicherheit belegt wie die
+Kurzzeitversagensbilder und wird daher als Plausibilitaetsargument, nicht als
+gesicherter Befund gefuehrt. Auch eine gelegentlich diskutierte teilweise
+Rueckbildung von Mikroschaeden in der Druckzone bleibt eine offene Frage.
 
-\textbf{Soppressione per riservatezza.} Eurostat sopprime le celle che
-rivelerebbero un singolo operatore. La soppressione non è casuale --- è
-correlata con le origini concentrate, che sono precisamente quelle di
-interesse --- sicché le celle soppresse vengono tracciate e riportate anziché
-scartate in silenzio.
+\section{Kriechen und viskoelastisches Verhalten}
+\label{sec:kriechen}
 
-\textbf{Rumore nei valori unitari.} I \glspl{unitvalue} sono valore diviso
-quantità e ne ereditano perciò ogni errore di dichiarazione delle quantità. I
-valori estremi sono winsorizzati al primo e al novantanovesimo percentile
-entro ciascun codice \acrshort{cn}, e la soglia viene fatta variare nei
-controlli di robustezza.
+Holz ist ein viskoelastischer Werkstoff: es verbindet die elastische Reaktion
+eines Festkoerpers mit dem zeitabhaengigen Fliessen einer viskosen Substanz.
+Unter konstanter Last entsteht daher auch dann eine fortschreitende Verformung,
+wenn die aufgebrachte Spannung deutlich unterhalb der Kurzzeitfestigkeit liegt.
+Diese zeitabhaengige Verformung wird als \gls{kriechen} bezeichnet. Sie ist nach
+Entlastung nicht vollstaendig reversibel: ein Teil bildet sich elastisch
+zurueck, ein Teil langsam viskoelastisch, und ein Anteil verbleibt als
+Dauerverformung.
 
-\textbf{Brevità del periodo post-trattamento.} Con due o tre trimestri
-osservati, la specifica dinamica dispone di pochi coefficienti in tempo
-d'evento successivi al trattamento. Ciò limita quanto si possa affermare sulla
-persistenza, e il \Cref{ch:discussion} non afferma più di quanto i dati
-sostengano.
+Die Gesamtverformung setzt sich aus der sofortigen elastischen Verformung, dem
+viskoelastischen Kriechanteil (zeit- und temperaturabhaengig), dem
+mechano-sorptiven Anteil (feuchtewechselabhaengig) sowie einem
+Pseudo-Kriechanteil aus Schwinden und Quellen zusammen. Der zeitliche Verlauf
+ist stark nichtlinear: der ueberwiegende Teil der Verformung entsteht in den
+ersten Stunden bis Wochen, danach verlangsamt sich der Prozess erheblich, ohne
+aber ein vollstaendiges Plateau zu erreichen. Groessenordnungsmaessig wird fuer
+Biegung unter wechselnder relativer Luftfeuchte angegeben, dass die elastische
+Verformung ueber etwa zehn Jahre zu verdoppeln ist, um die kombinierte
+Kriechverformung abzudecken; der Eurocode~5 traegt diesem Verhalten in der
+Bemessung durch Verformungsbeiwerte Rechnung \parencite{ec5}. Erhoehte
+Temperatur beschleunigt den Vorgang: zwischen etwa 20 und 50 Grad Celsius nimmt
+die Kriechgeschwindigkeit in Biege- und Druckversuchen deutlich zu.
 
-\textbf{Lo shock energetico del 2022.} I prezzi dell'energia hanno mosso
-violentemente i costi degli input industriali europei nel periodo
-pre-trattamento, e lo hanno fatto in modo differenziato fra i settori
-energivori --- vale a dire, in modo differenziato fra trattati e controlli. È
-la minaccia più seria ai trend paralleli nel campione ed è affrontata
-direttamente nella \Cref{sec:threats}.
+Besondere Bedeutung hat das mechano-sorptive Kriechen. Wirken mechanische
+Belastung und Feuchtewechsel gleichzeitig, so ist die resultierende Verformung
+groesser als die Summe der beiden Einzeleffekte. Waehrend der Wasseraufnahme
+verstaerkt das Quellen unter Last das Kriechen, waehrend der Abgabe fuehrt das
+Schwinden unter Last zu zusaetzlicher Spannungsumverteilung im Querschnitt. Als
+Erklaerung wird eine Lockerung der Wasserstoffbruecken zwischen Zellulose und
+Hemizellulosen bei Feuchteaufnahme diskutiert, die plastischere Verformungen
+ermoeglicht; diese mikrostrukturelle Deutung ist in der ausgewerteten Literatur
+nicht abschliessend gesichert. Hinzu kommt die generelle Feuchteabhaengigkeit
+der Festigkeit: Holz unterhalb von etwa 12 bis 15\,\% Holzfeuchte ist steifer
+und fester, oberhalb von etwa 20\,\% weicher und schwaecher, und ein vom
+Gleichgewicht abweichender, instationaerer Feuchtezustand verringert Steifigkeit
+und Festigkeit zusaetzlich.
+
+Daraus folgt fuer diese Arbeit, dass die Holzfeuchte bei der Pruefung zwingend
+zu kontrollieren ist, und dass der Feuchtewechsel im Bauteil zwar auf beide
+Zonen wirkt, dort aber unter entgegengesetztem Spannungsvorzeichen: er ist als
+Verstaerker einer bereits vorhandenen Asymmetrie und nicht als deren Ursache
+aufzufassen.
+
+\section{Lastdauereffekt und Schaedigungsakkumulation}
+\label{sec:dol}
+
+Der Lastdauereffekt (\acrshort{dol}, duration of load) beschreibt, dass die Spannung, die ein Holzbauteil dauerhaft
+ertragen kann, mit zunehmender Belastungsdauer abnimmt: eine Last, die
+kurzzeitig ohne Schaden aufgenommen wird, kann bei jahrelanger Einwirkung zum
+Bruch fuehren. Der Eurocode~5 setzt dies in der Bemessung ueber
+Modifikationsbeiwerte fuer Lasteinwirkungsdauer und Nutzungsklasse um
+\parencite{ec5}. Als Erklaerungsmodell dient die Vorstellung einer
+Schaedigungsakkumulation: an vorhandenen Fehlstellen bilden sich
+Spannungskonzentrationen, von denen aus Mikrorisse entstehen und unter
+anhaltender Last langsam und zunaechst stabil wachsen, bis sie bei Erreichen
+einer kritischen Laenge instabil werden koennen. Viskose Prozesse in der
+Zellwand dissipieren dabei Energie und verlangsamen das Risswachstum.
+
+Hier ist eine begriffliche Trennung erforderlich, die fuer die Hypothese
+entscheidend ist. Der Lastdauereffekt in seiner normativ verankerten Form ist
+eine Aussage ueber die Zeit bis zum Versagen, nicht eine gemessene Aussage
+ueber die verbleibende Festigkeit eines Bauteils, das nicht versagt hat. Aus dem
+Schaedigungsmodell laesst sich zwar erwarten, dass sich unterhalb der
+Versagensschwelle Schaedigung ansammelt und diese sich in einer verringerten
+Restfestigkeit des ueberlebenden Bauteils niederschlaegt. Ob und in welcher
+Groesse dieser Effekt an einem konkreten Altholzbalken messbar ist, ist damit
+aber noch nicht gezeigt. In der ausgewerteten Literatur ist diese Uebertragung
+ausdruecklich nicht abgesichert, und sie stellt den offenen Punkt dar, den diese
+Arbeit adressiert. Ergaenzend wird diskutiert, dass die Abnahme der dynamischen
+Steifigkeit unter wiederholter Belastung ein empfindlicherer Schaedigungsanzeiger
+sein koennte als die Restfestigkeit selbst; auch diese Aussage bleibt vorlaeufig.
+Die Ermuedung unter hochfrequenter zyklischer Last ist auf den nahezu statisch
+belasteten Bauteilbalken nicht uebertragbar und wird hier nicht verfolgt. Dass
+die mechanischen Eigenschaften von Altholz insgesamt Forschungsgegenstand und
+nicht abschliessend geklaert sind, zeigt sich auch bei anderen Kenngroessen wie
+dem Schubmodul gebrauchter Bauhoelzer \parencite{iforest}.
+
+\section{Ableitung der Arbeitshypothese}
+\label{sec:hypothese}
+
+Die Argumentationskette der vorstehenden Abschnitte laesst sich so
+zusammenfassen: die Biegebeanspruchung teilt den Querschnitt dauerhaft in eine
+Druck- und eine Zugzone (Abschnitt~\ref{sec:spannungsverteilung}); Holz verhaelt
+sich in diesen beiden Beanspruchungsrichtungen anatomisch begruendet
+unterschiedlich (Abschnitt~\ref{sec:anatomie}) und versagt entsprechend sproede
+beziehungsweise duktil (Abschnitt~\ref{sec:versagen}); zeitabhaengige Prozesse
+wirken ueber die gesamte Nutzungsdauer (Abschnitt~\ref{sec:kriechen}), und das
+Modell der Schaedigungsakkumulation legt nahe, dass sich dabei Mikroschaeden
+ansammeln (Abschnitt~\ref{sec:dol}). Daraus folgt die Erwartung, dass die beiden
+Zonen nach Jahrzehnten nicht denselben Materialzustand aufweisen.
+
+Die Arbeitshypothese dieser Arbeit lautet daher:
+
+\begin{quote}
+\textit{H1: Die Restfestigkeit von Proben aus der frueheren Zugzone eines
+langjaehrig biegebeanspruchten Altholzbalkens ist geringer als die
+Restfestigkeit von Proben aus der frueheren Druckzone desselben Balkens.}
+\end{quote}
+
+Die zugehoerige Nullhypothese besagt, dass sich die Restfestigkeit der beiden
+Zonen nicht unterscheidet, sodass beobachtete Abweichungen innerhalb der
+natuerlichen Streuung des Werkstoffs liegen. Die Begruendung von H1 liegt darin,
+dass Mikrorisse in der Zugzone als irreversibel gelten und Rissausbreitung dort
+fortschreitend verlaeuft, waehrend plastische Umlagerung in der Druckzone
+lokale Spannungsspitzen abbauen kann.
+
+Diese Hypothese ist bewusst gerichtet formuliert, aber sie ist nicht die
+einzige mit der Werkstoffphysik vereinbare Erwartung. Das Gegenargument folgt
+aus demselben Kapitel: das Ausbeulen und Verdichten der Zellwaende in der
+Druckzone verringert dort das Verformungsvermoegen, und eine so verdichtete,
+moeglicherweise versproedete Zone koennte sich in einem Druck- oder
+Biegeversuch als die schwaechere erweisen. Ebenso ist denkbar, dass die
+natuerliche Streuung von \gls{rohdichte}, Astigkeit und Faserverlauf innerhalb
+eines Balkens groesser ist als der gesuchte Zoneneffekt und diesen
+ueberdeckt. Ein Ergebnis in der ersten Richtung wuerde H1 widerlegen, ein
+Ergebnis in der zweiten sie nicht stuetzen; beides waere fuer die Praxis der
+Wiederverwendung ebenso aussagekraeftig, weil es die aufwendige zonenweise
+Beurteilung eines Bauteils entbehrlich machen wuerde.
+
+Abschliessend zwei Einschraenkungen. H1 ist nur pruefbar, wenn fruehere
+Einbaulage und statisches System des Balkens bekannt sind, da sonst die
+Zuordnung einer Probe zu Druck- oder Zugzone entfaellt. Und es handelt sich um
+eine aus der Literatur abgeleitete Erwartung, nicht um einen Befund: keiner der
+angefuehrten Mechanismen ist an gebrauchten Balken mit dokumentierter
+Lastgeschichte zonenweise quantifiziert worden. Das folgende Kapitel entwickelt
+daher den Versuchsplan, mit dem H1 gegen die Nullhypothese geprueft werden soll.

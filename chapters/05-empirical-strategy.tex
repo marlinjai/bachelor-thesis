@@ -1,161 +1,235 @@
-\chapter{Versuchsmethodik und Analyseverfahren}
+\chapter{Versuchsmethodik}
 \label{ch:strategy}
 
-\section{Stichprobenentnahme und Probenpreparation}
-\label{sec:sampling}
+Dieses Kapitel beschreibt den geplanten Versuch. Es legt fest, wie die
+Balken beschafft und ausgewaehlt werden sollen, wie die Proben aus dem
+Querschnitt entnommen werden, mit welchen Pruefverfahren die
+\gls{restfestigkeit} bestimmt wird und wie die Messwerte ausgewertet werden
+sollen. Der Versuch ist zum Zeitpunkt der Abfassung dieses Kapitels noch
+nicht durchgefuehrt. Alle Angaben sind daher als Planung zu lesen, die vor
+Versuchsbeginn mit der Betreuung abzustimmen und nach einem Vorversuch
+nachzuschaerfen ist.
 
-Siano $i$ l'indice dei codici di prodotto \acrshort{cn}-8, $o$ quello dei paesi
-di origine e $t$ quello dei mesi. L'equazione di stima di base è
+\section{Herkunft und Auswahl der Balken}
+\label{sec:material-herkunft}
 
-\begin{equation}
-\label{eq:baseline}
-Y_{iot} = \exp\!\big(
-    \beta \, D_i \cdot \mathrm{Post}_t
-    + \alpha_{io} + \gamma_{ot} + \delta_{st}
-  \big) \cdot \varepsilon_{iot},
-\end{equation}
+Vorgesehen ist die Verwendung von \gls{altholz} aus einem Rueckbau, dessen
+Einbausituation noch zugaenglich ist. Nur so laesst sich die \gls{lastgeschichte}
+des Balkens ueberhaupt rekonstruieren, und nur dann ist der Vergleich zwischen
+frueherer \gls{druckzone} und frueherer \gls{zugzone} inhaltlich tragfaehig.
+Fuer jeden Balken soll vor oder waehrend des Ausbaus dokumentiert werden,
+welche Seite im Tragwerk oben lag, an welcher Position im Tragwerk der Balken
+lag, welche Spannweite und welche Auflagerausbildung vorlagen und welche
+Nutzung ueber dem Balken stattfand. Zusaetzlich ist eine fotografische
+Aufnahme der Oberseite sowie eine dauerhafte Markierung dieser Seite
+vorzunehmen, die ein spaeteres Zersaegen ueberlebt, etwa eine Punzung oder
+eine eingebrachte Gravur mit Datum und Herkunft. Wo es die Zugaenglichkeit
+erlaubt, soll die Durchbiegung des Balkens vor dem Rueckbau gemessen werden,
+um das ueber Jahrzehnte akkumulierte \gls{kriechen} als beobachtete Groesse
+festzuhalten und nicht lediglich zu unterstellen.
 
-dove $D_i = 1$ per i prodotti coperti dall'allegato~I, $\mathrm{Post}_t = 1$ a
-partire dal gennaio 2026, $\alpha_{io}$ è un effetto fisso prodotto--origine,
-$\gamma_{ot}$ un effetto fisso origine--mese e $\delta_{st}$ un effetto fisso
-settore--mese. Il coefficiente di interesse è $\beta$.
+Diese Dokumentationsschritte sind in keiner der einschlaegigen Normen
+geregelt. Sie sind als Best Practice zu verstehen, nicht als normative
+Vorgabe, und genau darin liegt ein methodisches Risiko: die Guete der
+Zuordnung haengt am Sorgfaltsgrad der Erhebung und laesst sich nachtraeglich
+nicht mehr herstellen.
 
-La struttura degli effetti fissi svolge un compito preciso. Il termine
-prodotto--origine assorbe ogni caratteristica invariante nel tempo di una
-relazione commerciale, compresi la distanza, i dazi e i costi specifici della
-relazione che un modello gravitazionale dovrebbe altrimenti parametrizzare
-\parencite{head2014}. Il termine origine--mese assorbe gli shock comuni a
-tutto ciò che un paese esporta: un movimento del cambio, una crisi energetica
-interna, la chiusura di un porto. Ciò che residua è la variazione entro
-un'origine, fra prodotti, nel tempo --- esattamente la variazione che il
-confine dell'ambito di applicazione fornisce.
+\section{Das Identifikationsproblem der Einbaulage}
+\label{sec:identifikation}
 
-L'\Cref{eq:baseline} è stimata per \acrfull{ppml} anziché per \acrshort{ols}
-sui logaritmi. \textcite{silva2006} mostrano che la log-linearizzazione di un
-modello moltiplicativo con errori eteroschedastici produce stime non
-consistenti, e il problema è acuto nei dati commerciali; la \acrshort{ppml}
-consente inoltre di trattare gli zeri autentici che compaiono quando una
-relazione si interrompe. La stima segue l'implementazione con effetti fissi ad
-alta dimensionalità di \textcite{correia2020}. Gli errori standard sono
-raggruppati per codice \acrshort{cn}-8, con i valori $p$ da wild bootstrap
-\parencite{cameron2008} riportati accanto.
+Der kritische Punkt der gesamten Untersuchung liegt vor der ersten Pruefung.
+Nach dem Ausbau aus dem Tragwerk ist nicht mehr unmittelbar sichtbar, welche
+Seite des Querschnitts unter Druck und welche unter Zug stand. Ein Balken,
+der ohne Zuordnung auf dem Lagerplatz liegt, traegt die fuer diese Arbeit
+entscheidende Information nicht mehr an sich. Wird die Orientierung
+vertauscht, so kehrt sich das Vorzeichen der gemessenen Differenz um, und
+mehrere vertauschte Balken loeschen einen real vorhandenen Effekt im Mittel
+aus. Das Problem ist damit nicht nur eine Unschaerfe, sondern ein Fehler, der
+systematisch gegen die Hypothese arbeitet.
 
-\section{Dinamica e anticipazione}
-\label{sec:dynamics}
+Liegt keine Dokumentation vor, so kommen nur Sekundaerindikatoren in Betracht.
+Denkbar sind Nagelspuren oder Auflagerabdruecke von Dielen auf der ehemaligen
+Oberseite, eine seitenweise unterschiedliche Ausbildung von Oberflaechenrissen
+sowie Feuchteverfaerbungen oder Pilzbefall, die bei langfristigem Feuchtestau
+unterseitig ausgepraegter auftreten koennen. Auch der radiale Abstand zum Kern
+kann einen Hinweis geben. Alle diese Indikatoren sind unsicher und in der
+Literatur nicht als Verfahren abgesichert; sie werden hier ausdruecklich als
+Plausibilitaetshinweise und nicht als Nachweis behandelt.
 
-La specifica statica nulla dice sulla tempistica, ed è proprio lì che si
-colloca la domanda interessante: gli importatori hanno reagito quando l'obbligo
-è stato annunciato o quando ha iniziato a costare denaro? La forma \emph{event
-study} è
+Daraus folgt ein hartes Ausschlusskriterium: Balken, deren Herkunft unbekannt
+oder widerspruechlich dokumentiert ist und bei denen die Sekundaerindikatoren
+keine eindeutige Aussage liefern, werden nicht geprueft. Im Zweifelsfall wird
+die Probe ausgeschlossen. Eine geringere Zahl sicher zugeordneter Balken ist
+einer groesseren Zahl zweifelhaft zugeordneter vorzuziehen, weil letztere den
+Effekt verwaessern, ohne die Aussagekraft zu erhoehen. Jeder Ausschluss wird
+mit Grund und Datum im Pruefprotokoll vermerkt, damit die Ausschlussquote
+selbst ein berichtetes Ergebnis der Arbeit bleibt.
 
-\begin{equation}
-\label{eq:eventstudy}
-Y_{iot} = \exp\!\Big(
-    \sum_{\substack{k=-K \\ k \neq -1}}^{K} \beta_k \, D_i \cdot \mathbf{1}[t - t^{*} = k]
-    + \alpha_{io} + \gamma_{ot} + \delta_{st}
-  \Big) \cdot \varepsilon_{iot},
-\end{equation}
+\section{Probenentnahme aus Druck- und Zugzone}
+\label{sec:probenentnahme}
 
-con $t^{*}$ la soglia del gennaio 2026 e $k = -1$ omesso come riferimento. I
-coefficienti che coprono la fase transitoria ($k$ corrispondente al periodo
-ott. 2023--dic. 2025) verificano l'anticipazione; quelli successivi a $t^{*}$
-tracciano la risposta. La stima impiega lo stimatore efficiente di
-\textcite{borusyak2024}, che impone il vincolo di assenza di anticipazione
-soltanto dove esso viene asserito, anziché ovunque per costruzione.
+Aus jedem zugelassenen Balken soll ein Segment von etwa \SI{300}{\milli\metre}
+bis \SI{500}{\milli\metre} Laenge herausgesaegt werden, und zwar ausserhalb der
+Bereiche mit konstruktiv bedingter Fehlerkonzentration, also nicht an
+Auflagern und nicht an Anschluessen. Dieses Segment wird entlang der
+horizontalen Mittellinie geteilt, die als Lage der \gls{neutralefaser}
+angenommen wird. Die Oberhaelfte gilt als vermutete \gls{druckzone}, die
+Unterhaelfte als vermutete \gls{zugzone}. Die Proben werden in beiden Haelften
+mit gleichem Abstand zur Trennebene entnommen, damit der Abstand zur neutralen
+Faser fuer die beiden verglichenen Zonen derselbe ist und die randnahen,
+ehemals am hoechsten beanspruchten Fasern in beiden Zonen gleichermassen
+erfasst werden. Randnahe und kernnahe Lage werden nicht gemischt, weil sonst
+die Position im Querschnitt mit der Zonenzugehoerigkeit verwechselt wuerde.
 
-\section{Intensità del trattamento}
-\label{sec:dose}
+Jede Probe erhaelt eine Kennung aus Balken-Identifikation, Zone und Laufnummer,
+die durch das Saegen nicht verloren gehen kann, etwa durch Punzung. Je Halbsegment
+sind mindestens drei Proben pro Pruefverfahren vorgesehen, angestrebt werden
+vier bis fuenf, sodass pro Balken mit einer Groessenordnung von 24 bis 40
+Kleinproben zu rechnen ist.
 
-Un trattamento binario spreca informazione. Il costo del certificato per
-tonnellata di prodotto importato è approssimativamente
+\section{Konditionierung, Holzfeuchte und Rohdichte}
+\label{sec:konditionierung}
 
-\begin{equation}
-\label{eq:dose}
-\tau_{iot} = e_{io} \cdot P^{\mathrm{EUA}}_{t} \cdot \big(1 - \phi_{t}\big)
-             - c_{ot},
-\end{equation}
+Nach Ausbau und Transport sollen die Balkensegmente zunaechst trocken,
+beschattet und bei moderatem Klima gelagert werden, bevor sie zerteilt werden;
+vorgesehen ist ein Zeitraum von mehreren Wochen, um oberflaechennahe
+Trocknungsspannungen abzubauen. Diese Wartezeit ist eine Vorsichtsmassnahme
+ohne normative Grundlage. Die fertig gesaegten Kleinproben werden anschliessend
+im Normalklima von \SI{20}{\celsius} und \SI{65}{\percent} relativer
+Luftfeuchte konditioniert, bis sich die Holzfeuchte auf einem stabilen Niveau
+eingestellt hat.
 
-dove $e_{io}$ sono le emissioni incorporate per tonnellata,
-$P^{\mathrm{EUA}}_{t}$ il prezzo delle quote, $\phi_{t}$ la quota di
-assegnazione gratuita ancora concessa al corrispondente settore interno e
-$c_{ot}$ il prezzo del carbonio già corrisposto nell'origine e pertanto
-detraibile.
+Die Holzfeuchte wird nach der Darrmethode bestimmt
+\parencite{din13183}: Waegung der feuchten Probe, Trocknung bei
+\SI{103}{\celsius} bis zur Massenkonstanz, Waegung der Trockenmasse und
+Berechnung der Feuchte als Massenverlust bezogen auf die Trockenmasse. Die
+\gls{rohdichte} wird an Staebchen aus dem Bruchstueck geometrisch bestimmt,
+also aus Masse und aus den auf \SI{0.1}{\milli\metre} gemessenen Kantenlaengen
+\parencite{iso13061}, und nach der in \textcite{en384} vorgesehenen Systematik
+auf die Bezugsfeuchte von \SI{12}{\percent} umgerechnet. Holzfeuchte und
+Rohdichte sind fuer diese Arbeit keine Nebengroessen: beide beeinflussen die
+Festigkeit unmittelbar und muessen daher je Zone einzeln vorliegen, damit ein
+gemessener Unterschied nicht faelschlich der Lastgeschichte zugeschrieben wird.
 
-L'\Cref{eq:dose} comporta tre implicazioni che il disegno binario
-trascurerebbe. La dose cresce meccanicamente al diminuire di $\phi_t$, sicché
-un $\beta$ costante è l'oggetto sbagliato da cercare. Essa varia fra le origini
-attraverso $e_{io}$ e $c_{ot}$, offrendo una seconda fonte di identificazione:
-le origini dotate di un proprio prezzo del carbonio dovrebbero reagire meno, e
-la previsione è verificabile. E varia con il prezzo delle \acrshort{eua}, che
-l'importatore non controlla --- uno spostatore continuo e plausibilmente
-esogeno. La specifica a intensità sostituisce
-$D_i \cdot \mathrm{Post}_t$ nell'\Cref{eq:baseline} con $\tau_{iot}$.
+\section{Pruefverfahren: Kleinproben statt Bauteilpruefung}
+\label{sec:pruefverfahren}
 
-\section{Variabili dipendenti}
-\label{sec:outcomes}
+Zwei fachliche Klarstellungen bestimmen die Wahl der Verfahren.
 
-\begin{description}
-  \item[DR1] $Y_{iot}$ è la massa netta importata. In livelli, per
-    \acrshort{ppml}.
-  \item[DR2] $Y_{iot}$ è la quota delle importazioni del prodotto $i$
-    provenienti dall'origine $o$, con le origini ripartite in base alla mediana
-    dell'intensità emissiva della loro produzione settoriale. L'oggetto di
-    interesse è la risposta differenziale delle origini ad alta intensità
-    rispetto a quelle a bassa intensità.
-  \item[DR3] $Y_{iot}$ è il logaritmo del \gls{unitvalue}. La traslazione è il
-    rapporto fra l'aumento stimato del valore unitario e $\tau_{iot}$: un
-    rapporto prossimo a uno implica che paghino gli acquirenti europei,
-    prossimo a zero che assorbano gli esportatori extra-UE.
-\end{description}
+Erstens liefert der Vierpunkt-Biegeversuch die Biegefestigkeit
+(\acrshort{mor}) und den Elastizitaetsmodul (\acrshort{moe}), nicht die
+Querzugfestigkeit \parencite{en408,fourpoint}. Die Festigkeit quer zur Faser
+waere in einem eigenen Zugversuch quer zur Faser an eigener Probengeometrie zu
+bestimmen. Die Biegefestigkeit ist hier die Hauptzielgroesse; eine Bestimmung
+der Querzugfestigkeit bleibt optional und ist nicht Teil des geplanten
+Versuchsumfangs.
 
-\section{Minacce all'identificazione}
-\label{sec:threats}
+Zweitens ist \textcite{en408} fuer Proben in Bauteilabmessungen ausgelegt. Da
+Druck- und Zugzone desselben Balkens verglichen werden sollen, muss der
+Querschnitt geteilt werden, und die entstehenden Proben sind Kleinproben ohne
+sichtbare Fehler. Die normative Grundlage wechselt daher auf die
+Kleinprobennormen: DIN 52186 beziehungsweise ISO 13061-3 fuer die
+Biegefestigkeit parallel zur Faser, \textcite{din52185} beziehungsweise
+ISO 13061-17 fuer die Druckfestigkeit parallel zur Faser
+\parencite{iso13061} sowie die oben genannten Normen fuer Dichte und
+Holzfeuchte. Die Geometrieprinzipien aus \textcite{en408} werden sinngemaess
+uebernommen, namentlich eine Stuetzweite von 18 mal der Querschnittshoehe und
+ein Abstand der inneren Lasteintragungspunkte von 6 mal der Hoehe. Dies ist
+der methodische Kern des Kapitels: nicht EN 408 unmittelbar, sondern
+Kleinprobennormen mit den Geometrieprinzipien von EN 408.
 
-\subsection{Trend paralleli e shock energetico del 2022}
+Zu den Querschnittsabmessungen der Kleinproben, den Belastungsgeschwindigkeiten
+und der Mindestlaenge der Druckproben liegen in der ausgewerteten Quellenlage
+keine gesicherten Festlegungen vor; sie sind vor Versuchsbeginn anhand der
+Normtexte selbst und der verfuegbaren Balkenstaerke festzulegen. Waehrend der
+Pruefung werden Bruchlast, Bruchbild und Bruchlage protokolliert. Ein Bruch
+ausserhalb des Bereichs zwischen den inneren Lastpunkten, ein Schubbruch
+anstelle eines Faserbruchs sowie ein Stabilitaetsversagen durch Knicken im
+Druckversuch fuehren zum Ausschluss des jeweiligen Messwerts, weil in diesen
+Faellen nicht die gesuchte Materialeigenschaft gemessen wurde. Aeste, Risse,
+Faeule und starke Faserabweichung im Prueflaengenbereich fuehren bereits vor
+der Pruefung zum Ausschluss, entsprechend der Logik der visuellen
+\gls{sortierung} nach \textcite{din4074}.
 
-L'ipotesi identificante è che i codici coperti e quelli contigui avrebbero
-seguito traiettorie parallele in assenza del \acrshort{cbam}. Lo shock
-energetico del 2022 costituisce il problema evidente: esso ha innalzato i costi
-di produzione europei soprattutto nei settori energivori che il \acrshort{cbam}
-copre, cosicché prodotti trattati e di controllo erano differentemente esposti
-già ben prima della data di trattamento.
+\section{Statistische Auswertung}
+\label{sec:auswertung}
 
-Tre risposte. La specifica include effetti fissi settore--mese, che assorbono
-gli shock comuni a un settore. I coefficienti \emph{event study} relativi al
-periodo 2021--2023 mostrano se la divergenza fosse già in atto. E, anziché
-affidarsi a un test sui pre-trend --- che ha potenza bassa proprio quando
-servirebbe --- l'analisi riporta i limiti di sensibilità di
-\textcite{rambachan2023}: la massima violazione post-trattamento dei trend
-paralleli, espressa rispetto alla peggiore violazione del periodo precedente,
-sotto la quale la conclusione ancora regge. Quel valore è più informativo di un
-grafico piatto ed è riportato per ciascun risultato principale.
+Druck- und Zugprobe stammen aus demselben Balkensegment an derselben
+Laengsposition. Sie sind daher nicht unabhaengig, sondern gepaart, und der
+Vergleich erfolgt als gepaarter Test und nicht als Vergleich zweier
+unabhaengiger Gruppen. Fuer jedes Segment wird die Differenz der Zielgroesse
+zwischen Zugzone und Druckzone gebildet, und die Auswertung findet auf diesen
+Differenzen statt. Dieser Aufbau ist der eigentliche Vorzug des Versuchs: die
+grosse Streuung zwischen verschiedenen Balken, die Holzart, Wuchsort und Alter
+mitbringen, faellt bei der Differenzbildung heraus.
 
-\subsection{Sostituzione verso i prodotti di controllo}
-\label{sec:substitution}
+Die Verteilungsannahme wird vor dem Haupttest geprueft, mit einem
+Shapiro-Wilk-Test auf die Differenzen und mit einem Q-Q-Diagramm zur
+visuellen Kontrolle; die Varianzhomogenitaet zwischen den Zonen wird mit einem
+Levene-Test betrachtet. Sind die Differenzen annaehernd normalverteilt, wird
+zweiseitig ein gepaarter t-Test auf dem Signifikanzniveau von
+\SI{5}{\percent} gerechnet, andernfalls der Wilcoxon-Vorzeichen-Rang-Test als
+verteilungsfreie Alternative. Berichtet werden neben dem p-Wert die
+Effektgroesse und das 95-Prozent-Konfidenzintervall der mittleren Differenz,
+da eine reine Signifikanzaussage bei kleinen Stichproben wenig aussagt.
 
-Se gli importatori reagiscono spostandosi verso un vicino non coperto, il
-controllo è trattato e $\beta$ risulta distorto in allontanamento dallo zero.
-Il criterio~3 della \Cref{sec:treatment-control} effettua uno screening
-\emph{ex ante}. \emph{Ex post} seguono due verifiche: le importazioni dei soli
-controlli vengono esaminate alla ricerca di un salto di livello in $t^{*}$, che
-la sostituzione produrrebbe e un controllo valido no; e il campione viene
-ristimato utilizzando le sole coppie per le quali la sostituzione è
-tecnicamente implausibile, perché i beni entrano in processi produttivi
-distinti.
+Die Rohdichte wird als Kovariate gefuehrt. Zunaechst wird geprueft, ob sich die
+Rohdichte zwischen den beiden Zonen systematisch unterscheidet. Ist das der
+Fall, wird der Festigkeitsvergleich um die Dichte bereinigt, im Rahmen einer
+Kovarianzanalyse als Erweiterung der \acrshort{anova}. Andernfalls koennte ein
+Dichteunterschied innerhalb des Querschnitts als Wirkung der Lastgeschichte
+missdeutet werden. Werden mehrere Segmente je Balken entnommen, so liegt eine
+genestete Struktur vor, und die Auswertung erfolgt in einem gemischten Modell
+mit der Zone als festem Effekt und dem Balken als Zufallseffekt, um
+Pseudoreplikation zu vermeiden.
 
-\subsection{Spostamento a valle}
+\section{Stichprobenumfang}
+\label{sec:stichprobenumfang}
 
-Il \acrshort{cbam} copre l'input, non il prodotto finito. Gli importatori
-possono dunque eluderlo acquistando più a valle: importando il componente
-anziché l'acciaio. Ciò non distorce $\beta$ per i codici coperti, ma implica
-che un $\beta$ negativo sovrastimi il risparmio emissivo. Le importazioni dei
-codici a valle vengono esaminate in modo descrittivo come limite superiore di
-questo canale; i dati non consentono di più.
+Als Planungsgroesse werden zwoelf bis fuenfzehn Balkensegmente angesetzt, wie
+sie in vergleichbaren Altholzuntersuchungen ueblich sind, mit vier Proben je
+Zone fuer Biegung und Druck
+sowie zwei Proben je Zone fuer Holzfeuchte und Rohdichte
+(\Cref{tab:versuchsplan}). Diese Zahl ist ausdruecklich als konservative
+Untergrenze zu lesen und nicht als normative Vorgabe: weder
+\textcite{en384} noch \textcite{din52185} legen fuer den Zonenvergleich an
+Altholz eine Mindestzahl fest, und die genannte Groessenordnung ist
+erfahrungsgestuetzt, nicht normativ abgesichert. Vorgesehen ist daher ein Vorversuch an wenigen Segmenten, aus dessen
+Effektgroesse eine Poweranalyse den erforderlichen Umfang fuer eine
+angestrebte Teststaerke von \SI{80}{\percent} bei einem Signifikanzniveau von
+\SI{5}{\percent} neu berechnet. Faellt der beobachtete Effekt klein aus, so
+kann der erforderliche Umfang die verfuegbare Menge sicher zugeordneter Balken
+deutlich uebersteigen. In diesem Fall ist dies als Ergebnis zu berichten und
+nicht durch Aufnahme unsicher zugeordneter Balken zu umgehen. Einzuplanen ist
+ferner eine Ausfallquote durch Ausschlusskriterien, Messfehler und ungueltige
+Bruchbilder.
 
-\subsection{Anticipazione}
+\begin{table}[H]
+\centering
+\caption{Geplanter Versuchsumfang als konservative Untergrenze, vor dem
+Vorversuch und der darauf gestuetzten Poweranalyse.}
+\label{tab:versuchsplan}
+\begin{tabularx}{\textwidth}{@{}Xccc@{}}
+\toprule
+\textbf{Pruefverfahren} & \textbf{Proben je Zone} & \textbf{Segmente} &
+\textbf{Proben gesamt} \\
+\midrule
+Vierpunkt-Biegung (\acrshort{mor}, \acrshort{moe}) & 4 & 12 bis 15 & 96 bis 120 \\
+Druckversuch parallel zur Faser & 4 & 12 bis 15 & 96 bis 120 \\
+Holzfeuchte (Darrmethode) & 2 & 12 bis 15 & 48 bis 60 \\
+Rohdichtebestimmung & 2 & 12 bis 15 & 48 bis 60 \\
+\midrule
+\textbf{Summe} & & \textbf{12 bis 15} & \textbf{288 bis 360} \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-Le imprese conoscevano la data con anni di anticipo. Contratti firmati nel 2025
-per consegne nel 2026 collocherebbero la risposta prima di $t^{*}$, distorcendo
-verso lo zero la stima post-trattamento. I coefficienti della fase transitoria
-nell'\Cref{eq:eventstudy} misurano direttamente il fenomeno, e la somma dei
-coefficienti transitori e definitivi viene riportata come risposta cumulata.
+\section{Grenzen der Messung}
+\label{sec:grenzen-messung}
+
+Abschliessend ist der Anspruch der Messung zu begrenzen. Der Versuch bestimmt
+die Festigkeit der beiden Zonen im Verhaeltnis zueinander, nicht einen
+absoluten Verlust gegenueber Neuholz. Ein Bezug auf Festigkeitsklassen nach
+\textcite{en338} oder auf die aelteren Untersuchungen an altem
+Konstruktionsholz \parencite{rug1989,ehlbeck1990} bleibt daher ein
+Literaturvergleich und kein eigener Nachweis.

@@ -4,13 +4,13 @@
 %  a Master's thesis and split into modular files.
 % ============================================================
 
-% --- Codifica e lingue (italiano principale; inglese e tedesco disponibili
-%     per citazioni e per un eventuale abstract in seconda lingua).
-%     In babel l'ultima lingua elencata e' quella principale.
+% --- Kodierung und Sprachen (Deutsch als Hauptsprache; Englisch fuer das
+%     Abstract in der Zweitsprache).
+%     In babel ist die zuletzt genannte Sprache die Hauptsprache.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[english,ngerman,italian]{babel}
-\usepackage[autostyle,italian=guillemets]{csquotes}
+\usepackage[english,italian,ngerman]{babel}
+\usepackage[autostyle,german=quotes]{csquotes}
 \usepackage{lmodern}
 \usepackage{microtype}
 
@@ -40,10 +40,10 @@
 % --- Page layout
 \usepackage[hmargin=2.5cm, top=3cm, bottom=3cm]{geometry}
 
-% --- Bibliografia (autore-anno, biblatex + biber)
-% Convenzione economica. Per una tesi di area informatica sostituire con:
-%   \usepackage[backend=biber, style=ieee, sorting=none]{biblatex}
-% e usare \cite{} al posto di \textcite{}/\parencite{}.
+% --- Literaturverzeichnis (Autor-Jahr, biblatex + biber)
+% Normen und Rechtsquellen haben keinen Autor und wuerden sonst mit ihrem
+% vollen Titel zitiert. Sie tragen daher in references.bib ein shorthand-Feld
+% (etwa "EN 338"), das biblatex im Zitat anstelle des Titels ausgibt.
 \usepackage[backend=biber, style=authoryear, language=autobib,
             maxcitenames=2, maxbibnames=99,
             uniquename=false, uniquelist=false, natbib=true, dashed=false,
@@ -58,6 +58,12 @@
 % --- Code listings
 \usepackage{listings}
 \usepackage{xcolor}
+% --- Corporate Identity der HNE Eberswalde.
+% Werte aus dem CSS der Website hnee.de entnommen; es gibt keine oeffentlich
+% zugaenglichen Brand Guidelines. Vor der Abgabe bei der Hochschulkommunikation
+% (hochschulkommunikation@hnee.de) gegenpruefen.
+\definecolor{hnegreen}{HTML}{004D3D}      % Primaerfarbe
+\definecolor{hnegreenlight}{HTML}{04654F}  % Sekundaerfarbe
 \definecolor{codegray}{gray}{0.95}
 \definecolor{codekeyword}{RGB}{0,0,180}
 \definecolor{codecomment}{RGB}{0,128,0}
@@ -79,36 +85,42 @@
   language=Python % default; override per listing with [language=...]
 }
 
-% Denominazioni italiane per i listati di codice.
-\renewcommand{\lstlistlistingname}{Elenco dei listati}
-\renewcommand{\lstlistingname}{Listato}
+% Deutsche Bezeichnungen fuer Code-Listings.
+\renewcommand{\lstlistlistingname}{Listingverzeichnis}
+\renewcommand{\lstlistingname}{Listing}
 
 % --- Hyperlinks (load late, as hyperref likes to be near-last)
 % hypertexnames=false: the appendix restarts page numbering, which otherwise
 % produces "duplicate destination" warnings on every build.
-\usepackage[hidelinks,plainpages=false,pdfpagelabels,hypertexnames=false]{hyperref}
+\usepackage[plainpages=false,pdfpagelabels,hypertexnames=false]{hyperref}
+% Verweise in der Primaerfarbe der HNE statt in den Standardfarben.
+\hypersetup{
+  colorlinks=true,
+  linkcolor=hnegreen,
+  citecolor=hnegreen,
+  urlcolor=hnegreenlight,
+}
 \usepackage{cleveref}
-% Denominazioni italiane esplicite: non dipendono dal rilevamento automatico
-% della lingua da parte di cleveref.
-\crefname{chapter}{capitolo}{capitoli}
-\Crefname{chapter}{Capitolo}{Capitoli}
-\crefname{section}{sezione}{sezioni}
-\Crefname{section}{Sezione}{Sezioni}
-\crefname{subsection}{sezione}{sezioni}
-\Crefname{subsection}{Sezione}{Sezioni}
-\crefname{equation}{equazione}{equazioni}
-\Crefname{equation}{Equazione}{Equazioni}
-\crefname{figure}{figura}{figure}
-\Crefname{figure}{Figura}{Figure}
-\crefname{table}{tabella}{tabelle}
-\Crefname{table}{Tabella}{Tabelle}
-\crefname{listing}{listato}{listati}
-\Crefname{listing}{Listato}{Listati}
+% Explizite deutsche Bezeichnungen fuer cleveref.
+\crefname{chapter}{Kapitel}{Kapitel}
+\Crefname{chapter}{Kapitel}{Kapitel}
+\crefname{section}{Abschnitt}{Abschnitte}
+\Crefname{section}{Abschnitt}{Abschnitte}
+\crefname{subsection}{Abschnitt}{Abschnitte}
+\Crefname{subsection}{Abschnitt}{Abschnitte}
+\crefname{equation}{Gleichung}{Gleichungen}
+\Crefname{equation}{Gleichung}{Gleichungen}
+\crefname{figure}{Abbildung}{Abbildungen}
+\Crefname{figure}{Abbildung}{Abbildungen}
+\crefname{table}{Tabelle}{Tabellen}
+\Crefname{table}{Tabelle}{Tabellen}
+\crefname{listing}{Listing}{Listings}
+\Crefname{listing}{Listing}{Listings}
 
-% --- Ambienti di tipo teorema (denominazioni italiane)
-\newtheorem{theorem}{Teorema}[chapter]
-\newtheorem{definition}[theorem]{Definizione}
+% --- Theorem-Umgebungen (deutsche Bezeichnungen)
+\newtheorem{theorem}{Satz}[chapter]
+\newtheorem{definition}[theorem]{Definition}
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{remark}[theorem]{Osservazione}
-\newtheorem{corollary}[theorem]{Corollario}
-\newtheorem{example}[theorem]{Esempio}
+\newtheorem{remark}[theorem]{Anmerkung}
+\newtheorem{corollary}[theorem]{Korollar}
+\newtheorem{example}[theorem]{Beispiel}

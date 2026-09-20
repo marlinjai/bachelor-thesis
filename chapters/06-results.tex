@@ -3,125 +3,148 @@
 
 \begin{center}
 \fbox{\parbox{0.95\linewidth}{\small
-\textbf{Status: Preliminary scaffold.} Dieses Kapitel zeigt die Struktur fuer
-Ergebnispraesentationen. Aktuelle Laborergebnisse werden hier eingefuegt,
-sobald Versuche durchgefuehrt werden.}}
+\textbf{Stand: Versuche noch nicht durchgefuehrt.} Dieses Kapitel legt die
+Darstellungsform fest, bevor Messwerte vorliegen. Damit steht vorab fest,
+welche Kennwerte berichtet werden, und nicht erst im Nachhinein diejenigen,
+die sich als guenstig erweisen. Saemtliche Zellen sind Platzhalter und mit
+einem Strich gefuellt. Sie sind aus den Pruefprotokollen zu uebernehmen. In
+diesem Kapitel duerfen keine Auswertungen erscheinen, die nicht bereits in
+\Cref{ch:strategy} festgelegt sind.}}
 \end{center}
 
-\section{Deskriptive Statistik}
+\section{Beschreibung der Stichprobe}
 \label{sec:descriptives}
 
+Zunaechst ist zu dokumentieren, welche Balken in die Untersuchung eingegangen
+sind und welche nach den in \Cref{ch:strategy} festgelegten Kriterien
+ausgeschlossen wurden. Der Ausschluss wegen unsicherer Zonenzuordnung ist
+dabei gesondert auszuweisen, da er die zentrale methodische Schwachstelle der
+Untersuchung betrifft.
+
 \begin{table}[H]
 \centering
-\begin{threeparttable}
-\caption{Composizione del campione.}
+\caption{Zusammensetzung der Stichprobe.}
 \label{tab:sample}
+\begin{tabular}{@{}lr@{}}
+\toprule
+& \textbf{Anzahl} \\
+\midrule
+Bereitgestellte Balken                        & -- \\
+Davon mit gesicherter Einbaulage              & -- \\
+Ausgeschlossen: Zonenzuordnung unsicher       & -- \\
+Ausgeschlossen: Schaedlingsbefall oder Faeule & -- \\
+Ausgeschlossen: sonstige Gruende              & -- \\
+\midrule
+In die Auswertung eingegangene Balken         & -- \\
+Probekoerper Druckzone                        & -- \\
+Probekoerper Zugzone                          & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Rohdichte und Holzfeuchte}
+\label{sec:density-moisture}
+
+Rohdichte und Holzfeuchte sind vor der Festigkeitsauswertung zu berichten. Die
+Rohdichte geht als Kovariate in die Auswertung ein, weil sie die mechanischen
+Eigenschaften staerker bestimmt als jede andere leicht messbare Groesse. Ein
+systematischer Rohdichteunterschied zwischen den beiden Zonen waere ein
+Befund fuer sich und wuerde die Interpretation eines Festigkeitsunterschieds
+grundlegend veraendern.
+
+\begin{table}[H]
+\centering
+\caption{Rohdichte und Holzfeuchte je Zone.}
+\label{tab:density}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+& \textbf{n} & \textbf{Mittelwert} & \textbf{Standardabw.}
+& \textbf{Min / Max} \\
+\midrule
+Rohdichte Druckzone     & -- & -- & -- & -- \\
+Rohdichte Zugzone       & -- & -- & -- & -- \\
+Holzfeuchte Druckzone   & -- & -- & -- & -- \\
+Holzfeuchte Zugzone     & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Festigkeitskennwerte je Zone}
+\label{sec:strength-results}
+
+Die Festigkeitskennwerte sind getrennt nach ehemaliger Druck- und Zugzone
+auszuweisen. Neben Mittelwert und Streuung ist das Fraktil anzugeben, das fuer
+eine Einstufung nach \parencite{en384} massgeblich waere, sofern der
+Stichprobenumfang eine solche Angabe traegt. Traegt er sie nicht, ist das
+ausdruecklich zu vermerken, anstatt einen Wert zu berichten, der eine
+Genauigkeit vortaeuscht.
+
+\begin{table}[H]
+\centering
+\caption{Festigkeitskennwerte je Zone.}
+\label{tab:strength}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+& \textbf{n} & \textbf{Mittelwert} & \textbf{Standardabw.}
+& \textbf{Min / Max} \\
+\midrule
+Druckzone & -- & -- & -- & -- \\
+Zugzone   & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Vergleich der beiden Zonen}
+\label{sec:zone-comparison}
+
+Der Vergleich erfolgt gepaart, da beide Probekoerper eines Paares aus
+demselben Balken stammen. Zu berichten sind die mittlere Differenz, das
+zugehoerige Konfidenzintervall, die Pruefgroesse und der p-Wert, ferner das
+Ergebnis der Pruefung auf Normalverteilung der Differenzen. Ein nicht
+signifikantes Ergebnis ist als Ergebnis zu berichten und nicht als
+ausgebliebener Befund.
+
+\begin{table}[H]
+\centering
+\caption{Gepaarter Vergleich Druckzone gegen Zugzone.}
+\label{tab:paired-test}
+\begin{tabular}{@{}lr@{}}
+\toprule
+& \textbf{Wert} \\
+\midrule
+Anzahl Paare                          & -- \\
+Mittlere Differenz                    & -- \\
+Konfidenzintervall der Differenz      & -- \\
+Pruefgroesse                          & -- \\
+p-Wert                                & -- \\
+Effektgroesse                         & -- \\
+Pruefung auf Normalverteilung         & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Auswertung unter Beruecksichtigung der Rohdichte}
+\label{sec:covariate}
+
+Ergibt sich zwischen den Zonen ein Rohdichteunterschied, ist der
+Festigkeitsvergleich zusaetzlich unter Beruecksichtigung der Rohdichte als
+Kovariate zu fuehren. Nur so laesst sich trennen, ob ein beobachteter
+Unterschied auf die \gls{lastgeschichte} zurueckgeht oder schlicht darauf,
+dass die Probekoerper der beiden Zonen aus unterschiedlich dichtem Material
+stammen.
+
+\begin{table}[H]
+\centering
+\caption{Auswertung mit Rohdichte als Kovariate.}
+\label{tab:ancova}
 \begin{tabular}{@{}lrrr@{}}
 \toprule
-& \textbf{Trattati} & \textbf{Controlli} & \textbf{Totale} \\
+\textbf{Quelle} & \textbf{Freiheitsgrade} & \textbf{Pruefgroesse}
+& \textbf{p-Wert} \\
 \midrule
-Codici \acrshort{cn}-8               & -- & -- & -- \\
-Paesi di origine                     & -- & -- & -- \\
-Celle prodotto--origine--mese        & -- & -- & -- \\
-Valore importato, 2025 (mld \euro)   & -- & -- & -- \\
-Celle soppresse (\%)                 & -- & -- & -- \\
+Zone                     & -- & -- & -- \\
+Rohdichte                & -- & -- & -- \\
+Balken (Blockeffekt)     & -- & -- & -- \\
 \bottomrule
 \end{tabular}
-\begin{tablenotes}[flushleft]\small
-\item \textit{Note.} Il campione va dal gennaio 2021 all'ultimo mese
-  disponibile. La soppressione segue le regole di riservatezza di Eurostat
-  (\Cref{sec:data-problems}).
-\end{tablenotes}
-\end{threeparttable}
 \end{table}
-
-\section{DR1: volumi importati}
-\label{sec:results-volume}
-
-\begin{table}[H]
-\centering
-\begin{threeparttable}
-\caption{Effetto del regime definitivo del CBAM sui volumi importati.}
-\label{tab:main}
-\begin{tabular}{@{}lcccc@{}}
-\toprule
-& (1) & (2) & (3) & (4) \\
-& Base & + settore--mese & Intensità & Placebo \\
-\midrule
-$D_i \times \mathrm{Post}_t$ & -- & -- & & -- \\
-                             & (--) & (--) & & (--) \\
-$\tau_{iot}$                 & & & -- & \\
-                             & & & (--) & \\
-\midrule
-EF prodotto--origine & Sì & Sì & Sì & Sì \\
-EF origine--mese     & Sì & Sì & Sì & Sì \\
-EF settore--mese     & No & Sì & Sì & Sì \\
-Osservazioni         & -- & -- & -- & -- \\
-Pseudo $R^2$         & -- & -- & -- & -- \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}[flushleft]\small
-\item \textit{Note.} Stime \acrshort{ppml} dell'\Cref{eq:baseline}. Errori
-  standard raggruppati per codice \acrshort{cn}-8 fra parentesi; i valori $p$
-  da wild bootstrap sono riportati in appendice. La colonna~(4) assegna una
-  data di trattamento placebo al gennaio 2024. Non si impiegano asterischi di
-  significatività: si riportano il coefficiente e il suo errore standard,
-  lasciando al lettore il giudizio.
-\end{tablenotes}
-\end{threeparttable}
-\end{table}
-
-\subsection{Stime event study}
-
-\begin{figure}[H]
-\centering
-\fbox{\begin{minipage}[c][5cm][c]{0.78\textwidth}
-  \centering\itshape
-  Grafico \emph{event study} da inserire:\\
-  $\beta_k$ dall'\Cref{eq:eventstudy} con intervalli di confidenza al
-  95\,\%.
-\end{minipage}}
-\caption{Effetti dinamici attorno alla soglia del gennaio 2026. La banda
-         ombreggiata individua la fase transitoria, durante la quale era
-         richiesta la rendicontazione ma non era dovuto alcun certificato.}
-\label{fig:eventstudy}
-\end{figure}
-
-La \Cref{fig:eventstudy} regge gran parte dell'argomentazione. I coefficienti
-anteriori all'ottobre 2023 parlano dei trend paralleli; quelli compresi fra
-l'ottobre 2023 e il dicembre 2025 dell'anticipazione; quelli successivi al
-gennaio 2026 della risposta vera e propria.
-
-\section{DR2: riallocazione fra origini}
-\label{sec:results-reallocation}
-
-Da completare. La previsione derivante dalla \Cref{sec:dose} è un coefficiente
-negativo per le origini ad alta intensità, attenuato per quelle che applicano
-un proprio prezzo del carbonio attraverso la detrazione $c_{ot}$.
-
-\section{DR3: valori unitari e traslazione}
-\label{sec:results-passthrough}
-
-Da completare. La quantità riportata è il rapporto di traslazione, ossia la
-risposta stimata del valore unitario divisa per $\tau_{iot}$, con un intervallo
-di confidenza ottenuto per bootstrap sul rapporto anziché per approssimazione
-con il metodo delta.
-
-\section{Robustezza}
-\label{sec:robustness}
-
-\begin{enumerate}
-  \item \textbf{Trend paralleli onesti.} Valore di rottura $\bar{M}$ di
-    \textcite{rambachan2023} per ciascun risultato principale.
-  \item \textbf{Validità dei controlli.} Salto di livello nelle importazioni
-    dei soli controlli in $t^{*}$; ristima sul sottocampione non sostituibile
-    (\Cref{sec:substitution}).
-  \item \textbf{Date placebo.} Gennaio 2024 e gennaio 2025.
-  \item \textbf{Winsorizzazione.} Troncamento dei valori unitari al
-    1°/99° e al 5°/95° percentile.
-  \item \textbf{Stimatore.} \acrshort{ols} sui logaritmi dei flussi positivi,
-    per mostrare quanto valga la scelta della \acrshort{ppml}.
-  \item \textbf{Esclusione di un settore alla volta.} Ristima escludendo a
-    turno ciascuno dei sei settori coperti, poiché l'acciaio è abbastanza
-    grande da determinare da solo il risultato aggregato.
-\end{enumerate}

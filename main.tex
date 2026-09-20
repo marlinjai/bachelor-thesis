@@ -1,6 +1,6 @@
 % ============================================================
-%  main.tex — Tesi di laurea magistrale, HTW Berlino.
-%  Testo in italiano, struttura accademica tedesca.
+%  main.tex: Bachelorarbeit, HNE Eberswalde.
+%  Text auf Deutsch.
 %
 %  Compilazione: latexmk -pdf main.tex     (oppure: make)
 %  Motore:       pdfLaTeX + biber + makeglossaries
@@ -12,7 +12,7 @@
 % Le lingue sono opzioni GLOBALI di classe, non opzioni di babel: cleveref
 % rileva la lingua solo da qui, altrimenti ricade sull'inglese ("Chapter 2").
 \documentclass[oneside,bibliography=totocnumbered,listof=totoc,BCOR=5mm,12pt,
-               english,ngerman,italian]{scrbook}
+               english,italian,ngerman]{scrbook}
 
 \input{metadata}
 \input{preamble}
@@ -25,14 +25,14 @@
 
 \input{frontmatter/titlepage}
 
-% ---------- Parte iniziale (numerazione romana) ----------
+% ---------- Vorspann (roemische Nummerierung) ----------
 \frontmatter
 
 \tableofcontents
 
 \input{frontmatter/acknowledgments}
-\input{frontmatter/abstract-it}
-\input{frontmatter/abstract-en}   % abstract in seconda lingua
+\input{frontmatter/abstract-de}
+\input{frontmatter/abstract-en}   % Abstract in Zweitsprache
 
 % listof=totoc handles the ToC entries for these two.
 \listoffigures
@@ -44,10 +44,10 @@
 %\lstlistoflistings
 
 % The `toc' option of glossaries already adds both of these to the ToC.
-\printglossary[title=Glossario]
-\printglossary[type=\acronymtype,title=Elenco delle abbreviazioni]
+\printglossary[title=Glossar]
+\printglossary[type=\acronymtype,title=Abkuerzungsverzeichnis]
 
-% ---------- Corpo del testo (numerazione araba) ----------
+% ---------- Hauptteil (arabische Nummerierung) ----------
 \mainmatter
 
 \input{chapters/01-introduction}
@@ -59,12 +59,12 @@
 \input{chapters/07-discussion}
 \input{chapters/08-conclusion}
 
-% Bibliografia subito dopo il corpo del testo (convenzione tedesca).
+% Literaturverzeichnis direkt nach dem Hauptteil (deutsche Konvention).
 % heading=bibintoc lascia a biblatex il titolo, la voce nell'indice e la
 % testatina: farlo a mano lasciava una testatina errata nelle pagine seguenti.
-\printbibliography[heading=bibintoc, title={Bibliografia}]
+\printbibliography[heading=bibintoc, title={Literaturverzeichnis}]
 
-% ---------- Appendice ----------
+% ---------- Anhang ----------
 % \clearpage first: without it, \pagenumbering{Roman} takes effect while the
 % bibliography's last page is still open, so References would be numbered "I".
 \clearpage
@@ -72,7 +72,7 @@
 \pagenumbering{Roman}
 \input{backmatter/appendix}
 
-% ---------- Parte finale ----------
+% ---------- Nachspann ----------
 \backmatter
 \input{backmatter/declaration}
 

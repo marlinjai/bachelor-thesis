@@ -1,57 +1,79 @@
 % ============================================================
-%  glossary.tex — voci di glossario e acronimi.
-%  Si richiamano con \gls{...}, \glspl{...}, \Gls{...},
-%  oppure \acrshort{...} / \acrlong{...} / \acrfull{...}.
-%  Vengono stampate solo le voci effettivamente citate.
+%  glossary.tex: Glossareintraege und Abkuerzungen.
+%  Aufruf mit \gls{...}, \glspl{...}, \Gls{...},
+%  oder \acrshort{...} / \acrlong{...} / \acrfull{...}.
+%  Gedruckt werden nur tatsaechlich zitierte Eintraege.
 % ============================================================
 
-\newglossaryentry{carbonleakage}{
-  name=rilocalizzazione delle emissioni,
-  description={Lo spostamento della produzione ad alta intensità emissiva, o
-               della domanda che la riguarda, da una giurisdizione che applica
-               un prezzo del carbonio a una che non lo applica, cosicché le
-               emissioni globali diminuiscono meno di quanto suggerisca la
-               riduzione interna}
+\newglossaryentry{altholz}{
+  name=Altholz,
+  description={Gebrauchtes Holz aus Rueckbau, Abbruch oder Demontage, das
+               nach der Altholzverordnung in vier Kategorien eingeteilt wird;
+               nur die gering belasteten Kategorien kommen fuer eine tragende
+               Wiederverwendung in Betracht}
 }
 
-\newglossaryentry{embeddedemissions}{
-  name=emissioni incorporate,
-  description={I gas serra rilasciati durante la produzione di un bene e
-               attribuiti a quel bene nel momento in cui attraversa la
-               frontiera, indipendentemente da dove siano fisicamente avvenute}
+\newglossaryentry{druckzone}{
+  name=Druckzone,
+  description={Der Querschnittsbereich eines auf Biegung beanspruchten
+               Traegers oberhalb der neutralen Faser, in dem die
+               Laengsspannungen Druckspannungen sind}
 }
 
-\newglossaryentry{freeallocation}{
-  name=assegnazione gratuita,
-  description={Quote di emissione rilasciate a titolo gratuito agli impianti
-               ritenuti esposti al rischio di rilocalizzazione delle emissioni;
-               ai sensi del regolamento CBAM esse vengono progressivamente
-               eliminate per i settori coperti man mano che il prelievo entra
-               a regime}
+\newglossaryentry{zugzone}{
+  name=Zugzone,
+  description={Der Querschnittsbereich eines auf Biegung beanspruchten
+               Traegers unterhalb der neutralen Faser, in dem die
+               Laengsspannungen Zugspannungen sind}
 }
 
-\newglossaryentry{resourceshuffling}{
-  name=riallocazione contabile della produzione,
-  description={La pratica di dirottare verso il mercato regolamentato le unità
-               più pulite di un portafoglio produttivo per il resto invariato,
-               così che l'intensità emissiva misurata delle importazioni si
-               riduca senza alcuna variazione delle emissioni effettive}
+\newglossaryentry{neutralefaser}{
+  name=neutrale Faser,
+  description={Die spannungsfreie Schicht im Querschnitt eines gebogenen
+               Traegers, die Druck- und Zugzone voneinander trennt}
 }
 
-\newglossaryentry{unitvalue}{
-  name=valore unitario,
-  description={Il valore degli scambi diviso per la quantità scambiata,
-               impiegato come approssimazione del prezzo quando i prezzi di
-               transazione non sono osservabili}
+\newglossaryentry{lastgeschichte}{
+  name=Lastgeschichte,
+  description={Die gesamte Abfolge der Beanspruchungen, die ein Bauteil
+               waehrend seiner Nutzungsdauer erfahren hat, einschliesslich
+               Dauer, Hoehe und Wechsel der Lasten sowie der begleitenden
+               Feuchteverhaeltnisse}
 }
 
-% --- Acronimi
-\newacronym{cbam}{CBAM}{meccanismo di adeguamento del carbonio alla frontiera}
-\newacronym{ets}{ETS}{sistema di scambio di quote di emissione}
-\newacronym{cn}{NC}{Nomenclatura Combinata}
-\newacronym{did}{DiD}{differenze nelle differenze}
-\newacronym{twfe}{TWFE}{effetti fissi bidirezionali}
-\newacronym{ppml}{PPML}{massima verosimiglianza pseudo-Poisson}
-\newacronym{eua}{EUA}{quota di emissione europea}
-\newacronym{hs}{SA}{Sistema Armonizzato}
-\newacronym{ols}{OLS}{minimi quadrati ordinari}
+\newglossaryentry{kriechen}{
+  name=Kriechen,
+  description={Die zeitabhaengige, mit der Belastungsdauer zunehmende
+               Verformung unter konstanter Last; bei Holz durch Feuchtewechsel
+               erheblich verstaerkt (mechano-sorptives Kriechen)}
+}
+
+\newglossaryentry{restfestigkeit}{
+  name=Restfestigkeit,
+  description={Die nach einer Nutzungsphase verbliebene Tragfaehigkeit eines
+               Bauteils, im Unterschied zur Festigkeit des ungenutzten
+               Ausgangsmaterials}
+}
+
+\newglossaryentry{rohdichte}{
+  name=Rohdichte,
+  description={Masse je Volumeneinheit des Holzes bei definierter Holzfeuchte;
+               wichtigster Einzelindikator fuer die mechanischen Eigenschaften
+               und daher als Kovariate im Zonenvergleich zu fuehren}
+}
+
+\newglossaryentry{sortierung}{
+  name=Sortierung,
+  description={Die Zuordnung von Bauholz zu einer Festigkeitsklasse, entweder
+               visuell nach DIN 4074 oder maschinell nach EN 14081}
+}
+
+% --- Abkuerzungen
+\newacronym{altholzv}{AltholzV}{Altholzverordnung}
+\newacronym{krwg}{KrWG}{Kreislaufwirtschaftsgesetz}
+\newacronym{hnee}{HNEE}{Hochschule fuer nachhaltige Entwicklung Eberswalde}
+\newacronym{mor}{MOR}{Biegefestigkeit (modulus of rupture)}
+\newacronym{moe}{MOE}{Elastizitaetsmodul (modulus of elasticity)}
+\newacronym{ndt}{NDT}{zerstoerungsfreie Pruefung (non-destructive testing)}
+\newacronym{dol}{DOL}{Lastdauereffekt (duration of load)}
+\newacronym{anova}{ANOVA}{Varianzanalyse (analysis of variance)}
