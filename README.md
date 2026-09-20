@@ -1,113 +1,128 @@
-# Master's Thesis
+# Bachelorarbeit: Festigkeit von Altholz
 
-LaTeX project for my Master's thesis at HTW Berlin, adapted from
-[marlinjai/academic-thesis-template](https://github.com/marlinjai/academic-thesis-template)
-(English content, German academic structure, KOMA-Script `scrbook`).
+LaTeX-Projekt fuer eine Bachelorarbeit an der Hochschule fuer nachhaltige
+Entwicklung Eberswalde (HNEE). Aufgesetzt mit KOMA-Script `scrbook`, Deutsch
+als Dokumentsprache, abgeleitet von
+[marlinjai/academic-thesis-template](https://github.com/marlinjai/academic-thesis-template).
 
-TeX Live is installed **inside this folder** (`.texlive/`), so nothing was
-touched system-wide and no `sudo` was needed. The distribution is gitignored.
+**Thema:** Unterscheidet sich die verbliebene Festigkeit eines gebrauchten
+Holzbalkens zwischen seiner ehemaligen Druckzone (oben im Querschnitt) und
+seiner ehemaligen Zugzone (unten)? Die Arbeit liefert den theoretischen
+Unterbau und einen Versuchsplan. Die Versuche selbst stehen aus, Kapitel 6
+ist bislang ein Geruest mit Platzhaltern.
 
-## Build
+## Zuerst
+
+1. `metadata.tex` ausfuellen: Name, Matrikelnummer, Pruefer. Die Platzhalter
+   dort erscheinen sonst so auf dem Titelblatt.
+2. `ROADMAP.md` lesen. Dort stehen alle offenen Punkte, auch die, die mit der
+   Betreuung zu klaeren sind (Zitierweise, Studiengang).
+
+## Bauen
+
+Es braucht eine TeX-Live-Installation ab 2023 mit `latexmk` und `biber`.
+
+- **macOS:** [MacTeX](https://tug.org/mactex/) installieren, danach laeuft es.
+- **Linux:** `texlive-full` aus der Distribution, oder `./install-latex.sh`
+  fuer eine Installation im Projektordner ohne root (dauert rund 15 Minuten
+  und braucht etwa 1 GB).
 
 ```bash
-cd ~/Work/master-thesis
-mise trust          # once — puts the local TeX Live on PATH automatically
-make                # -> build/main.pdf
+make            # erzeugt build/main.pdf
 ```
 
-Without mise:
-
-```bash
-source ./activate.sh
-make
-```
-
-| Command | What it does |
+| Befehl | Wirkung |
 |---|---|
-| `make` / `make pdf` | Full build (pdflatex → biber → makeglossaries → pdflatex ×2) |
-| `make watch` | Rebuild + live-reload the viewer on every save |
-| `make open` | Build and open the PDF (system handler — Evince here) |
-| `make chrome` | Build and open the PDF in Chrome's viewer |
-| `make wordcount` | Word count across all included files |
-| `make clean` | Remove aux files, keep the PDF |
-| `make distclean` | Remove everything under `build/` |
+| `make` / `make pdf` | Vollstaendiger Lauf (pdflatex, biber, makeglossaries, pdflatex zweimal) |
+| `make watch` | Baut bei jedem Speichern neu |
+| `make wordcount` | Wortzahl ueber alle eingebundenen Dateien |
+| `make clean` | Hilfsdateien loeschen, PDF behalten |
+| `make distclean` | `build/` komplett loeschen |
 
-Output lands in `build/main.pdf`.
-
-## Current draft
-
-**The thesis is written in Italian.** Language handling is wired through
-`babel` (Italian primary, English and German available for a second-language
-abstract and for citations), `cleveref`, `glossaries-italian` and biblatex's
-`italian.lbx`.
-
-The topic is the CBAM entry from the research file — *Un prelievo sul carbonio
-alla frontiera ridirige gli scambi?* — a difference-in-differences study of the
-EU carbon border adjustment's definitive regime (January 2026), using CBAM's
-CN-code scope boundary as the treatment/control split.
-
-Chapters 1–5 are drafted. Chapter 6 (*Risultati*) holds the table and figure
-layouts with placeholder cells; chapters 7–8 are outlined against those.
-Nothing has been estimated yet.
-
-The English draft of the same text is preserved in git history at commit
-`963ff5f`. The generic software-project chapters that shipped with the original
-template are in `template-original/chapters-software-project/`.
-
-> Note: languages must be declared as **global class options** in `main.tex`,
-> not as `babel` package options — `cleveref` only detects the document
-> language from class options and otherwise silently falls back to English
-> ("Il Chapter 2").
-
-## Research
-
-`research/thesis-topics-2026.html` is the topic shortlist this thesis was
-chosen from — 24 candidate questions with their data requirements and
-identification strategies. Open it in a browser.
-
-## Layout
-
-```
-main.tex                  document skeleton — the order of everything
-metadata.tex              ← EDIT FIRST: title, name, supervisors, degree
-preamble.tex              packages and global config
-glossary.tex              glossary entries and acronyms
-references.bib            bibliography (biblatex, IEEE style)
-frontmatter/              title page, acknowledgments, abstracts (IT + EN)
-research/                 the topic shortlist this thesis came from
-chapters/01..08-*.tex     the actual content (CBAM draft, Italian)
-backmatter/               appendix, declaration of authorship
-figures/                  images (\graphicspath is set here)
-build/                    generated output — gitignored
-template-original/        the untouched bachelor template, for reference
-```
-
-## Writing notes
-
-- **Citations:** add entries to `references.bib`, cite with `\cite{key}`.
-  Style is IEEE, ordered by first appearance (`sorting=none`).
-- **Cross-references:** `\label{ch:foo}` / `\label{fig:bar}` and
-  `\Cref{ch:foo}` — cleveref writes "Chapter 3" / "Figure 5.1" for you.
-- **Glossary:** `\gls{API}` for terms, `\acrshort{llm}` / `\acrfull{llm}` for
-  acronyms. Only entries you actually reference get printed.
-- **Listings:** `\begin{lstlisting}[caption={...}, label={lst:...}]`,
-  override the language per listing with `[language=TypeScript]`.
-- **New chapter:** create `chapters/09-foo.tex`, add `\input{chapters/09-foo}`
-  to `main.tex`.
-
-## Reinstalling TeX Live
-
-On a fresh clone the `.texlive/` folder is absent. Rebuild it with:
+Das PDF landet in `build/main.pdf`. Reinen Text daraus:
 
 ```bash
-./install-latex.sh      # ~15 min, ~1 GB, no root
+pdftotext build/main.pdf build/main.txt
 ```
 
-Extra packages are listed in `texlive-packages.txt`; add any you need and run
-`tlmgr install <name>` (with the local TeX Live on PATH).
+`build/` ist gitignoriert. PDF und Textfassung liegen also nicht im
+Repository, sondern werden bei Bedarf neu erzeugt.
+
+> **Hinweis zu `.mise.toml`:** Die Datei setzt einen projektlokalen
+> TeX-Live-Pfad auf `x86_64-linux`. Sie wirkt nur auf Linux und nur, wenn
+> `.texlive/` tatsaechlich vorhanden ist. Auf macOS wird sie ignoriert und
+> die System-Installation verwendet.
+
+## Aufbau
+
+```
+main.tex                  Dokumentgeruest: die Reihenfolge von allem
+metadata.tex              ZUERST AUSFUELLEN: Titel, Name, Pruefer, Abschluss
+preamble.tex              Pakete und globale Konfiguration
+glossary.tex              Glossareintraege und Abkuerzungen
+references.bib            Literatur (biblatex, Autor-Jahr)
+frontmatter/              Titelblatt, Danksagung, Abstracts (DE und EN)
+chapters/01..08-*.tex     der eigentliche Text
+backmatter/               Anhang, Eigenstaendigkeitserklaerung
+figures/                  Bilder, darunter das HNEE-Logo
+research/altholz/         Rechercheprotokolle, aus denen die Kapitel entstanden
+build/                    erzeugte Dateien, gitignoriert
+template-original/        unveraendertes Ausgangstemplate zum Nachschlagen
+```
+
+## Kapitel
+
+| Datei | Inhalt |
+|---|---|
+| `01-introduction` | Ausgangslage, Fragestellung, Aufbau |
+| `02-background` | AltholzV, Abfallhierarchie, Sortierung nach DIN 4074 und EN 338, Eurocode 5 |
+| `03-literature` | Forschungsstand und die Luecke, an der die Arbeit ansetzt |
+| `04-data` | Werkstoffphysik: Spannungsverteilung, Versagensarten, Kriechen, Hypothese |
+| `05-empirical-strategy` | Versuchsplan: Probenentnahme, Pruefverfahren, Statistik |
+| `06-results` | Geruest fuer die Ergebnisse, alle Zellen leer |
+| `07-discussion` | Einordnung der moeglichen Ausgaenge, Grenzen |
+| `08-conclusion` | Zusammenfassung |
+
+## Schreiben
+
+- **Umlaute:** Das Projekt schreibt `ue`, `ae`, `oe` und `ss` aus, also
+  "ueber" statt "über". Das ist durchgaengig so und sollte beibehalten
+  werden, sonst wird es uneinheitlich.
+- **Zitieren:** Eintrag in `references.bib` anlegen, dann `\parencite{key}`
+  (Klammerzitat) oder `\textcite{key}` (im Satz). Der Stil ist Autor-Jahr.
+  Normen und Gesetze haben keinen Autor und tragen deshalb ein
+  `shorthand`-Feld, damit sie als "EN 338" und nicht mit ihrem vollen Titel
+  zitiert werden.
+- **Querverweise:** `\label{ch:foo}` setzen, mit `\Cref{ch:foo}` verweisen.
+  Daraus wird automatisch "Kapitel 3" oder "Tabelle 5.1".
+- **Glossar:** `\gls{altholz}` fuer Begriffe, `\acrshort{altholzv}` oder
+  `\acrfull{altholzv}` fuer Abkuerzungen. Gedruckt werden nur Eintraege, die
+  auch vorkommen. Die Liste steht in `glossary.tex`.
+- **Neues Kapitel:** `chapters/09-foo.tex` anlegen und `\input{chapters/09-foo}`
+  in `main.tex` ergaenzen.
+
+## Corporate Identity der HNEE
+
+Das Titelblatt traegt das HNEE-Logo, und `#004D3D` ist die Akzentfarbe fuer
+Verweise und Zitate.
+
+Die HNEE veroeffentlicht ihr Logo nur in Weiss. Fuer `figures/hne-logo.pdf`
+wurde daher die offizielle Vektordatei genommen und ihre Fuellfarbe auf das
+Hochschulgruen gesetzt; `figures/hne-logo-white.svg` ist das unveraenderte
+Original. Gibt es beim Hochschulmarketing eine offizielle Logodatei, ersetzt
+man `figures/hne-logo.pdf` damit und muss sonst nichts aendern.
+
+## Recherche
+
+`research/altholz/` enthaelt sechs Rechercheprotokolle zu Regulierung,
+Klassifizierung, Werkstoffphysik, Forschungsstand, Hochschulvorgaben und
+Methodik. Jede Aussage dort ist entweder mit einer URL belegt oder als
+`[UNVERIFIED]` gekennzeichnet. Die Kapitel sind aus diesen Dateien
+geschrieben, und ungepruefte Angaben sind im Text entsprechend vorsichtig
+formuliert.
 
 ## VS Code
 
-`.vscode/settings.json` configures LaTeX Workshop to use the project-local
-`latexmk` and to write into `build/`. Install the *LaTeX Workshop* extension
-(James Yu) and it should just work — no system LaTeX required.
+`.vscode/settings.json` konfiguriert LaTeX Workshop so, dass nach `build/`
+geschrieben wird. Die Erweiterung *LaTeX Workshop* (James Yu) installieren,
+dann funktioniert es.
