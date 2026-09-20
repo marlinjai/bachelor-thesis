@@ -1,8 +1,38 @@
 #!/usr/bin/env bash
+# Wrapper for the project-local TeX Live on Linux.
+#
 # TeX Live ships a PAR-packed biber linked against libcrypt.so.1, which modern
 # Arch no longer provides (libxcrypt gives .so.2). We keep a copy of the compat
 # library in .texlive/lib and point biber at it here, so no system change and
 # no root are required. See install-latex.sh for how the library is fetched.
-ROOT="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
-export LD_LIBRARY_PATH="$ROOT/.texlive/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-exec "$ROOT/.texlive/2026/bin/x86_64-linux/biber" "$@"
+#
+# On machines without that project-local install (macOS, or a Linux box using
+# the distribution's TeX Live), this falls through to whatever biber is on
+# PATH. Without the fallback the wrapper would exec a Linux path that does not
+# exist, and `mise trust` puts this directory first on PATH, so the build would
+# fail here with a confusing error.
+set -euo pipefail
+
+SELF="${BASH_SOURCE[0]}"
+while [ -L "$SELF" ]; do SELF="$(readlink "$SELF")"; done
+BIN_DIR="$(cd "$(dirname "$SELF")" && pwd)"
+ROOT="$(cd "$BIN_DIR/.." && pwd)"
+
+LOCAL_BIBER="$ROOT/.texlive/2026/bin/x86_64-linux/biber"
+if [ -x "$LOCAL_BIBER" ]; then
+  export LD_LIBRARY_PATH="$ROOT/.texlive/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+  exec "$LOCAL_BIBER" "$@"
+fi
+
+# Find a biber elsewhere on PATH, skipping this directory so we cannot recurse.
+FALLBACK="$(
+  PATH="$(printf '%s' "$PATH" | tr ':' '\n' | grep -vxF "$BIN_DIR" | paste -sd: -)" \
+    command -v biber || true
+)"
+if [ -n "$FALLBACK" ]; then
+  exec "$FALLBACK" "$@"
+fi
+
+echo "biber: not found." >&2
+echo "Install TeX Live (macOS: MacTeX; Linux: texlive-full or ./install-latex.sh)." >&2
+exit 127

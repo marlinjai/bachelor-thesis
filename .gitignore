@@ -30,3 +30,6 @@ build/
 # Editors / OS
 .DS_Store
 *~
+
+# Cursor editor local state (per-machine, not source)
+.cursor/
