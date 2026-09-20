@@ -1,7 +1,6 @@
 % ============================================================
-%  preamble.tex — packages and global configuration.
-%  Derived from marlinjai/academic-thesis-template, adapted for
-%  a Master's thesis and split into modular files.
+%  preamble.tex: Pakete und globale Konfiguration.
+%  Abgeleitet von marlinjai/academic-thesis-template.
 % ============================================================
 
 % --- Kodierung und Sprachen (Deutsch als Hauptsprache; Englisch fuer das
@@ -9,7 +8,7 @@
 %     In babel ist die zuletzt genannte Sprache die Hauptsprache.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[english,italian,ngerman]{babel}
+\usepackage[english,ngerman]{babel}
 \usepackage[autostyle,german=quotes]{csquotes}
 \usepackage{lmodern}
 \usepackage{microtype}
@@ -48,6 +47,10 @@
             maxcitenames=2, maxbibnames=99,
             uniquename=false, uniquelist=false, natbib=true, dashed=false,
             giveninits=true]{biblatex}
+% Ohne diese Zeile zieht biblatex bei Eintraegen ohne Jahr das Abrufdatum als
+% Jahresangabe heran. Eine Norm ohne verifiziertes Ausgabejahr erschiene dann
+% als Dokument des Abrufjahres. Sie soll stattdessen "o. D." tragen.
+\DeclareLabeldate{\field{date}\field{year}\literal{nodate}}
 \addbibresource{references.bib}
 
 % --- Glossary and acronyms

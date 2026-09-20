@@ -2,17 +2,17 @@
 %  main.tex: Bachelorarbeit, HNE Eberswalde.
 %  Text auf Deutsch.
 %
-%  Compilazione: latexmk -pdf main.tex     (oppure: make)
-%  Motore:       pdfLaTeX + biber + makeglossaries
+%  Bauen:  latexmk -pdf main.tex     (oder: make)
+%  Engine: pdfLaTeX + biber + makeglossaries
 %
-%  Modificare per primo metadata.tex; i contenuti stanno in chapters/.
+%  Zuerst metadata.tex anpassen; die Inhalte liegen in chapters/.
 % ============================================================
 % listof=totoc: KOMA adds the figure/table lists to the ToC itself, so we must
 % NOT add them manually as well (that produced duplicate headings).
-% Le lingue sono opzioni GLOBALI di classe, non opzioni di babel: cleveref
-% rileva la lingua solo da qui, altrimenti ricade sull'inglese ("Chapter 2").
+% Die Sprachen sind GLOBALE Klassenoptionen, keine babel-Optionen: cleveref
+% erkennt die Sprache nur hier, sonst faellt es auf Englisch zurueck.
 \documentclass[oneside,bibliography=totocnumbered,listof=totoc,BCOR=5mm,12pt,
-               english,italian,ngerman]{scrbook}
+               english,ngerman]{scrbook}
 
 \input{metadata}
 \input{preamble}
@@ -60,8 +60,8 @@
 \input{chapters/08-conclusion}
 
 % Literaturverzeichnis direkt nach dem Hauptteil (deutsche Konvention).
-% heading=bibintoc lascia a biblatex il titolo, la voce nell'indice e la
-% testatina: farlo a mano lasciava una testatina errata nelle pagine seguenti.
+% heading=bibintoc ueberlaesst biblatex den Titel, den Eintrag im
+% Inhaltsverzeichnis und den Kolumnentitel.
 \printbibliography[heading=bibintoc, title={Literaturverzeichnis}]
 
 % ---------- Anhang ----------
